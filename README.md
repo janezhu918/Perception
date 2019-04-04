@@ -5,6 +5,7 @@ An app that allows users to watch videos related to printed content using Augmen
 - Swift 5
 - Xcode 10.2
 - ARKit 
+- AVFoundation
 - SceneKit
 - SpriteKit
 - Firebase
