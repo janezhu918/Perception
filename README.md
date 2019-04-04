@@ -10,6 +10,13 @@ An app that allows users to watch videos related to printed content using Augmen
 - SpriteKit
 - Firebase
 
+## Usage Example
+
+## GIFs & Images
+
+## Links
+[Trello](https://trello.com/b/UXQ8Kl0p/53-capstone-group-3)
+
 ## Collaborators
 - [Olimpia Compean](https://github.com/Olimpia1988)
 - [Jevon Gordon](https://github.com/iosdevtrainee/)
