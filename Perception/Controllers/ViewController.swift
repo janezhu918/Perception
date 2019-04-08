@@ -26,12 +26,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // Create a session configuration
     let configuration = ARImageTrackingConfiguration()
     
-    if let trackedImage1 = ARReferenceImage.referenceImages(inGroupNamed: "ARTestMagazine", bundle: Bundle.main){
+    if let trackedImage1 = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
       configuration.trackingImages = trackedImage1
       configuration.maximumNumberOfTrackedImages = 1
       print("images found")
     }
-    
     
     // Run the view's session
     mainView.sceneView.session.run(configuration)
@@ -56,7 +55,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
       videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
       videoNode.yScale = -1.0
       videoScene.addChild(videoNode)
-      
       
       
       let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
