@@ -11,6 +11,7 @@
 		1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */; };
 		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
 		1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8099225BAFF00071FA83 /* VideoView.swift */; };
+		1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
 		A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECDD225654EF009B94A9 /* Main.storyboard */; };
@@ -387,6 +388,7 @@
 				A5B411B72257EDF5006E14F7 /* ARService.swift in Sources */,
 				A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */,
 				A5B411942257EC45006E14F7 /* Main.swift in Sources */,
+				1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */,
 				A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */,
 				A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */,
 				1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */,
