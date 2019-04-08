@@ -1,7 +1,6 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
-import ProgressHUD
 
 class LoginViewController: UIViewController {
     
@@ -50,7 +49,6 @@ class LoginViewController: UIViewController {
             showAlert(title: "Error", message: "Email and password fields cannot be empty.")
             return
         }
-        ProgressHUD.show()
         switch signInMethod {
         case .logIn:
             print("loging in")
