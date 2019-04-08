@@ -15,10 +15,6 @@ protocol ImageStorageServiceDelegate: AnyObject {
 }
 
 final class StorageService: ImageStorageService {
-  func deleteImage(image: PerceptionImage) {
-    
-  }
-  
   
   public weak var imageServiceDelgate: ImageStorageServiceDelegate?
   
@@ -27,8 +23,26 @@ final class StorageService: ImageStorageService {
     return storage.reference()
   }()
   
+  private lazy var imageFolderReference: StorageReference = {
+    return rootRef.child("images")
+  }()
+  
+  private lazy var videoFolderReference: StorageReference = {
+    return rootRef.child("videos")
+  }()
+  
+  func deleteImage(image: PerceptionImage) {
+    let fileReference = imageFolderReference.child(image.id)
+    fileReference.delete { (error) in
+      guard error == nil else {
+        self.imageServiceDelgate?.storageService(self, didReceiveError: error!)
+        return
+      }
+    }
+    imageServiceDelgate?.storageService(self, didDeleteImage: true)
+  }
+  
   func storeImage(data: Data, id:String) {
-    let imageFolderReference = rootRef.child("images")
     let fileReference = imageFolderReference.child(id)
     let metaData = StorageMetadata()
     metaData.contentType = "image/png"
