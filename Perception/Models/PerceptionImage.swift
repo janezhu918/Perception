@@ -26,4 +26,12 @@ struct PerceptionImage {
     self.orientation = orientation
   }
   
+  init(document:[String:Any]){
+    self.name = document[PerceptionImageCollectionKeys.name] as? String ?? ""
+    self.urlString = document[PerceptionImageCollectionKeys.urlString] as? String ?? ""
+    self.videoURLString = document[PerceptionImageCollectionKeys.videoURLString] as? String ?? ""
+    let orientationString = document[PerceptionImageCollectionKeys.orientation] as? String ?? ""
+    self.orientation = Orientation(rawValue: orientationString)!
+  }
+  
 }
