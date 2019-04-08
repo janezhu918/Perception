@@ -3,13 +3,13 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+  
   let mainView = Main()
   
   override func viewDidLoad() {
-    
-    view.addSubview(mainView)
     super.viewDidLoad()
+    view.addSubview(mainView)
+    
     mainView.sceneView.delegate = self
     mainView.sceneView.showsStatistics = true
   }
@@ -23,12 +23,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
       configuration.maximumNumberOfTrackedImages = 1
       print("images found")
     }
-      mainView.sceneView.session.run(configuration)
+    mainView.sceneView.session.run(configuration)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-      mainView.sceneView.session.pause()
+    mainView.sceneView.session.pause()
   }
   
   // MARK: - ARSCNViewDelegate
@@ -49,10 +49,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
       plane.firstMaterial?.diffuse.contents = videoScene
       let planeNode = SCNNode(geometry: plane)
       planeNode.eulerAngles.x = -.pi/2
-      node.addChildNode(planeNode )
+      node.addChildNode(planeNode)
       
+    } else {
+      print("no image")
     }
     return node
   }
-
+  
 }
