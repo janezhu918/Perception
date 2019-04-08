@@ -6,8 +6,8 @@ import AVFoundation
 class FavoriteCollectionCell: UICollectionViewCell {
     
    
-    lazy var videoView: UIView = {
-        let savedVideo = UIView()
+    lazy var videoView: VideoView = {
+        let savedVideo = VideoView()
         return savedVideo
     }()
   
