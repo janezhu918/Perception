@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E8B808C225B96970071FA83 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
+		1E8B808E225B96A20071FA83 /* inTheDark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808D225B96A20071FA83 /* inTheDark.mp4 */; };
+		1E8B8090225B96AC0071FA83 /* loveDeathAndRobots.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
-		A507ECDA225654EF009B94A9 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A507ECD9225654EF009B94A9 /* art.scnassets */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
 		A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECDD225654EF009B94A9 /* Main.storyboard */; };
 		A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE0225654F0009B94A9 /* Assets.xcassets */; };
@@ -37,10 +39,12 @@
 
 /* Begin PBXFileReference section */
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
+		1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloackAndDagger.mp4; sourceTree = "<group>"; };
+		1E8B808D225B96A20071FA83 /* inTheDark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = inTheDark.mp4; sourceTree = "<group>"; };
+		1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loveDeathAndRobots.mp4; sourceTree = "<group>"; };
 		5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.debug.xcconfig"; sourceTree = "<group>"; };
 		A507ECD4225654EF009B94A9 /* Perception.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perception.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A507ECD7225654EF009B94A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A507ECD9225654EF009B94A9 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		A507ECDB225654EF009B94A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A507ECDE225654EF009B94A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A507ECE0225654F0009B94A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +122,9 @@
 		A507ECD6225654EF009B94A9 /* Perception */ = {
 			isa = PBXGroup;
 			children = (
+				1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */,
+				1E8B808D225B96A20071FA83 /* inTheDark.mp4 */,
+				1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
 				A5B411A72257ED4D006E14F7 /* Models */,
 				A5B411952257EC6C006E14F7 /* Views */,
@@ -125,7 +132,6 @@
 				A5B411AE2257EDC0006E14F7 /* Extensions */,
 				A5B411B52257EDE9006E14F7 /* Utilities */,
 				A5B411C32257F00E006E14F7 /* Supporting Files */,
-				A507ECD9225654EF009B94A9 /* art.scnassets */,
 				A507ECDD225654EF009B94A9 /* Main.storyboard */,
 				A5B411C12257EFFC006E14F7 /* GoogleService-Info.plist */,
 				A507ECE5225654F0009B94A9 /* Info.plist */,
@@ -280,9 +286,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A507ECDA225654EF009B94A9 /* art.scnassets in Resources */,
+				1E8B808E225B96A20071FA83 /* inTheDark.mp4 in Resources */,
+				1E8B808C225B96970071FA83 /* cloackAndDagger.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
 				A5B411C22257EFFC006E14F7 /* GoogleService-Info.plist in Resources */,
+				1E8B8090225B96AC0071FA83 /* loveDeathAndRobots.mp4 in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 			);
