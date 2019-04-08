@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SceneKit
-import ARKit
 import AVFoundation
 
 class FavoriteCollectionCell: UICollectionViewCell {
@@ -28,13 +26,18 @@ class FavoriteCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-       addSubview(videoView)
+        commonInit()
+    }
+    
+    func commonInit() {
+        addSubview(videoView)
         addSubview(textLabel)
         cellConstrains()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        
     }
     
     func cellConstrains() {
