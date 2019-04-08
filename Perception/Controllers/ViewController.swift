@@ -9,45 +9,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
   override func viewDidLoad() {
     
     view.addSubview(mainView)
-    
     super.viewDidLoad()
-    
-    // Set the view's delegate
     mainView.sceneView.delegate = self
-    
-    // Show statistics such as fps and timing information
     mainView.sceneView.showsStatistics = true
-    
-  }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    super.viewWillDisappear(animated)
-    
-    // Pause the view's session
-    mainView.sceneView.session.pause()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
-    // Create a session configuration
     let configuration = ARImageTrackingConfiguration()
     
-    if let trackedImage1 = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
-      configuration.trackingImages = trackedImage1
+    if let trackedImage = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
+      configuration.trackingImages = trackedImage
       configuration.maximumNumberOfTrackedImages = 1
       print("images found")
     }
-    
-    // Run the view's session
-    mainView.sceneView.session.run(configuration)
+      mainView.sceneView.session.run(configuration)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    
-    // Pause the view's session
-    mainView.sceneView.session.pause()
+      mainView.sceneView.session.pause()
   }
   
   // MARK: - ARSCNViewDelegate
