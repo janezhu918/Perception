@@ -8,7 +8,8 @@ class SavedVideosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(favoriteVideos)
-       
+        favoriteVideos.myCollectionView.delegate = self
+        favoriteVideos.myCollectionView.dataSource = self 
     }
     
 }
