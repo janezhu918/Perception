@@ -2,27 +2,29 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController {
   
   let mainView = Main()
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.addSubview(mainView)
     
+    view.addSubview(mainView)
     mainView.sceneView.delegate = self
     mainView.sceneView.showsStatistics = true
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    
     let configuration = ARImageTrackingConfiguration()
     
     if let trackedImage = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
       configuration.trackingImages = trackedImage
       configuration.maximumNumberOfTrackedImages = 1
-      print("images found")
+      print("images found in viewWillAppear trackedImage")
     }
+    
     mainView.sceneView.session.run(configuration)
   }
   
@@ -30,8 +32,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     super.viewWillDisappear(animated)
     mainView.sceneView.session.pause()
   }
-  
-  // MARK: - ARSCNViewDelegate
+
+}
+
+extension ViewController: ARSCNViewDelegate {
   
   func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
     let node = SCNNode()
@@ -44,7 +48,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
       videoNode.yScale = -1.0
       videoScene.addChild(videoNode)
       
-      
       let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
       plane.firstMaterial?.diffuse.contents = videoScene
       let planeNode = SCNNode(geometry: plane)
@@ -52,9 +55,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
       node.addChildNode(planeNode)
       
     } else {
-      print("no image")
+      print("No image was detected at renderer function")
     }
     return node
   }
-  
 }
