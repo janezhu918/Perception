@@ -4,19 +4,19 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
-  let sceneView = Main(frame: UIScreen.main.bounds)
+  let mainView = Main()
   
   override func viewDidLoad() {
     
-    view.addSubview(sceneView)
+    view.addSubview(mainView)
     
     super.viewDidLoad()
     
     // Set the view's delegate
-    sceneView.delegate = self
+    mainView.sceneView.delegate = self
     
     // Show statistics such as fps and timing information
-    sceneView.showsStatistics = true
+    mainView.sceneView.showsStatistics = true
     
   }
   
@@ -34,14 +34,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     // Run the view's session
-    sceneView.session.run(configuration)
+    mainView.sceneView.session.run(configuration)
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
     // Pause the view's session
-    sceneView.session.pause()
+    mainView.sceneView.session.pause()
   }
   
   // MARK: - ARSCNViewDelegate

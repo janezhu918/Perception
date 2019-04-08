@@ -1,7 +1,7 @@
 import UIKit
 import ARKit
 
-class Main: ARSCNView {
+class Main: UIView {
   
   //menu button
 
