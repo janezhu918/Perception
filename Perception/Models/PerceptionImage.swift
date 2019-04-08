@@ -15,15 +15,17 @@ struct PerceptionImage {
   public let name: String
   public let urlString: String
   public let orientation: Orientation
+  public let id: String
   
   init(videoURLString: String,
-       name: String,
+       name: String, id: String,
        urlString: String,
        orientation: Orientation){
     self.videoURLString = videoURLString
     self.name = name
     self.urlString = urlString
     self.orientation = orientation
+    self.id = id
   }
   
   init(document:[String:Any]){
@@ -32,6 +34,7 @@ struct PerceptionImage {
     self.videoURLString = document[PerceptionImageCollectionKeys.videoURLString] as? String ?? ""
     let orientationString = document[PerceptionImageCollectionKeys.orientation] as? String ?? ""
     self.orientation = Orientation(rawValue: orientationString)!
+    self.id = document[PerceptionImageCollectionKeys.id] as? String ?? ""
   }
   
 }
