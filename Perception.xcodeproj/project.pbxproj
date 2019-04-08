@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E8B8092225B9BA00071FA83 /* PerceptionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
 		A507ECDA225654EF009B94A9 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = A507ECD9225654EF009B94A9 /* art.scnassets */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
+		1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionImage.swift; sourceTree = "<group>"; };
 		5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.debug.xcconfig"; sourceTree = "<group>"; };
 		A507ECD4225654EF009B94A9 /* Perception.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perception.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A507ECD7225654EF009B94A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		A5B411A72257ED4D006E14F7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */,
 				A5B411A52257ED42006E14F7 /* PerceptionVideo.swift */,
 				A5B411A82257ED5B006E14F7 /* SavedVideo.swift */,
 				A5B411AA2257ED67006E14F7 /* PerceptionUser.swift */,
@@ -371,6 +374,7 @@
 				A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */,
 				A5B411942257EC45006E14F7 /* Main.swift in Sources */,
 				A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */,
+				1E8B8092225B9BA00071FA83 /* PerceptionImage.swift in Sources */,
 				A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */,
 				A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */,
 				A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */,
