@@ -20,6 +20,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    // Pause the view's session
+    mainView.sceneView.session.pause()
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
