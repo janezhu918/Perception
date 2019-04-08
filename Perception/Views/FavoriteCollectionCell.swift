@@ -19,17 +19,12 @@ class FavoriteCollectionCell: UICollectionViewCell {
         return savedVideo
     }()
   
-    
     lazy var textLabel: UILabel = {
         let textLabel = UILabel()
         textLabel.text = "Your videos"
         textLabel.textAlignment = .center
         return textLabel
     }()
-    
-   
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
