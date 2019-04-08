@@ -1,16 +1,17 @@
 import Foundation
 
+public enum Orientation: String {
+  case up
+  case down
+  case left
+  case right
+  case upMirrored
+  case downMirrored
+  case leftMirrored
+  case rightMirrored
+}
+
 struct PerceptionImage {
-  public enum Orientation: String {
-    case up
-    case down
-    case left
-    case right
-    case upMirrored
-    case downMirrored
-    case leftMirrored
-    case rightMirrored
-  }
   public let videoURLString: String
   public let name: String
   public let urlString: String
