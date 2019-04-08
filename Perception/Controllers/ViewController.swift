@@ -4,9 +4,12 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
-    @IBOutlet var sceneView: ARSCNView!
-    
+  let sceneView = Main(frame: UIScreen.main.bounds)
+  
   override func viewDidLoad() {
+    
+    view.addSubview(sceneView)
+    
     super.viewDidLoad()
     
     // Set the view's delegate

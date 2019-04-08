@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */; };
+		1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */; };
+		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
 		A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECDD225654EF009B94A9 /* Main.storyboard */; };
@@ -40,6 +43,9 @@
 		1E8B808D225B96A20071FA83 /* inTheDark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = inTheDark.mp4; sourceTree = "<group>"; };
 		1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loveDeathAndRobots.mp4; sourceTree = "<group>"; };
 		1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionImage.swift; sourceTree = "<group>"; };
+		1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionCell.swift; sourceTree = "<group>"; };
+		1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionImageCollectionKeys.swift; sourceTree = "<group>"; };
+		1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionVideoCollectionKeys.swift; sourceTree = "<group>"; };
 		5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.debug.xcconfig"; sourceTree = "<group>"; };
 		A507ECD4225654EF009B94A9 /* Perception.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perception.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A507ECD7225654EF009B94A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 				A5B411962257EC7E006E14F7 /* LoginView.swift */,
 				A5B411982257EC85006E14F7 /* SavedVideos.swift */,
 				A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */,
+				1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +191,8 @@
 			children = (
 				A5B411B32257EDDE006E14F7 /* Constants.swift */,
 				A5B411B62257EDF5006E14F7 /* ARService.swift */,
+				1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */,
+				1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -285,11 +294,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E8B808E225B96A20071FA83 /* inTheDark.mp4 in Resources */,
-				1E8B808C225B96970071FA83 /* cloackAndDagger.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
 				A5B411C22257EFFC006E14F7 /* GoogleService-Info.plist in Resources */,
-				1E8B8090225B96AC0071FA83 /* loveDeathAndRobots.mp4 in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 			);
@@ -373,13 +379,14 @@
 			files = (
 				A5B411AB2257ED67006E14F7 /* PerceptionUser.swift in Sources */,
 				A5B411BC2257EE1C006E14F7 /* DBService.swift in Sources */,
+				1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */,
 				A5B411B42257EDDE006E14F7 /* Constants.swift in Sources */,
 				A5B411B72257EDF5006E14F7 /* ARService.swift in Sources */,
 				A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */,
 				A5B411942257EC45006E14F7 /* Main.swift in Sources */,
 				A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */,
-				1E8B8092225B9BA00071FA83 /* PerceptionImage.swift in Sources */,
 				A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */,
+				1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */,
 				A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */,
 				A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */,
 				A5B411A42257ECF2006E14F7 /* VideoDetailViewController.swift in Sources */,
@@ -391,6 +398,7 @@
 				A5B411B22257EDD0006E14F7 /* String+DateExtensions.swift in Sources */,
 				A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */,
 				A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */,
+				1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */,
 				A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
