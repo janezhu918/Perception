@@ -58,10 +58,6 @@ class FieldMask {
     return fields_.end();
   }
 
-  size_t size() const {
-    return fields_.size();
-  }
-
   /**
    * Verifies that `fieldPath` is included by at least one field in this field
    * mask.

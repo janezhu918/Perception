@@ -4,9 +4,6 @@ import ARKit
 class Main: UIView {
   
   
-  
-  
-
   lazy var sceneView: ARSCNView = {
     var scene = ARSCNView()
     return scene

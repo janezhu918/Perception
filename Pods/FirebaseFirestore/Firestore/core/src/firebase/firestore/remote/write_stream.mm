@@ -36,11 +36,11 @@ WriteStream::WriteStream(AsyncQueue* async_queue,
                          CredentialsProvider* credentials_provider,
                          FSTSerializerBeta* serializer,
                          GrpcConnection* grpc_connection,
-                         WriteStreamCallback* callback)
+                         id<FSTWriteStreamDelegate> delegate)
     : Stream{async_queue, credentials_provider, grpc_connection,
              TimerId::WriteStreamConnectionBackoff, TimerId::WriteStreamIdle},
       serializer_bridge_{serializer},
-      callback_{NOT_NULL(callback)} {
+      delegate_bridge_{delegate} {
 }
 
 void WriteStream::SetLastStreamToken(NSData* token) {
@@ -65,7 +65,7 @@ void WriteStream::WriteHandshake() {
   // stream token on the handshake, ignoring any stream token we might have.
 }
 
-void WriteStream::WriteMutations(const std::vector<FSTMutation*>& mutations) {
+void WriteStream::WriteMutations(NSArray<FSTMutation*>* mutations) {
   EnsureOnQueue();
   HARD_ASSERT(IsOpen(), "Writing mutations requires an opened stream");
   HARD_ASSERT(handshake_complete(),
@@ -97,11 +97,11 @@ void WriteStream::TearDown(GrpcStream* grpc_stream) {
 }
 
 void WriteStream::NotifyStreamOpen() {
-  callback_->OnWriteStreamOpen();
+  delegate_bridge_.NotifyDelegateOnOpen();
 }
 
 void WriteStream::NotifyStreamClose(const Status& status) {
-  callback_->OnWriteStreamClose(status);
+  delegate_bridge_.NotifyDelegateOnClose(status);
   // Delegate's logic might depend on whether handshake was completed, so only
   // reset it after notifying.
   handshake_complete_ = false;
@@ -124,14 +124,14 @@ Status WriteStream::NotifyStreamResponse(const grpc::ByteBuffer& message) {
   if (!handshake_complete()) {
     // The first response is the handshake response
     handshake_complete_ = true;
-    callback_->OnWriteStreamHandshakeComplete();
+    delegate_bridge_.NotifyDelegateOnHandshakeComplete();
   } else {
     // A successful first write response means the stream is healthy.
     // Note that we could consider a successful handshake healthy, however, the
     // write itself might be causing an error we want to back off from.
     backoff_.Reset();
 
-    callback_->OnWriteStreamMutationResult(
+    delegate_bridge_.NotifyDelegateOnCommit(
         serializer_bridge_.ToCommitVersion(response),
         serializer_bridge_.ToMutationResults(response));
   }

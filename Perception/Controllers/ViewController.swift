@@ -2,6 +2,7 @@ import UIKit
 import SceneKit
 import ARKit
 
+
 class ViewController: UIViewController {
   
   let mainView = Main()
@@ -12,6 +13,22 @@ class ViewController: UIViewController {
     view.addSubview(mainView)
     mainView.sceneView.delegate = self
     mainView.sceneView.showsStatistics = true
+  }
+  
+  private var videoNodeGlobal: SKVideoNode?
+  
+  private var isPlaying = false {
+    didSet {
+      switchPlayback(isPlaying)
+    }
+  }
+  
+  private func switchPlayback(_ isPlaying: Bool) {
+    if isPlaying {
+      videoNodeGlobal?.pause()
+    } else {
+      videoNodeGlobal?.play()
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +49,11 @@ class ViewController: UIViewController {
     super.viewWillDisappear(animated)
     mainView.sceneView.session.pause()
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    guard let _ = touches.first?.location(in: mainView.sceneView) else {fatalError("Could not find images in asset folder")}
+    isPlaying = !isPlaying
+  }
 
 }
 
@@ -42,7 +64,8 @@ extension ViewController: ARSCNViewDelegate {
     if let imageAnchor = anchor as? ARImageAnchor {
       
       let videoNode = SKVideoNode(fileNamed: "\(imageAnchor.referenceImage.name!.description).mp4")
-      videoNode.play()
+      self.videoNodeGlobal = videoNode
+      isPlaying = true
       let videoScene = SKScene(size: CGSize(width: 480, height: 360))
       videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
       videoNode.yScale = -1.0

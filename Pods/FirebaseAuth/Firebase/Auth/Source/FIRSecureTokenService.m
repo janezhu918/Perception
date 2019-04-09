@@ -24,8 +24,6 @@
 #import "FIRSecureTokenRequest.h"
 #import "FIRSecureTokenResponse.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kAPIKeyCodingKey
     @brief The key used to encode the APIKey for NSSecureCoding.
  */
@@ -206,5 +204,3 @@ static const NSTimeInterval kFiveMinutes = 5 * 60;
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

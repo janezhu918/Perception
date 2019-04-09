@@ -16,16 +16,12 @@
 
 #import "FIRTransaction.h"
 
-#include <memory>
-
-#include "Firestore/core/src/firebase/firestore/core/transaction.h"
-
 @class FIRFirestore;
+@class FSTTransaction;
 
 @interface FIRTransaction (Internal)
 
-+ (instancetype)transactionWithInternalTransaction:
-                    (std::shared_ptr<firebase::firestore::core::Transaction>)transaction
-                                         firestore:(FIRFirestore *)firestore;
++ (instancetype)transactionWithFSTTransaction:(FSTTransaction *)transaction
+                                    firestore:(FIRFirestore *)firestore;
 
 @end

@@ -18,8 +18,6 @@
 
 #import "FIRAuthGlobalWorkQueue.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation FIRAuthSerialTaskQueue {
   /** @var _dispatchQueue
       @brief The asyncronous dispatch queue into which tasks are enqueued and processed
@@ -52,5 +50,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

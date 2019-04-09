@@ -16,8 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @class FIRAuthErrors
     @remarks Error Codes common to all API Methods:
 
@@ -45,42 +43,22 @@ NS_SWIFT_NAME(AuthErrors)
 extern NSString *const FIRAuthErrorDomain NS_SWIFT_NAME(AuthErrorDomain);
 
 /**
-    @brief Please use `FIRAuthErrorUserInfoUpdatedCredentialKey` for Objective C or
-        `AuthErrorUserInfoUpdatedCredentialKey` for Swift instead.
+    @brief The key used to read the updated credential from the userinfo dictionary of the NSError
+        object returned in the case that the credential being linked in already in use.
  */
-extern NSString *const FIRAuthUpdatedCredentialKey
-    NS_SWIFT_NAME(AuthUpdatedCredentialKey) __attribute__((deprecated));
+extern NSString *const FIRAuthUpdatedCredentialKey NS_SWIFT_NAME(AuthUpdatedCredentialKey);
 
 /**
-    @brief Please use `FIRAuthErrorUserInfoNameKey` for Objective C or
-        `AuthErrorUserInfoNameKey` for Swift instead.
+    @brief The name of the key for the "error_name" string in the NSError userinfo dictionary.
  */
-extern NSString *const FIRAuthErrorNameKey
-    NS_SWIFT_NAME(AuthErrorNameKey) __attribute__((deprecated));
+extern NSString *const FIRAuthErrorNameKey NS_SWIFT_NAME(AuthErrorNameKey);
 
 /**
-    @brief The name of the key for the error short string of an error code.
- */
-extern NSString *const FIRAuthErrorUserInfoNameKey NS_SWIFT_NAME(AuthErrorUserInfoNameKey);
-
-/**
-    @brief Errors with one of the following three codes:
-          - `FIRAuthErrorCodeAccountExistsWithDifferentCredential`
-          - `FIRAuthErrorCodeCredentialAlreadyInUse`
-          - `FIRAuthErrorCodeEmailAlreadyInUse`
-        may contain  an `NSError.userInfo` dictinary object which contains this key. The value
-        associated with this key is an NSString of the email address of the account that already
-        exists.
+    @brief Errors with the code `FIRAuthErrorCodeAccountExistsWithDifferentCredential` may contain
+        an `NSError.userInfo` dictinary object which contains this key. The value associated with
+        this key is an NSString of the email address of the account that already exists.
  */
 extern NSString *const FIRAuthErrorUserInfoEmailKey NS_SWIFT_NAME(AuthErrorUserInfoEmailKey);
-
-/**
-    @brief The key used to read the updated Auth credential from the userInfo dictionary of the
-        NSError object returned. This is the updated auth credential the developer should use for
-        recovery if applicable.
- */
-extern NSString *const FIRAuthErrorUserInfoUpdatedCredentialKey
-    NS_SWIFT_NAME(AuthErrorUserInfoUpdatedCredentialKey);
 
 /**
     @brief Error codes used by Firebase Auth.
@@ -321,10 +299,6 @@ typedef NS_ENUM(NSInteger, FIRAuthErrorCode) {
      */
     FIRAuthErrorCodeWebInternalError = 17062,
 
-    /** Indicates a general failure during a web sign-in flow.
-     */
-    FIRAuthErrorCodeWebSignInUserInteractionFailure = 17063,
-
     /** Indicates that the local player was not authenticated prior to attempting Game Center signin.
      */
     FIRAuthErrorCodeLocalPlayerNotAuthenticated = 17066,
@@ -338,10 +312,6 @@ typedef NS_ENUM(NSInteger, FIRAuthErrorCode) {
         for the current project.
      */
     FIRAuthErrorCodeInvalidDynamicLinkDomain = 17074,
-
-    /** Indicates that the GameKit framework is not linked prior to attempting Game Center signin.
-     */
-    FIRAuthErrorCodeGameKitNotLinked = 17076,
 
     /** Indicates an error occurred while attempting to access the keychain.
      */
@@ -358,5 +328,3 @@ typedef NS_ENUM(NSInteger, FIRAuthErrorCode) {
 } NS_SWIFT_NAME(AuthErrorCode);
 
 @end
-
-NS_ASSUME_NONNULL_END

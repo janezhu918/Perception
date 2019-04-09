@@ -19,21 +19,15 @@
 #include <unordered_set>
 #include <utility>
 
-#import "Firestore/Source/Remote/FSTSerializerBeta.h"
-
 #include "Firestore/core/include/firebase/firestore/firestore_errors.h"
 #include "Firestore/core/src/firebase/firestore/auth/credentials_provider.h"
 #include "Firestore/core/src/firebase/firestore/auth/token.h"
 #include "Firestore/core/src/firebase/firestore/core/database_info.h"
-#include "Firestore/core/src/firebase/firestore/model/database_id.h"
-#include "Firestore/core/src/firebase/firestore/model/document_key.h"
 #include "Firestore/core/src/firebase/firestore/remote/connectivity_monitor.h"
 #include "Firestore/core/src/firebase/firestore/remote/grpc_completion.h"
-#include "Firestore/core/src/firebase/firestore/remote/grpc_connection.h"
 #include "Firestore/core/src/firebase/firestore/remote/grpc_stream.h"
 #include "Firestore/core/src/firebase/firestore/remote/grpc_streaming_reader.h"
 #include "Firestore/core/src/firebase/firestore/remote/grpc_unary_call.h"
-#include "Firestore/core/src/firebase/firestore/util/async_queue.h"
 #include "Firestore/core/src/firebase/firestore/util/error_apple.h"
 #include "Firestore/core/src/firebase/firestore/util/executor_libdispatch.h"
 #include "Firestore/core/src/firebase/firestore/util/hard_assert.h"
@@ -91,25 +85,15 @@ void LogGrpcCallFinished(absl::string_view rpc_name,
 
 Datastore::Datastore(const DatabaseInfo& database_info,
                      AsyncQueue* worker_queue,
-                     CredentialsProvider* credentials)
-    : Datastore{database_info, worker_queue, credentials,
-                ConnectivityMonitor::Create(worker_queue)} {
-}
-
-Datastore::Datastore(const DatabaseInfo& database_info,
-                     AsyncQueue* worker_queue,
                      CredentialsProvider* credentials,
-                     std::unique_ptr<ConnectivityMonitor> connectivity_monitor)
+                     FSTSerializerBeta* serializer)
     : worker_queue_{NOT_NULL(worker_queue)},
       credentials_{credentials},
       rpc_executor_{CreateExecutor()},
-      connectivity_monitor_{std::move(connectivity_monitor)},
+      connectivity_monitor_{ConnectivityMonitor::Create(worker_queue)},
       grpc_connection_{database_info, worker_queue, &grpc_queue_,
                        connectivity_monitor_.get()},
-      serializer_bridge_{database_info} {
-  if (!database_info.ssl_enabled()) {
-    GrpcConnection::UseInsecureChannel(database_info.host());
-  }
+      serializer_bridge_{NOT_NULL(serializer)} {
 }
 
 void Datastore::Start() {
@@ -151,38 +135,35 @@ void Datastore::PollGrpcQueue() {
 }
 
 std::shared_ptr<WatchStream> Datastore::CreateWatchStream(
-    WatchStreamCallback* callback) {
+    id<FSTWatchStreamDelegate> delegate) {
   return std::make_shared<WatchStream>(worker_queue_, credentials_,
                                        serializer_bridge_.GetSerializer(),
-                                       &grpc_connection_, callback);
+                                       &grpc_connection_, delegate);
 }
 
 std::shared_ptr<WriteStream> Datastore::CreateWriteStream(
-    WriteStreamCallback* callback) {
+    id<FSTWriteStreamDelegate> delegate) {
   return std::make_shared<WriteStream>(worker_queue_, credentials_,
                                        serializer_bridge_.GetSerializer(),
-                                       &grpc_connection_, callback);
+                                       &grpc_connection_, delegate);
 }
 
-void Datastore::CommitMutations(const std::vector<FSTMutation*>& mutations,
-                                CommitCallback&& callback) {
+void Datastore::CommitMutations(NSArray<FSTMutation*>* mutations,
+                                FSTVoidErrorBlock completion) {
   ResumeRpcWithCredentials(
-      // TODO(c++14): move into lambda.
-      [this, mutations,
-       callback](const StatusOr<Token>& maybe_credentials) mutable {
+      [this, mutations, completion](const StatusOr<Token>& maybe_credentials) {
         if (!maybe_credentials.ok()) {
-          callback(maybe_credentials.status());
+          completion(util::MakeNSError(maybe_credentials.status()));
           return;
         }
         CommitMutationsWithCredentials(maybe_credentials.ValueOrDie(),
-                                       mutations, std::move(callback));
+                                       mutations, completion);
       });
 }
 
-void Datastore::CommitMutationsWithCredentials(
-    const Token& token,
-    const std::vector<FSTMutation*>& mutations,
-    CommitCallback&& callback) {
+void Datastore::CommitMutationsWithCredentials(const Token& token,
+                                               NSArray<FSTMutation*>* mutations,
+                                               FSTVoidErrorBlock completion) {
   grpc::ByteBuffer message = serializer_bridge_.ToByteBuffer(
       serializer_bridge_.CreateCommitRequest(mutations));
 
@@ -192,36 +173,43 @@ void Datastore::CommitMutationsWithCredentials(
   active_calls_.push_back(std::move(call_owning));
 
   call->Start(
-      // TODO(c++14): move into lambda.
-      [this, call, callback](const StatusOr<grpc::ByteBuffer>& result) {
+      [this, call, completion](const StatusOr<grpc::ByteBuffer>& result) {
         LogGrpcCallFinished("CommitRequest", call, result.status());
         HandleCallStatus(result.status());
 
-        // Response is deliberately ignored
-        callback(result.status());
+        OnCommitMutationsResponse(result, completion);
 
         RemoveGrpcCall(call);
       });
 }
 
-void Datastore::LookupDocuments(const std::vector<DocumentKey>& keys,
-                                LookupCallback&& callback) {
+void Datastore::OnCommitMutationsResponse(
+    const StatusOr<grpc::ByteBuffer>& result, FSTVoidErrorBlock completion) {
+  if (result.ok()) {
+    completion(/*Response is deliberately ignored*/ nil);
+  } else {
+    completion(util::MakeNSError(result.status()));
+  }
+}
+
+void Datastore::LookupDocuments(
+    const std::vector<DocumentKey>& keys,
+    FSTVoidMaybeDocumentArrayErrorBlock completion) {
   ResumeRpcWithCredentials(
-      // TODO(c++14): move into lambda.
-      [this, keys, callback](const StatusOr<Token>& maybe_credentials) mutable {
+      [this, keys, completion](const StatusOr<Token>& maybe_credentials) {
         if (!maybe_credentials.ok()) {
-          callback({}, maybe_credentials.status());
+          completion(nil, util::MakeNSError(maybe_credentials.status()));
           return;
         }
         LookupDocumentsWithCredentials(maybe_credentials.ValueOrDie(), keys,
-                                       std::move(callback));
+                                       completion);
       });
 }
 
 void Datastore::LookupDocumentsWithCredentials(
     const Token& token,
     const std::vector<DocumentKey>& keys,
-    LookupCallback&& callback) {
+    FSTVoidMaybeDocumentArrayErrorBlock completion) {
   grpc::ByteBuffer message = serializer_bridge_.ToByteBuffer(
       serializer_bridge_.CreateLookupRequest(keys));
 
@@ -231,13 +219,12 @@ void Datastore::LookupDocumentsWithCredentials(
   GrpcStreamingReader* call = call_owning.get();
   active_calls_.push_back(std::move(call_owning));
 
-  // TODO(c++14): move into lambda.
-  call->Start([this, call, callback](
+  call->Start([this, call, completion](
                   const StatusOr<std::vector<grpc::ByteBuffer>>& result) {
     LogGrpcCallFinished("BatchGetDocuments", call, result.status());
     HandleCallStatus(result.status());
 
-    OnLookupDocumentsResponse(result, callback);
+    OnLookupDocumentsResponse(result, completion);
 
     RemoveGrpcCall(call);
   });
@@ -245,17 +232,21 @@ void Datastore::LookupDocumentsWithCredentials(
 
 void Datastore::OnLookupDocumentsResponse(
     const StatusOr<std::vector<grpc::ByteBuffer>>& result,
-    const LookupCallback& callback) {
+    FSTVoidMaybeDocumentArrayErrorBlock completion) {
   if (!result.ok()) {
-    callback({}, result.status());
+    completion(nil, util::MakeNSError(result.status()));
     return;
   }
 
   Status parse_status;
   std::vector<grpc::ByteBuffer> responses = std::move(result).ValueOrDie();
-  std::vector<FSTMaybeDocument*> docs =
+  NSArray<FSTMaybeDocument*>* docs =
       serializer_bridge_.MergeLookupResponses(responses, &parse_status);
-  callback(docs, parse_status);
+  if (parse_status.ok()) {
+    completion(docs, nil);
+  } else {
+    completion(nil, util::MakeNSError(parse_status));
+  }
 }
 
 void Datastore::ResumeRpcWithCredentials(const OnCredentials& on_credentials) {
@@ -299,46 +290,6 @@ void Datastore::RemoveGrpcCall(GrpcCall* to_remove) {
                             });
   HARD_ASSERT(found != active_calls_.end(), "Missing gRPC call");
   active_calls_.erase(found);
-}
-
-bool Datastore::IsAbortedError(const Status& error) {
-  return error.code() == FirestoreErrorCode::Aborted;
-}
-
-bool Datastore::IsPermanentError(const Status& error) {
-  switch (error.code()) {
-    case FirestoreErrorCode::Ok:
-      HARD_FAIL("Treated status OK as error");
-    case FirestoreErrorCode::Cancelled:
-    case FirestoreErrorCode::Unknown:
-    case FirestoreErrorCode::DeadlineExceeded:
-    case FirestoreErrorCode::ResourceExhausted:
-    case FirestoreErrorCode::Internal:
-    case FirestoreErrorCode::Unavailable:
-      // Unauthenticated means something went wrong with our token and we need
-      // to retry with new credentials which will happen automatically.
-    case FirestoreErrorCode::Unauthenticated:
-      return false;
-    case FirestoreErrorCode::InvalidArgument:
-    case FirestoreErrorCode::NotFound:
-    case FirestoreErrorCode::AlreadyExists:
-    case FirestoreErrorCode::PermissionDenied:
-    case FirestoreErrorCode::FailedPrecondition:
-    case FirestoreErrorCode::Aborted:
-      // Aborted might be retried in some scenarios, but that is dependant on
-      // the context and should handled individually by the calling code.
-      // See https://cloud.google.com/apis/design/errors
-    case FirestoreErrorCode::OutOfRange:
-    case FirestoreErrorCode::Unimplemented:
-    case FirestoreErrorCode::DataLoss:
-      return true;
-  }
-
-  HARD_FAIL("Unknown status code: %s", error.code());
-}
-
-bool Datastore::IsPermanentWriteError(const Status& error) {
-  return IsPermanentError(error) && !IsAbortedError(error);
 }
 
 std::string Datastore::GetWhitelistedHeadersAsString(

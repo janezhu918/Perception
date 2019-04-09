@@ -16,8 +16,6 @@
 
 #import "FIRVerifyAssertionResponse.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation FIRVerifyAssertionResponse
 
 - (BOOL)setWithDictionary:(NSDictionary *)dictionary
@@ -72,14 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
     _verifiedProvider = [[NSArray alloc] initWithArray:verifiedProvider
                                              copyItems:YES];
   }
-  _oauthIDToken = [dictionary[@"oauthIdToken"] copy];
-  _oauthExpirationDate =  [dictionary[@"oauthExpireIn"] isKindOfClass:[NSString class]] ?
-      [NSDate dateWithTimeIntervalSinceNow:[dictionary[@"oauthExpireIn"] doubleValue]] : nil;
-  _oauthAccessToken = [dictionary[@"oauthAccessToken"] copy];
-  _pendingToken = [dictionary[@"pendingToken"] copy];
   return YES;
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

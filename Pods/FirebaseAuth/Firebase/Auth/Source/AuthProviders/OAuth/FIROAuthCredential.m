@@ -16,9 +16,6 @@
 
 #import "FIROAuthCredential.h"
 
-#import "FIRAuthCredential_Internal.h"
-#import "FIRAuthExceptionUtils.h"
-#import "FIROAuthCredential_Internal.h"
 #import "FIRVerifyAssertionRequest.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -31,32 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation FIROAuthCredential
 
-- (nullable instancetype)initWithProvider:(NSString *)provider {
-  [FIRAuthExceptionUtils raiseMethodNotImplementedExceptionWithReason:
-      @"Please call the designated initializer."];
-  return nil;
-}
-
-- (instancetype)initWithProviderID:(NSString *)providerID
-                           IDToken:(nullable NSString *)IDToken
-                       accessToken:(nullable NSString *)accessToken
-                      pendingToken:(nullable NSString *)pendingToken {
+- (nullable instancetype)initWithProviderID:(NSString *)providerID
+                                    IDToken:(nullable NSString *)IDToken
+                                accessToken:(nullable NSString *)accessToken {
   self = [super initWithProvider:providerID];
   if (self) {
     _IDToken = IDToken;
     _accessToken = accessToken;
-    _pendingToken = pendingToken;
-  }
-  return self;
-}
-
-- (instancetype)initWithProviderID:(NSString *)providerID
-                         sessionID:(NSString *)sessionID
-            OAuthResponseURLString:(NSString *)OAuthResponseURLString {
-  self = [self initWithProviderID:providerID IDToken:nil accessToken:nil pendingToken:nil];
-  if (self) {
-    _OAuthResponseURLString = OAuthResponseURLString;
-    _sessionID = sessionID;
   }
   return self;
 }
@@ -75,20 +53,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
   NSString *IDToken = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"IDToken"];
   NSString *accessToken = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"accessToken"];
-  NSString *pendingToken = [aDecoder decodeObjectOfClass:[NSString class] forKey:@"pendingToken"];
-  self = [self initWithProviderID:self.provider
-                          IDToken:IDToken
-                      accessToken:accessToken
-                     pendingToken:pendingToken];
+  self = [self initWithProviderID:self.provider IDToken:IDToken accessToken:accessToken];
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [aCoder encodeObject:self.IDToken forKey:@"IDToken"];
   [aCoder encodeObject:self.accessToken forKey:@"accessToken"];
-  [aCoder encodeObject:self.pendingToken forKey:@"pendingToken"];
 }
 
-@end
-
 NS_ASSUME_NONNULL_END
+
+@end

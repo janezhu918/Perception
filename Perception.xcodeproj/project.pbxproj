@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */; };
+		1211DAC6225D26E600D40F51 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC5225D26E600D40F51 /* OnBoardingView.swift */; };
 		1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
 		1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808D225B96A20071FA83 /* inTheDark.mp4 */; };
 		1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */; };
@@ -43,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		1211DAC5225D26E600D40F51 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
 		1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloackAndDagger.mp4; sourceTree = "<group>"; };
 		1E8B808D225B96A20071FA83 /* inTheDark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = inTheDark.mp4; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				A5B411962257EC7E006E14F7 /* LoginView.swift */,
 				A5B411982257EC85006E14F7 /* SavedVideos.swift */,
 				A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */,
+				1211DAC5225D26E600D40F51 /* OnBoardingView.swift */,
 				1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */,
 				1E8B8099225BAFF00071FA83 /* VideoView.swift */,
 			);
@@ -166,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				A507ECDB225654EF009B94A9 /* ViewController.swift */,
+				1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */,
 				A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */,
 				A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */,
 				A5B411A32257ECF2006E14F7 /* VideoDetailViewController.swift */,
@@ -344,7 +350,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Perception/Pods-Perception-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Perception/Pods-Perception-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/ExpandingMenu/ExpandingMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -357,6 +363,7 @@
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/paper-onboarding/paper_onboarding.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -374,10 +381,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/paper_onboarding.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Perception/Pods-Perception-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Perception/Pods-Perception-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -390,6 +398,7 @@
 				A5B411AB2257ED67006E14F7 /* PerceptionUser.swift in Sources */,
 				A5B411BC2257EE1C006E14F7 /* DBService.swift in Sources */,
 				1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */,
+				1211DAC6225D26E600D40F51 /* OnBoardingView.swift in Sources */,
 				A5B411B42257EDDE006E14F7 /* Constants.swift in Sources */,
 				A5B411B72257EDF5006E14F7 /* ARService.swift in Sources */,
 				A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */,
@@ -406,6 +415,7 @@
 				A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */,
 				A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */,
 				A5B411A22257ECEA006E14F7 /* SavedVideosViewController.swift in Sources */,
+				1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */,
 				A5B411A02257ECDA006E14F7 /* LoginViewController.swift in Sources */,
 				A5B411B22257EDD0006E14F7 /* String+DateExtensions.swift in Sources */,
 				A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */,
@@ -559,7 +569,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WGF5N989LK;
+				DEVELOPMENT_TEAM = 9DN3HV8LU2;
 				INFOPLIST_FILE = Perception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -578,7 +588,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WGF5N989LK;
+				DEVELOPMENT_TEAM = 9DN3HV8LU2;
 				INFOPLIST_FILE = Perception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
