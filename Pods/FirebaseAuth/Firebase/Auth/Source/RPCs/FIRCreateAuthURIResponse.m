@@ -16,8 +16,6 @@
 
 #import "FIRCreateAuthURIResponse.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation FIRCreateAuthURIResponse
 
 - (BOOL)setWithDictionary:(NSDictionary *)dictionary
@@ -32,5 +30,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

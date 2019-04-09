@@ -7,14 +7,15 @@ target 'Perception' do
 
   # Pods for Perception
 
-pod ‘Firebase/Core’
-pod ‘Firebase/Auth’
-pod ‘Firebase/Firestore’
-pod ‘Firebase/Storage’
-pod ‘Kingfisher’
-pod ‘Toucan’
-pod ‘ProgressHUD'
-pod ‘ExpandingMenu’, ‘~> 0.4'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Firestore'
+pod 'Firebase/Storage'
+pod 'Kingfisher'
+pod 'Toucan'
+pod 'ProgressHUD'
+pod 'ExpandingMenu', '~> 0.4'
+pod 'paper-onboarding'
 
 
 end

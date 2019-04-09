@@ -22,8 +22,6 @@
 #import "FIRAuthExceptionUtils.h"
 #import "FIRGameCenterAuthCredential.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation FIRGameCenterAuthProvider
 
 - (instancetype)init {
@@ -33,22 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (void)getCredentialWithCompletion:(FIRGameCenterCredentialCallback)completion {
-  /**
-   Linking GameKit.framework without using it on macOS results in App Store rejection.
-   Thus we don't link GameKit.framework to our SDK directly. `optionalLocalPlayer` is used for
-   checking whether the APP that consuming our SDK has linked GameKit.framework. If not, a
-   `GameKitNotLinkedError` will be raised.
-   **/
-  GKLocalPlayer * _Nullable optionalLocalPlayer = [[NSClassFromString(@"GKLocalPlayer") alloc] init];
-
-  if (!optionalLocalPlayer) {
-    if (completion) {
-      completion(nil, [FIRAuthErrorUtils gameKitNotLinkedError]);
-    }
-    return;
-  }
-
-  __weak GKLocalPlayer *localPlayer = [[optionalLocalPlayer class] localPlayer];
+  __weak GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
   if (!localPlayer.isAuthenticated) {
     if (completion) {
       completion(nil, [FIRAuthErrorUtils localPlayerNotAuthenticatedError]);
@@ -84,5 +67,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

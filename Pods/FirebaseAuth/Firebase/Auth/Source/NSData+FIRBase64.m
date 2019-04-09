@@ -16,8 +16,6 @@
 
 #import "NSData+FIRBase64.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation NSData (FIRBase64)
 
 - (NSString *)fir_base64URLEncodedStringWithOptions:(NSDataBase64EncodingOptions)options {
@@ -29,5 +27,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

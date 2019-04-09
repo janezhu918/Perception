@@ -16,8 +16,6 @@
 
 #import "FIRVerifyAssertionRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kVerifyAssertionEndpoint
     @brief The "verifyAssertion" endpoint.
  */
@@ -58,10 +56,10 @@ static NSString *const kRequestURIKey = @"requestUri";
  */
 static NSString *const kPostBodyKey = @"postBody";
 
-/** @var kPendingTokenKey
-    @brief The key for the "pendingToken" value in the request.
+/** @var kPendingIDTokenKey
+    @brief The key for the "pendingIdToken" value in the request.
  */
-static NSString *const kPendingTokenKey = @"pendingToken";
+static NSString *const kPendingIDTokenKey = @"pendingIdToken";
 
 /** @var kAutoCreateKey
     @brief The key for the "autoCreate" value in the request.
@@ -79,16 +77,6 @@ static NSString *const kIDTokenKey = @"idToken";
  */
 static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
 
-/** @var kReturnIDPCredentialKey
-    @brief The key for the "returnIdpCredential" value in the request.
- */
-static NSString *const kReturnIDPCredentialKey = @"returnIdpCredential";
-
-/** @var kSessionIDKey
-    @brief The key for the "sessionID" value in the request.
- */
-static NSString *const kSessionIDKey = @"sessionId";
-
 @implementation FIRVerifyAssertionRequest
 
 - (nullable instancetype)initWithProviderID:(NSString *)providerID
@@ -99,7 +87,6 @@ static NSString *const kSessionIDKey = @"sessionId";
     _providerID = providerID;
     _returnSecureToken = YES;
     _autoCreate = YES;
-    _returnIDPCredential = YES;
   }
   return self;
 }
@@ -120,7 +107,7 @@ static NSString *const kSessionIDKey = @"sessionId";
                                                       value:_providerAccessToken]];
   }
 
-  if (!_providerIDToken && !_providerAccessToken && !_requestURI) {
+  if (!_providerIDToken && !_providerAccessToken) {
     [NSException raise:NSInvalidArgumentException
                 format:@"Either IDToken or accessToken must be supplied."];
   }
@@ -136,12 +123,12 @@ static NSString *const kSessionIDKey = @"sessionId";
   }
   [components setQueryItems:queryItems];
   NSMutableDictionary *body = [@{
-      kRequestURIKey : _requestURI ?: @"http://localhost", // Unused by server, but required
+      kRequestURIKey : @"http://localhost", // Unused by server, but required
       kPostBodyKey : [components query]
       } mutableCopy];
 
-  if (_pendingToken) {
-    body[kPendingTokenKey] = _pendingToken;
+  if (_pendingIDToken) {
+    body[kPendingIDTokenKey] = _pendingIDToken;
   }
   if (_accessToken) {
     body[kIDTokenKey] = _accessToken;
@@ -150,19 +137,9 @@ static NSString *const kSessionIDKey = @"sessionId";
     body[kReturnSecureTokenKey] = @YES;
   }
 
-  if (_returnIDPCredential) {
-    body[kReturnIDPCredentialKey] = @YES;
-  }
-
-  if (_sessionID) {
-    body[kSessionIDKey] = _sessionID;
-  }
-
   body[kAutoCreateKey] = @(_autoCreate);
 
   return body;
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

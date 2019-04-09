@@ -18,8 +18,6 @@
 
 #import "FIRGetAccountInfoResponse.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kProviderIDCodingKey
     @brief The key used to encode the providerID property for NSSecureCoding.
  */
@@ -127,5 +125,3 @@ static NSString *const kPhoneNumberCodingKey = @"phoneNumber";
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

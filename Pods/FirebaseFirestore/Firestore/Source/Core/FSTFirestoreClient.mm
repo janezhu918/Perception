@@ -31,6 +31,7 @@
 #import "Firestore/Source/Core/FSTEventManager.h"
 #import "Firestore/Source/Core/FSTQuery.h"
 #import "Firestore/Source/Core/FSTSyncEngine.h"
+#import "Firestore/Source/Core/FSTTransaction.h"
 #import "Firestore/Source/Core/FSTView.h"
 #import "Firestore/Source/Local/FSTLRUGarbageCollector.h"
 #import "Firestore/Source/Local/FSTLevelDB.h"
@@ -39,19 +40,18 @@
 #import "Firestore/Source/Local/FSTMemoryPersistence.h"
 #import "Firestore/Source/Model/FSTDocument.h"
 #import "Firestore/Source/Model/FSTDocumentSet.h"
+#import "Firestore/Source/Remote/FSTDatastore.h"
+#import "Firestore/Source/Remote/FSTRemoteStore.h"
 #import "Firestore/Source/Remote/FSTSerializerBeta.h"
 #import "Firestore/Source/Util/FSTClasses.h"
 
 #include "Firestore/core/src/firebase/firestore/auth/credentials_provider.h"
 #include "Firestore/core/src/firebase/firestore/core/database_info.h"
 #include "Firestore/core/src/firebase/firestore/model/database_id.h"
-#include "Firestore/core/src/firebase/firestore/remote/datastore.h"
-#include "Firestore/core/src/firebase/firestore/remote/remote_store.h"
 #include "Firestore/core/src/firebase/firestore/util/async_queue.h"
 #include "Firestore/core/src/firebase/firestore/util/hard_assert.h"
 #include "Firestore/core/src/firebase/firestore/util/log.h"
 #include "Firestore/core/src/firebase/firestore/util/string_apple.h"
-#include "absl/memory/memory.h"
 
 namespace util = firebase::firestore::util;
 using firebase::firestore::auth::CredentialsProvider;
@@ -63,8 +63,6 @@ using firebase::firestore::model::DocumentKeySet;
 using firebase::firestore::model::DocumentMap;
 using firebase::firestore::model::MaybeDocumentMap;
 using firebase::firestore::model::OnlineState;
-using firebase::firestore::remote::Datastore;
-using firebase::firestore::remote::RemoteStore;
 using firebase::firestore::util::Path;
 using firebase::firestore::util::Status;
 using firebase::firestore::util::AsyncQueue;
@@ -94,6 +92,7 @@ static const std::chrono::milliseconds FSTLruGcRegularDelay = std::chrono::minut
 @property(nonatomic, strong, readonly) FSTEventManager *eventManager;
 @property(nonatomic, strong, readonly) id<FSTPersistence> persistence;
 @property(nonatomic, strong, readonly) FSTSyncEngine *syncEngine;
+@property(nonatomic, strong, readonly) FSTRemoteStore *remoteStore;
 @property(nonatomic, strong, readonly) FSTLocalStore *localStore;
 
 // Does not own the CredentialsProvider instance.
@@ -109,8 +108,6 @@ static const std::chrono::milliseconds FSTLruGcRegularDelay = std::chrono::minut
    * threads simultaneously.
    */
   std::unique_ptr<AsyncQueue> _workerQueue;
-
-  std::unique_ptr<RemoteStore> _remoteStore;
 
   std::unique_ptr<Executor> _userExecutor;
   std::chrono::milliseconds _initialGcDelay;
@@ -225,26 +222,29 @@ static const std::chrono::milliseconds FSTLruGcRegularDelay = std::chrono::minut
 
   _localStore = [[FSTLocalStore alloc] initWithPersistence:_persistence initialUser:user];
 
-  auto datastore =
-      std::make_shared<Datastore>(*self.databaseInfo, _workerQueue.get(), _credentialsProvider);
+  FSTDatastore *datastore = [FSTDatastore datastoreWithDatabase:self.databaseInfo
+                                                    workerQueue:_workerQueue.get()
+                                                    credentials:_credentialsProvider];
 
-  _remoteStore = absl::make_unique<RemoteStore>(
-      _localStore, std::move(datastore), _workerQueue.get(),
-      [self](OnlineState onlineState) { [self.syncEngine applyChangedOnlineState:onlineState]; });
+  _remoteStore = [[FSTRemoteStore alloc] initWithLocalStore:_localStore
+                                                  datastore:datastore
+                                                workerQueue:_workerQueue.get()];
 
   _syncEngine = [[FSTSyncEngine alloc] initWithLocalStore:_localStore
-                                              remoteStore:_remoteStore.get()
+                                              remoteStore:_remoteStore
                                               initialUser:user];
 
   _eventManager = [FSTEventManager eventManagerWithSyncEngine:_syncEngine];
 
   // Setup wiring for remote store.
-  _remoteStore->set_sync_engine(_syncEngine);
+  _remoteStore.syncEngine = _syncEngine;
+
+  _remoteStore.onlineStateDelegate = self;
 
   // NOTE: RemoteStore depends on LocalStore (for persisting stream tokens, refilling mutation
   // queue, etc.) so must be started after LocalStore.
   [_localStore start];
-  _remoteStore->Start();
+  [_remoteStore start];
 }
 
 /**
@@ -267,9 +267,13 @@ static const std::chrono::milliseconds FSTLruGcRegularDelay = std::chrono::minut
   [self.syncEngine credentialDidChangeWithUser:user];
 }
 
+- (void)applyChangedOnlineState:(OnlineState)onlineState {
+  [self.syncEngine applyChangedOnlineState:onlineState];
+}
+
 - (void)disableNetworkWithCompletion:(nullable FSTVoidErrorBlock)completion {
   _workerQueue->Enqueue([self, completion] {
-    _remoteStore->DisableNetwork();
+    [self.remoteStore disableNetwork];
     if (completion) {
       self->_userExecutor->Execute([=] { completion(nil); });
     }
@@ -278,7 +282,7 @@ static const std::chrono::milliseconds FSTLruGcRegularDelay = std::chrono::minut
 
 - (void)enableNetworkWithCompletion:(nullable FSTVoidErrorBlock)completion {
   _workerQueue->Enqueue([self, completion] {
-    _remoteStore->EnableNetwork();
+    [self.remoteStore enableNetwork];
     if (completion) {
       self->_userExecutor->Execute([=] { completion(nil); });
     }
@@ -293,7 +297,7 @@ static const std::chrono::milliseconds FSTLruGcRegularDelay = std::chrono::minut
     if (self->_lruCallback) {
       self->_lruCallback.Cancel();
     }
-    _remoteStore->Shutdown();
+    [self.remoteStore shutdown];
     [self.persistence shutdown];
     if (completion) {
       self->_userExecutor->Execute([=] { completion(nil); });
@@ -385,16 +389,15 @@ static const std::chrono::milliseconds FSTLruGcRegularDelay = std::chrono::minut
   });
 }
 
-- (void)writeMutations:(std::vector<FSTMutation *> &&)mutations
+- (void)writeMutations:(NSArray<FSTMutation *> *)mutations
             completion:(nullable FSTVoidErrorBlock)completion {
-  // TODO(c++14): move `mutations` into lambda (C++14).
-  _workerQueue->Enqueue([self, mutations, completion]() mutable {
-    if (mutations.empty()) {
+  _workerQueue->Enqueue([self, mutations, completion] {
+    if (mutations.count == 0) {
       if (completion) {
         self->_userExecutor->Execute([=] { completion(nil); });
       }
     } else {
-      [self.syncEngine writeMutations:std::move(mutations)
+      [self.syncEngine writeMutations:mutations
                            completion:^(NSError *error) {
                              // Dispatch the result back onto the user dispatch queue.
                              if (completion) {
