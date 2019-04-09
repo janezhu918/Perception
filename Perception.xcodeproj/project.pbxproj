@@ -568,6 +568,7 @@
 			baseConfigurationReference = 5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 427QA2XMX6;
 				INFOPLIST_FILE = Perception/Info.plist;
@@ -575,8 +576,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.perception.www.Perception;
+				PRODUCT_BUNDLE_IDENTIFIER = com.perception.Perception;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -587,6 +589,7 @@
 			baseConfigurationReference = 1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 427QA2XMX6;
 				INFOPLIST_FILE = Perception/Info.plist;
@@ -594,8 +597,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.perception.www.Perception;
+				PRODUCT_BUNDLE_IDENTIFIER = com.perception.Perception;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
