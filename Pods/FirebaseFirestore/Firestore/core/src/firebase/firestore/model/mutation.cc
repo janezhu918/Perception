@@ -48,18 +48,11 @@ SnapshotVersion Mutation::GetPostMutationVersion(
   }
 }
 
-bool Mutation::equal_to(const Mutation& other) const {
-  return key_ == other.key_ && precondition_ == other.precondition_ &&
-         type() == other.type();
-}
-
 SetMutation::SetMutation(DocumentKey&& key,
                          FieldValue&& value,
                          Precondition&& precondition)
     : Mutation(std::move(key), std::move(precondition)),
       value_(std::move(value)) {
-  // TODO(rsgowman): convert param to ObjectValue instead of FieldValue?
-  HARD_ASSERT(value_.type() == FieldValue::Type::Object);
 }
 
 MaybeDocumentPtr SetMutation::ApplyToRemoteDocument(
@@ -93,11 +86,6 @@ MaybeDocumentPtr SetMutation::ApplyToLocalView(
                                      DocumentState::kLocalMutations);
 }
 
-bool SetMutation::equal_to(const Mutation& other) const {
-  if (!Mutation::equal_to(other)) return false;
-  return value_ == static_cast<const SetMutation&>(other).value_;
-}
-
 PatchMutation::PatchMutation(DocumentKey&& key,
                              FieldValue&& value,
                              FieldMask&& mask,
@@ -105,8 +93,6 @@ PatchMutation::PatchMutation(DocumentKey&& key,
     : Mutation(std::move(key), std::move(precondition)),
       value_(std::move(value)),
       mask_(std::move(mask)) {
-  // TODO(rsgowman): convert param to ObjectValue instead of FieldValue?
-  HARD_ASSERT(value_.type() == FieldValue::Type::Object);
 }
 
 MaybeDocumentPtr PatchMutation::ApplyToRemoteDocument(
@@ -173,12 +159,6 @@ FieldValue PatchMutation::PatchObject(FieldValue obj) const {
     }
   }
   return obj;
-}
-
-bool PatchMutation::equal_to(const Mutation& other) const {
-  if (!Mutation::equal_to(other)) return false;
-  const PatchMutation& patch_other = static_cast<const PatchMutation&>(other);
-  return value_ == patch_other.value_ && mask_ == patch_other.mask_;
 }
 
 DeleteMutation::DeleteMutation(DocumentKey&& key, Precondition&& precondition)

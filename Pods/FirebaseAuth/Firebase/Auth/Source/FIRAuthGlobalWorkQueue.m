@@ -16,8 +16,6 @@
 
 #import "FIRAuthGlobalWorkQueue.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 dispatch_queue_t FIRAuthGlobalWorkQueue() {
   static dispatch_once_t once;
   static dispatch_queue_t queue;
@@ -26,5 +24,3 @@ dispatch_queue_t FIRAuthGlobalWorkQueue() {
   });
   return queue;
 }
-
-NS_ASSUME_NONNULL_END

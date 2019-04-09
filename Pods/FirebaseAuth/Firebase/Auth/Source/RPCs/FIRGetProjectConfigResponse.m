@@ -16,8 +16,6 @@
 
 #import "FIRGetProjectConfigResponse.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation FIRGetProjectConfigResponse
 
 - (BOOL)setWithDictionary:(NSDictionary *)dictionary
@@ -38,5 +36,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

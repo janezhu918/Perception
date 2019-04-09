@@ -16,8 +16,6 @@
 
 #import "FIRGetAccountInfoRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kGetAccountInfoEndpoint
     @brief The "getAccountInfo" endpoint.
  */
@@ -48,5 +46,3 @@ static NSString *const kIDTokenKey = @"idToken";
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -16,8 +16,6 @@
 
 #import "FIRSignUpNewUserResponse.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation FIRSignUpNewUserResponse
 
 - (BOOL)setWithDictionary:(NSDictionary *)dictionary
@@ -30,5 +28,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

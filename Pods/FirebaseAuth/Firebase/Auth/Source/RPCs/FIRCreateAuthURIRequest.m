@@ -16,8 +16,6 @@
 
 #import "FIRCreateAuthURIRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kCreateAuthURIEndpoint
     @brief The "createAuthUri" endpoint.
  */
@@ -95,5 +93,3 @@ static NSString *const kAppIDKey = @"appId";
 }
 
 @end
-
-NS_ASSUME_NONNULL_END
