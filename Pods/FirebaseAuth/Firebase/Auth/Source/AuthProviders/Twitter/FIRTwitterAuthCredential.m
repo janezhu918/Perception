@@ -20,8 +20,6 @@
 #import "FIRAuthExceptionUtils.h"
 #import "FIRVerifyAssertionRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface FIRTwitterAuthCredential ()
 
 - (nullable instancetype)initWithProvider:(NSString *)provider NS_UNAVAILABLE;
@@ -69,5 +67,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

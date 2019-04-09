@@ -16,8 +16,6 @@
 
 #import "FIREmailLinkSignInRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kEmailLinkSigninEndpoint
     @brief The "EmailLinkSignin" endpoint.
  */
@@ -70,5 +68,3 @@ static NSString *const kPostBodyKey = @"postBody";
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

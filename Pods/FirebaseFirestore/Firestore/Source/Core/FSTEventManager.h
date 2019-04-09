@@ -17,6 +17,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Firestore/Source/Core/FSTViewSnapshot.h"
+#import "Firestore/Source/Remote/FSTRemoteStore.h"
 
 #include "Firestore/core/src/firebase/firestore/model/types.h"
 
@@ -74,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  * EventManager is responsible for mapping queries to query event emitters. It handles "fan-out."
  * (Identical queries will re-use the same watch on the backend.)
  */
-@interface FSTEventManager : NSObject
+@interface FSTEventManager : NSObject <FSTOnlineStateDelegate>
 
 + (instancetype)eventManagerWithSyncEngine:(FSTSyncEngine *)syncEngine;
 
@@ -82,8 +83,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (firebase::firestore::model::TargetId)addListener:(FSTQueryListener *)listener;
 - (void)removeListener:(FSTQueryListener *)listener;
-
-- (void)applyChangedOnlineState:(firebase::firestore::model::OnlineState)onlineState;
 
 @end
 

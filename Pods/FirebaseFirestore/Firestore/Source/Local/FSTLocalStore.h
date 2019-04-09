@@ -16,8 +16,6 @@
 
 #import <Foundation/Foundation.h>
 
-#include <vector>
-
 #import "Firestore/Source/Local/FSTLRUGarbageCollector.h"
 
 #include "Firestore/core/src/firebase/firestore/auth/user.h"
@@ -27,16 +25,6 @@
 #include "Firestore/core/src/firebase/firestore/model/snapshot_version.h"
 #include "Firestore/core/src/firebase/firestore/model/types.h"
 
-namespace firebase {
-namespace firestore {
-namespace remote {
-
-class RemoteEvent;
-
-}  // namespace remote
-}  // namespace firestore
-}  // namespace firebase
-
 @class FSTLocalViewChanges;
 @class FSTLocalWriteResult;
 @class FSTMutation;
@@ -44,6 +32,7 @@ class RemoteEvent;
 @class FSTMutationBatchResult;
 @class FSTQuery;
 @class FSTQueryData;
+@class FSTRemoteEvent;
 @protocol FSTPersistence;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -105,7 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
     (const firebase::firestore::auth::User &)user;
 
 /** Accepts locally generated Mutations and commits them to storage. */
-- (FSTLocalWriteResult *)locallyWriteMutations:(std::vector<FSTMutation *> &&)mutations;
+- (FSTLocalWriteResult *)locallyWriteMutations:(NSArray<FSTMutation *> *)mutations;
 
 /** Returns the current value of a document with a given key, or nil if not found. */
 - (nullable FSTMaybeDocument *)readDocument:(const firebase::firestore::model::DocumentKey &)key;
@@ -158,8 +147,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * LocalDocuments are re-calculated if there are remaining mutations in the queue.
  */
-- (firebase::firestore::model::MaybeDocumentMap)applyRemoteEvent:
-    (const firebase::firestore::remote::RemoteEvent &)remoteEvent;
+- (firebase::firestore::model::MaybeDocumentMap)applyRemoteEvent:(FSTRemoteEvent *)remoteEvent;
 
 /**
  * Returns the keys of the documents that are associated with the given targetID in the remote

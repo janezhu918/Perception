@@ -16,7 +16,6 @@
 
 #include "Firestore/core/src/firebase/firestore/remote/watch_stream.h"
 
-#include "Firestore/core/src/firebase/firestore/util/hard_assert.h"
 #include "Firestore/core/src/firebase/firestore/util/log.h"
 #include "Firestore/core/src/firebase/firestore/util/status.h"
 
@@ -37,11 +36,11 @@ WatchStream::WatchStream(AsyncQueue* async_queue,
                          CredentialsProvider* credentials_provider,
                          FSTSerializerBeta* serializer,
                          GrpcConnection* grpc_connection,
-                         WatchStreamCallback* callback)
+                         id<FSTWatchStreamDelegate> delegate)
     : Stream{async_queue, credentials_provider, grpc_connection,
              TimerId::ListenStreamConnectionBackoff, TimerId::ListenStreamIdle},
       serializer_bridge_{serializer},
-      callback_{NOT_NULL(callback)} {
+      delegate_bridge_{delegate} {
 }
 
 void WatchStream::WatchQuery(FSTQueryData* query) {
@@ -74,7 +73,7 @@ void WatchStream::TearDown(GrpcStream* grpc_stream) {
 }
 
 void WatchStream::NotifyStreamOpen() {
-  callback_->OnWatchStreamOpen();
+  delegate_bridge_.NotifyDelegateOnOpen();
 }
 
 Status WatchStream::NotifyStreamResponse(const grpc::ByteBuffer& message) {
@@ -93,14 +92,14 @@ Status WatchStream::NotifyStreamResponse(const grpc::ByteBuffer& message) {
   // A successful response means the stream is healthy.
   backoff_.Reset();
 
-  callback_->OnWatchStreamChange(
-      *serializer_bridge_.ToWatchChange(response),
+  delegate_bridge_.NotifyDelegateOnChange(
+      serializer_bridge_.ToWatchChange(response),
       serializer_bridge_.ToSnapshotVersion(response));
   return Status::OK();
 }
 
 void WatchStream::NotifyStreamClose(const Status& status) {
-  callback_->OnWatchStreamClose(status);
+  delegate_bridge_.NotifyDelegateOnClose(status);
 }
 
 }  // namespace remote

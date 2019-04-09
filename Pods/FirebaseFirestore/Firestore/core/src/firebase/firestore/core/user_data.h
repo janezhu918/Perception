@@ -266,7 +266,7 @@ class ParsedSetData {
    *
    * This method consumes the values stored in the ParsedSetData
    */
-  std::vector<FSTMutation*> ToMutations(
+  NSArray<FSTMutation*>* ToMutations(
       const model::DocumentKey& key,
       const model::Precondition& precondition) &&;
 
@@ -299,7 +299,7 @@ class ParsedUpdateData {
    *
    * This method consumes the values stored in the ParsedUpdateData
    */
-  std::vector<FSTMutation*> ToMutations(
+  NSArray<FSTMutation*>* ToMutations(
       const model::DocumentKey& key,
       const model::Precondition& precondition) &&;
 
