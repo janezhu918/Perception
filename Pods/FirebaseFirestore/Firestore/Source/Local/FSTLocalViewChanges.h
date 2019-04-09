@@ -22,6 +22,7 @@
 @class FSTDocumentSet;
 @class FSTMutation;
 @class FSTQuery;
+@class FSTRemoteEvent;
 @class FSTViewSnapshot;
 
 NS_ASSUME_NONNULL_BEGIN

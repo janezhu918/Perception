@@ -16,8 +16,6 @@
 
 #import "FIRSetAccountInfoResponse.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation FIRSetAccountInfoResponseProviderUserInfo
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
@@ -59,5 +57,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

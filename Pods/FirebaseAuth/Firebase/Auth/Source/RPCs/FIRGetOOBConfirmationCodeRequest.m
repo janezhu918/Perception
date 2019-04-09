@@ -21,8 +21,6 @@
 #import "FIRAuthErrorUtils.h"
 #import "FIRAuth_Internal.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kEndpoint
     @brief The getOobConfirmationCode endpoint name.
  */
@@ -134,7 +132,7 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
   }
 }
 
-+ (nullable FIRGetOOBConfirmationCodeRequest *)
++ (FIRGetOOBConfirmationCodeRequest *)
     passwordResetRequestWithEmail:(NSString *)email
                actionCodeSettings:(nullable FIRActionCodeSettings *)actionCodeSettings
              requestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration {
@@ -145,7 +143,7 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
                       requestConfiguration:requestConfiguration];
 }
 
-+ (nullable FIRGetOOBConfirmationCodeRequest *)
++ (FIRGetOOBConfirmationCodeRequest *)
     verifyEmailRequestWithAccessToken:(NSString *)accessToken
                    actionCodeSettings:(nullable FIRActionCodeSettings *)actionCodeSettings
                  requestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration {
@@ -156,7 +154,7 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
                       requestConfiguration:requestConfiguration];
 }
 
-+ (nullable FIRGetOOBConfirmationCodeRequest *)
++ (FIRGetOOBConfirmationCodeRequest *)
     signInWithEmailLinkRequest:(NSString *)email
             actionCodeSettings:(nullable FIRActionCodeSettings *)actionCodeSettings
           requestConfiguration:(FIRAuthRequestConfiguration *)requestConfiguration {
@@ -244,5 +242,3 @@ static NSString *const kVerifyEmailRequestTypeValue = @"VERIFY_EMAIL";
 }
 
 @end
-
-NS_ASSUME_NONNULL_END
