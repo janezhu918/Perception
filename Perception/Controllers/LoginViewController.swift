@@ -4,6 +4,7 @@ import FirebaseFirestore
 
 class LoginViewController: UIViewController {
     
+    public var showMessage = false
     private let loginView = LoginView()
     private var signInMethod: SignInMethod = .logIn
     private enum SignInMethod {
@@ -13,6 +14,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        showMessage = true
         view.addSubview(loginView)
         setupView()
     }
@@ -22,6 +24,16 @@ class LoginViewController: UIViewController {
         loginView.passwordTextField.delegate = self
         loginView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         loginView.segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
+        if showMessage {
+            loginView.messageView.isHidden = false
+            UIView.animate(withDuration: 0.75, delay: 0, options: [], animations: {
+                self.loginView.messageView.frame.origin.y += self.view.bounds.height
+            }) { (action) in
+                UIView.animate(withDuration: 0, delay: 8, options: [], animations: {
+                    self.loginView.messageView.alpha = 0
+                }, completion: nil)
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
