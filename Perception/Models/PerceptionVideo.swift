@@ -31,7 +31,7 @@ struct PerceptionVideo {
 }
 
 extension PerceptionVideo: FirebaseRepresentable {
-  var firebaseRepresentation: [String : Any] {
+ public var firebaseRepresentation: [String : Any] {
     return [PerceptionVideoCollectionKeys.id: id,
             PerceptionVideoCollectionKeys.name: name,
             PerceptionVideoCollectionKeys.createdAt: createdAt,

@@ -4,17 +4,24 @@ import paper_onboarding
 class OnBoardingViewController: UIViewController {
     
     @IBOutlet weak var contentView: OnboardingView!
+    @IBOutlet weak var doneButton: UIButton!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.dataSource = self
-       
+        contentView.delegate = self
+        doneButton.addTarget(self, action: #selector(segueToMainVC), for: .touchUpInside)
+    }
+    
+    @objc func segueToMainVC() {
+     let viewController = ViewController()
+        self.present(viewController, animated: true)
+        
     }
 
 }
 
-extension OnBoardingViewController: PaperOnboardingDataSource {
+extension OnBoardingViewController: PaperOnboardingDataSource, PaperOnboardingDelegate {
     func onboardingItemsCount() -> Int {
         return 3
     }
@@ -28,10 +35,26 @@ extension OnBoardingViewController: PaperOnboardingDataSource {
         let largeFont = UIFont(name: "HelveticaNeue-Bold", size: 18)!
         let smallFont = UIFont(name: "HelveticaNeue", size: 14)!
         
-         return OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "camera"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont)
-        
-        
+         return [OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "camera"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
+                OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "paper"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
+            OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "video"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont)][index]
     }
     
+    func onboardingDidTransitonToIndex(_ index: Int) {
+        if index == 2 {
+            doneButton.isHidden = false
+        }
+    }
     
+    func onboardingWillTransitonToIndex(_ index: Int) {
+        if index != 2 {
+            if doneButton.isHidden == false {
+                doneButton.isHidden = true
+            }
+        }
+    }
+   
+    
+    
+   
 }
