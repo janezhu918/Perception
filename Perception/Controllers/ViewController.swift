@@ -67,7 +67,8 @@ class ViewController: UIViewController {
         let destinationVC = LoginViewController()
         destinationVC.displayMessage = message
         destinationVC.showMessage = true
-        self.navigationController?.pushViewController(destinationVC, animated: true)
+        destinationVC.modalPresentationStyle = .overCurrentContext
+        present(destinationVC, animated: true, completion: nil)
     }
   
     private func addExpandingMenu() {
