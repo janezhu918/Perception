@@ -14,17 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           Thread.sleep(forTimeInterval: 2.0)
         // Override point for customization after application launch.
         FirebaseApp.configure()
-
+        usersession = UserSession()
       
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         let storyBoard = UIStoryboard(name: "Onboarding", bundle: nil)
-        var firstVC = storyBoard.instantiateViewController(withIdentifier: "OnBoardingViewController")
-        var secondVC = ViewController()
-        
-        if userData.bool(forKey: "demoCompleted") {
-           firstVC = ViewController()
+        let onboardingVC = storyBoard.instantiateViewController(withIdentifier: "OnBoardingViewController")
+        let mainVC = ViewController()
+        let navForMainVC = UINavigationController(rootViewController: mainVC)
+        let demoCompleted = userData.bool(forKey: "demoCompleted")
+        if demoCompleted {
+            self.window?.rootViewController = navForMainVC
+        } else {
+            self.window?.rootViewController = onboardingVC
         }
-      self.window?.rootViewController = firstVC
+      
       self.window?.makeKeyAndVisible()
 
 
