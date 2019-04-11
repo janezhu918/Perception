@@ -21,7 +21,6 @@ class LoginView: UIView {
         l.textColor = #colorLiteral(red: 0.1276455522, green: 0.2034990788, blue: 0.3436715901, alpha: 1)
         l.numberOfLines = 0
         l.font = .systemFont(ofSize: 16)
-        l.text = "⚠︎ Please sign in to save video ⚠︎"
         return l
     }()
     
