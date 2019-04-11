@@ -6,6 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var usersession: UserSession!
     var window: UIWindow?
+    var userData = UserDefaults.standard
 
 //    static var authservice = AuthService()
 
@@ -13,11 +14,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           Thread.sleep(forTimeInterval: 2.0)
         // Override point for customization after application launch.
         FirebaseApp.configure()
+
+      
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        let storyBoard = UIStoryboard(name: "Onboarding", bundle: nil)
+        var firstVC = storyBoard.instantiateViewController(withIdentifier: "OnBoardingViewController")
+        var secondVC = ViewController()
+        
+        if userData.bool(forKey: "demoCompleted") {
+           firstVC = ViewController()
+        }
+      self.window?.rootViewController = firstVC
+      self.window?.makeKeyAndVisible()
+
+
         usersession = UserSession()
 //      self.window = UIWindow.init(frame: UIScreen.main.bounds)
 //      self.window?.rootViewController = ViewController()
 //      self.window?.makeKeyAndVisible()
       
+
         return true
     }
 
