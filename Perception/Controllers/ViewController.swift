@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     view.addSubview(mainView)
     addExpandingMenu()
     mainView.sceneView.delegate = self
-    mainView.sceneView.showsStatistics = true
+    mainView.sceneView.showsStatistics = false
   }
   
   private var videoNodeGlobal: SKVideoNode?
