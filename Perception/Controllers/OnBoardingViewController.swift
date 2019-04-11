@@ -6,6 +6,8 @@ class OnBoardingViewController: UIViewController {
     @IBOutlet weak var contentView: OnboardingView!
     @IBOutlet weak var doneButton: UIButton!
     
+    var userData = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.dataSource = self
@@ -14,11 +16,19 @@ class OnBoardingViewController: UIViewController {
     }
     
     @objc func segueToMainVC() {
-     let viewController = ViewController()
-        self.present(viewController, animated: true)
+        UserDefaults.standard.set(false, forKey: "Show onboarding") // refarctor
+        let viewController = ViewController()
+        let navForVC = UINavigationController(rootViewController: viewController)
+        self.present(navForVC, animated: true)
         
     }
-
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        userData.set(true, forKey: "demoCompleted")
+        userData.synchronize()
+    }
+    
+    
 }
 
 extension OnBoardingViewController: PaperOnboardingDataSource, PaperOnboardingDelegate {
@@ -35,9 +45,11 @@ extension OnBoardingViewController: PaperOnboardingDataSource, PaperOnboardingDe
         let largeFont = UIFont(name: "HelveticaNeue-Bold", size: 18)!
         let smallFont = UIFont(name: "HelveticaNeue", size: 14)!
         
-         return [OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "camera"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
+        
+        return [OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "camera"), title: "To start allow perception acces to camera", description: "This will allow the app the play videos", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
+                
                 OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "paper"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
-            OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "video"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont)][index]
+                OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "video"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont)][index]
     }
     
     func onboardingDidTransitonToIndex(_ index: Int) {
@@ -53,8 +65,8 @@ extension OnBoardingViewController: PaperOnboardingDataSource, PaperOnboardingDe
             }
         }
     }
-   
     
     
-   
+    
+    
 }

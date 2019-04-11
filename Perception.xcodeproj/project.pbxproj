@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E2E7E11225FC9A1007D0CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */; };
 		1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */; };
 		1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */; };
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
@@ -151,6 +152,7 @@
 				A5B411B52257EDE9006E14F7 /* Utilities */,
 				A5B411C32257F00E006E14F7 /* Supporting Files */,
 				A507ECDD225654EF009B94A9 /* Main.storyboard */,
+				1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */,
 				1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */,
 				1E2E7E0E225FC89E007D0CE4 /* GoogleService-Info.plist */,
 				A507ECE5225654F0009B94A9 /* Info.plist */,
@@ -318,6 +320,7 @@
 				1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */,
 				1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
+				1E2E7E11225FC9A1007D0CE4 /* GoogleService-Info.plist in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,

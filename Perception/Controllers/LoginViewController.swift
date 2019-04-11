@@ -4,7 +4,10 @@ import FirebaseFirestore
 
 class LoginViewController: UIViewController {
     
+    //TODO: add a back button
+    
     public var showMessage = false
+    public var displayMessage = ""
     private let loginView = LoginView()
     private var signInMethod: SignInMethod = .logIn
     private enum SignInMethod {
@@ -16,6 +19,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         showMessage = true
         view.addSubview(loginView)
+        loginView.messageLabel.text = displayMessage
         setupView()
     }
     

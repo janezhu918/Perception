@@ -6,15 +6,21 @@ import ExpandingMenu
 
 class ViewController: UIViewController {
   
-  let mainView = Main()
+    private let mainView = Main()
+    private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
+//    private var videoToShare:
+    private var userIsLoggedIn = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    self.navigationController?.navigationBar.isHidden = true
     view.addSubview(mainView)
     addExpandingMenu()
     mainView.sceneView.delegate = self
     mainView.sceneView.showsStatistics = false
+    if usersession.getCurrentUser() != nil {
+        userIsLoggedIn = true
+    }
   }
   
   private var videoNodeGlobal: SKVideoNode?
@@ -56,6 +62,13 @@ class ViewController: UIViewController {
     guard let _ = touches.first?.location(in: mainView.sceneView) else {fatalError("Could not find images in asset folder")}
     isPlaying = !isPlaying
   }
+    
+    private func segueToLoginPage(withMessage message: String) {
+        let destinationVC = LoginViewController()
+        destinationVC.displayMessage = message
+        destinationVC.showMessage = true
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
   
     private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 30, height: 30)
@@ -65,25 +78,39 @@ class ViewController: UIViewController {
         menuButton.layer.cornerRadius = 5
         menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
       
-        //        menuButton.expandingAnimations = []
-        //        menuButton.foldingAnimations = []
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "share")!, highlightedImage: UIImage(named: "share")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("trying to share video")
-            //            if let videoToShare = video {
-            //                let activityViewController = UIActivityViewController(activityItems: [videoToShare], applicationActivities: nil)
-            //                present(activityViewController, animated: true)
-            //            }
+//                if let videoToShare = video {
+//                            let activityViewController = UIActivityViewController(activityItems: [videoToShare], applicationActivities: nil)
+//                            present(activityViewController, animated: true)
+//                        }
         }
 
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
+            if self.userIsLoggedIn {
+                
+            } else {
+                self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo)
+            }
         }
         let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            print("going to saved videos")
+            if self.userIsLoggedIn {
+                let destinationVC = SavedVideosViewController()
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            } else {
+                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos)
+            }
         }
 
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            print("profile clicked")
+            if self.userIsLoggedIn {
+                //TODO: add code to segue to profile
+                //                let destinationVC = SavedVideosViewController()
+                //                self.navigationController?.pushViewController(destinationVC, animated: true)
+            } else {
+                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile)
+            }
         }
       
         let menuItems = [share, save, myVideos, profile]
