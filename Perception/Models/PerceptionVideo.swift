@@ -27,6 +27,7 @@ struct PerceptionVideo {
     self.name = document[PerceptionVideoCollectionKeys.name] as? String ?? ""
     self.description = document[PerceptionVideoCollectionKeys.description] as? String ?? ""
     self.currentPlaybackTime = document[PerceptionVideoCollectionKeys.currentPlaybackTime] as? Double ?? 0.0
+
   }
 }
 
