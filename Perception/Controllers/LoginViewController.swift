@@ -4,6 +4,8 @@ import FirebaseFirestore
 
 class LoginViewController: UIViewController {
     
+    //TODO: add a back button
+    
     public var showMessage = false
     public var displayMessage = ""
     private let loginView = LoginView()

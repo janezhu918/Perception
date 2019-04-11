@@ -16,12 +16,10 @@ class OnBoardingViewController: UIViewController {
     }
     
     @objc func segueToMainVC() {
-        
         UserDefaults.standard.set(false, forKey: "Show onboarding") // refarctor
         let viewController = ViewController()
         let navForVC = UINavigationController(rootViewController: viewController)
         self.present(navForVC, animated: true)
-        
         
     }
     
@@ -48,10 +46,7 @@ extension OnBoardingViewController: PaperOnboardingDataSource, PaperOnboardingDe
         let smallFont = UIFont(name: "HelveticaNeue", size: 14)!
         
         
-        
         return [OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "camera"), title: "To start allow perception acces to camera", description: "This will allow the app the play videos", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
-                
-                
                 
                 OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "paper"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
                 OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "video"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont)][index]
