@@ -14,6 +14,7 @@
 		1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
 		1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808D225B96A20071FA83 /* inTheDark.mp4 */; };
 		1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */; };
+		1E2E7E11225FC9A1007D0CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */; };
 		1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */; };
 		1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */; };
 		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
