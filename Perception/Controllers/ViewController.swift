@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     view.addSubview(mainView)
-   // addExpandingMenu()
+    addExpandingMenu()
     mainView.sceneView.delegate = self
     mainView.sceneView.showsStatistics = true
   }
