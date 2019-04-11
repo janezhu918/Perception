@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     view.addSubview(mainView)
-   // addExpandingMenu()
+    addExpandingMenu()
     mainView.sceneView.delegate = self
     mainView.sceneView.showsStatistics = true
   }
@@ -41,6 +41,9 @@ class ViewController: UIViewController {
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
         menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 72.0)
         view.addSubview(menuButton)
+        menuButton.layer.cornerRadius = 5
+        menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
+      
         //        menuButton.expandingAnimations = []
         //        menuButton.foldingAnimations = []
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "share")!, highlightedImage: UIImage(named: "share")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
@@ -54,7 +57,7 @@ class ViewController: UIViewController {
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
         }
-        let savedCollection = ExpandingMenuItem(size: menuButtonSize, title: "Collection", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+        let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("going to saved videos")
         }
         
@@ -62,9 +65,11 @@ class ViewController: UIViewController {
             print("profile clicked")
         }
         
-        let menuItems = [share, save, savedCollection, profile]
+        let menuItems = [share, save, myVideos, profile]
+        menuItems.forEach{ $0.layer.cornerRadius = 5 }
+        menuItems.forEach{ $0.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)}
         menuItems.forEach{ $0.titleColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)}
-        menuItems.forEach{ $0.titleMargin = 0 }
+        menuItems.forEach{ $0.titleMargin = 5 }
         menuButton.playSound = false
         menuButton.addMenuItems(menuItems)
         menuButton.willDismissMenuItems = { (menu) -> Void in
