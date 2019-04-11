@@ -9,6 +9,21 @@ class LoginView: UIView {
         return iv
     }()
     
+    public lazy var messageView: UIView = {
+        let v = UIView()
+        v.isHidden = true
+        v.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
+        return v
+    }()
+    
+    public lazy var messageLabel : UILabel = {
+        let l = UILabel()
+        l.textColor = #colorLiteral(red: 0.1276455522, green: 0.2034990788, blue: 0.3436715901, alpha: 1)
+        l.numberOfLines = 0
+        l.font = .systemFont(ofSize: 16)
+        return l
+    }()
+    
     public lazy var segmentedControl: UISegmentedControl = {
         let items = ["Log In", "Register"]
         let sc = UISegmentedControl(items: items)
@@ -62,18 +77,33 @@ class LoginView: UIView {
         setConstraints()
     }
     
+    private func addMessageLebel() {
+        messageView.addSubview(messageLabel)
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.centerXAnchor.constraint(equalTo: messageView.centerXAnchor).isActive = true
+        messageLabel.centerYAnchor.constraint(equalTo: messageView.centerYAnchor).isActive = true
+    }
+    
     private func setConstraints() {
+        addMessageLebel()
         addSubview(appLogoImageView)
         addSubview(segmentedControl)
         addSubview(emailTextField)
         addSubview(passwordTextField)
         addSubview(button)
+        addSubview(messageView)
         
         appLogoImageView.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
+        messageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        messageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        messageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
+        messageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+        messageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         appLogoImageView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         appLogoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 33).isActive = true

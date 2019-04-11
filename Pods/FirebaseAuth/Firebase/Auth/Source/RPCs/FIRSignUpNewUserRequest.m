@@ -16,8 +16,6 @@
 
 #import "FIRSignUpNewUserRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kSignupNewUserEndpoint
     @brief The "SingupNewUserEndpoint" endpoint.
  */
@@ -86,5 +84,3 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

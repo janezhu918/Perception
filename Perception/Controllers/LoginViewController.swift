@@ -1,10 +1,13 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
-import ProgressHUD
 
 class LoginViewController: UIViewController {
     
+    //TODO: add a back button
+    
+    public var showMessage = false
+    public var displayMessage = ""
     private let loginView = LoginView()
     private var signInMethod: SignInMethod = .logIn
     private enum SignInMethod {
@@ -14,7 +17,9 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        showMessage = true
         view.addSubview(loginView)
+        loginView.messageLabel.text = displayMessage
         setupView()
     }
     
@@ -23,6 +28,16 @@ class LoginViewController: UIViewController {
         loginView.passwordTextField.delegate = self
         loginView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         loginView.segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
+        if showMessage {
+            loginView.messageView.isHidden = false
+            UIView.animate(withDuration: 0.75, delay: 0, options: [], animations: {
+                self.loginView.messageView.frame.origin.y += self.view.bounds.height
+            }) { (action) in
+                UIView.animate(withDuration: 0, delay: 8, options: [], animations: {
+                    self.loginView.messageView.alpha = 0
+                }, completion: nil)
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -50,7 +65,6 @@ class LoginViewController: UIViewController {
             showAlert(title: "Error", message: "Email and password fields cannot be empty.")
             return
         }
-        ProgressHUD.show()
         switch signInMethod {
         case .logIn:
             print("loging in")

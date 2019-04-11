@@ -16,8 +16,6 @@
 
 #import "FIRVerifyPasswordRequest.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /** @var kVerifyPasswordEndpoint
     @brief The "verifyPassword" endpoint.
  */
@@ -92,5 +90,3 @@ static NSString *const kReturnSecureTokenKey = @"returnSecureToken";
 }
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -21,8 +21,6 @@
 
 // FIRFacebookAuthProviderID is defined in FIRAuthProvider.m.
 
-NS_ASSUME_NONNULL_BEGIN
-
 @implementation FIRFacebookAuthProvider
 
 - (instancetype)init {
@@ -36,5 +34,3 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-
-NS_ASSUME_NONNULL_END
