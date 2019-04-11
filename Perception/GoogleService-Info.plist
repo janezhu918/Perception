@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>862234684527-jaiq09po2spq2gtie1b86i727tve8iji.apps.googleusercontent.com</string>
+	<string>728474381835-jd5fs8u70f7v4ou9vroiojnappr8ejlf.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.862234684527-jaiq09po2spq2gtie1b86i727tve8iji</string>
+	<string>com.googleusercontent.apps.728474381835-jd5fs8u70f7v4ou9vroiojnappr8ejlf</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBy-TxjWGiGIVaosghoZlSFB91RR5YyMsY</string>
+	<string>AIzaSyAhTz_bMRzySBJCpBk4j4uitiGX1o1WCMk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>862234684527</string>
+	<string>728474381835</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.perception.www.Perception</string>
+	<string>com.perceptionTestAppID.pursuit</string>
 	<key>PROJECT_ID</key>
-	<string>perception-65062</string>
+	<string>perceptiontestapp</string>
 	<key>STORAGE_BUCKET</key>
-	<string>perception-65062.appspot.com</string>
+	<string>perceptiontestapp.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:862234684527:ios:95a466f3b958e714</string>
+	<string>1:728474381835:ios:9434fc02065a03fe</string>
 	<key>DATABASE_URL</key>
-	<string>https://perception-65062.firebaseio.com</string>
+	<string>https://perceptiontestapp.firebaseio.com</string>
 </dict>
 </plist>
