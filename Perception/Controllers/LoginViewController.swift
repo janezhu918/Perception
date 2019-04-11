@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationController?.isNavigationBarHidden = false
         showMessage = true
         view.addSubview(loginView)
         loginView.messageLabel.text = displayMessage
@@ -28,6 +29,7 @@ class LoginViewController: UIViewController {
         loginView.passwordTextField.delegate = self
         loginView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         loginView.segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
+        loginView.dismissButton.addTarget(self, action: #selector(dismissButtonPressed), for: .touchUpInside)
         if showMessage {
             loginView.messageView.isHidden = false
             UIView.animate(withDuration: 0.75, delay: 0, options: [], animations: {
@@ -38,6 +40,10 @@ class LoginViewController: UIViewController {
                 }, completion: nil)
             }
         }
+    }
+    
+    @objc private func dismissButtonPressed() {
+        dismiss(animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

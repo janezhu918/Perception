@@ -2,6 +2,12 @@ import UIKit
 
 class LoginView: UIView {
     
+    public lazy var dismissButton: UIButton = {
+        let b = UIButton()
+        b.setTitle("X", for: .normal)
+        return b
+    }()
+    
     public lazy var appLogoImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "logoTransparent")
@@ -12,7 +18,8 @@ class LoginView: UIView {
     public lazy var messageView: UIView = {
         let v = UIView()
         v.isHidden = true
-        v.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
+//        v.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
+        v.backgroundColor = .white
         return v
     }()
     
@@ -92,6 +99,7 @@ class LoginView: UIView {
         addSubview(passwordTextField)
         addSubview(button)
         addSubview(messageView)
+        addSubview(dismissButton)
         
         appLogoImageView.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -99,8 +107,10 @@ class LoginView: UIView {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
         messageView.translatesAutoresizingMaskIntoConstraints = false
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
         
-        messageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+//        messageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+        messageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -33).isActive = true
         messageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         messageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
         messageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -109,7 +119,6 @@ class LoginView: UIView {
         appLogoImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 33).isActive = true
         appLogoImageView.widthAnchor.constraint(equalTo: appLogoImageView.heightAnchor, multiplier: 1).isActive = true
         appLogoImageView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.4).isActive = true
-        
         
         segmentedControl.topAnchor.constraint(equalTo: appLogoImageView.bottomAnchor, constant: -44).isActive = true
         segmentedControl.leadingAnchor.constraint(equalTo: appLogoImageView.leadingAnchor, constant: 11).isActive = true
@@ -130,6 +139,7 @@ class LoginView: UIView {
         button.leadingAnchor.constraint(equalTo: segmentedControl.leadingAnchor).isActive = true
         button.trailingAnchor.constraint(equalTo: segmentedControl.trailingAnchor).isActive = true
         
-        
+        dismissButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
+        dismissButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11).isActive = true
     }
 }
