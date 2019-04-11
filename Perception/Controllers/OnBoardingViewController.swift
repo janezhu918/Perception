@@ -1,4 +1,5 @@
 import UIKit
+import paper_onboarding
 
 class OnBoardingViewController: UIViewController {
 
