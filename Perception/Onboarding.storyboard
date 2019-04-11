@@ -13,7 +13,7 @@
         <!--On Boarding View Controller-->
         <scene sceneID="iLs-KK-4fZ">
             <objects>
-                <viewController id="11q-RP-w7i" customClass="OnBoardingViewController" customModule="Perception" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnBoardingViewController" id="11q-RP-w7i" customClass="OnBoardingViewController" customModule="Perception" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Ar-TX-NCg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,6 +34,9 @@
                                 <state key="normal" title="DONE">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="11q-RP-w7i" eventType="touchUpInside" id="icI-n6-j6K"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

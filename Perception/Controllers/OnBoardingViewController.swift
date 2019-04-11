@@ -6,6 +6,8 @@ class OnBoardingViewController: UIViewController {
     @IBOutlet weak var contentView: OnboardingView!
     @IBOutlet weak var doneButton: UIButton!
     
+    var userData = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.dataSource = self
@@ -14,10 +16,17 @@ class OnBoardingViewController: UIViewController {
     }
     
     @objc func segueToMainVC() {
-     let viewController = ViewController()
+        UserDefaults.standard.set(false, forKey: "Show onboarding") // refarctor
+         let viewController = ViewController()
         self.present(viewController, animated: true)
         
     }
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        userData.set(true, forKey: "demoCompleted")
+        userData.synchronize()
+    }
+    
 
 }
 
