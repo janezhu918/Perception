@@ -17,11 +17,14 @@ struct SavedVideo {
     self.description = description
   }
   
-  init(document:[String:Any]){
-    self.id = document[SavedVideoCollectionKeys.id] as? String ?? ""
+  init(document:[String:Any], id:String){
+    self.id = id
     self.name = document[SavedVideoCollectionKeys.name] as? String ?? ""
     self.urlString = document[SavedVideoCollectionKeys.urlString] as? String ?? ""
     self.savedAt = document[SavedVideoCollectionKeys.savedAt] as? String ?? ""
     self.description = document[SavedVideoCollectionKeys.description] as? String ?? ""
   }
 }
+
+
+

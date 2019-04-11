@@ -20,12 +20,26 @@ struct PerceptionVideo {
     self.currentPlaybackTime = currentPlaybackTime
   }
   
-  init(document:[String:Any]){
+  init(document:[String:Any], id: String){
+    self.id = id
     self.createdAt = document[PerceptionVideoCollectionKeys.createdAt] as? String ?? ""
     self.urlString = document[PerceptionVideoCollectionKeys.urlString] as? String ?? ""
     self.name = document[PerceptionVideoCollectionKeys.name] as? String ?? ""
-    self.id = document[PerceptionVideoCollectionKeys.id] as? String ?? ""
     self.description = document[PerceptionVideoCollectionKeys.description] as? String ?? ""
     self.currentPlaybackTime = document[PerceptionVideoCollectionKeys.currentPlaybackTime] as? Double ?? 0.0
+
   }
+}
+
+extension PerceptionVideo: FirebaseRepresentable {
+ public var firebaseRepresentation: [String : Any] {
+    return [PerceptionVideoCollectionKeys.id: id,
+            PerceptionVideoCollectionKeys.name: name,
+            PerceptionVideoCollectionKeys.createdAt: createdAt,
+            PerceptionVideoCollectionKeys.urlString: urlString,
+            PerceptionVideoCollectionKeys.description: description,
+            PerceptionVideoCollectionKeys.currentPlaybackTime: currentPlaybackTime]
+  }
+  
+  
 }
