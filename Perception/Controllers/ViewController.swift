@@ -6,7 +6,8 @@ import ExpandingMenu
 
 class ViewController: UIViewController {
   
-  let mainView = Main()
+    private let mainView = Main()
+    private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -69,17 +70,27 @@ class ViewController: UIViewController {
         //        menuButton.foldingAnimations = []
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "share")!, highlightedImage: UIImage(named: "share")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("trying to share video")
-            //            if let videoToShare = video {
-            //                let activityViewController = UIActivityViewController(activityItems: [videoToShare], applicationActivities: nil)
-            //                present(activityViewController, animated: true)
-            //            }
+//                if let videoToShare = video {
+//                            let activityViewController = UIActivityViewController(activityItems: [videoToShare], applicationActivities: nil)
+//                            present(activityViewController, animated: true)
+//                        }
         }
 
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
         }
         let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            print("going to saved videos")
+            if let _ = self.usersession.getCurrentUser() {
+                print("user found")
+                let destinationVC = SavedVideosViewController()
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            } else {
+                print("user NOT found")
+                let destinationVC = LoginViewController()
+                destinationVC.showMessage = true
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            }
+            
         }
 
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
