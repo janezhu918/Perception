@@ -4,6 +4,7 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var usersession: UserSession!
     var window: UIWindow?
     var userData = UserDefaults.standard
 
@@ -13,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           Thread.sleep(forTimeInterval: 2.0)
         // Override point for customization after application launch.
         FirebaseApp.configure()
+
       
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         let storyBoard = UIStoryboard(name: "Onboarding", bundle: nil)
@@ -24,8 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
       self.window?.rootViewController = firstVC
       self.window?.makeKeyAndVisible()
-//      userData.set(false, forKey: "demoCompleted")
-//        userData.synchronize()
+
+
+        usersession = UserSession()
+//      self.window = UIWindow.init(frame: UIScreen.main.bounds)
+//      self.window?.rootViewController = ViewController()
+//      self.window?.makeKeyAndVisible()
+      
+
         return true
     }
 
