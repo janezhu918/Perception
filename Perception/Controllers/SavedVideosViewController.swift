@@ -7,6 +7,8 @@ class SavedVideosViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("I've arrived at this page")
+        navigationController?.navigationBar.isHidden = false
         view.addSubview(favoriteVideos)
         favoriteVideos.myCollectionView.delegate = self
         favoriteVideos.myCollectionView.dataSource = self 
@@ -25,5 +27,10 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
         cell.textLabel.text = "Test text"
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
 
 }
