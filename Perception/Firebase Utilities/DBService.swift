@@ -14,7 +14,7 @@ protocol ImageService {
 }
 
 protocol ImageServiceDelegate: AnyObject {
-  func imageService(_ imageService: ImageService, didReceiveError:Error)
+  func imageService(_ imageService: ImageService, didReceiveError error:Error)
   func imageService(_ imageService: ImageService, didDeleteImage success: Bool)
   func imageService(_ imageService: ImageService, didReceiveImage image: PerceptionImage)
   func imageService(_ imageService: ImageService, didReceiveImages images: [PerceptionImage])
@@ -26,12 +26,20 @@ protocol VideoService {
   func deleteVideo(video:PerceptionVideo)
   func fetchVideo(video:PerceptionVideo)
   func updateVideo(video:PerceptionVideo, newValues:[String:Any])
+  func generateVideoId() -> String
 }
 
+
+
 protocol VideoServiceDelegate: AnyObject {
-  func videoService(_ videoService: VideoService, didReceiveError:Error)
+  func videoService(_ videoService: VideoService, didReceiveError error:Error)
   func videoService(_ videoService: VideoService, didDeleteVideo success: Bool)
-  func imageService(_ imageService: ImageService, didReceiveImage video: PerceptionVideo)
+  func videoService(_ videoService: VideoService, didReceiveVideo video: PerceptionVideo)
+}
+
+extension VideoServiceDelegate {
+  func videoService(_ videoService: VideoService, didDeleteVideo success: Bool) { }
+  func videoService(_ imageService: VideoService, didReceiveVideo video: PerceptionVideo) { }
 }
 
 final class DatabaseService {
@@ -109,6 +117,10 @@ extension DatabaseService: ImageService {
 }
 
 extension DatabaseService: VideoService {
+  func generateVideoId() -> String {
+    return videosCollection.document().documentID
+  }
+  
   func updateVideo(video: PerceptionVideo, newValues: [String : Any]) {
     videosCollection.document(video.id)
       .updateData(newValues) { (error) in
@@ -141,7 +153,7 @@ extension DatabaseService: VideoService {
         self.videoServiceDelegate?.videoService(self, didReceiveError: error)
       } else if let snapshot = snapshot, let videoData = snapshot.data() {
         let video = PerceptionVideo(document: videoData, id: snapshot.documentID)
-        self.videoServiceDelegate?.imageService(self, didReceiveImage: video)
+        self.videoServiceDelegate?.videoService(self, didReceiveVideo: video)
       }
     }
   }
