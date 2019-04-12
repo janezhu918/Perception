@@ -42,6 +42,8 @@ class ViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
+    self.navigationController?.navigationBar.isHidden = true
+    
     let configuration = ARImageTrackingConfiguration()
     
     if let trackedImage = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
@@ -63,8 +65,9 @@ class ViewController: UIViewController {
     isPlaying = !isPlaying
   }
     
-    private func segueToLoginPage(withMessage message: String) {
+    private func segueToLoginPage(withMessage message: String, destination: Constants.UltimateDestinationEnum) {
         let destinationVC = LoginViewController()
+        destinationVC.ultimateDestination = .myVideos
         destinationVC.displayMessage = message
         destinationVC.showMessage = true
         destinationVC.modalPresentationStyle = .overCurrentContext
@@ -90,27 +93,31 @@ class ViewController: UIViewController {
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
             if self.userIsLoggedIn {
-                
+                //TODO: handle save video
             } else {
-                self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo)
+                self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo, destination: .myVideos)
             }
         }
         let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
                 let destinationVC = SavedVideosViewController()
-                self.navigationController?.pushViewController(destinationVC, animated: true)
+                let navBar = UINavigationController(rootViewController: destinationVC)
+//                self.navigationController?.pushViewController(destinationVC, animated: true)
+                self.show(destinationVC, sender: self)
+//                self.present(navBar, animated: true, completion: nil)
             } else {
-                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos)
+                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
             }
         }
 
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
                 //TODO: add code to segue to profile
+                print("segues to my profile")
                 //                let destinationVC = SavedVideosViewController()
                 //                self.navigationController?.pushViewController(destinationVC, animated: true)
             } else {
-                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile)
+                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
             }
         }
       

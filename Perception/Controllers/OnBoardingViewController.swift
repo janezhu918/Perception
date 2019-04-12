@@ -24,7 +24,7 @@ class OnBoardingViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        userData.set(true, forKey: "demoCompleted")
+        userData.set(true, forKey: Constants.DemoCompletedUserDefaultsKey)
         userData.synchronize()
     }
     

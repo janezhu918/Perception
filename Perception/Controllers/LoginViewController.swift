@@ -8,6 +8,8 @@ class LoginViewController: UIViewController {
     
     public var showMessage = false
     public var displayMessage = ""
+    public var ultimateDestination: Constants.UltimateDestinationEnum = .myVideos
+    private var authservice = AppDelegate.authservice
     private let loginView = LoginView()
     private var signInMethod: SignInMethod = .logIn
     private enum SignInMethod {
@@ -17,7 +19,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.isNavigationBarHidden = false
         showMessage = true
         view.addSubview(loginView)
         loginView.messageLabel.text = displayMessage
@@ -71,19 +72,25 @@ class LoginViewController: UIViewController {
             showAlert(title: "Error", message: "Email and password fields cannot be empty.")
             return
         }
+        
         switch signInMethod {
         case .logIn:
-            print("loging in")
-        //TODO: manage login
+            authservice.signInExistingAccount(email: email, password: password)
         case .register:
-            print("registering")
-            //TODO: manage register
+            authservice.createNewAccount(email: email, password: password)
         }
         
+        switch ultimateDestination {
+        case .myProfile:
+            dismissButtonPressed()
+            //TODO: send user to corresponding destination
+            print("segues to my profile")
+        case .myVideos:
+            dismissButtonPressed()
+            //TODO: send user to corresponding destination
+            print("segues to my videos")
+        }
     }
-    
-    
-
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -93,3 +100,4 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
+

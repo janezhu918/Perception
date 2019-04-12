@@ -8,7 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var userData = UserDefaults.standard
     
-    //    static var authservice = AuthService()
+        static var authservice = AuthService()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Thread.sleep(forTimeInterval: 2.0)
         // Override point for customization after application launch.
@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let onboardingVC = storyBoard.instantiateViewController(withIdentifier: "OnBoardingViewController")
         let mainVC = ViewController()
         let navForMainVC = UINavigationController(rootViewController: mainVC)
-        let demoCompleted = userData.bool(forKey: "demoCompleted")
+        let demoCompleted = userData.bool(forKey: Constants.DemoCompletedUserDefaultsKey)
         if demoCompleted {
             self.window?.rootViewController = navForMainVC
         } else {

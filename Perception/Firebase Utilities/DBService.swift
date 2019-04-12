@@ -42,6 +42,11 @@ final class DatabaseService {
   }
   public weak var imageServiceDelegate: ImageServiceDelegate?
   public weak var videoServiceDelegate: VideoServiceDelegate?
+    
+    public static var firestoreDB: Firestore = {
+        let db = Firestore.firestore()
+        return db
+    }()
   
   private var fireStore: Firestore = {
     return Firestore.firestore()
@@ -143,3 +148,22 @@ extension DatabaseService: VideoService {
 }
 
 
+extension DatabaseService {
+    static public func createPerceptionUser(perceptionUser: PerceptionUser, completion: @escaping (Error?) -> Void) {
+        firestoreDB
+            .collection(FirebaseCollections.users.rawValue)
+            .document(perceptionUser.userUID)
+            .setData([PerceptionUsersCollectionKeys.userUID : perceptionUser.userUID,
+                      PerceptionUsersCollectionKeys.email : perceptionUser.email,
+                      PerceptionUsersCollectionKeys.displayName : perceptionUser.displayName ?? "",
+                      PerceptionUsersCollectionKeys.firstName : perceptionUser.firstName ?? "",
+                      PerceptionUsersCollectionKeys.lastName : perceptionUser.lastName ?? "",
+                      PerceptionUsersCollectionKeys.photoURL : perceptionUser.photoURL ?? ""]) { (error) in
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(nil)
+                }
+        }
+    }
+}
