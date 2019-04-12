@@ -8,6 +8,8 @@ class LoginViewController: UIViewController {
     
     public var showMessage = false
     public var displayMessage = ""
+    public var ultimateDestination: Constants.UltimateDestinationEnum = .myVideos
+    private var authservice = AppDelegate.authservice
     private let loginView = LoginView()
     private var signInMethod: SignInMethod = .logIn
     private enum SignInMethod {
@@ -28,6 +30,7 @@ class LoginViewController: UIViewController {
         loginView.passwordTextField.delegate = self
         loginView.button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         loginView.segmentedControl.addTarget(self, action: #selector(segmentedControlChanged), for: .valueChanged)
+        loginView.dismissButton.addTarget(self, action: #selector(dismissButtonPressed), for: .touchUpInside)
         if showMessage {
             loginView.messageView.isHidden = false
             UIView.animate(withDuration: 0.75, delay: 0, options: [], animations: {
@@ -38,6 +41,10 @@ class LoginViewController: UIViewController {
                 }, completion: nil)
             }
         }
+    }
+    
+    @objc private func dismissButtonPressed() {
+        dismiss(animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -65,19 +72,25 @@ class LoginViewController: UIViewController {
             showAlert(title: "Error", message: "Email and password fields cannot be empty.")
             return
         }
+        
         switch signInMethod {
         case .logIn:
-            print("loging in")
-        //TODO: manage login
+            authservice.signInExistingAccount(email: email, password: password)
         case .register:
-            print("registering")
-            //TODO: manage register
+            authservice.createNewAccount(email: email, password: password)
         }
         
+        switch ultimateDestination {
+        case .myProfile:
+            dismissButtonPressed()
+            //TODO: send user to corresponding destination
+            print("segues to my profile")
+        case .myVideos:
+            dismissButtonPressed()
+            //TODO: send user to corresponding destination
+            print("segues to my videos")
+        }
     }
-    
-    
-
 }
 
 extension LoginViewController: UITextFieldDelegate {
@@ -87,3 +100,4 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
+

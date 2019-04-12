@@ -24,7 +24,7 @@ class OnBoardingViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        userData.set(true, forKey: "demoCompleted")
+        userData.set(true, forKey: Constants.DemoCompletedUserDefaultsKey)
         userData.synchronize()
     }
     
@@ -43,13 +43,16 @@ extension OnBoardingViewController: PaperOnboardingDataSource, PaperOnboardingDe
         let bgThree = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
         
         let largeFont = UIFont(name: "HelveticaNeue-Bold", size: 18)!
-        let smallFont = UIFont(name: "HelveticaNeue", size: 14)!
+        let smallFont = UIFont(name: "HelveticaNeue", size: 16)!
         
+       
         
-        return [OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "camera"), title: "To start allow perception acces to camera", description: "This will allow the app the play videos", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
-                
-                OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "paper"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
-                OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "video"), title: "String", description: "String", pageIcon: #imageLiteral(resourceName: "dot"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont)][index]
+        return [OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "camera"), title: "To start allow this app access to your camera", description: """
+You can change this by clicking Start, then select Settings > Privacy > Camera. Choose your preferred setting for Allowing access to your camera
+"""
+, pageIcon: #imageLiteral(resourceName: "circle"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
+                OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "HandWithPhoneAR"), title: "Direct the camera over an image", description: "A video will play over the image offering you interactive content about that image", pageIcon: #imageLiteral(resourceName: "circle"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont),
+                OnboardingItemInfo.init(informationImage: #imageLiteral(resourceName: "VideoAR"), title: "You are now watching a video!", description: "Play, pause, share or save videos to your collection", pageIcon: #imageLiteral(resourceName: "circle"), color: bgOne, titleColor: bgTwo, descriptionColor: bgThree, titleFont: largeFont, descriptionFont: smallFont)][index]
     }
     
     func onboardingDidTransitonToIndex(_ index: Int) {
