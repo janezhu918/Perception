@@ -11,6 +11,7 @@ protocol ImageService {
   func deleteImage(image:PerceptionImage)
   func fetchImage(image:PerceptionImage)
   func updateImage(image:PerceptionImage, newValues:[String:Any])
+  func generateImageId() -> String
 }
 
 protocol ImageServiceDelegate: AnyObject {
@@ -39,7 +40,26 @@ protocol VideoServiceDelegate: AnyObject {
 
 extension VideoServiceDelegate {
   func videoService(_ videoService: VideoService, didDeleteVideo success: Bool) { }
-  func videoService(_ imageService: VideoService, didReceiveVideo video: PerceptionVideo) { }
+  func videoService(_ videoService: VideoService, didReceiveVideo video: PerceptionVideo) { }
+}
+
+protocol SavedVideoService {
+  var savedVideoServiceDelegate: SavedVideoServiceDelegate? { get set }
+  func storeVideo(video:SavedVideo)
+  func deleteVideo(video:SavedVideo)
+  func fetchVideo(video:SavedVideo)
+  func generateSavedVideoId() -> String
+}
+
+protocol SavedVideoServiceDelegate: AnyObject {
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveError error:Error)
+  func savedVideoService(_ savedVideoService: SavedVideoService, didDeleteVideo success: Bool)
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideo video: SavedVideo)
+}
+
+extension SavedVideoServiceDelegate {
+  func savedVideoService(_ savedVideoService: SavedVideoService, didDeleteVideo success: Bool) { }
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideo video: SavedVideo) { }
 }
 
 final class DatabaseService {
@@ -47,10 +67,12 @@ final class DatabaseService {
     case videos
     case images
     case users
+    case savedVideos
   }
   public weak var imageServiceDelegate: ImageServiceDelegate?
   public weak var videoServiceDelegate: VideoServiceDelegate?
-    
+  public weak var savedVideoServiceDelegate: SavedVideoServiceDelegate?
+  
     public static var firestoreDB: Firestore = {
         let db = Firestore.firestore()
         return db
@@ -68,6 +90,10 @@ final class DatabaseService {
     return fireStore.collection(FirebaseCollections.videos.rawValue)
   }()
   
+  fileprivate lazy var savedVideosCollection: CollectionReference = {
+    return fireStore.collection(FirebaseCollections.savedVideos.rawValue)
+  }()
+  
   fileprivate lazy var usersCollection: CollectionReference = {
     return fireStore.collection(FirebaseCollections.users.rawValue)
   }()
@@ -75,6 +101,10 @@ final class DatabaseService {
 }
 
 extension DatabaseService: ImageService {
+  func generateImageId() -> String {
+    return imagesCollection.document().documentID
+  }
+  
   func updateImage(image: PerceptionImage, newValues: [String : Any]) {
     imagesCollection.document(image.id)
       .updateData(newValues) { (error) in
@@ -178,4 +208,43 @@ extension DatabaseService {
                 }
         }
     }
+}
+
+extension DatabaseService: SavedVideoService {
+  
+  func generateSavedVideoId() -> String {
+    return savedVideosCollection.document().documentID
+  }
+  
+  func storeVideo(video: SavedVideo) {
+    savedVideosCollection.addDocument(data: video.firebaseRepresentation) { (error) in
+      if let error = error {
+        self.videoServiceDelegate?.videoService(self, didReceiveError: error)
+      }
+    }
+  }
+  
+  func deleteVideo(video: SavedVideo) {
+    savedVideosCollection.document(video.id)
+      .delete { (error) in
+        if let error = error {
+          self.videoServiceDelegate?.videoService(self, didReceiveError: error)
+        }
+    }
+  }
+  
+  func fetchVideo(video: SavedVideo) {
+    savedVideosCollection.document(video.id).getDocument { (snapshot, error) in
+      if let error = error {
+        self.videoServiceDelegate?.videoService(self, didReceiveError: error)
+      } else if let snapshot = snapshot, let videoData = snapshot.data() {
+        let video = PerceptionVideo(document: videoData, id: snapshot.documentID)
+        self.videoServiceDelegate?.videoService(self, didReceiveVideo: video)
+      }
+    }
+  }
+  
+  
+  
+  
 }
