@@ -3,7 +3,7 @@ import AVFoundation
 
 class VideoDetailViewController: UIViewController {
     private let detailView = VideoDetailView()
-    private var video: PerceptionVideo!
+    private var video: SavedVideo!
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -23,7 +23,7 @@ class VideoDetailViewController: UIViewController {
         detailView.configurePlayer(player: player)
     }
   
-    init(video:PerceptionVideo){
+    init(video:SavedVideo){
         self.video = video
         super.init(nibName: nil, bundle: nil)
     }
