@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     view.addSubview(mainView)
     addExpandingMenu()
     mainView.sceneView.delegate = self
+    mainView.sceneView.session.delegate = self 
     mainView.sceneView.showsStatistics = false
     if usersession.getCurrentUser() != nil {
         userIsLoggedIn = true
@@ -166,5 +167,25 @@ extension ViewController: ARSCNViewDelegate {
   
   func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
     
+  }
+}
+
+extension ViewController: ARSessionDelegate {
+  func session(_ session: ARSession, didUpdate frame: ARFrame) {
+    let image = CIImage(cvPixelBuffer: frame.capturedImage)
+    let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
+    guard let features = detector?.features(in: image) else { return }
+    
+    for feature in features as! [CIQRCodeFeature] {
+      if let message = feature.messageString {
+        let url = URL(string: message)
+        let position = SCNVector3(frame.camera.transform.columns.3.x,
+                                  frame.camera.transform.columns.3.y,
+                                  frame.camera.transform.columns.3.z)
+        print(position)
+        print(message)
+        print(url)
+      }
+    }
   }
 }
