@@ -8,7 +8,8 @@ class ViewController: UIViewController {
   
     private let mainView = Main()
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
-//    private var videoToShare:
+    private var currentVideoNode: SCNNode?
+    private var videoNodes: [SCNNode] = []
     private var userIsLoggedIn = false
     private var authservice = AppDelegate.authservice
   
@@ -19,18 +20,24 @@ class ViewController: UIViewController {
     addExpandingMenu()
     mainView.sceneView.delegate = self
     mainView.sceneView.showsStatistics = false
-    if usersession.getCurrentUser() != nil {
-        userIsLoggedIn = true
-    }
+    checkForLoggedUser()
   }
   
   private var videoNodeGlobal: SKVideoNode?
   
-  private var isPlaying = false {
+  private var isPlaying = true {
     didSet {
       switchPlayback(isPlaying)
     }
   }
+    
+    private func checkForLoggedUser() {
+        if usersession.getCurrentUser() != nil {
+            userIsLoggedIn = true
+        } else {
+            userIsLoggedIn = false
+        }
+    }
   
   private func switchPlayback(_ isPlaying: Bool) {
     if isPlaying {
@@ -52,7 +59,7 @@ class ViewController: UIViewController {
       configuration.maximumNumberOfTrackedImages = 1
       print("images found in viewWillAppear trackedImage")
     }
-    
+    checkForLoggedUser()
     mainView.sceneView.session.run(configuration)
   }
   
@@ -156,7 +163,7 @@ extension ViewController: ARSCNViewDelegate {
       videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
       videoNode.yScale = -1.0
       videoScene.addChild(videoNode)
-      
+    
       let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
       plane.firstMaterial?.diffuse.contents = videoScene
       let planeNode = SCNNode(geometry: plane)
@@ -165,10 +172,21 @@ extension ViewController: ARSCNViewDelegate {
     } else {
       print("No image was detected at renderer function")
     }
+    currentVideoNode = node
     return node
   }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        if let currentVideoNode = currentVideoNode {
+            videoNodes.append(currentVideoNode)
+
+            print("video node added")
+        }
+    }
+
   
   func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-        
+    print("video scene already removed")
   }
+    
 }
