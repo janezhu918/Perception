@@ -3,7 +3,7 @@ import UIKit
 class SavedVideosViewController: UIViewController {
     
     let favoriteVideos = SavedVideos()
-    let savedVideo = 1  //this should be an array of videos
+    let savedVideo = 3  //this should be an array of videos
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -109,7 +109,6 @@ class LoginView: UIView {
         messageView.translatesAutoresizingMaskIntoConstraints = false
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         
-//        messageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
         messageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -33).isActive = true
         messageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
         messageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true

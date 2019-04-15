@@ -10,6 +10,7 @@ class ViewController: UIViewController {
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
 //    private var videoToShare:
     private var userIsLoggedIn = false
+    private var authservice = AppDelegate.authservice
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -77,9 +78,11 @@ class ViewController: UIViewController {
     private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 30, height: 30)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
-        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 72.0)
+        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
         view.addSubview(menuButton)
         menuButton.layer.cornerRadius = 5
+//        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
+//        menuButton.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5)
         menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
       
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "share")!, highlightedImage: UIImage(named: "share")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
@@ -101,7 +104,7 @@ class ViewController: UIViewController {
         let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
                 let destinationVC = SavedVideosViewController()
-                let navBar = UINavigationController(rootViewController: destinationVC)
+//                let navBar = UINavigationController(rootViewController: destinationVC)
 //                self.navigationController?.pushViewController(destinationVC, animated: true)
                 self.show(destinationVC, sender: self)
 //                self.present(navBar, animated: true, completion: nil)
@@ -109,11 +112,12 @@ class ViewController: UIViewController {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
             }
         }
-
+        
+        
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
-                //TODO: add code to segue to profile
-                print("segues to my profile")
+                self.authservice.signOutAccount()
+                print("account signed out")
                 //                let destinationVC = SavedVideosViewController()
                 //                self.navigationController?.pushViewController(destinationVC, animated: true)
             } else {
@@ -123,8 +127,8 @@ class ViewController: UIViewController {
       
         let menuItems = [share, save, myVideos, profile]
         menuItems.forEach{ $0.layer.cornerRadius = 5 }
-        menuItems.forEach{ $0.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)}
-        menuItems.forEach{ $0.titleColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)}
+        menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5) }
+        menuItems.forEach{ $0.titleColor = .init(red: 1, green: 1, blue: 1, alpha: 1) }
         menuItems.forEach{ $0.titleMargin = 5 }
         menuButton.playSound = false
         menuButton.addMenuItems(menuItems)
@@ -165,6 +169,6 @@ extension ViewController: ARSCNViewDelegate {
   }
   
   func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-    
+        
   }
 }

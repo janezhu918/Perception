@@ -4,7 +4,11 @@ import UIKit
 import AVFoundation
 
 class FavoriteCollectionCell: UICollectionViewCell {
-    
+    lazy var imageView: UIImageView = {
+        let iv = UIImageView()
+        
+        return iv
+    }()
    
     lazy var videoView: VideoView = {
         let savedVideo = VideoView()
@@ -24,6 +28,7 @@ class FavoriteCollectionCell: UICollectionViewCell {
     }
     
     func commonInit() {
+        backgroundColor = .white
         addSubview(videoView)
         addSubview(textLabel)
         cellConstrains()
