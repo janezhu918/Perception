@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     view.addSubview(mainView)
     addExpandingMenu()
     mainView.sceneView.delegate = self
+    mainView.sceneView.session.delegate = self 
     mainView.sceneView.showsStatistics = false
     if usersession.getCurrentUser() != nil {
         userIsLoggedIn = true
