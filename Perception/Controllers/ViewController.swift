@@ -168,3 +168,23 @@ extension ViewController: ARSCNViewDelegate {
     
   }
 }
+
+extension ViewController: ARSessionDelegate {
+  func session(_ session: ARSession, didUpdate frame: ARFrame) {
+    let image = CIImage(cvPixelBuffer: frame.capturedImage)
+    let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
+    guard let features = detector?.features(in: image) else { return }
+    
+    for feature in features as! [CIQRCodeFeature] {
+      if let message = feature.messageString {
+        let url = URL(string: message)
+        let position = SCNVector3(frame.camera.transform.columns.3.x,
+                                  frame.camera.transform.columns.3.y,
+                                  frame.camera.transform.columns.3.z)
+        print(position)
+        print(message)
+        print(url)
+      }
+    }
+  }
+}
