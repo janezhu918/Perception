@@ -18,6 +18,7 @@ struct PerceptionImage {
   public let width: Double
   public let orientation: Orientation
   public let id: String
+  public let contextID: String = ""
   
   init(videoURLString: String,
        name: String, id: String,
