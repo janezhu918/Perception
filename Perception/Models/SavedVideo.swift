@@ -26,5 +26,15 @@ struct SavedVideo {
   }
 }
 
-
-
+extension SavedVideo: FirebaseRepresentable {
+  var firebaseRepresentation: [String : Any] {
+    return [SavedVideoCollectionKeys.id: id,
+            SavedVideoCollectionKeys.name: name,
+            SavedVideoCollectionKeys.urlString: urlString,
+            SavedVideoCollectionKeys.savedAt: savedAt,
+            SavedVideoCollectionKeys.description: description
+    ]
+  }
+  
+  
+}

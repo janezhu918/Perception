@@ -11,6 +11,7 @@ protocol ImageService {
   func deleteImage(image:PerceptionImage)
   func fetchImage(image:PerceptionImage)
   func updateImage(image:PerceptionImage, newValues:[String:Any])
+  func generateImageId() -> String
 }
 
 protocol ImageServiceDelegate: AnyObject {
@@ -39,7 +40,29 @@ protocol VideoServiceDelegate: AnyObject {
 
 extension VideoServiceDelegate {
   func videoService(_ videoService: VideoService, didDeleteVideo success: Bool) { }
-  func videoService(_ imageService: VideoService, didReceiveVideo video: PerceptionVideo) { }
+  func videoService(_ videoService: VideoService, didReceiveVideo video: PerceptionVideo) { }
+}
+
+protocol SavedVideoService {
+  var savedVideoServiceDelegate: SavedVideoServiceDelegate? { get set }
+  func storeVideo(video:SavedVideo, user:PerceptionUser)
+  func deleteVideo(video:SavedVideo, user:PerceptionUser)
+  func fetchVideo(video:SavedVideo, user:PerceptionUser)
+  func fetchUserSavedVideos(user:PerceptionUser)
+  func generateSavedVideoId(user:PerceptionUser) -> String
+}
+
+protocol SavedVideoServiceDelegate: AnyObject {
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveError error:Error)
+  func savedVideoService(_ savedVideoService: SavedVideoService, didDeleteVideo success: Bool)
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideo video: SavedVideo)
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideos videos: [SavedVideo])
+}
+
+extension SavedVideoServiceDelegate {
+  func savedVideoService(_ savedVideoService: SavedVideoService, didDeleteVideo success: Bool) { }
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideo video: SavedVideo) { }
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideos videos: [SavedVideo]) { }
 }
 
 final class DatabaseService {
@@ -47,10 +70,12 @@ final class DatabaseService {
     case videos
     case images
     case users
+    case savedVideos
   }
   public weak var imageServiceDelegate: ImageServiceDelegate?
   public weak var videoServiceDelegate: VideoServiceDelegate?
-    
+  public weak var savedVideoServiceDelegate: SavedVideoServiceDelegate?
+  
     public static var firestoreDB: Firestore = {
         let db = Firestore.firestore()
         return db
@@ -68,6 +93,11 @@ final class DatabaseService {
     return fireStore.collection(FirebaseCollections.videos.rawValue)
   }()
   
+  fileprivate func savedVideosCollection(user:PerceptionUser) -> CollectionReference {
+    let userDocument = usersCollection.document(user.userUID)
+    return userDocument.collection(FirebaseCollections.savedVideos.rawValue)
+  }
+  
   fileprivate lazy var usersCollection: CollectionReference = {
     return fireStore.collection(FirebaseCollections.users.rawValue)
   }()
@@ -75,6 +105,10 @@ final class DatabaseService {
 }
 
 extension DatabaseService: ImageService {
+  func generateImageId() -> String {
+    return imagesCollection.document().documentID
+  }
+  
   func updateImage(image: PerceptionImage, newValues: [String : Any]) {
     imagesCollection.document(image.id)
       .updateData(newValues) { (error) in
@@ -178,4 +212,53 @@ extension DatabaseService {
                 }
         }
     }
+}
+
+extension DatabaseService: SavedVideoService {
+  
+  func generateSavedVideoId(user:PerceptionUser) -> String {
+    return savedVideosCollection(user: user).document().documentID
+  }
+  
+  func storeVideo(video: SavedVideo, user:PerceptionUser) {
+    savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
+      if let error = error {
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+      }
+    }
+  }
+  
+  func deleteVideo(video: SavedVideo, user:PerceptionUser) {
+    savedVideosCollection(user: user).document(video.id)
+      .delete { (error) in
+        if let error = error {
+          self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+        }
+    }
+  }
+  
+  func fetchVideo(video: SavedVideo, user:PerceptionUser) {
+    savedVideosCollection(user: user).document(video.id).getDocument { (snapshot, error) in
+      if let error = error {
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+      } else if let snapshot = snapshot, let videoData = snapshot.data() {
+        let video = SavedVideo(document: videoData, id: snapshot.documentID)
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideo: video)
+      }
+    }
+  }
+  
+  func fetchUserSavedVideos(user:PerceptionUser) {
+    savedVideosCollection(user: user).addSnapshotListener { (snapshot, error) in
+      if let error = error {
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+      } else if let snapshot = snapshot {
+        let videos = snapshot.documents.compactMap { (document) in
+            SavedVideo(document: document.data(), id: document.documentID)
+        }
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideos: videos)
+      }
+    }
+  }
+  
 }
