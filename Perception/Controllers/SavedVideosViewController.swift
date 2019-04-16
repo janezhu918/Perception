@@ -73,7 +73,6 @@ extension SavedVideosViewController: SavedVideoServiceDelegate {
     func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideos videos: [SavedVideo]) {
         self.savedVideos = videos
         favoriteVideos.myCollectionView.reloadData()
-        print(savedVideos.first?.name)
     }
 }
 
