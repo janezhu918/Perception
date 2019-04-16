@@ -20,6 +20,7 @@ class SavedVideos: UIView {
     }
     
     func commonInit() {
+        backgroundColor = #colorLiteral(red: 0.1276455522, green: 0.2034990788, blue: 0.3436715901, alpha: 1)
         addSubview(myCollectionView)
         myCollectionView.register(FavoriteCollectionCell.self, forCellWithReuseIdentifier: "FavoriteCell")
         cvConstrains()
