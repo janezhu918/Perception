@@ -38,6 +38,8 @@ class VideoDetailView: UIView {
   
   private func setConstraints() {
     addSubview(playerView)
+    addSubview(nameLabel)
+    addSubview(descriptionView)
     
     playerView.translatesAutoresizingMaskIntoConstraints = false
     descriptionView.translatesAutoresizingMaskIntoConstraints = false
