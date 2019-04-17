@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         } else {
             userIsLoggedIn = false
         }
-        print(userIsLoggedIn)
+        print("check if user is logged in: \(userIsLoggedIn)")
     }
     
     private func switchPlayback(_ isPlaying: Bool) {
@@ -111,8 +111,6 @@ class ViewController: UIViewController {
         let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
                 let destinationVC = SavedVideosViewController()
-                //                let navBar = UINavigationController(rootViewController: destinationVC)
-                //                self.navigationController?.pushViewController(destinationVC, animated: true)
                 self.show(destinationVC, sender: self)
                 //                self.present(navBar, animated: true, completion: nil)
             } else {
@@ -122,17 +120,27 @@ class ViewController: UIViewController {
         
         
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+            if self.usersession.getCurrentUser() != nil {
+                let destinationVC = ProfileViewControlerViewController()
+                self.show(destinationVC, sender: self)
+//                self.navigationController?.pushViewController(destinationVC, animated: true)
+//                print("this happened!!")
+                
+            } else if self.userIsLoggedIn == false {
+                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
+                print("nothing happened")
+            }
+        }
+        
+        let signOut = ExpandingMenuItem(size: menuButtonSize, title: "Sign Out", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
                 self.authservice.signOutAccount()
-                print("account signed out")
-                //                let destinationVC = SavedVideosViewController()
-                //                self.navigationController?.pushViewController(destinationVC, animated: true)
             } else {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
             }
         }
         
-        let menuItems = [share, save, myVideos, profile]
+        let menuItems = [signOut, share, save, myVideos, profile]
         menuItems.forEach{ $0.layer.cornerRadius = 5 }
         menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5) }
         menuItems.forEach{ $0.titleColor = .init(red: 1, green: 1, blue: 1, alpha: 1) }
@@ -212,4 +220,10 @@ extension ViewController: ARSessionDelegate {
         }
     }
 }
+}
+
+extension ViewController: LoginViewControllerDelegate {
+    func checkForLoggedUser(_ logged: Bool) {
+        userIsLoggedIn = true
+    }
 }
