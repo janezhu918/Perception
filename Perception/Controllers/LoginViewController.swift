@@ -2,9 +2,14 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func checkForLoggedUser(_ logged: Bool)
+}
+
 class LoginViewController: UIViewController {
     
     //TODO: add a back button
+    private var delegate: LoginViewControllerDelegate?
     
     public var showMessage = false
     public var displayMessage = ""
@@ -80,16 +85,19 @@ class LoginViewController: UIViewController {
             authservice.createNewAccount(email: email, password: password)
         }
         
-        switch ultimateDestination {
-        case .myProfile:
-            dismissButtonPressed()
-            //TODO: send user to corresponding destination
-            print("segues to my profile")
-        case .myVideos:
-            dismissButtonPressed()
-            //TODO: send user to corresponding destination
-            print("segues to my videos")
-        }
+        delegate?.checkForLoggedUser(true)
+        dismissButtonPressed()
+        
+//        switch ultimateDestination {
+//        case .myProfile:
+//            dismissButtonPressed()
+//            //TODO: send user to corresponding destination
+//            print("segues to my profile")
+//        case .myVideos:
+//            dismissButtonPressed()
+//            //TODO: send user to corresponding destination
+//            print("segues to my videos")
+//        }
     }
 }
 
