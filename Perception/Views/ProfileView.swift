@@ -61,7 +61,7 @@ class ProfileView: UIView {
         addSubview(userNane)
         addSubview(nameTextField)
         addSubview(ageLabel)
-        addSubview(agePicker)
+       // addSubview(agePicker)
         labelConstrains()
     }
     
