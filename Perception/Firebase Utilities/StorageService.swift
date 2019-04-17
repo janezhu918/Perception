@@ -7,29 +7,17 @@ enum Result<Value> {
 }
 
 protocol ImageStorageService {
-  func storeImage(data:Data, id:String)
-  func deleteImage(image:PerceptionImage)
-}
-
-protocol ImageStorageServiceDelegate: AnyObject {
-  func storageService(_ storageService: ImageStorageService, didReceiveImageURL imageURL: URL)
-  func storageService(_ storageService: ImageStorageService, didDeleteImage success: Bool)
-  func storageService(_ storageService: ImageStorageService, didReceiveError error: Error)
+  func storeImage(data:Data, id:String, completion:@escaping(Result<URL>) -> Void)
+  func deleteImage(image:PerceptionImage, completion:@escaping(Result<Bool>) -> Void)
 }
 
 protocol VideoStorageService {
-  func storeVideo(data:Data, id:String)
-  func storeVideo(url:URL, id:String)
-  func deleteVideo(video:PerceptionVideo)
+  func storeVideo(data:Data, id:String, completion:@escaping(Result<URL>) -> Void)
+  func storeVideo(url:URL, id:String, completion:@escaping(Result<URL>) -> Void)
+  func deleteVideo(video:PerceptionVideo, completion:@escaping(Result<Bool>) -> Void)
 }
 
-protocol VideoStorageServiceDelegate: AnyObject {
-  func storageService(_ storageService: VideoStorageService, didReceiveVideoURL imageURL: URL)
-  func storageService(_ storageService: VideoStorageService, didDeleteVideo success: Bool)
-  func storageService(_ storageService: VideoStorageService, didReceiveError error: Error)
-}
-
-final class StorageService: ImageStorageService, VideoStorageService {
+final class StorageService {
   private enum Content: String {
     case video
     case image
@@ -105,7 +93,8 @@ final class StorageService: ImageStorageService, VideoStorageService {
   
 }
 
-extension StorageService {
+extension StorageService: ImageStorageService {
+  
   public func deleteImage(image: PerceptionImage, completion:@escaping(Result<Bool>) -> Void) {
     let fileReference = imageFolderReference.child(image.id)
     fileReference.delete { (error) in
@@ -131,10 +120,10 @@ extension StorageService {
   }
 }
 
-extension StorageService {
+extension StorageService: VideoStorageService {
   public func storeVideo(data: Data, id: String, completion:@escaping(Result<URL>) -> Void) {
     let fileReference = videoFolderReference.child("\(id).mp4")
-    storeContentData(content: .image, data: data,
+    storeContentData(content: .video, data: data,
                      fileReference: fileReference) { (result) in
                       switch result {
                       case .failure(error: let error):
@@ -147,7 +136,7 @@ extension StorageService {
   
   public func storeVideo(url: URL, id: String,  completion:@escaping(Result<URL>) -> Void) {
     let fileReference = videoFolderReference.child("\(id).mp4")
-    storeContentData(content: .image, url: url,
+    storeContentData(content: .video, url: url,
                      fileReference: fileReference) { (result) in
                       switch result {
                       case .failure(error: let error):
