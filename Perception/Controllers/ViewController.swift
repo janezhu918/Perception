@@ -8,8 +8,9 @@ class ViewController: UIViewController {
     
     private let mainView = Main()
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
-    private var currentVideoNode: SCNNode?
-    private var videoNodes: [SCNNode] = []
+    private var currentSCNNode: SCNNode?
+    private var currentSKVideoNode: SKVideoNode?
+    private var videoDictionary: [SCNNode:SKVideoNode] = [:]
     private var userIsLoggedIn = false
     private var authservice = AppDelegate.authservice
     
@@ -24,9 +25,7 @@ class ViewController: UIViewController {
         checkForLoggedUser()
     }
     
-    private var videoNodeGlobal: SKVideoNode?
-    
-    private var isPlaying = true {
+    private var isPlaying = false {
         didSet {
             switchPlayback(isPlaying)
         }
@@ -43,9 +42,9 @@ class ViewController: UIViewController {
     
     private func switchPlayback(_ isPlaying: Bool) {
         if isPlaying {
-            videoNodeGlobal?.pause()
+            currentSKVideoNode?.pause()
         } else {
-            videoNodeGlobal?.play()
+            currentSKVideoNode?.play()
         }
     }
     
@@ -59,7 +58,6 @@ class ViewController: UIViewController {
         if let trackedImage = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
             configuration.trackingImages = trackedImage
             configuration.maximumNumberOfTrackedImages = 1
-            print("images found in viewWillAppear trackedImage")
         }
         checkForLoggedUser()
         mainView.sceneView.session.run(configuration)
@@ -157,17 +155,15 @@ extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
         let node = SCNNode()
-        print("renderer nodeFor method: \(node.hashValue)")
-
         if let imageAnchor = anchor as? ARImageAnchor {
-            
             let videoNode = SKVideoNode(fileNamed: "\(imageAnchor.referenceImage.name!.description).mp4")
-            self.videoNodeGlobal = videoNode
-            isPlaying = true
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
             videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
             videoNode.yScale = -1.0
             videoScene.addChild(videoNode)
+            videoNode.name = imageAnchor.referenceImage.name!.description
+            currentSKVideoNode = videoNode
+            videoNode.play()
             
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             plane.firstMaterial?.diffuse.contents = videoScene
@@ -177,40 +173,24 @@ extension ViewController: ARSCNViewDelegate {
         } else {
             print("No image was detected at renderer function")
         }
-        currentVideoNode = node
+        currentSCNNode = node
         return node
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        if let currentVideoNode = currentVideoNode {
-            videoNodes.append(currentVideoNode)
-            
-            print("video node added")
+        if let currentSCNNode = currentSCNNode, let currentSKVideoNode = currentSKVideoNode {
+            videoDictionary[currentSCNNode] = currentSKVideoNode
         }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        print("didUpdate: \(node.hashValue)")
-
-        guard let trackable = anchor as? ARImageAnchor else { return }
-        if let planeNode = node.childNodes.first as? SCNNode {
-            
-//            print("planenode detected")
-            //TODO: store videos by SCNNode in the form of a dictionary <SCNNode:SKVideoNode>
-            
-        }
-        if trackable.isTracked {
-            
-        } else {
-            
+        if let currentVideoPlaying = videoDictionary[node], let trackable = anchor as? ARImageAnchor {
+            currentSKVideoNode = currentVideoPlaying
+            if !trackable.isTracked {
+                currentVideoPlaying.pause()
+            }
         }
     }
-    
-    
-    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-        print("video scene already removed")
-    }
-    
 }
 
 extension ViewController: ARSessionDelegate {
