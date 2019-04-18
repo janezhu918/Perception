@@ -227,6 +227,24 @@ extension DatabaseService {
         }
     }
     
+    static public func updatePerceptionUser(perceptionUser: PerceptionUser, completion: @escaping (Error?) -> Void) {
+        firestoreDB
+        .collection(FirebaseCollections.users.rawValue)
+        .document(perceptionUser.userUID)
+            .updateData([PerceptionUsersCollectionKeys.displayName : perceptionUser.displayName ?? "",
+                         PerceptionUsersCollectionKeys.firstName : perceptionUser.firstName ?? "",
+                         PerceptionUsersCollectionKeys.lastName : perceptionUser.lastName ?? "",
+                         PerceptionUsersCollectionKeys.gender : perceptionUser.gender ?? "",
+                         PerceptionUsersCollectionKeys.birthday : perceptionUser.birthday ?? "",
+                         PerceptionUsersCollectionKeys.zipCode : perceptionUser.zipCode ?? ""]) { (error) in
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(nil)
+                }
+        }
+    }
+    
     static public func fetchPerceptionUser(uid: String, completion: @escaping (PerceptionUser?, Error?) -> Void) {
         firestoreDB
             .collection(FirebaseCollections.users.rawValue)
