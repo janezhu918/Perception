@@ -29,8 +29,20 @@ final class AuthService {
                 self.authserviceCreateNewAccountDelegate?.didReceiveErrorCreatingAccount(self, error: error)
                 return
             } else if let authDataResult = authDataResult {
-                self.authserviceCreateNewAccountDelegate?.didCreateNewAccount(self, perceptionUser: authDataResult.user)
-                ProgressHUD.dismiss()
+                let perceptionUser = PerceptionUser.init(userUID: authDataResult.user.uid,
+                                                         email: email,
+                                                         displayName: nil,
+                                                         firstName: nil,
+                                                         lastName: nil,
+                                                         photoURL: nil)
+                DatabaseService.createPerceptionUser(perceptionUser: perceptionUser, completion: { (error) in
+                    if let error = error {
+                        self.authserviceCreateNewAccountDelegate?.didReceiveErrorCreatingAccount(self, error: error)
+                    } else {
+                        self.authserviceCreateNewAccountDelegate?.didCreateNewAccount(self, perceptionUser: perceptionUser)
+                        ProgressHUD.dismiss()
+                    }
+                })
             }
         }
     }

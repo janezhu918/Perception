@@ -10,14 +10,20 @@
 		1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */; };
 		1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */; };
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
+		127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */; };
+		127F854A2265191900DEC05D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85492265191900DEC05D /* ProfileView.swift */; };
 		1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
 		1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808D225B96A20071FA83 /* inTheDark.mp4 */; };
 		1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */; };
+		1E2E7E11225FC9A1007D0CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */; };
 		1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */; };
 		1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */; };
 		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
 		1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8099225BAFF00071FA83 /* VideoView.swift */; };
 		1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */; };
+		52A6DA2F8AF8D6217BD24C70 /* Pods_PerceptionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E56D28C1E6BA3B56FFC751 /* Pods_PerceptionTests.framework */; };
+		A5055203226541EF0002FFDE /* morocco.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5055202226541EF0002FFDE /* morocco.mp4 */; };
+		A5055207226542030002FFDE /* colombia.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5055206226542030002FFDE /* colombia.mp4 */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
 		A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECDD225654EF009B94A9 /* Main.storyboard */; };
@@ -42,15 +48,29 @@
 		A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B82257EE0A006E14F7 /* AuthService.swift */; };
 		A5B411BC2257EE1C006E14F7 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BB2257EE1C006E14F7 /* DBService.swift */; };
 		A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BD2257EE24006E14F7 /* StorageService.swift */; };
-		A5B411C22257EFFC006E14F7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5B411C12257EFFC006E14F7 /* GoogleService-Info.plist */; };
 		B2E4EECC3D5BDA5239963CEE /* Pods_Perception.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */; };
+		D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */; };
+		D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D7A1C78D2264E52B00E33838 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A507ECCC225654EF009B94A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A507ECD3225654EF009B94A9;
+			remoteInfo = Perception;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1211DAC9225D34F200D40F51 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
+		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
+		1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloackAndDagger.mp4; sourceTree = "<group>"; };
 		1E8B808D225B96A20071FA83 /* inTheDark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = inTheDark.mp4; sourceTree = "<group>"; };
 		1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loveDeathAndRobots.mp4; sourceTree = "<group>"; };
@@ -60,6 +80,9 @@
 		1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionVideoCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8099225BAFF00071FA83 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.debug.xcconfig"; sourceTree = "<group>"; };
+		72061BAFBA39F37C10299E49 /* Pods-PerceptionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A5055202226541EF0002FFDE /* morocco.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = morocco.mp4; sourceTree = "<group>"; };
+		A5055206226542030002FFDE /* colombia.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = colombia.mp4; sourceTree = "<group>"; };
 		A507ECD4225654EF009B94A9 /* Perception.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perception.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A507ECD7225654EF009B94A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A507ECDB225654EF009B94A9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +109,12 @@
 		A5B411B82257EE0A006E14F7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A5B411BB2257EE1C006E14F7 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		A5B411BD2257EE24006E14F7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
-		A5B411C12257EFFC006E14F7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.release.xcconfig"; sourceTree = "<group>"; };
+		D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionTests.swift; sourceTree = "<group>"; };
+		D7A1C78C2264E52B00E33838 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1E56D28C1E6BA3B56FFC751 /* Pods_PerceptionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerceptionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Perception.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -99,6 +127,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D7A1C7852264E52B00E33838 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52A6DA2F8AF8D6217BD24C70 /* Pods_PerceptionTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -106,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */,
+				E1E56D28C1E6BA3B56FFC751 /* Pods_PerceptionTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -115,6 +152,8 @@
 			children = (
 				5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */,
 				1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */,
+				72061BAFBA39F37C10299E49 /* Pods-PerceptionTests.debug.xcconfig */,
+				AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -123,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				A507ECD6225654EF009B94A9 /* Perception */,
+				D7A1C7892264E52B00E33838 /* PerceptionTests */,
 				A507ECD5225654EF009B94A9 /* Products */,
 				6D879E3CA8415AF919D4038C /* Pods */,
 				027ABE42B91BDFF223660734 /* Frameworks */,
@@ -133,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				A507ECD4225654EF009B94A9 /* Perception.app */,
+				D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,9 +181,12 @@
 		A507ECD6225654EF009B94A9 /* Perception */ = {
 			isa = PBXGroup;
 			children = (
+				A5055202226541EF0002FFDE /* morocco.mp4 */,
 				1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */,
+				A5055206226542030002FFDE /* colombia.mp4 */,
 				1E8B808D225B96A20071FA83 /* inTheDark.mp4 */,
 				1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */,
+				D7A1C7832264E09A00E33838 /* File Manager Helpers */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
 				A5B411A72257ED4D006E14F7 /* Models */,
 				A5B411952257EC6C006E14F7 /* Views */,
@@ -151,8 +195,8 @@
 				A5B411B52257EDE9006E14F7 /* Utilities */,
 				A5B411C32257F00E006E14F7 /* Supporting Files */,
 				A507ECDD225654EF009B94A9 /* Main.storyboard */,
+				1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */,
 				1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */,
-				A5B411C12257EFFC006E14F7 /* GoogleService-Info.plist */,
 				A507ECE5225654F0009B94A9 /* Info.plist */,
 			);
 			path = Perception;
@@ -168,6 +212,7 @@
 				1211DAC9225D34F200D40F51 /* OnboardingView.swift */,
 				1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */,
 				1E8B8099225BAFF00071FA83 /* VideoView.swift */,
+				127F85492265191900DEC05D /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +225,7 @@
 				A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */,
 				A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */,
 				A5B411A32257ECF2006E14F7 /* VideoDetailViewController.swift */,
+				127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -253,6 +299,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D7A1C7832264E09A00E33838 /* File Manager Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */,
+			);
+			path = "File Manager Helpers";
+			sourceTree = "<group>";
+		};
+		D7A1C7892264E52B00E33838 /* PerceptionTests */ = {
+			isa = PBXGroup;
+			children = (
+				D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */,
+				D7A1C78C2264E52B00E33838 /* Info.plist */,
+			);
+			path = PerceptionTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,6 +338,26 @@
 			productReference = A507ECD4225654EF009B94A9 /* Perception.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D7A1C7872264E52B00E33838 /* PerceptionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7A1C78F2264E52B00E33838 /* Build configuration list for PBXNativeTarget "PerceptionTests" */;
+			buildPhases = (
+				B2021F5742751396E2EC5E56 /* [CP] Check Pods Manifest.lock */,
+				D7A1C7842264E52B00E33838 /* Sources */,
+				D7A1C7852264E52B00E33838 /* Frameworks */,
+				D7A1C7862264E52B00E33838 /* Resources */,
+				91F1F55319B3F7C59C602C8E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7A1C78E2264E52B00E33838 /* PBXTargetDependency */,
+			);
+			name = PerceptionTests;
+			productName = PerceptionTests;
+			productReference = D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -287,6 +370,10 @@
 				TargetAttributes = {
 					A507ECD3225654EF009B94A9 = {
 						CreatedOnToolsVersion = 10.2;
+					};
+					D7A1C7872264E52B00E33838 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = A507ECD3225654EF009B94A9;
 					};
 				};
 			};
@@ -304,6 +391,7 @@
 			projectRoot = "";
 			targets = (
 				A507ECD3225654EF009B94A9 /* Perception */,
+				D7A1C7872264E52B00E33838 /* PerceptionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -317,16 +405,67 @@
 				1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */,
 				1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
-				A5B411C22257EFFC006E14F7 /* GoogleService-Info.plist in Resources */,
+				1E2E7E11225FC9A1007D0CE4 /* GoogleService-Info.plist in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
+				A5055203226541EF0002FFDE /* morocco.mp4 in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
+				A5055207226542030002FFDE /* colombia.mp4 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7A1C7862264E52B00E33838 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		91F1F55319B3F7C59C602C8E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9E2AAA95708D813A4E97BD78 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -343,6 +482,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Perception-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2021F5742751396E2EC5E56 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PerceptionTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -408,16 +569,19 @@
 				A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */,
 				A5B411B42257EDDE006E14F7 /* Constants.swift in Sources */,
 				A5B411B72257EDF5006E14F7 /* ARService.swift in Sources */,
+				D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */,
 				A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */,
 				A5B411942257EC45006E14F7 /* Main.swift in Sources */,
 				1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */,
 				A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */,
 				A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */,
+				127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */,
 				1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */,
 				A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */,
 				1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */,
 				A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */,
 				1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */,
+				127F854A2265191900DEC05D /* ProfileView.swift in Sources */,
 				A5B411A42257ECF2006E14F7 /* VideoDetailViewController.swift in Sources */,
 				A5B411B02257EDCA006E14F7 /* Date+Extensions.swift in Sources */,
 				A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */,
@@ -433,7 +597,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D7A1C7842264E52B00E33838 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D7A1C78E2264E52B00E33838 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A507ECD3225654EF009B94A9 /* Perception */;
+			targetProxy = D7A1C78D2264E52B00E33838 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A507ECDD225654EF009B94A9 /* Main.storyboard */ = {
@@ -577,16 +757,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9DN3HV8LU2;
 				INFOPLIST_FILE = Perception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.perception.Perception;
+				PRODUCT_BUNDLE_IDENTIFIER = com.perceptionTestAppID.pursuit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = PerceptionTestAppIDDevProfile;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -598,18 +778,58 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9DN3HV8LU2;
 				INFOPLIST_FILE = Perception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.perception.Perception;
+				PRODUCT_BUNDLE_IDENTIFIER = com.perceptionTestAppID.pursuit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = PerceptionTestAppIDDevProfile;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D7A1C7902264E52B00E33838 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72061BAFBA39F37C10299E49 /* Pods-PerceptionTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PerceptionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.superapiguy.PerceptionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Perception.app/Perception";
+			};
+			name = Debug;
+		};
+		D7A1C7912264E52B00E33838 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PerceptionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.superapiguy.PerceptionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Perception.app/Perception";
 			};
 			name = Release;
 		};
@@ -630,6 +850,15 @@
 			buildConfigurations = (
 				A507ECE9225654F0009B94A9 /* Debug */,
 				A507ECEA225654F0009B94A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7A1C78F2264E52B00E33838 /* Build configuration list for PBXNativeTarget "PerceptionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7A1C7902264E52B00E33838 /* Debug */,
+				D7A1C7912264E52B00E33838 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

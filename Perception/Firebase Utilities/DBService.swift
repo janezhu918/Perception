@@ -6,32 +6,49 @@ protocol FirebaseRepresentable {
 }
 
 protocol ImageService {
-  var imageServiceDelegate: ImageServiceDelegate? { get set }
-  func storeImage(image:PerceptionImage)
-  func deleteImage(image:PerceptionImage)
-  func fetchImage(image:PerceptionImage)
-  func updateImage(image:PerceptionImage, newValues:[String:Any])
-}
-
-protocol ImageServiceDelegate: AnyObject {
-  func imageService(_ imageService: ImageService, didReceiveError:Error)
-  func imageService(_ imageService: ImageService, didDeleteImage success: Bool)
-  func imageService(_ imageService: ImageService, didReceiveImage image: PerceptionImage)
-  func imageService(_ imageService: ImageService, didReceiveImages images: [PerceptionImage])
+  func storeImage(image:PerceptionImage, completion:@escaping(Result<Bool>) -> Void)
+  func deleteImage(image:PerceptionImage, completion:@escaping(Result<Bool>) -> Void)
+  func fetchImage(image:PerceptionImage,
+                  completion:@escaping(Result<PerceptionImage>) -> Void)
+  func fetchImage(imageName:String,
+                  completion:@escaping(Result<PerceptionImage>) -> Void)
+  func fetchImages(contextID:String,
+                  completion:@escaping(Result<[PerceptionImage]>) -> Void)
+  func updateImage(image:PerceptionImage, newValues:[String:Any],
+                   completion:@escaping(Result<Bool>) -> Void)
+  func generateImageId() -> String
 }
 
 protocol VideoService {
-  var videoServiceDelegate: VideoServiceDelegate? { get set }
-  func storeVideo(video:PerceptionVideo)
-  func deleteVideo(video:PerceptionVideo)
-  func fetchVideo(video:PerceptionVideo)
-  func updateVideo(video:PerceptionVideo, newValues:[String:Any])
+  func storeVideo(video:PerceptionVideo, completion:@escaping(Result<Bool>) -> Void)
+  func deleteVideo(video:PerceptionVideo, completion:@escaping(Result<Bool>) -> Void)
+  func fetchVideo(video:PerceptionVideo,
+                  completion:@escaping(Result<PerceptionVideo>) -> Void)
+  func updateVideo(video:PerceptionVideo, newValues:[String:Any],
+                   completion:@escaping(Result<Bool>) -> Void)
+  func generateVideoId() -> String
 }
 
-protocol VideoServiceDelegate: AnyObject {
-  func videoService(_ videoService: VideoService, didReceiveError:Error)
-  func videoService(_ videoService: VideoService, didDeleteVideo success: Bool)
-  func imageService(_ imageService: ImageService, didReceiveImage video: PerceptionVideo)
+protocol SavedVideoService {
+  var savedVideoServiceDelegate: SavedVideoServiceDelegate? { get set }
+  func storeVideo(video:SavedVideo, user:PerceptionUser)
+  func deleteVideo(video:SavedVideo, user:PerceptionUser)
+  func fetchVideo(video:SavedVideo, user:PerceptionUser)
+  func fetchUserSavedVideos(user:PerceptionUser)
+  func generateSavedVideoId(user:PerceptionUser) -> String
+}
+
+protocol SavedVideoServiceDelegate: AnyObject {
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveError error:Error)
+  func savedVideoService(_ savedVideoService: SavedVideoService, didDeleteVideo success: Bool)
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideo video: SavedVideo)
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideos videos: [SavedVideo])
+}
+
+extension SavedVideoServiceDelegate {
+  func savedVideoService(_ savedVideoService: SavedVideoService, didDeleteVideo success: Bool) { }
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideo video: SavedVideo) { }
+  func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideos videos: [SavedVideo]) { }
 }
 
 final class DatabaseService {
@@ -39,9 +56,14 @@ final class DatabaseService {
     case videos
     case images
     case users
+    case savedVideos
   }
-  public weak var imageServiceDelegate: ImageServiceDelegate?
-  public weak var videoServiceDelegate: VideoServiceDelegate?
+  public weak var savedVideoServiceDelegate: SavedVideoServiceDelegate?
+  
+  public static var firestoreDB: Firestore = {
+    let db = Firestore.firestore()
+    return db
+  }()
   
   private var fireStore: Firestore = {
     return Firestore.firestore()
@@ -55,6 +77,11 @@ final class DatabaseService {
     return fireStore.collection(FirebaseCollections.videos.rawValue)
   }()
   
+  fileprivate func savedVideosCollection(user:PerceptionUser) -> CollectionReference {
+    let userDocument = usersCollection.document(user.userUID)
+    return userDocument.collection(FirebaseCollections.savedVideos.rawValue)
+  }
+  
   fileprivate lazy var usersCollection: CollectionReference = {
     return fireStore.collection(FirebaseCollections.users.rawValue)
   }()
@@ -62,84 +89,205 @@ final class DatabaseService {
 }
 
 extension DatabaseService: ImageService {
-  func updateImage(image: PerceptionImage, newValues: [String : Any]) {
-    imagesCollection.document(image.id)
-      .updateData(newValues) { (error) in
-        if let error = error {
-          self.imageServiceDelegate?.imageService(self, didReceiveError: error)
-        }
-    }
-  }
   
-  
-  func storeImage(image: PerceptionImage) {
+  func storeImage(image: PerceptionImage, completion: @escaping (Result<Bool>) -> Void) {
     imagesCollection.addDocument(data: image.firebaseRepresentation) { (error) in
       if let error = error {
-        self.imageServiceDelegate?.imageService(self, didReceiveError: error)
+        completion(.failure(error: error))
       }
+      completion(.success(true))
     }
   }
   
-  func deleteImage(image: PerceptionImage) {
+  func deleteImage(image: PerceptionImage, completion: @escaping (Result<Bool>) -> Void) {
     imagesCollection.document(image.id)
       .delete { (error) in
         if let error = error {
-          self.imageServiceDelegate?.imageService(self, didReceiveError: error)
+          completion(.failure(error: error))
         }
+        completion(.success(true))
     }
   }
   
-  func fetchImage(image: PerceptionImage) {
+  func fetchImage(image: PerceptionImage, completion: @escaping (Result<PerceptionImage>) -> Void) {
     imagesCollection.document(image.id).getDocument { (snapshot, error) in
       if let error = error {
-        self.imageServiceDelegate?.imageService(self, didReceiveError: error)
+        completion(.failure(error: error))
       } else if let snapshot = snapshot, let imageData = snapshot.data() {
         let image = PerceptionImage(document: imageData, id: snapshot.documentID)
-        self.imageServiceDelegate?.imageService(self, didReceiveImage: image)
+        completion(.success(image))
       }
     }
   }
   
+  func fetchImage(imageName: String, completion: @escaping (Result<PerceptionImage>) -> Void) {
+    imagesCollection.whereField(PerceptionImageCollectionKeys.name, isEqualTo: imageName)
+      .getDocuments { (snapshot, error) in
+        if let error = error {
+          completion(.failure(error: error))
+        } else if let document = snapshot?.documents.first {
+          let image = PerceptionImage(document: document.data(), id: document.documentID)
+          completion(.success(image))
+        }
+    }
+  }
   
+  func fetchImages(contextID: String, completion: @escaping (Result<[PerceptionImage]>) -> Void) {
+    imagesCollection.whereField(PerceptionImageCollectionKeys.contextID, isEqualTo: contextID)
+      .getDocuments { (snapshot, error) in
+        if let error = error {
+          completion(.failure(error: error))
+        } else if let snapshot = snapshot {
+          let images = snapshot.documents.map { PerceptionImage(document: $0.data(),
+                                                                id: $0.documentID) }
+          completion(.success(images))
+        }
+    }
+  }
+  
+  func updateImage(image: PerceptionImage, newValues: [String : Any],
+                   completion: @escaping (Result<Bool>) -> Void) {
+    imagesCollection.document(image.id)
+      .updateData(newValues) { (error) in
+        if let error = error {
+          completion(.failure(error: error))
+        }
+        completion(.success(true))
+    }
+  }
+  
+  func generateImageId() -> String {
+    return imagesCollection.document().documentID
+  }
 }
 
 extension DatabaseService: VideoService {
-  func updateVideo(video: PerceptionVideo, newValues: [String : Any]) {
-    videosCollection.document(video.id)
-      .updateData(newValues) { (error) in
-        if let error = error {
-          self.videoServiceDelegate?.videoService(self, didReceiveError: error)
-        }
-    }
-  }
-  
-  func storeVideo(video: PerceptionVideo) {
+  func storeVideo(video: PerceptionVideo, completion: @escaping (Result<Bool>) -> Void) {
     videosCollection.addDocument(data: video.firebaseRepresentation) { (error) in
       if let error = error {
-        self.videoServiceDelegate?.videoService(self, didReceiveError: error)
+        completion(.failure(error: error))
       }
+      completion(.success(true))
     }
   }
   
-  func deleteVideo(video: PerceptionVideo) {
+  func deleteVideo(video: PerceptionVideo, completion: @escaping (Result<Bool>) -> Void) {
     videosCollection.document(video.id)
       .delete { (error) in
         if let error = error {
-          self.videoServiceDelegate?.videoService(self, didReceiveError: error)
+          completion(.failure(error: error))
         }
+        completion(.success(true))
     }
   }
   
-  func fetchVideo(video: PerceptionVideo) {
+  func fetchVideo(video: PerceptionVideo, completion: @escaping (Result<PerceptionVideo>) -> Void) {
     videosCollection.document(video.id).getDocument { (snapshot, error) in
       if let error = error {
-        self.videoServiceDelegate?.videoService(self, didReceiveError: error)
+        completion(.failure(error: error))
       } else if let snapshot = snapshot, let videoData = snapshot.data() {
         let video = PerceptionVideo(document: videoData, id: snapshot.documentID)
-        self.videoServiceDelegate?.imageService(self, didReceiveImage: video)
+        completion(.success(video))
       }
     }
+  }
+  
+  func updateVideo(video: PerceptionVideo, newValues: [String : Any], completion: @escaping (Result<Bool>) -> Void) {
+    videosCollection.document(video.id)
+      .updateData(newValues) { (error) in
+        if let error = error {
+          completion(.failure(error: error))
+        }
+        completion(.success(true))
+    }
+  }
+  
+  func generateVideoId() -> String {
+    return videosCollection.document().documentID
   }
 }
 
 
+extension DatabaseService {
+    static public func createPerceptionUser(perceptionUser: PerceptionUser, completion: @escaping (Error?) -> Void) {
+        firestoreDB
+            .collection(FirebaseCollections.users.rawValue)
+            .document(perceptionUser.userUID)
+            .setData([PerceptionUsersCollectionKeys.userUID : perceptionUser.userUID,
+                      PerceptionUsersCollectionKeys.email : perceptionUser.email,
+                      PerceptionUsersCollectionKeys.displayName : perceptionUser.displayName ?? "",
+                      PerceptionUsersCollectionKeys.firstName : perceptionUser.firstName ?? "",
+                      PerceptionUsersCollectionKeys.lastName : perceptionUser.lastName ?? "",
+                      PerceptionUsersCollectionKeys.photoURL : perceptionUser.photoURL ?? ""]) { (error) in
+                        if let error = error {
+                            completion(error)
+                        } else {
+                            completion(nil)
+                        }
+        }
+    }
+    
+    static public func fetchPerceptionUser(uid: String, completion: @escaping (PerceptionUser?, Error?) -> Void) {
+        firestoreDB
+            .collection(FirebaseCollections.users.rawValue)
+            .whereField("userUID", isEqualTo: uid)
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(nil, error)
+                } else if let snapshot = snapshot?.documents.first {
+                    let perceptionUser = PerceptionUser(dict: snapshot.data())
+                    completion(perceptionUser, nil)
+                }
+        }
+    }
+}
+
+extension DatabaseService: SavedVideoService {
+    
+    func generateSavedVideoId(user:PerceptionUser) -> String {
+        return savedVideosCollection(user: user).document().documentID
+    }
+    
+    func storeVideo(video: SavedVideo, user:PerceptionUser) {
+        savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
+            if let error = error {
+                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+            }
+        }
+    }
+    
+    func deleteVideo(video: SavedVideo, user:PerceptionUser) {
+        savedVideosCollection(user: user).document(video.id)
+            .delete { (error) in
+                if let error = error {
+                    self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+                }
+        }
+    }
+    
+    func fetchVideo(video: SavedVideo, user:PerceptionUser) {
+        savedVideosCollection(user: user).document(video.id).getDocument { (snapshot, error) in
+            if let error = error {
+                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+            } else if let snapshot = snapshot, let videoData = snapshot.data() {
+                let video = SavedVideo(document: videoData, id: snapshot.documentID)
+                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideo: video)
+            }
+        }
+    }
+    
+    func fetchUserSavedVideos(user:PerceptionUser) {
+        savedVideosCollection(user: user).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+            } else if let snapshot = snapshot {
+                let videos = snapshot.documents.compactMap { (document) in
+                    SavedVideo(document: document.data(), id: document.documentID)
+                }
+                
+                self.savedVideoServiceDelegate!.savedVideoService(self, didReceiveVideos: videos)
+            }
+        }
+    }
+    
+}
