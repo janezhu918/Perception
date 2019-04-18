@@ -10,6 +10,10 @@ protocol ImageService {
   func deleteImage(image:PerceptionImage, completion:@escaping(Result<Bool>) -> Void)
   func fetchImage(image:PerceptionImage,
                   completion:@escaping(Result<PerceptionImage>) -> Void)
+  func fetchImage(imageName:String,
+                  completion:@escaping(Result<PerceptionImage>) -> Void)
+  func fetchImages(contextID:String,
+                  completion:@escaping(Result<[PerceptionImage]>) -> Void)
   func updateImage(image:PerceptionImage, newValues:[String:Any],
                    completion:@escaping(Result<Bool>) -> Void)
   func generateImageId() -> String
@@ -85,6 +89,7 @@ final class DatabaseService {
 }
 
 extension DatabaseService: ImageService {
+  
   func storeImage(image: PerceptionImage, completion: @escaping (Result<Bool>) -> Void) {
     imagesCollection.addDocument(data: image.firebaseRepresentation) { (error) in
       if let error = error {
@@ -112,6 +117,31 @@ extension DatabaseService: ImageService {
         let image = PerceptionImage(document: imageData, id: snapshot.documentID)
         completion(.success(image))
       }
+    }
+  }
+  
+  func fetchImage(imageName: String, completion: @escaping (Result<PerceptionImage>) -> Void) {
+    imagesCollection.whereField(PerceptionImageCollectionKeys.name, isEqualTo: imageName)
+      .getDocuments { (snapshot, error) in
+        if let error = error {
+          completion(.failure(error: error))
+        } else if let document = snapshot?.documents.first {
+          let image = PerceptionImage(document: document.data(), id: document.documentID)
+          completion(.success(image))
+        }
+    }
+  }
+  
+  func fetchImages(contextID: String, completion: @escaping (Result<[PerceptionImage]>) -> Void) {
+    imagesCollection.whereField(PerceptionImageCollectionKeys.contextID, isEqualTo: contextID)
+      .getDocuments { (snapshot, error) in
+        if let error = error {
+          completion(.failure(error: error))
+        } else if let snapshot = snapshot {
+          let images = snapshot.documents.map { PerceptionImage(document: $0.data(),
+                                                                id: $0.documentID) }
+          completion(.success(images))
+        }
     }
   }
   
