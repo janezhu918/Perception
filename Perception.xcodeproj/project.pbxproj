@@ -15,7 +15,7 @@
 		1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
 		1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808D225B96A20071FA83 /* inTheDark.mp4 */; };
 		1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */; };
-		1E2E7E11225FC9A1007D0CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */; };
+		1E2E7E0F225FC89E007D0CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E2E7E0E225FC89E007D0CE4 /* GoogleService-Info.plist */; };
 		1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */; };
 		1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */; };
 		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
@@ -70,7 +70,7 @@
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
-		1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1E2E7E0E225FC89E007D0CE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloackAndDagger.mp4; sourceTree = "<group>"; };
 		1E8B808D225B96A20071FA83 /* inTheDark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = inTheDark.mp4; sourceTree = "<group>"; };
 		1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loveDeathAndRobots.mp4; sourceTree = "<group>"; };
@@ -197,6 +197,7 @@
 				A507ECDD225654EF009B94A9 /* Main.storyboard */,
 				1E2E7E10225FC9A1007D0CE4 /* GoogleService-Info.plist */,
 				1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */,
+				1E2E7E0E225FC89E007D0CE4 /* GoogleService-Info.plist */,
 				A507ECE5225654F0009B94A9 /* Info.plist */,
 			);
 			path = Perception;
@@ -402,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */,
+				1E2E7E0F225FC89E007D0CE4 /* GoogleService-Info.plist in Resources */,
 				1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */,
 				1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
