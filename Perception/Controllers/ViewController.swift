@@ -104,8 +104,14 @@ class ViewController: UIViewController {
           let id = savedVideoService.generateSavedVideoId(user: user)
           let date = Date.getISOTimestamp()
           let savedVideo = SavedVideo(id: id, name: name, description: "", urlString: videoURL, savedAt: date)
-          savedVideoService.storeVideo(video: savedVideo, user: user)
-          self.showAlert(title: "Success", message: "Video Saved Successfully")
+          savedVideoService.storeVideo(video: savedVideo, user: user) { result in
+            switch result {
+            case .success(_):
+              self.showAlert(title: "Success", message: "Video Saved Successfully")
+            case .failure(error: let error):
+              print(error)
+            }
+          }
         }
       })
     }

@@ -31,7 +31,8 @@ protocol VideoService {
 
 protocol SavedVideoService {
   var savedVideoServiceDelegate: SavedVideoServiceDelegate? { get set }
-  func storeVideo(video:SavedVideo, user:PerceptionUser)
+  func storeVideo(video:SavedVideo, user:PerceptionUser,
+                  completion: @escaping (Result<Bool>) -> Void)
   func deleteVideo(video:SavedVideo, user:PerceptionUser)
   func fetchVideo(video:SavedVideo, user:PerceptionUser)
   func fetchUserSavedVideos(user:PerceptionUser)
@@ -266,13 +267,15 @@ extension DatabaseService: SavedVideoService {
         return savedVideosCollection(user: user).document().documentID
     }
     
-    func storeVideo(video: SavedVideo, user:PerceptionUser) {
-        savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
-            if let error = error {
-                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
-            }
+    func storeVideo(video: SavedVideo, user:PerceptionUser,
+                    completion: @escaping (Result<Bool>) -> Void) {
+      savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
+        if let error = error {
+          completion(.failure(error: error))
         }
-    }
+        completion(.success(true))
+      }
+  }
     
     func deleteVideo(video: SavedVideo, user:PerceptionUser) {
         savedVideosCollection(user: user).document(video.id)
