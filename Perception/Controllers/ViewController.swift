@@ -79,6 +79,7 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         mainView.sceneView.session.pause()
+        currentSKVideoNode?.pause()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

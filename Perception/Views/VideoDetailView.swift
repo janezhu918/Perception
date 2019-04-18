@@ -11,7 +11,10 @@ private struct UI {
 class VideoDetailView: UIView {
 
   public lazy var playerView: VideoView = {
-    return VideoView()
+    let vv = VideoView()
+    vv.playerLayer.cornerRadius = 3.0
+    vv.playerLayer.borderColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)
+    return vv
     
   }()
   
@@ -75,11 +78,11 @@ extension VideoDetailView {
   private func setPlayerConstraints() {
     addSubview(playerView)
     playerView.translatesAutoresizingMaskIntoConstraints = false
-    
-    playerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 11).isActive = true
+    playerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
     playerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11).isActive = true
     playerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11).isActive = true
-    playerView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    playerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.45).isActive = true
+    playerView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
   }
   
   private func setNameLabelConstraints() {
