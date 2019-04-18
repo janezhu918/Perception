@@ -4,16 +4,18 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var usersession: UserSession!
+    var userSession: UserSession!
     var window: UIWindow?
     var userData = UserDefaults.standard
+    var usersession: AuthService!
     
-        static var authservice = AuthService()
+    static var authservice = AuthService()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Thread.sleep(forTimeInterval: 2.0)
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        usersession = UserSession()
+        userSession = UserSession()
+        usersession = AuthService()
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         let storyBoard = UIStoryboard(name: "Onboarding", bundle: nil)
@@ -30,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         
-        usersession = UserSession()
+        userSession = UserSession()
         //      self.window = UIWindow.init(frame: UIScreen.main.bounds)
         //      self.window?.rootViewController = ViewController()
         //      self.window?.makeKeyAndVisible()

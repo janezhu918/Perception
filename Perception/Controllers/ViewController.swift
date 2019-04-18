@@ -7,7 +7,7 @@ import ExpandingMenu
 class ViewController: UIViewController {
     
     private let mainView = Main()
-    private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).usersession
+    private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
     private var currentSCNNode: SCNNode?
     private var currentSKVideoNode: SKVideoNode?
     private var videoDictionary: [SCNNode:SKVideoNode] = [:]
@@ -103,7 +103,7 @@ class ViewController: UIViewController {
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
             if self.userIsLoggedIn {
-                //TODO: handle save video
+//             let destinationVC = 
             } else {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo, destination: .myVideos)
             }
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
             if self.userIsLoggedIn {
                 let destinationVC = SavedVideosViewController()
                 self.show(destinationVC, sender: self)
-                //                self.present(navBar, animated: true, completion: nil)
+           
             } else {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
             }
@@ -121,10 +121,10 @@ class ViewController: UIViewController {
         
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.usersession.getCurrentUser() != nil {
-                let destinationVC = ProfileViewControlerViewController()
-                self.show(destinationVC, sender: self)
-//                self.navigationController?.pushViewController(destinationVC, animated: true)
-//                print("this happened!!")
+                let profileVC = ProfileViewControlerViewController()
+                    //self.navigationController?.pushViewController(destinationVC, animated: true)
+                 self.show(profileVC, sender: self)
+                        print("this happened!!")
                 
             } else if self.userIsLoggedIn == false {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
@@ -216,10 +216,10 @@ extension ViewController: ARSessionDelegate {
                 print(position)
                 print(message)
                 print(url)
-            
+                
+            }
         }
     }
-}
 }
 
 extension ViewController: LoginViewControllerDelegate {
