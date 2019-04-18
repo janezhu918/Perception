@@ -19,6 +19,7 @@ class FavoriteCollectionCell: UICollectionViewCell {
         let textLabel = UILabel()
         textLabel.text = "Your videos"
         textLabel.textAlignment = .center
+        textLabel.font = UIFont.boldSystemFont(ofSize: 30)
         return textLabel
     }()
     
@@ -28,7 +29,7 @@ class FavoriteCollectionCell: UICollectionViewCell {
     }
     
     func commonInit() {
-        backgroundColor = .white
+        backgroundColor = #colorLiteral(red: 0.1276455522, green: 0.2034990788, blue: 0.3436715901, alpha: 1)
         addSubview(videoView)
         addSubview(textLabel)
         cellConstrains()
@@ -42,8 +43,8 @@ class FavoriteCollectionCell: UICollectionViewCell {
     func cellConstrains() {
             videoView.translatesAutoresizingMaskIntoConstraints = false
             videoView.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true
-            videoView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5).isActive = true
-            videoView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.5).isActive = true
+            videoView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.8).isActive = true
+            videoView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
             videoView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
 
             textLabel.translatesAutoresizingMaskIntoConstraints = false

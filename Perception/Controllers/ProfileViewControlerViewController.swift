@@ -8,6 +8,9 @@ class ProfileViewControlerViewController: UIViewController {
     let profileView = ProfileView()
     private var ussersession = AppDelegate.authservice
     private var datePicker: UIDatePicker?
+   
+    private var currentUser: PerceptionUser!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,16 @@ class ProfileViewControlerViewController: UIViewController {
        
         self.navigationItem.rightBarButtonItem  = button1
         profileView.userEmailTextField.text = user.email
+        
+        DatabaseService.fetchPerceptionUser(uid: user.uid) { (perceptionUser, error) in
+            if let perceptionUser = perceptionUser {
+                self.profileView.nameTextField.text = perceptionUser.displayName
+            } else if let error = error {
+                
+            }
+        }
+        
+        profileView.nameTextField.text = ""
          keyboardDismiss()
     }
     
@@ -39,8 +52,39 @@ class ProfileViewControlerViewController: UIViewController {
     }
     
     @objc func savePreferences() {
-        //TODO: guard against the user state
-     
+        guard let userName = profileView.nameTextField.text,
+            let userID = ussersession.getCurrentUser()?.uid,
+            !userName.isEmpty else {
+                showAlert(title: "Missing Name", message: "Please add you name")
+               
+                return
+        
+        }
+        
+        DatabaseService.fetchPerceptionUser(uid: userID, completion: { (user, error) in
+            if let user = user {
+                let userUpdateData = PerceptionUser(userUID: user.userUID, email: user.email, displayName: userName, firstName: "", lastName: "", photoURL: "", gender: "", birthday: "", zipCode: "")
+                DatabaseService.updatePerceptionUser(perceptionUser: userUpdateData, completion: { (error) in
+                    if let error = error {
+                        self.showAlert(title: "Erro saving Data", message: error.localizedDescription)
+                        print(error.localizedDescription)
+                    }
+                    self.showAlert(title: "Succesfully saved", message: "Your profile has been saved", handler: { (alert) in
+                        self.navigationItem.rightBarButtonItem?.isEnabled = false
+                        let gobackVC = ViewController()
+                        self.present(gobackVC, animated: true, completion: nil)
+                    })
+                  
+                })
+            } else if let error = error {
+            self.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        })
+        
+
+        
+        
+
     }
     
     private func setupUI() {

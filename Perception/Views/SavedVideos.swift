@@ -6,7 +6,7 @@ class SavedVideos: UIView {
         //CREATE THE LAYOUT:
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize.init(width: 200, height: 275)
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         let cv = UICollectionView.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         cv.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
@@ -32,7 +32,8 @@ class SavedVideos: UIView {
     
     func cvConstrains() {
         myCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        [myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0), myCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0), myCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 0), myCollectionView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5)].forEach{$0.isActive = true }
+        [myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor), myCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor), myCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor), myCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)]
+          .forEach{$0.isActive = true }
         
     }
     
