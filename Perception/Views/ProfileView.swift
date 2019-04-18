@@ -6,11 +6,10 @@ import Foundation
 class ProfileView: UIView {
     
     lazy var imageProfile: UIImageView = {
-        var image = UIImageView()
-        image.image = #imageLiteral(resourceName: "PerceptionLogoTransparentWhite")
-    
-        return image
-        
+       var imageProfile = CircularImageView()
+        imageProfile.image = #imageLiteral(resourceName: "placeholder")
+       
+        return imageProfile
     }()
     
     lazy var emailLabel: UILabel = {
@@ -62,18 +61,32 @@ class ProfileView: UIView {
     
     lazy var userGender: UILabel = {
        let gender = UILabel()
-        gender.text = "Gender(Optional):"
+        gender.text = "Gender(Opt):"
         return gender
-        
     }()
     
     
     public lazy var segmentedControl: UISegmentedControl = {
-        let items = ["Female", "Male", "Why?"]
+        let items = ["Female", "Male", "Non-binary"]
         let sc = UISegmentedControl(items: items)
         sc.selectedSegmentIndex = 0
-        sc.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+        sc.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         return sc
+    }()
+    
+    lazy var locationLabel: UILabel = {
+       let locationLabel = UILabel()
+        locationLabel.text = "Zip Code:"
+        return locationLabel
+    }()
+    
+    lazy var userLocationTextField: UITextField = {
+        let userLocationTextField = UITextField()
+        userLocationTextField.layer.cornerRadius = 3
+        userLocationTextField.layer.borderWidth = 0.5
+        userLocationTextField.textAlignment = .center
+        userLocationTextField.placeholder = "eg. 10010"
+        return userLocationTextField
     }()
     
     
@@ -90,8 +103,6 @@ class ProfileView: UIView {
     }
     
     func commonInit() {
-       
-        
         addSubview(imageProfile)
         addSubview(emailLabel)
         addSubview(userEmailTextField)
@@ -101,20 +112,23 @@ class ProfileView: UIView {
         addSubview(agePicker)
         addSubview(userGender)
         addSubview(segmentedControl)
+        addSubview(locationLabel)
+        addSubview(userLocationTextField)
         labelConstrains()
+        
         setGradientBackground(colorOne: #colorLiteral(red: 0.1163222715, green: 0.1882246733, blue: 0.319499135, alpha: 1), colorTwo: #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1))
     }
     
     func labelConstrains() {
         
         imageProfile.translatesAutoresizingMaskIntoConstraints = false
-        [imageProfile.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 22), imageProfile.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)].forEach{ $0.isActive = true }
+        [imageProfile.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 22), imageProfile.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor), imageProfile.widthAnchor.constraint(equalToConstant: 100), imageProfile.heightAnchor.constraint(equalToConstant: 100)].forEach{ $0.isActive = true }
         
 //        emailLabel.translatesAutoresizingMaskIntoConstraints = false
 //        [emailLabel.topAnchor.constraint(equalTo: imageProfile.bottomAnchor, constant: 22), emailLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)].forEach{ $0.isActive = true }
 //        
         userEmailTextField.translatesAutoresizingMaskIntoConstraints = false
-        [userEmailTextField.topAnchor.constraint(equalTo: imageProfile.bottomAnchor, constant: 0), userEmailTextField.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)].forEach{ $0.isActive = true }
+        [userEmailTextField.topAnchor.constraint(equalTo: imageProfile.bottomAnchor, constant: 33), userEmailTextField.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)].forEach{ $0.isActive = true }
         
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         [userNameLabel.topAnchor.constraint(equalTo: userEmailTextField.bottomAnchor, constant: 44), userNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22)].forEach{ $0.isActive = true }
@@ -135,6 +149,12 @@ class ProfileView: UIView {
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         [segmentedControl.topAnchor.constraint(equalTo: ageLabel.bottomAnchor, constant: 18), segmentedControl.leadingAnchor.constraint(equalTo: userGender.trailingAnchor, constant: 11)].forEach{ $0.isActive = true }
         
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        [locationLabel.topAnchor.constraint(equalTo: userGender.bottomAnchor, constant: 22), locationLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22)].forEach{ $0.isActive = true }
+        
+        userLocationTextField.translatesAutoresizingMaskIntoConstraints = false
+        [userLocationTextField.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 22), userLocationTextField.leadingAnchor.constraint(equalTo: locationLabel.trailingAnchor, constant: 11), userLocationTextField.widthAnchor.constraint(equalToConstant: 230)].forEach{ $0.isActive = true }
+        
     }
     
     func setGradientBackground(colorOne: UIColor, colorTwo: UIColor) {
@@ -146,5 +166,18 @@ class ProfileView: UIView {
         
         layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    @IBDesignable
+    class CircularImageView: UIImageView {
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            contentMode = .scaleAspectFill
+            layer.cornerRadius = bounds.width / 2.0
+            layer.borderColor = UIColor.lightGray.cgColor
+            layer.borderWidth = 0.5
+            clipsToBounds = true
+        }
 }
+}
+
 
