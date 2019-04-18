@@ -224,7 +224,10 @@ extension ViewController: ARSCNViewDelegate {
             currentSKVideoNode = currentVideoPlaying
             if !trackable.isTracked {
                 currentVideoPlaying.pause()
-            }
+                currentSKVideoNode = nil
+            } else {
+              currentSKVideoNode = currentVideoPlaying
+          }
         }
     }
 }
