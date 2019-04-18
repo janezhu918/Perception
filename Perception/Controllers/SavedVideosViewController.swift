@@ -1,5 +1,6 @@
 import UIKit
 import Firebase
+import AVFoundation
 
 class SavedVideosViewController: UIViewController {
     
@@ -15,17 +16,6 @@ class SavedVideosViewController: UIViewController {
         setupDelegates()
         fetchVideos()
         savedVideoService.savedVideoServiceDelegate = self
-        if let user = authservice.getCurrentUser() {
-            DatabaseService.fetchPerceptionUser(uid: user.uid) { [weak self] (perceptionUser, error) in
-                if let error = error {
-                    print("error getting perceptionUser: \(error.localizedDescription)")
-                } else if let perceptionUser = perceptionUser {
-                    self?.perceptionUser = perceptionUser
-                    self?.savedVideoService.fetchUserSavedVideos(user: perceptionUser)
-                }
-            }
-        }
-        
     }
     
     private func setupDelegates(){
@@ -40,7 +30,16 @@ class SavedVideosViewController: UIViewController {
     }
     
     private func fetchVideos(){
-        
+      if let user = authservice.getCurrentUser() {
+        DatabaseService.fetchPerceptionUser(uid: user.uid) { [weak self] (perceptionUser, error) in
+          if let error = error {
+            print("error getting perceptionUser: \(error.localizedDescription)")
+          } else if let perceptionUser = perceptionUser {
+            self?.perceptionUser = perceptionUser
+            self?.savedVideoService.fetchUserSavedVideos(user: perceptionUser)
+          }
+        }
+      }
     }
     
 }
@@ -51,10 +50,14 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = favoriteVideos.myCollectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as? FavoriteCollectionCell else { return UICollectionViewCell() }
         let video = savedVideos[indexPath.row]
+        guard let cell = favoriteVideos.myCollectionView
+          .dequeueReusableCell(withReuseIdentifier: "FavoriteCell",
+                               for: indexPath) as? FavoriteCollectionCell,
+          let url = URL(string: video.urlString) else { return UICollectionViewCell() }
+        let player = AVPlayer(url: url)
         cell.textLabel.text = video.name
+        cell.videoView.player = player
         return cell
     }
     
@@ -63,6 +66,13 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
         let savedVideoDetailVC = VideoDetailViewController(video: savedVideo)
         navigationController?.pushViewController(savedVideoDetailVC, animated: true)
     }
+}
+
+extension SavedVideosViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: UIScreen.main.bounds.width,
+                  height: UIScreen.main.bounds.height / 2)
+  }
 }
 
 extension SavedVideosViewController: SavedVideoServiceDelegate {
