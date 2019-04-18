@@ -39,8 +39,16 @@ class ProfileViewControlerViewController: UIViewController {
     }
     
     @objc func savePreferences() {
-        //TODO: guard against the user state
-     
+        guard let userName = profileView.nameTextField.text,
+            
+            !userName.isEmpty else {
+                showAlert(title: "Missing Name", message: "Please add you name")
+                return
+        }
+
+        
+        
+
     }
     
     private func setupUI() {
