@@ -7,4 +7,5 @@ struct PerceptionImageCollectionKeys {
   public static let urlString = "urlString"
   public static let videoURLString = "videoURLString"
   public static let width = "width"
+  public static let contextID = "contextID"
 }
