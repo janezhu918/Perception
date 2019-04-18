@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
         case logIn
         case register
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         showMessage = true
@@ -88,16 +88,16 @@ class LoginViewController: UIViewController {
         delegate?.checkForLoggedUser(true)
         dismissButtonPressed()
         
-//        switch ultimateDestination {
-//        case .myProfile:
-//            dismissButtonPressed()
-//            //TODO: send user to corresponding destination
-//            print("segues to my profile")
-//        case .myVideos:
-//            dismissButtonPressed()
-//            //TODO: send user to corresponding destination
-//            print("segues to my videos")
-//        }
+        //        switch ultimateDestination {
+        //        case .myProfile:
+        //            dismissButtonPressed()
+        //            //TODO: send user to corresponding destination
+        //            print("segues to my profile")
+        //        case .myVideos:
+        //            dismissButtonPressed()
+        //            //TODO: send user to corresponding destination
+        //            print("segues to my videos")
+        //        }
     }
 }
 
@@ -108,4 +108,3 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
-

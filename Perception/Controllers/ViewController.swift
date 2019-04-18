@@ -103,7 +103,7 @@ class ViewController: UIViewController {
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
             if self.userIsLoggedIn {
-                //TODO: handle save video
+//             let destinationVC = 
             } else {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo, destination: .myVideos)
             }
