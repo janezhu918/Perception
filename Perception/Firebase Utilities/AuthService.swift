@@ -34,7 +34,10 @@ final class AuthService {
                                                          displayName: nil,
                                                          firstName: nil,
                                                          lastName: nil,
-                                                         photoURL: nil)
+                                                         photoURL: nil,
+                                                         gender: nil,
+                                                         birthday: nil,
+                                                         zipCode: nil)
                 DatabaseService.createPerceptionUser(perceptionUser: perceptionUser, completion: { (error) in
                     if let error = error {
                         self.authserviceCreateNewAccountDelegate?.didReceiveErrorCreatingAccount(self, error: error)
