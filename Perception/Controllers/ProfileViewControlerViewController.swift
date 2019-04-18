@@ -8,6 +8,9 @@ class ProfileViewControlerViewController: UIViewController {
     let profileView = ProfileView()
     private var ussersession = AppDelegate.authservice
     private var datePicker: UIDatePicker?
+   
+    private var currentUser: PerceptionUser!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,16 @@ class ProfileViewControlerViewController: UIViewController {
        
         self.navigationItem.rightBarButtonItem  = button1
         profileView.userEmailTextField.text = user.email
+        
+        DatabaseService.fetchPerceptionUser(uid: user.uid) { (perceptionUser, error) in
+            if let perceptionUser = perceptionUser {
+                self.profileView.nameTextField.text = perceptionUser.displayName
+            } else if let error = error {
+                
+            }
+        }
+        
+        profileView.nameTextField.text = ""
          keyboardDismiss()
     }
     

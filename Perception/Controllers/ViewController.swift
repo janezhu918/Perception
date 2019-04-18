@@ -5,7 +5,7 @@ import ExpandingMenu
 
 
 class ViewController: UIViewController {
-    
+    private let databaseService = DatabaseService()
     private let mainView = Main()
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
     private var currentSCNNode: SCNNode?
@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     private var videoDictionary: [SCNNode:SKVideoNode] = [:]
     private var userIsLoggedIn = false
     private var authservice = AppDelegate.authservice
+    private var images = [PerceptionImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
         mainView.sceneView.session.delegate = self
         mainView.sceneView.showsStatistics = false
         checkForLoggedUser()
+        fetchImages()
     }
     
     private var isPlaying = false {
@@ -47,7 +49,18 @@ class ViewController: UIViewController {
             currentSKVideoNode?.play()
         }
     }
-    
+    private func fetchImages() {
+      let imageService: ImageService = databaseService
+      imageService.fetchImages(contextID: "local") { (result) in
+        switch result {
+        case .success(let images):
+          self.images = images
+        case .failure(error: let error):
+          self.showAlert(title: "Error", message: error.localizedDescription)
+        }
+      }
+    }
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -66,6 +79,7 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         mainView.sceneView.session.pause()
+        currentSKVideoNode?.pause()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,7 +96,29 @@ class ViewController: UIViewController {
         present(destinationVC, animated: true, completion: nil)
     }
     
-    private func addExpandingMenu() {
+  private func saveVideo() {
+    let savedVideoService: SavedVideoService = databaseService
+    if let authUserId = self.usersession.getCurrentUser()?.uid {
+      DatabaseService.fetchPerceptionUser(uid: authUserId, completion: { (user, error) in
+        if let user = user, let name = self.currentSKVideoNode?.name,
+          let videoURL = (self.images.first { $0.name == name })?.videoURLString {
+          let id = savedVideoService.generateSavedVideoId(user: user)
+          let date = Date.getISOTimestamp()
+          let savedVideo = SavedVideo(id: id, name: name, description: "", urlString: videoURL, savedAt: date)
+          savedVideoService.storeVideo(video: savedVideo, user: user) { result in
+            switch result {
+            case .success(_):
+              self.showAlert(title: "Success", message: "Video Saved Successfully")
+            case .failure(error: let error):
+              print(error)
+            }
+          }
+        }
+      })
+    }
+  }
+  
+  private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 30, height: 30)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
         menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
@@ -99,16 +135,16 @@ class ViewController: UIViewController {
             //                            present(activityViewController, animated: true)
             //                        }
         }
-        
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
             if self.userIsLoggedIn {
-//             let destinationVC = 
+              self.saveVideo()
             } else {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo, destination: .myVideos)
             }
         }
         let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+            self.checkForLoggedUser()
             if self.userIsLoggedIn {
                 let destinationVC = SavedVideosViewController()
                 self.show(destinationVC, sender: self)
@@ -139,7 +175,6 @@ class ViewController: UIViewController {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
             }
         }
-        
         let menuItems = [signOut, share, save, myVideos, profile]
         menuItems.forEach{ $0.layer.cornerRadius = 5 }
         menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5) }
@@ -196,29 +231,32 @@ extension ViewController: ARSCNViewDelegate {
             currentSKVideoNode = currentVideoPlaying
             if !trackable.isTracked {
                 currentVideoPlaying.pause()
-            }
+                currentSKVideoNode = nil
+            } else {
+              currentSKVideoNode = currentVideoPlaying
+          }
         }
     }
 }
 
 extension ViewController: ARSessionDelegate {
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        let image = CIImage(cvPixelBuffer: frame.capturedImage)
-        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
-        guard let features = detector?.features(in: image) else { return }
+//        let image = CIImage(cvPixelBuffer: frame.capturedImage)
+//        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
+//        guard let features = detector?.features(in: image) else { return }
         
-        for feature in features as! [CIQRCodeFeature] {
-            if let message = feature.messageString {
-                let url = URL(string: message)
-                let position = SCNVector3(frame.camera.transform.columns.3.x,
-                                          frame.camera.transform.columns.3.y,
-                                          frame.camera.transform.columns.3.z)
-                print(position)
-                print(message)
-                print(url)
-                
-            }
-        }
+//        for feature in features as! [CIQRCodeFeature] {
+//            if let message = feature.messageString {
+//                let url = URL(string: message)
+//                let position = SCNVector3(frame.camera.transform.columns.3.x,
+//                                          frame.camera.transform.columns.3.y,
+//                                          frame.camera.transform.columns.3.z)
+//                print(position)
+//                print(message)
+//                print(url)
+//
+//            }
+//        }
     }
 }
 
