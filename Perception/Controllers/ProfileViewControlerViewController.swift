@@ -36,7 +36,7 @@ class ProfileViewControlerViewController: UIViewController {
             if let perceptionUser = perceptionUser {
                 self.profileView.nameTextField.text = perceptionUser.displayName
             } else if let error = error {
-                
+                print(error.localizedDescription)
             }
         }
         

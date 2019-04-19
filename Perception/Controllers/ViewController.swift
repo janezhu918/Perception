@@ -130,10 +130,14 @@ class ViewController: UIViewController {
         
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "share")!, highlightedImage: UIImage(named: "share")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("trying to share video")
-            //                if let videoToShare = video {
-            //                            let activityViewController = UIActivityViewController(activityItems: [videoToShare], applicationActivities: nil)
-            //                            present(activityViewController, animated: true)
-            //                        }
+            
+            
+                            if let videoToShare =  self.currentSKVideoNode?.name,
+                    
+                                let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
+                                        let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
+                                        self.present(activityViewController, animated: true)
+                                    }
         }
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
