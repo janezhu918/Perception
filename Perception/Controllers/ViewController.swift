@@ -49,6 +49,7 @@ class ViewController: UIViewController {
             currentSKVideoNode?.play()
         }
     }
+  
     private func fetchImages() {
       let imageService: ImageService = databaseService
       imageService.fetchImages(contextID: "local") { (result) in
