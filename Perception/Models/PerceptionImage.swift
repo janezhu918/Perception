@@ -18,7 +18,7 @@ struct PerceptionImage {
   public let width: Double
   public let orientation: Orientation
   public let id: String
-  public let contextID: String = ""
+  public let contextID: String = "local"
   
   init(videoURLString: String,
        name: String, id: String,
@@ -50,7 +50,8 @@ extension PerceptionImage: FirebaseRepresentable {
             PerceptionImageCollectionKeys.name: name,
             PerceptionImageCollectionKeys.urlString: urlString,
             PerceptionImageCollectionKeys.videoURLString: videoURLString,
-            PerceptionImageCollectionKeys.orientation: orientation,
+            PerceptionImageCollectionKeys.orientation: orientation.rawValue,
+            PerceptionImageCollectionKeys.contextID: contextID,
             PerceptionImageCollectionKeys.width: width]
   }
   
