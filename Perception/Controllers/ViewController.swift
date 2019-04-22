@@ -2,14 +2,18 @@ import UIKit
 import SceneKit
 import ARKit
 import ExpandingMenu
+import AVFoundation
 
+class CustomSKVideoNode: SKVideoNode {
+    public var videoPlayer: AVPlayer?
+}
 
 class ViewController: UIViewController {
     private let databaseService = DatabaseService()
     private let mainView = Main()
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
     private var currentSCNNode: SCNNode?
-    private var currentSKVideoNode: SKVideoNode?
+    private var currentSKVideoNode: CustomSKVideoNode?
     private var videoDictionary: [SCNNode:SKVideoNode] = [:]
     private var userIsLoggedIn = false
     private var authservice = AppDelegate.authservice
@@ -199,7 +203,9 @@ extension ViewController: ARSCNViewDelegate {
         
         let node = SCNNode()
         if let imageAnchor = anchor as? ARImageAnchor {
-            let videoNode = SKVideoNode(fileNamed: "\(imageAnchor.referenceImage.name!.description).mp4")
+            let videoNode = CustomSKVideoNode(fileNamed: "\(imageAnchor.referenceImage.name!.description).mp4")
+            //TODO: add video player here
+            videoNode.videoPlayer = AVPlayer.init(playerItem: AVPlayerItem(url: URL(string: "\(imageAnchor.referenceImage.name!.description).mp4")!))
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
             videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
             videoNode.yScale = -1.0
@@ -223,17 +229,20 @@ extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let currentSCNNode = currentSCNNode, let currentSKVideoNode = currentSKVideoNode {
             videoDictionary[currentSCNNode] = currentSKVideoNode
+            if let videoPlayer = currentSKVideoNode.videoPlayer {
+            print(videoPlayer.currentItem)
+            }
         }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         if let currentVideoPlaying = videoDictionary[node], let trackable = anchor as? ARImageAnchor {
-            currentSKVideoNode = currentVideoPlaying
+            currentSKVideoNode = currentVideoPlaying as? CustomSKVideoNode
             if !trackable.isTracked {
                 currentVideoPlaying.pause()
                 currentSKVideoNode = nil
             } else {
-              currentSKVideoNode = currentVideoPlaying
+                currentSKVideoNode = currentVideoPlaying as? CustomSKVideoNode
           }
         }
     }
