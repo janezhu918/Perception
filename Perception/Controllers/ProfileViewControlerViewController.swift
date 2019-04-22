@@ -5,6 +5,8 @@ import FirebaseStorage
 
 class ProfileViewControlerViewController: UIViewController {
     
+    
+    
     let profileView = ProfileView()
     private var ussersession = AppDelegate.authservice
     private var datePicker: UIDatePicker?
@@ -13,6 +15,8 @@ class ProfileViewControlerViewController: UIViewController {
     
 
     override func viewDidLoad() {
+      
+        
         super.viewDidLoad()
          view.addSubview(profileView)
         profileView.nameTextField.delegate = self
@@ -28,23 +32,30 @@ class ProfileViewControlerViewController: UIViewController {
             return
         }
         let button1 = UIBarButtonItem(title: "Save changes", style: .plain, target: self, action: #selector(savePreferences))
-       
         self.navigationItem.rightBarButtonItem  = button1
         profileView.userEmailTextField.text = user.email
-        
         DatabaseService.fetchPerceptionUser(uid: user.uid) { (perceptionUser, error) in
             if let perceptionUser = perceptionUser {
                 self.profileView.nameTextField.text = perceptionUser.displayName
             } else if let error = error {
-                print(error.localizedDescription)
+                print("if there's an error is here! \(error.localizedDescription)")
             }
         }
         
         profileView.nameTextField.text = ""
          keyboardDismiss()
+        
+      
     }
     
-    @objc func dateChanged() {
+  
+    override var shouldAutorotate: Bool {
+        return false 
+    }
+    
+    
+    
+   @objc func dateChanged() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         profileView.agePicker.text = dateFormatter.string(from: datePicker!.date)
@@ -56,11 +67,8 @@ class ProfileViewControlerViewController: UIViewController {
             let userID = ussersession.getCurrentUser()?.uid,
             !userName.isEmpty else {
                 showAlert(title: "Missing Name", message: "Please add you name")
-               
                 return
-        
         }
-        
         DatabaseService.fetchPerceptionUser(uid: userID, completion: { (user, error) in
             if let user = user {
                 let userUpdateData = PerceptionUser(userUID: user.userUID, email: user.email, displayName: userName, firstName: "", lastName: "", photoURL: "", gender: "", birthday: "", zipCode: "")
@@ -80,10 +88,6 @@ class ProfileViewControlerViewController: UIViewController {
             self.showAlert(title: "Error", message: error.localizedDescription)
             }
         })
-        
-
-        
-        
 
     }
     
@@ -91,8 +95,10 @@ class ProfileViewControlerViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
    
     }
-
+    
 }
+
+
 extension ProfileViewControlerViewController: UITextFieldDelegate {
     
 }
@@ -108,6 +114,8 @@ extension ProfileViewControlerViewController: AuthServiceSignOutDelegate {
     
     
 }
+
+
 
 
 extension UIViewController {
