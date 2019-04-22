@@ -2,11 +2,20 @@ import UIKit
 import SceneKit
 import ARKit
 import ExpandingMenu
-
+import Kingfisher
 
 class ViewController: UIViewController {
     private let databaseService = DatabaseService()
     private let mainView = Main()
+    private var ARImages = Set<ARReferenceImage>() {
+      didSet {
+        guard oldValue.count == images.count - 1 else { return }
+        let configuration = ARImageTrackingConfiguration()
+        configuration.trackingImages = ARImages
+        configuration.maximumNumberOfTrackedImages = 1
+        mainView.sceneView.session.run(configuration)
+      }
+    }
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
     private var currentSCNNode: SCNNode?
     private var currentSKVideoNode: SKVideoNode?
@@ -14,9 +23,10 @@ class ViewController: UIViewController {
     private var userIsLoggedIn = false
     private var authservice = AppDelegate.authservice
     private var images = [PerceptionImage]()
-    
+    private var savedVideos = [SavedVideo]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchImages()
         self.navigationController?.navigationBar.isHidden = true
         view.addSubview(mainView)
         addExpandingMenu()
@@ -24,7 +34,6 @@ class ViewController: UIViewController {
         mainView.sceneView.session.delegate = self
         mainView.sceneView.showsStatistics = false
         checkForLoggedUser()
-        fetchImages()
     }
     
     private var isPlaying = false {
@@ -49,14 +58,16 @@ class ViewController: UIViewController {
             currentSKVideoNode?.play()
         }
     }
+
     private func fetchImages() {
       let imageService: ImageService = databaseService
-      imageService.fetchImages(contextID: "local") { (result) in
+      imageService.fetchImages(contextID: "local") { [weak self] (result) in
         switch result {
         case .success(let images):
-          self.images = images
+          self?.images = images
+          self?.setupARImages()
         case .failure(error: let error):
-          self.showAlert(title: "Error", message: error.localizedDescription)
+          self?.showAlert(title: "Error", message: error.localizedDescription)
         }
       }
     }
@@ -67,15 +78,107 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         let configuration = ARImageTrackingConfiguration()
-        
+      
         if let trackedImage = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
             configuration.trackingImages = trackedImage
             configuration.maximumNumberOfTrackedImages = 1
         }
         checkForLoggedUser()
         mainView.sceneView.session.run(configuration)
+      
     }
-    
+  
+    private func setupARImages(){
+        guard images.count > 0 else { return }
+      
+        images.forEach { [weak self] image in
+          createARReferenceImage(image: image, completion: { (result) in
+            switch result {
+              case .success(let uiImage):
+                if let orientation = self?.toCGImageOrientation(orientation: image.orientation), let cgImage = uiImage.cgImage {
+                    let arImage = ARReferenceImage(cgImage, orientation:orientation, physicalWidth: CGFloat(image.width))
+                  arImage.name = image.name
+                  self?.ARImages.insert(arImage)
+                }
+              case .failure(error: let error): return
+            }
+          })
+      }
+    }
+  
+  private func toCGImageOrientation(orientation:Orientation) -> CGImagePropertyOrientation {
+    switch orientation {
+    case .up: return .up
+    case .upMirrored: return .upMirrored
+    case .down: return .down
+    case .downMirrored: return .downMirrored
+    case .left: return .left
+    case .leftMirrored: return .leftMirrored
+    case .right: return .right
+    case .rightMirrored: return .rightMirrored
+    }
+  }
+  
+  private func createARReferenceImage(image:PerceptionImage, completion:@escaping(Result<UIImage>) -> Void) {
+      guard let url = URL(string: image.urlString) else { return }
+      let cache = ImageCache.default
+      cache.retrieveImage(forKey: image.urlString, completionHandler: { [weak self] (result) in
+      switch result {
+        case .success(let value):
+          if let uiImage = value.image {
+            completion(.success(uiImage))
+          } else {
+            self?.handleDownImage(url: url, completion: { (result) in
+              switch result {
+              case .success(let uiImage):
+                completion(.success(uiImage))
+              case .failure(error: let error):
+                completion(.failure(error: error))
+              }
+            })
+        }
+        case .failure(let error):
+          completion(.failure(error: error))
+          self?.downloadImage(url: url, completion: { (result) in
+            switch result {
+              case .success(let uiImage):
+                completion(.success(uiImage))
+              case .failure(error: let error):
+                completion(.failure(error: error))
+            }
+          })
+      }
+    })
+    }
+  
+  
+  private func downloadImage(url:URL,
+                             completion:@escaping(Result<UIImage>) -> Void) {
+    let downloader = KingfisherManager.shared
+    let cache = ImageCache.default
+    downloader.retrieveImage(with: url) { (result) in
+      switch result {
+      case .success(let value):
+        cache.store(value.image, forKey: url.absoluteString)
+        completion(.success(value.image))
+      case .failure(let error):
+        completion(.failure(error: error))
+      }
+    }
+  }
+  
+  private func handleDownImage(url:URL,
+                               completion:@escaping(Result<UIImage>) -> Void) {
+    downloadImage(url: url) { result in
+      switch result {
+      case .success(let uiImage):
+        completion(.success(uiImage))
+      case .failure(error: let error):
+        completion(.failure(error: error))
+      }
+    }
+  }
+  
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         mainView.sceneView.session.pause()
