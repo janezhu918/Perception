@@ -2,7 +2,20 @@ import UIKit
 import SceneKit
 import ARKit
 import ExpandingMenu
+import AVKit
 import Kingfisher
+
+class CustomSKVideoNode: SKVideoNode {
+    public var videoPlayer: AVPlayer?
+    override init(url: URL) {
+        super.init(url: url)
+        videoPlayer = AVPlayer(url: url)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
 
 class ViewController: UIViewController {
     private let databaseService = DatabaseService()
@@ -18,8 +31,8 @@ class ViewController: UIViewController {
     }
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
     private var currentSCNNode: SCNNode?
-    private var currentSKVideoNode: SKVideoNode?
-    private var videoDictionary: [SCNNode:SKVideoNode] = [:]
+    private var currentSKVideoNode: CustomSKVideoNode?
+    private var videoDictionary: [SCNNode:CustomSKVideoNode] = [:]
     private var userIsLoggedIn = false
     private var authservice = AppDelegate.authservice
     private var images = [PerceptionImage]()
@@ -29,6 +42,7 @@ class ViewController: UIViewController {
         fetchImages()
         self.navigationController?.navigationBar.isHidden = true
         view.addSubview(mainView)
+        setupSwipeUpGesture()
         addExpandingMenu()
         mainView.sceneView.delegate = self
         mainView.sceneView.session.delegate = self
@@ -42,13 +56,34 @@ class ViewController: UIViewController {
         }
     }
     
+    private func setupSwipeUpGesture() {
+        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
+        swipeUpGesture.direction = .up
+        view.addGestureRecognizer(swipeUpGesture)
+    }
+    
     private func checkForLoggedUser() {
         if usersession.getCurrentUser() != nil {
             userIsLoggedIn = true
         } else {
             userIsLoggedIn = false
         }
-        print("check if user is logged in: \(userIsLoggedIn)")
+//        print("check if user is logged in: \(userIsLoggedIn)")
+    }
+    
+    @objc private func swipeUp() {
+        //TODO: add up view that displays only the video
+        let playerVC = AVPlayerViewController()
+        if let currentSKVideoNode = currentSKVideoNode {
+            if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
+                playerVC.player = currentVideoPlayer
+            }
+        }
+        present(playerVC, animated: true) {
+            playerVC.player!.play()
+            //TODO: need to debug. playerVC.player is not nil but won't play
+            // some : <AVPlayerItem: 0x282cf9e70, asset = <AVURLAsset: 0x282889aa0, URL = cloackAndDagger.mp4>>
+        }
     }
     
     private func switchPlayback(_ isPlaying: Bool) {
@@ -59,7 +94,8 @@ class ViewController: UIViewController {
         }
     }
 
-    private func fetchImages() {
+
+  private func fetchImages() {
       let imageService: ImageService = databaseService
       imageService.fetchImages(contextID: "local") { [weak self] (result) in
         switch result {
@@ -306,7 +342,11 @@ extension ViewController: ARSCNViewDelegate {
         
         let node = SCNNode()
         if let imageAnchor = anchor as? ARImageAnchor {
-            let videoNode = SKVideoNode(fileNamed: "\(imageAnchor.referenceImage.name!.description).mp4")
+            let referenceImage = imageAnchor.referenceImage.name!.description
+            let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4")
+//            let videoUrl = "\(referenceImage).mp4"
+            let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer!)
+
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
             videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
             videoNode.yScale = -1.0
@@ -330,6 +370,8 @@ extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let currentSCNNode = currentSCNNode, let currentSKVideoNode = currentSKVideoNode {
             videoDictionary[currentSCNNode] = currentSKVideoNode
+//            if let videoPlayer = currentSKVideoNode.videoPlayer {
+//            }
         }
     }
     
@@ -340,7 +382,7 @@ extension ViewController: ARSCNViewDelegate {
                 currentVideoPlaying.pause()
                 currentSKVideoNode = nil
             } else {
-              currentSKVideoNode = currentVideoPlaying
+                currentSKVideoNode = currentVideoPlaying
           }
         }
     }
