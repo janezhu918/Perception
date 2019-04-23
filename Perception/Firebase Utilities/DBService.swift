@@ -269,12 +269,27 @@ extension DatabaseService: SavedVideoService {
     
     func storeVideo(video: SavedVideo, user:PerceptionUser,
                     completion: @escaping (Result<Bool>) -> Void) {
-      savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
-        if let error = error {
-          completion(.failure(error: error))
-        }
-        completion(.success(true))
+      savedVideosCollection(user: user)
+        .whereField(SavedVideoCollectionKeys.name, isEqualTo: video.name)
+        .whereField(SavedVideoCollectionKeys.urlString, isEqualTo: video.urlString)
+        .getDocuments { (snapshot, error) in
+          if let error = error {
+            completion(.failure(error: error))
+          } else if let snapshot = snapshot {
+            guard snapshot.documents.count == 0 else {
+              completion(.success(false))
+              return
+            }
+            self.savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
+              if let error = error {
+                completion(.failure(error: error))
+              }
+              completion(.success(true))
+            }
+          }
       }
+      
+      
   }
     
     func deleteVideo(video: SavedVideo, user:PerceptionUser) {
