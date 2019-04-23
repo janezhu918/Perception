@@ -5,6 +5,10 @@ protocol FirebaseRepresentable {
   var firebaseRepresentation: [String: Any] { get }
 }
 
+enum FirebaseError: Error {
+  case duplicateError(String)
+}
+
 protocol ImageService {
   func storeImage(image:PerceptionImage, completion:@escaping(Result<Bool>) -> Void)
   func deleteImage(image:PerceptionImage, completion:@escaping(Result<Bool>) -> Void)
@@ -277,7 +281,8 @@ extension DatabaseService: SavedVideoService {
             completion(.failure(error: error))
           } else if let snapshot = snapshot {
             guard snapshot.documents.count == 0 else {
-              completion(.success(false))
+              let duplicateError = FirebaseError.duplicateError("Video with name \(video.name) exists")
+              completion(.failure(error: duplicateError))
               return
             }
             self.savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
