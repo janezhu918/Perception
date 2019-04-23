@@ -252,6 +252,10 @@ class ViewController: UIViewController {
               print(error)
             }
           }
+        } else {
+            print("no image detected")
+            self.showAlert(title: "No image detected", message: "Point the camera towards an image")
+            
         }
       })
     }
