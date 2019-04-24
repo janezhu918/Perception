@@ -278,7 +278,11 @@ class ViewController: UIViewController {
                                 let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
                                         let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
                                         self.present(activityViewController, animated: true)
+                                
                                     }
+                            else {
+                                self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
+            }
         }
         let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
