@@ -11,7 +11,7 @@ class CustomSKVideoNode: SKVideoNode {
         super.init(url: url)
         videoPlayer = AVPlayer(url: url)
     }
-    
+  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -49,28 +49,27 @@ class ViewController: UIViewController {
         mainView.sceneView.showsStatistics = false
         checkForLoggedUser()
     }
-    
+  
     private var isPlaying = false {
         didSet {
             switchPlayback(isPlaying)
         }
     }
-    
+  
     private func setupSwipeUpGesture() {
         let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
         swipeUpGesture.direction = .up
         view.addGestureRecognizer(swipeUpGesture)
     }
-    
+  
     private func checkForLoggedUser() {
         if usersession.getCurrentUser() != nil {
             userIsLoggedIn = true
         } else {
             userIsLoggedIn = false
         }
-//        print("check if user is logged in: \(userIsLoggedIn)")
     }
-    
+  
     @objc private func swipeUp() {
         //TODO: add up view that displays only the video
         let playerVC = AVPlayerViewController()
@@ -85,7 +84,7 @@ class ViewController: UIViewController {
             // some : <AVPlayerItem: 0x282cf9e70, asset = <AVURLAsset: 0x282889aa0, URL = cloackAndDagger.mp4>>
         }
     }
-    
+  
     private func switchPlayback(_ isPlaying: Bool) {
         if isPlaying {
             currentSKVideoNode?.pause()
@@ -110,9 +109,9 @@ class ViewController: UIViewController {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+      
         self.navigationController?.navigationBar.isHidden = true
-        
+      
         let configuration = ARImageTrackingConfiguration()
       
         if let trackedImage = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
@@ -136,7 +135,7 @@ class ViewController: UIViewController {
                   arImage.name = image.name
                   self?.ARImages.insert(arImage)
                 }
-              case .failure(error: let error): return
+              case .failure(error:): return
             }
           })
       }
@@ -220,12 +219,12 @@ class ViewController: UIViewController {
         mainView.sceneView.session.pause()
         currentSKVideoNode?.pause()
     }
-    
+  
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let _ = touches.first?.location(in: mainView.sceneView) else {fatalError("Could not find images in asset folder")}
         isPlaying = !isPlaying
     }
-    
+  
     private func segueToLoginPage(withMessage message: String, destination: Constants.UltimateDestinationEnum) {
         let destinationVC = LoginViewController()
         destinationVC.ultimateDestination = .myVideos
@@ -234,10 +233,10 @@ class ViewController: UIViewController {
         destinationVC.modalPresentationStyle = .overCurrentContext
         present(destinationVC, animated: true, completion: nil)
     }
-    
+  
   private func saveVideo() {
     let savedVideoService: SavedVideoService = databaseService
-    if let authUserId = self.usersession.getCurrentUser()?.uid {
+    if let authUserId = usersession.getCurrentUser()?.uid {
       DatabaseService.fetchPerceptionUser(uid: authUserId, completion: { (user, error) in
         if let user = user, let name = self.currentSKVideoNode?.name,
           let videoURL = (self.images.first { $0.name == name })?.videoURLString {
@@ -248,14 +247,13 @@ class ViewController: UIViewController {
             switch result {
             case .success(_):
               self.showAlert(title: "Success", message: "Video Saved Successfully")
-            case .failure(error: let error):
-              print(error)
+            case .failure(error:):
+              self.showAlert(title: "Error", message: "Unable to Save Duplicate Video")
             }
           }
         } else {
             print("no image detected")
             self.showAlert(title: "No image detected", message: "Point the camera towards an image")
-            
         }
       })
     }
@@ -270,11 +268,11 @@ class ViewController: UIViewController {
         //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
         //        menuButton.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5)
         menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
-        
+    
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "share")!, highlightedImage: UIImage(named: "share")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("trying to share video")
-            
-            
+          
+          
                             if let videoToShare =  self.currentSKVideoNode?.name,
                     
                                 let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
@@ -300,21 +298,18 @@ class ViewController: UIViewController {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
             }
         }
-        
-        
+    
+    
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.usersession.getCurrentUser() != nil {
                 let profileVC = ProfileViewControlerViewController()
-                    //self.navigationController?.pushViewController(destinationVC, animated: true)
-                 self.show(profileVC, sender: self)
-                        print("this happened!!")
-                
+                    self.navigationController?.pushViewController(destinationVC, animated: true)
             } else if self.userIsLoggedIn == false {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
                 print("nothing happened")
             }
         }
-        
+    
         let signOut = ExpandingMenuItem(size: menuButtonSize, title: "Sign Out", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
                 self.authservice.signOutAccount()
@@ -337,20 +332,18 @@ class ViewController: UIViewController {
         }
         view.addSubview(menuButton)
     }
-    
+  
 }
 
 extension ViewController: ARSCNViewDelegate {
-    
+  
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        
+      
         let node = SCNNode()
         if let imageAnchor = anchor as? ARImageAnchor {
             let referenceImage = imageAnchor.referenceImage.name!.description
             let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4")
-//            let videoUrl = "\(referenceImage).mp4"
             let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer!)
-
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
             videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
             videoNode.yScale = -1.0
@@ -358,7 +351,7 @@ extension ViewController: ARSCNViewDelegate {
             videoNode.name = imageAnchor.referenceImage.name!.description
             currentSKVideoNode = videoNode
             videoNode.play()
-            
+          
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             plane.firstMaterial?.diffuse.contents = videoScene
             let planeNode = SCNNode(geometry: plane)
@@ -370,15 +363,13 @@ extension ViewController: ARSCNViewDelegate {
         currentSCNNode = node
         return node
     }
-    
+  
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let currentSCNNode = currentSCNNode, let currentSKVideoNode = currentSKVideoNode {
             videoDictionary[currentSCNNode] = currentSKVideoNode
-//            if let videoPlayer = currentSKVideoNode.videoPlayer {
-//            }
         }
     }
-    
+  
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         if let currentVideoPlaying = videoDictionary[node], let trackable = anchor as? ARImageAnchor {
             currentSKVideoNode = currentVideoPlaying
@@ -397,7 +388,7 @@ extension ViewController: ARSessionDelegate {
 //        let image = CIImage(cvPixelBuffer: frame.capturedImage)
 //        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
 //        guard let features = detector?.features(in: image) else { return }
-        
+      
 //        for feature in features as! [CIQRCodeFeature] {
 //            if let message = feature.messageString {
 //                let url = URL(string: message)
