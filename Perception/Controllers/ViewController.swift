@@ -307,7 +307,7 @@ class ViewController: UIViewController {
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.usersession.getCurrentUser() != nil {
                 let profileVC = ProfileViewControlerViewController()
-                    self.navigationController?.pushViewController(destinationVC, animated: true)
+                    self.navigationController?.pushViewController(profileVC, animated: true)
             } else if self.userIsLoggedIn == false {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
                 print("nothing happened")
