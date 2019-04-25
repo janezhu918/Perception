@@ -79,6 +79,7 @@ class ViewController: UIViewController {
             }
         }
         present(playerVC, animated: true) {
+            
             playerVC.player!.play()
             //TODO: need to debug. playerVC.player is not nil but won't play
             // some : <AVPlayerItem: 0x282cf9e70, asset = <AVURLAsset: 0x282889aa0, URL = cloackAndDagger.mp4>>
@@ -100,7 +101,7 @@ class ViewController: UIViewController {
         switch result {
         case .success(let images):
           self?.images = images
-          self?.setupARImages()
+        //  self?.setupARImages()
         case .failure(error: let error):
           self?.showAlert(title: "Error", message: error.localizedDescription)
         }

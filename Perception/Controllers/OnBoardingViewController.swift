@@ -13,6 +13,7 @@ class OnBoardingViewController: UIViewController {
         contentView.dataSource = self
         contentView.delegate = self
         doneButton.addTarget(self, action: #selector(segueToMainVC), for: .touchUpInside)
+        
     }
     
     @objc func segueToMainVC() {
@@ -42,8 +43,8 @@ extension OnBoardingViewController: PaperOnboardingDataSource, PaperOnboardingDe
         let bgTwo = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         let bgThree = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
         
-        let largeFont = UIFont(name: "HelveticaNeue-Bold", size: 18)!
-        let smallFont = UIFont(name: "HelveticaNeue", size: 16)!
+        let largeFont = UIFont(name: "Orbitron-light", size: 16)!
+        let smallFont = UIFont(name: "Orbitron-light", size: 14)!
         
        
         
@@ -64,7 +65,9 @@ You can change this by clicking Start, then select Settings > Privacy > Camera. 
     func onboardingWillTransitonToIndex(_ index: Int) {
         if index != 2 {
             if doneButton.isHidden == false {
+                
                 doneButton.isHidden = true
+                
             }
         }
     }
