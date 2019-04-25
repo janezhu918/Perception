@@ -76,12 +76,14 @@ class ViewController: UIViewController {
         if let currentSKVideoNode = currentSKVideoNode {
             if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
                 playerVC.player = currentVideoPlayer
+                present(playerVC, animated: true) {
+                    playerVC.player!.play()
+                }
             }
-        }
-        present(playerVC, animated: true) {
-            playerVC.player!.play()
             //TODO: need to debug. playerVC.player is not nil but won't play
             // some : <AVPlayerItem: 0x282cf9e70, asset = <AVURLAsset: 0x282889aa0, URL = cloackAndDagger.mp4>>
+        } else {
+            print("no video to expand")
         }
     }
   
