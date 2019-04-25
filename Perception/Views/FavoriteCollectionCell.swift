@@ -19,7 +19,8 @@ class FavoriteCollectionCell: UICollectionViewCell {
         let textLabel = UILabel()
         textLabel.text = "Your videos"
         textLabel.textAlignment = .center
-        textLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        textLabel.textColor = .white
+        textLabel.font = UIFont(name: "orbitron-light", size: 24)
         return textLabel
     }()
     

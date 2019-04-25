@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.makeKeyAndVisible()
         
+
         
         userSession = UserSession()
         //      self.window = UIWindow.init(frame: UIScreen.main.bounds)
