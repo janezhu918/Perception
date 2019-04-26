@@ -5,9 +5,9 @@ class SavedVideos: UIView {
     lazy var myCollectionView: UICollectionView = {
         //CREATE THE LAYOUT:
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 200, height: 275)
+        layout.itemSize = CGSize.init(width: 200, height: 100)
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+        layout.sectionInset = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         let cv = UICollectionView.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         cv.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         return cv
