@@ -1,6 +1,6 @@
 import UIKit
 import Firebase
-import AVFoundation
+import AVKit
 
 class SavedVideosViewController: UIViewController {
     
@@ -63,9 +63,14 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let savedVideo = savedVideos[indexPath.row]
-        let savedVideoDetailVC = VideoDetailViewController(video: savedVideo)
-        navigationController?.pushViewController(savedVideoDetailVC, animated: true)
-    }
+        if let cell = collectionView.cellForItem(at: indexPath) as? FavoriteCollectionCell,
+          let player = cell.videoView.player {
+          let playerVC = AVPlayerViewController()
+          present(playerVC, animated: true) {
+            playerVC.player = player
+          }
+        }
+  }
 }
 
 extension SavedVideosViewController: UICollectionViewDelegateFlowLayout {
