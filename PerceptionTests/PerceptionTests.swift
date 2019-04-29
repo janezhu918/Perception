@@ -1,11 +1,3 @@
-//
-//  PerceptionTests.swift
-//  PerceptionTests
-//
-//  Created by iosdevrookie on 4/15/19.
-//  Copyright © 2019 JaneZhu. All rights reserved.
-//
-
 import XCTest
 @testable import Perception
 import Firebase
