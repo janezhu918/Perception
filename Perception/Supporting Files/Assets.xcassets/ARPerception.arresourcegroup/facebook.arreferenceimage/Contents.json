@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "perception.png"
+      "filename" : "facebook.png"
     }
   ],
   "info" : {
@@ -10,7 +10,7 @@
     "author" : "xcode"
   },
   "properties" : {
+    "width" : 10,
     "unit" : "centimeters"
-    "width" : 0.19999999999999998
   }
 }
