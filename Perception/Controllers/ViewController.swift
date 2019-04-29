@@ -260,16 +260,16 @@ class ViewController: UIViewController {
   }
   
   private func addExpandingMenu() {
-        let menuButtonSize: CGSize = CGSize(width: 30, height: 30)
-        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
-        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
+        let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
+        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
+        menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 34.0)
         view.addSubview(menuButton)
         menuButton.layer.cornerRadius = 5
         //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
         //        menuButton.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5)
         menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
     
-        let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "share")!, highlightedImage: UIImage(named: "share")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+        let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "shareBlue")!, highlightedImage: UIImage(named: "shareBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("trying to share video")
           
           
@@ -284,7 +284,7 @@ class ViewController: UIViewController {
                                 self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
             }
         }
-        let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starEmpty")!, highlightedImage: UIImage(named: "starEmpty")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+        let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starBlue")!, highlightedImage: UIImage(named: "starBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             print("video saved")
             if self.userIsLoggedIn {
               self.saveVideo()
@@ -292,7 +292,7 @@ class ViewController: UIViewController {
                 self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo, destination: .myVideos)
             }
         }
-        let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "table")!, highlightedImage: UIImage(named: "table")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+        let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "tableBlue")!, highlightedImage: UIImage(named: "tableBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             self.checkForLoggedUser()
             if self.userIsLoggedIn {
                 let destinationVC = SavedVideosViewController()
@@ -304,7 +304,7 @@ class ViewController: UIViewController {
         }
     
     
-        let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+        let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.usersession.getCurrentUser() != nil {
                 let profileVC = ProfileViewControlerViewController()
                     self.navigationController?.pushViewController(profileVC, animated: true)
@@ -314,7 +314,7 @@ class ViewController: UIViewController {
             }
         }
     
-        let signOut = ExpandingMenuItem(size: menuButtonSize, title: "Sign Out", image: UIImage(named: "profile")!, highlightedImage: UIImage(named: "profile")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+        let signOut = ExpandingMenuItem(size: menuButtonSize, title: "Sign Out", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
                 self.authservice.signOutAccount()
             } else {
@@ -323,7 +323,7 @@ class ViewController: UIViewController {
         }
         let menuItems = [signOut, share, save, myVideos, profile]
         menuItems.forEach{ $0.layer.cornerRadius = 5 }
-        menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5) }
+        menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5) }
         menuItems.forEach{ $0.titleColor = .init(red: 1, green: 1, blue: 1, alpha: 1) }
         menuItems.forEach{ $0.titleMargin = 5 }
         menuButton.playSound = false
