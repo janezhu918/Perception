@@ -5,10 +5,11 @@ struct PerceptionVideo {
   public let name: String
   public let id: String
   public let description: String
+  public let title: String
   public var currentPlaybackTime: Double
   
   init(name:String, id: String,
-       createdAt:String,
+       createdAt:String, title: String,
        currentPlaybackTime: Double,
        description:String,
        urlString:String){
@@ -18,6 +19,7 @@ struct PerceptionVideo {
     self.createdAt = createdAt
     self.description = description
     self.currentPlaybackTime = currentPlaybackTime
+    self.title = title
   }
   
   init(document:[String:Any], id: String){
@@ -27,6 +29,7 @@ struct PerceptionVideo {
     self.name = document[PerceptionVideoCollectionKeys.name] as? String ?? ""
     self.description = document[PerceptionVideoCollectionKeys.description] as? String ?? ""
     self.currentPlaybackTime = document[PerceptionVideoCollectionKeys.currentPlaybackTime] as? Double ?? 0.0
+    self.title = document[PerceptionVideoCollectionKeys.title] as? String ?? ""
 
   }
 }
@@ -38,6 +41,7 @@ extension PerceptionVideo: FirebaseRepresentable {
             PerceptionVideoCollectionKeys.createdAt: createdAt,
             PerceptionVideoCollectionKeys.urlString: urlString,
             PerceptionVideoCollectionKeys.description: description,
+            PerceptionVideoCollectionKeys.title: title,
             PerceptionVideoCollectionKeys.currentPlaybackTime: currentPlaybackTime]
   }
   
