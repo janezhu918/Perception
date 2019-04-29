@@ -1,0 +1,19 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "perception.png"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+<<<<<<< HEAD
+    "width" : 0.11249999999999999
+=======
+    "width" : 0.19999999999999998
+>>>>>>> d92b8c5d537fe46c630c8586af60547fd4a05b74
+  }
+}

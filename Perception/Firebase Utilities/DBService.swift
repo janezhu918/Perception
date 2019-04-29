@@ -26,8 +26,9 @@ protocol ImageService {
 protocol VideoService {
   func storeVideo(video:PerceptionVideo, completion:@escaping(Result<Bool>) -> Void)
   func deleteVideo(video:PerceptionVideo, completion:@escaping(Result<Bool>) -> Void)
-  func fetchVideo(video:PerceptionVideo,
+  func fetchVideo(name:String,
                   completion:@escaping(Result<PerceptionVideo>) -> Void)
+  func fetchVideos(completion: @escaping (Result<[PerceptionVideo]>) -> Void)
   func updateVideo(video:PerceptionVideo, newValues:[String:Any],
                    completion:@escaping(Result<Bool>) -> Void)
   func generateVideoId() -> String
@@ -186,13 +187,26 @@ extension DatabaseService: VideoService {
     }
   }
   
-  func fetchVideo(video: PerceptionVideo, completion: @escaping (Result<PerceptionVideo>) -> Void) {
-    videosCollection.document(video.id).getDocument { (snapshot, error) in
+  func fetchVideo(name:String, completion: @escaping (Result<PerceptionVideo>) -> Void) {
+    videosCollection.whereField(PerceptionVideoCollectionKeys.name, isEqualTo: name).getDocuments { (snapshot, error) in
       if let error = error {
         completion(.failure(error: error))
-      } else if let snapshot = snapshot, let videoData = snapshot.data() {
-        let video = PerceptionVideo(document: videoData, id: snapshot.documentID)
+      } else if let document = snapshot?.documents.first {
+        let video = PerceptionVideo(document: document.data(), id: document.documentID)
         completion(.success(video))
+      }
+    }
+  }
+  
+  func fetchVideos(completion: @escaping (Result<[PerceptionVideo]>) -> Void) {
+    videosCollection.getDocuments { (snapshot, error) in
+      if let error = error {
+        completion(.failure(error: error))
+      } else if let documents = snapshot?.documents {
+        let videos = documents.map { (document) in
+          PerceptionVideo(document: document.data(), id: document.documentID)
+        }
+        completion(.success(videos))
       }
     }
   }
