@@ -301,13 +301,10 @@ class ViewController: UIViewController {
       
       
       if let videoToShare =  self.currentSKVideoNode?.name,
-        
         let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
         let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
         self.present(activityViewController, animated: true)
-        
-      }
-      else {
+      } else {
         self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
       }
     }
@@ -323,8 +320,7 @@ class ViewController: UIViewController {
       self.checkForLoggedUser()
       if self.userIsLoggedIn {
         let destinationVC = SavedVideosViewController()
-        self.show(destinationVC, sender: self)
-        
+        self.navigationController?.pushViewController(destinationVC, animated: true)
       } else {
         self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
       }
