@@ -22,7 +22,6 @@
 		1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8099225BAFF00071FA83 /* VideoView.swift */; };
 		1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */; };
         1EFE87832277DB4300CD71FF /* orbitron-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1EFE87822277DB4300CD71FF /* orbitron-light.otf */; };
-        b467fac8daa8a4f97638271786288844d37cbd8b
 		52A6DA2F8AF8D6217BD24C70 /* Pods_PerceptionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E56D28C1E6BA3B56FFC751 /* Pods_PerceptionTests.framework */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
@@ -82,7 +81,6 @@
 		1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionImageCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionVideoCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8099225BAFF00071FA83 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
-		1EFE87822277DB4300CD71FF /* orbitron-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "orbitron-light.otf"; path = "../../../../Downloads/orbitron-light.otf"; sourceTree = "<group>"; };
 		5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.debug.xcconfig"; sourceTree = "<group>"; };
 		72061BAFBA39F37C10299E49 /* Pods-PerceptionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A507ECD4225654EF009B94A9 /* Perception.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perception.app; sourceTree = BUILT_PRODUCTS_DIR; };
