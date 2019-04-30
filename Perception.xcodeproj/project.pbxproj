@@ -29,8 +29,6 @@
 		A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE0225654F0009B94A9 /* Assets.xcassets */; };
 		A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */; };
 		A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541DC47225F97BC00E30D6E /* UserSession.swift */; };
-		A599B0B9226E579D00615F4B /* perception.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A599B0B8226E579C00615F4B /* perception.mp4 */; };
-		A599B0CD227220C900615F4B /* orbitron-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A599B0CC227220C900615F4B /* orbitron-light.otf */; };
 		A5B411942257EC45006E14F7 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411932257EC45006E14F7 /* Main.swift */; };
 		A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411962257EC7E006E14F7 /* LoginView.swift */; };
 		A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411982257EC85006E14F7 /* SavedVideos.swift */; };
@@ -187,7 +185,7 @@
 			children = (
 				1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */,
 				1E8B808D225B96A20071FA83 /* inTheDark.mp4 */,
-				A599B0B8226E579C00615F4B /* perception.mp4 */,
+				1272FB7D2278B38E00C3C7E2 /* perception.mp4 */,
 				1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */,
 				D7A1C7832264E09A00E33838 /* File Manager Helpers */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
@@ -297,7 +295,7 @@
 		A5B411C32257F00E006E14F7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A599B0CC227220C900615F4B /* orbitron-light.otf */,
+				1272FB7F2278B3DB00C3C7E2 /* orbitron-light.otf */,
 				A507ECD7225654EF009B94A9 /* AppDelegate.swift */,
 				A507ECE0225654F0009B94A9 /* Assets.xcassets */,
 				A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */,
@@ -414,10 +412,10 @@
 				1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
-				A599B0B9226E579D00615F4B /* perception.mp4 in Resources */,
+				1272FB7E2278B38E00C3C7E2 /* perception.mp4 in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
-				A599B0CD227220C900615F4B /* orbitron-light.otf in Resources */,
+				1272FB802278B3DB00C3C7E2 /* orbitron-light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
