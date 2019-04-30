@@ -58,8 +58,10 @@ class FavoriteCollectionCell: UICollectionViewCell {
   }
   
   @objc private func buttonToExpandCellPressed() {
-    expandTextViewButton.setImage(UIImage(named: "up"), for: .normal)
     descriptionForSavedFavoriteVideo.sizeToFit()
+    expandTextViewButton.setImage(UIImage(named: "up"), for: .normal)
+    
+
   }
   
 }
