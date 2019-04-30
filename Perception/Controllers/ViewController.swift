@@ -319,8 +319,8 @@ class ViewController: UIViewController {
     let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "tableBlue")!, highlightedImage: UIImage(named: "tableBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
       self.checkForLoggedUser()
       if self.userIsLoggedIn {
-        let destinationVC = SavedVideosViewController()
-        self.navigationController?.pushViewController(destinationVC, animated: true)
+        let savedVideosVC = SavedVideosViewController()
+        self.navigationController?.pushViewController(savedVideosVC, animated: true)
       } else {
         self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
       }
