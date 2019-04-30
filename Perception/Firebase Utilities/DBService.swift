@@ -5,6 +5,10 @@ protocol FirebaseRepresentable {
   var firebaseRepresentation: [String: Any] { get }
 }
 
+enum FirebaseError: Error {
+  case duplicateError(String)
+}
+
 protocol ImageService {
   func storeImage(image:PerceptionImage, completion:@escaping(Result<Bool>) -> Void)
   func deleteImage(image:PerceptionImage, completion:@escaping(Result<Bool>) -> Void)
@@ -22,8 +26,9 @@ protocol ImageService {
 protocol VideoService {
   func storeVideo(video:PerceptionVideo, completion:@escaping(Result<Bool>) -> Void)
   func deleteVideo(video:PerceptionVideo, completion:@escaping(Result<Bool>) -> Void)
-  func fetchVideo(video:PerceptionVideo,
+  func fetchVideo(name:String,
                   completion:@escaping(Result<PerceptionVideo>) -> Void)
+  func fetchVideos(completion: @escaping (Result<[PerceptionVideo]>) -> Void)
   func updateVideo(video:PerceptionVideo, newValues:[String:Any],
                    completion:@escaping(Result<Bool>) -> Void)
   func generateVideoId() -> String
@@ -182,13 +187,26 @@ extension DatabaseService: VideoService {
     }
   }
   
-  func fetchVideo(video: PerceptionVideo, completion: @escaping (Result<PerceptionVideo>) -> Void) {
-    videosCollection.document(video.id).getDocument { (snapshot, error) in
+  func fetchVideo(name:String, completion: @escaping (Result<PerceptionVideo>) -> Void) {
+    videosCollection.whereField(PerceptionVideoCollectionKeys.name, isEqualTo: name).getDocuments { (snapshot, error) in
       if let error = error {
         completion(.failure(error: error))
-      } else if let snapshot = snapshot, let videoData = snapshot.data() {
-        let video = PerceptionVideo(document: videoData, id: snapshot.documentID)
+      } else if let document = snapshot?.documents.first {
+        let video = PerceptionVideo(document: document.data(), id: document.documentID)
         completion(.success(video))
+      }
+    }
+  }
+  
+  func fetchVideos(completion: @escaping (Result<[PerceptionVideo]>) -> Void) {
+    videosCollection.getDocuments { (snapshot, error) in
+      if let error = error {
+        completion(.failure(error: error))
+      } else if let documents = snapshot?.documents {
+        let videos = documents.map { (document) in
+          PerceptionVideo(document: document.data(), id: document.documentID)
+        }
+        completion(.success(videos))
       }
     }
   }
@@ -269,12 +287,28 @@ extension DatabaseService: SavedVideoService {
     
     func storeVideo(video: SavedVideo, user:PerceptionUser,
                     completion: @escaping (Result<Bool>) -> Void) {
-      savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
-        if let error = error {
-          completion(.failure(error: error))
-        }
-        completion(.success(true))
+      savedVideosCollection(user: user)
+        .whereField(SavedVideoCollectionKeys.name, isEqualTo: video.name)
+        .whereField(SavedVideoCollectionKeys.urlString, isEqualTo: video.urlString)
+        .getDocuments { (snapshot, error) in
+          if let error = error {
+            completion(.failure(error: error))
+          } else if let snapshot = snapshot {
+            guard snapshot.documents.count == 0 else {
+              let duplicateError = FirebaseError.duplicateError("Video with name \(video.name) exists")
+              completion(.failure(error: duplicateError))
+              return
+            }
+            self.savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
+              if let error = error {
+                completion(.failure(error: error))
+              }
+              completion(.success(true))
+            }
+          }
       }
+      
+      
   }
     
     func deleteVideo(video: SavedVideo, user:PerceptionUser) {

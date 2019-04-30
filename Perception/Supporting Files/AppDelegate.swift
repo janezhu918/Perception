@@ -1,5 +1,7 @@
 import UIKit
 import Firebase
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Thread.sleep(forTimeInterval: 2.0)
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        Fabric.with([Crashlytics.self])
         userSession = UserSession()
         usersession = AuthService()
         
