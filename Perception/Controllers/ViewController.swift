@@ -136,6 +136,10 @@ class ViewController: UIViewController {
         }
         checkForLoggedUser()
         mainView.sceneView.session.run(configuration)
+        
+        AppUtility.lockOrientation(.portrait)
+        //        // Or to rotate and lock
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
       
     }
   
@@ -234,6 +238,9 @@ class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         mainView.sceneView.session.pause()
         currentSKVideoNode?.pause()
+        
+        // Don't forget to reset when view is being removed
+          AppUtility.lockOrientation(.portrait)
     }
   
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
