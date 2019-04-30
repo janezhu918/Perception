@@ -327,10 +327,10 @@ extension DatabaseService: SavedVideoService {
       } else if let snapshot = snapshot {
         let videos = snapshot.documents.compactMap { (document) in
           SavedVideo(document: document.data(), id: document.documentID)    
+        }
       }
     }
   }
-  
   func deleteVideo(video: SavedVideo, user:PerceptionUser) {
     savedVideosCollection(user: user).document(video.id)
       .delete { (error) in
