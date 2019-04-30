@@ -47,7 +47,6 @@ class ViewController: UIViewController {
     setupSwipeUpGesture()
     addExpandingMenu()
     mainView.sceneView.delegate = self
-    mainView.sceneView.session.delegate = self
     mainView.sceneView.showsStatistics = false
     checkForLoggedUser()
   }
