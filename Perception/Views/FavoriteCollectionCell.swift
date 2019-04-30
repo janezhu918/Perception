@@ -28,6 +28,7 @@ class FavoriteCollectionCell: UICollectionViewCell {
   lazy var descriptionForSavedFavoriteVideo: UITextView = {
     let textView = UITextView()
     textView.text = "Text for description goes here"
+    textView.textAlignment = NSTextAlignment.justified
     textView.textColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     textView.font = UIFont(name: "STHeitiSC-Light", size: 12)
     textView.backgroundColor = #colorLiteral(red: 0.1294117647, green: 0.2039215686, blue: 0.3450980392, alpha: 1)
@@ -37,7 +38,8 @@ class FavoriteCollectionCell: UICollectionViewCell {
   
   lazy var expandTextViewButton: UIButton = {
     let button = UIButton()
-    button.imageView?.image = UIImage(named:"down")
+    button.setImage(UIImage(named: "down"), for: .normal)
+    button.addTarget(self, action: #selector(buttonToExpandCellPressed), for: .touchUpInside)
     return button
   }()
   
@@ -53,6 +55,11 @@ class FavoriteCollectionCell: UICollectionViewCell {
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+  
+  @objc private func buttonToExpandCellPressed() {
+    expandTextViewButton.setImage(UIImage(named: "up"), for: .normal)
+    descriptionForSavedFavoriteVideo.sizeToFit()
   }
   
 }
@@ -87,17 +94,17 @@ extension FavoriteCollectionCell {
     addSubview(descriptionForSavedFavoriteVideo)
     descriptionForSavedFavoriteVideo.translatesAutoresizingMaskIntoConstraints = false
     [descriptionForSavedFavoriteVideo.topAnchor.constraint(equalTo: titleForSavedFavoriteVideo.bottomAnchor, constant: 11),
-      descriptionForSavedFavoriteVideo.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11),
-      descriptionForSavedFavoriteVideo.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
-      descriptionForSavedFavoriteVideo.heightAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.25)].forEach{$0.isActive = true}
+     descriptionForSavedFavoriteVideo.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11),
+     descriptionForSavedFavoriteVideo.widthAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
+     descriptionForSavedFavoriteVideo.heightAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)].forEach{$0.isActive = true}
   }
-
+  
   private func expandButtonConstraints() {
     addSubview(expandTextViewButton)
     expandTextViewButton.translatesAutoresizingMaskIntoConstraints = false
-    [
-      expandTextViewButton.leadingAnchor.constraint(equalTo: descriptionForSavedFavoriteVideo.trailingAnchor, constant: 11),
-      expandTextViewButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
-      ].forEach{$0.isActive = true}
+    expandTextViewButton.topAnchor.constraint(equalTo: titleForSavedFavoriteVideo.bottomAnchor, constant: 11).isActive = true
+    expandTextViewButton.leadingAnchor.constraint(equalTo: descriptionForSavedFavoriteVideo.trailingAnchor, constant: 11).isActive = true
+    expandTextViewButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11).isActive = true
+    expandTextViewButton.heightAnchor.constraint(lessThanOrEqualToConstant: 30).isActive = true
   }
 }
