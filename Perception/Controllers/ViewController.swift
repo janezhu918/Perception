@@ -324,7 +324,7 @@ class ViewController: UIViewController {
         let menuItems = [signOut, share, save, myVideos, profile]
         menuItems.forEach{ $0.layer.cornerRadius = 5 }
         menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5) }
-        menuItems.forEach{ $0.titleColor = .init(red: 1, green: 1, blue: 1, alpha: 1) }
+        menuItems.forEach{ $0.titleColor = .init(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
         menuItems.forEach{ $0.titleMargin = 5 }
         menuButton.playSound = false
         menuButton.addMenuItems(menuItems)
