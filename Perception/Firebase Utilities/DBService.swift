@@ -307,8 +307,31 @@ extension DatabaseService: SavedVideoService {
           }
         }
     }
-    
-    
+  }
+  
+  func fetchVideo(video: SavedVideo, user:PerceptionUser) {
+    savedVideosCollection(user: user).document(video.id).getDocument { (snapshot, error) in
+      if let error = error {
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+      } else if let snapshot = snapshot, let videoData = snapshot.data() {
+        let video = SavedVideo(document: videoData, id: snapshot.documentID)
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideo: video)
+      }
+    }
+  }
+  
+  func fetchUserSavedVideos(user:PerceptionUser) {
+    savedVideosCollection(user: user).addSnapshotListener { (snapshot, error) in
+      if let error = error {
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+      } else if let snapshot = snapshot {
+        let videos = snapshot.documents.compactMap { (document) in
+          SavedVideo(document: document.data(), id: document.documentID)
+        }
+        
+        self.savedVideoServiceDelegate!.savedVideoService(self, didReceiveVideos: videos)
+      }
+    }
   }
   
   func deleteVideo(video: SavedVideo, user:PerceptionUser) {
@@ -318,18 +341,5 @@ extension DatabaseService: SavedVideoService {
           self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
         }
     }
-    
-    func fetchUserSavedVideos(user:PerceptionUser) {
-        savedVideosCollection(user: user).addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
-            } else if let snapshot = snapshot {
-                let videos = snapshot.documents.compactMap { (document) in
-                    SavedVideo(document: document.data(), id: document.documentID)
-                }
-                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideos: videos)
-            }
-        }
-    }
-  
+  }
 }
