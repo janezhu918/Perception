@@ -18,15 +18,18 @@ class CustomSKVideoNode: SKVideoNode {
 }
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var sceneView: ARSCNView!
+    
     private let databaseService = DatabaseService()
-    private let mainView = Main()
+   // private let mainView = Main()
     private var ARImages = Set<ARReferenceImage>() {
       didSet {
         guard oldValue.count == images.count - 1 else { return }
         let configuration = ARImageTrackingConfiguration()
         configuration.trackingImages = ARImages
         configuration.maximumNumberOfTrackedImages = 1
-        mainView.sceneView.session.run(configuration)
+       // mainView.sceneView.session.run(configuration)
       }
     }
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
@@ -43,15 +46,35 @@ class ViewController: UIViewController {
         fetchImages()
         fetchVideos()
         self.navigationController?.navigationBar.isHidden = true
-        view.addSubview(mainView)
+      //  view.addSubview(mainView)
+      //  view.addSubview(sceneView)
         setupSwipeUpGesture()
         addExpandingMenu()
-        mainView.sceneView.delegate = self
-        mainView.sceneView.session.delegate = self
-        mainView.sceneView.showsStatistics = false
+        self.sceneView.delegate = self
+        self.sceneView.session.delegate = self
+        self.sceneView.showsStatistics = false
+//        mainView.sceneView.delegate = self
+//        mainView.sceneView.session.delegate = self
+//        mainView.sceneView.showsStatistics = false
         checkForLoggedUser()
     }
   
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        
+        // Only allow Portrait
+        return UIInterfaceOrientationMask.all
+    }
+    
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        
+        // Only allow Portrait
+        return UIInterfaceOrientation.portrait
+    }
+    
     private var isPlaying = false {
         didSet {
             switchPlayback(isPlaying)
@@ -135,12 +158,14 @@ class ViewController: UIViewController {
             configuration.maximumNumberOfTrackedImages = 1
         }
         checkForLoggedUser()
-        mainView.sceneView.session.run(configuration)
+//        mainView.sceneView.session.run(configuration)
+      sceneView.session.run(configuration)
+
         
-        AppUtility.lockOrientation(.portrait)
+//        AppUtility.lockOrientation(.portrait)
         //        // Or to rotate and lock
-        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
-      
+       AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+
     }
   
     private func setupARImages(){
@@ -236,15 +261,16 @@ class ViewController: UIViewController {
   
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        mainView.sceneView.session.pause()
+       // mainView.sceneView.session.pause()
+        sceneView.session.pause()
         currentSKVideoNode?.pause()
         
         // Don't forget to reset when view is being removed
-          AppUtility.lockOrientation(.portrait)
+          AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
     }
   
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let _ = touches.first?.location(in: mainView.sceneView) else {fatalError("Could not find images in asset folder")}
+        guard let _ = touches.first?.location(in: sceneView) else {fatalError("Could not find images in asset folder")}
         isPlaying = !isPlaying
     }
   

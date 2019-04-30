@@ -11,6 +11,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userData = UserDefaults.standard
     var usersession: AuthService!
     
+//    var orientationLock = UIInterfaceOrientationMask.all
+//
+//    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+//        return self.orientationLock
+//    }
+//    struct AppUtility {
+//        static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {
+//            if let delegate = UIApplication.shared.delegate as? AppDelegate {
+//                delegate.orientationLock = orientation
+//            }
+//        }
+//
+//        static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
+//            self.lockOrientation(orientation)
+//            UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+//        }
+//    }
+    
     var orientationLock = UIInterfaceOrientationMask.all
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
@@ -29,11 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         let storyBoard = UIStoryboard(name: "Onboarding", bundle: nil)
         let onboardingVC = storyBoard.instantiateViewController(withIdentifier: "OnBoardingViewController")
-        let mainVC = ViewController()
-        let navForMainVC = UINavigationController(rootViewController: mainVC)
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = mainStoryBoard.instantiateViewController(withIdentifier: "ViewController")
+      //  let mainVC = ViewController()
+       // let navForMainVC = UINavigationController(rootViewController: mainVC)
         let demoCompleted = userData.bool(forKey: Constants.DemoCompletedUserDefaultsKey)
         if demoCompleted {
-            self.window?.rootViewController = navForMainVC
+            self.window?.rootViewController = mainVC
         } else {
             self.window?.rootViewController = onboardingVC
         }
@@ -49,6 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
