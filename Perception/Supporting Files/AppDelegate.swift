@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Fabric.with([Crashlytics.self])
     userSession = UserSession()
     usersession = AuthService()
-    
     self.window = UIWindow.init(frame: UIScreen.main.bounds)
     let storyBoard = UIStoryboard(name: "Onboarding", bundle: nil)
     let onboardingVC = storyBoard.instantiateViewController(withIdentifier: "OnBoardingViewController")
