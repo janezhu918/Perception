@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 struct AppUtility {
     
     static func lockOrientation(_ orientation: UIInterfaceOrientationMask) {

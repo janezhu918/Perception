@@ -11,12 +11,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userData = UserDefaults.standard
     var usersession: AuthService!
     
-    var orientationLock = UIInterfaceOrientationMask.all
-    
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return self.orientationLock
-    }
-    
     static var authservice = AuthService()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Thread.sleep(forTimeInterval: 2.0)
