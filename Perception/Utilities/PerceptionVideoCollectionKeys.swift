@@ -7,6 +7,7 @@ struct PerceptionVideoCollectionKeys {
   public static let urlString = "urlString"
   public static let description = "description"
   public static let currentPlaybackTime = "currentPlaybackTime"
+  public static let title = "title"
 }
 
 struct SavedVideoCollectionKeys {
@@ -15,4 +16,5 @@ struct SavedVideoCollectionKeys {
   public static let name = "name"
   public static let urlString = "urlString"
   public static let description = "description"
+  public static let title = "title"
 }

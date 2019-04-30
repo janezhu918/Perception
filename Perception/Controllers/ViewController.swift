@@ -37,9 +37,11 @@ class ViewController: UIViewController {
     private var authservice = AppDelegate.authservice
     private var images = [PerceptionImage]()
     private var savedVideos = [SavedVideo]()
+    private var videos = [PerceptionVideo]()
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchImages()
+        fetchVideos()
         self.navigationController?.navigationBar.isHidden = true
         view.addSubview(mainView)
         setupSwipeUpGesture()
@@ -76,12 +78,14 @@ class ViewController: UIViewController {
         if let currentSKVideoNode = currentSKVideoNode {
             if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
                 playerVC.player = currentVideoPlayer
+                present(playerVC, animated: true) {
+                    playerVC.player!.play()
+                }
             }
-        }
-        present(playerVC, animated: true) {
-            playerVC.player!.play()
             //TODO: need to debug. playerVC.player is not nil but won't play
             // some : <AVPlayerItem: 0x282cf9e70, asset = <AVURLAsset: 0x282889aa0, URL = cloackAndDagger.mp4>>
+        } else {
+            print("no video to expand")
         }
     }
   
@@ -92,7 +96,6 @@ class ViewController: UIViewController {
             currentSKVideoNode?.play()
         }
     }
-
 
   private func fetchImages() {
       let imageService: ImageService = databaseService
@@ -106,6 +109,18 @@ class ViewController: UIViewController {
         }
       }
     }
+  
+  private func fetchVideos(){
+    let videoService: VideoService = databaseService
+    videoService.fetchVideos { (result) in
+      switch result {
+        case .success(let videos):
+          self.videos = videos
+        case .failure(error: let error):
+          self.showAlert(title: "Error", message:error.localizedDescription)
+      }
+    }
+  }
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -239,10 +254,10 @@ class ViewController: UIViewController {
     if let authUserId = usersession.getCurrentUser()?.uid {
       DatabaseService.fetchPerceptionUser(uid: authUserId, completion: { (user, error) in
         if let user = user, let name = self.currentSKVideoNode?.name,
-          let videoURL = (self.images.first { $0.name == name })?.videoURLString {
+          let video = (self.videos.first { $0.name == name }) {
           let id = savedVideoService.generateSavedVideoId(user: user)
           let date = Date.getISOTimestamp()
-          let savedVideo = SavedVideo(id: id, name: name, description: "", urlString: videoURL, savedAt: date)
+          let savedVideo = SavedVideo(id: id, name: video.name, description: video.description, urlString: video.urlString, title: video.title, savedAt: date)
           savedVideoService.storeVideo(video: savedVideo, user: user) { result in
             switch result {
             case .success(_):
@@ -258,11 +273,14 @@ class ViewController: UIViewController {
       })
     }
   }
-  
+//
   private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
         menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 34.0)
+
+//        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
+        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
         view.addSubview(menuButton)
         menuButton.layer.cornerRadius = 5
         //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -270,6 +288,8 @@ class ViewController: UIViewController {
         menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
     
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "shareBlue")!, highlightedImage: UIImage(named: "shareBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+//        menuButton.addButton(title: <#T##String#>, image: <#T##UIImage#>, highlightedImage: <#T##UIImage#>, backgroundImage: <#T##UIImage?#>, backgroundHighlightedImage: <#T##UIImage#>, action: <#T##(() -> ())?##(() -> ())?##() -> ()#>)
+  
             print("trying to share video")
           
           

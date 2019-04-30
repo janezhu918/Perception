@@ -13,7 +13,7 @@ class VideoDetailView: UIView {
   public lazy var playerView: VideoView = {
     let vv = VideoView()
     vv.playerLayer.cornerRadius = 3.0
-    vv.playerLayer.borderColor = #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)
+    vv.playerLayer.borderColor = #colorLiteral(red: 0.7529411765, green: 0.7529411765, blue: 0.7529411765, alpha: 1)
     return vv
     
   }()
