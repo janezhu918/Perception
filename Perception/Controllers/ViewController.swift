@@ -97,7 +97,6 @@ class ViewController: UIViewController {
         }
     }
 
-
   private func fetchImages() {
       let imageService: ImageService = databaseService
       imageService.fetchImages(contextID: "local") { [weak self] (result) in
