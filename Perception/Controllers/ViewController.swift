@@ -64,7 +64,7 @@ class ViewController: UIViewController {
   }
   
   private func setupSaveGesture() {
-    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(saveVideo))
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(shareVideo))
     swipeUpGesture.direction = .right
     view.addGestureRecognizer(swipeUpGesture)
   }
@@ -289,7 +289,8 @@ class ViewController: UIViewController {
   
   @objc private func shareVideo() {
     if let videoToShare =  self.currentSKVideoNode?.name,
-      let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
+      let videoUrlString = (self.images.first { $0.name == videoToShare })?.videoURLString,
+      let videoURL = URL(string: videoUrlString) {
       let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
       self.present(activityViewController, animated: true)
       print("trying to share video")
@@ -366,7 +367,7 @@ class ViewController: UIViewController {
     menuButton.willPresentMenuItems = { (menu) -> Void in
       menuItems.forEach{ $0.isHidden = false }
     }
-    view.addSubview(menuButton)
+    mainView.addSubview(menuButton)
   }
   
 }
