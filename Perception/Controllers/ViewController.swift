@@ -44,10 +44,9 @@ class ViewController: UIViewController {
     fetchVideos()
     self.navigationController?.navigationBar.isHidden = true
     view.addSubview(mainView)
-    setupSwipeUpGesture()
-    addExpandingMenu()
+    setupExpandingGesture()
+    setupSaveGesture()
     mainView.sceneView.delegate = self
-    mainView.sceneView.session.delegate = self
     mainView.sceneView.showsStatistics = false
     checkForLoggedUser()
   }
@@ -58,9 +57,15 @@ class ViewController: UIViewController {
     }
   }
   
-  private func setupSwipeUpGesture() {
+  private func setupExpandingGesture() {
     let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
     swipeUpGesture.direction = .up
+    view.addGestureRecognizer(swipeUpGesture)
+  }
+  
+  private func setupSaveGesture() {
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(saveVideo))
+    swipeUpGesture.direction = .right
     view.addGestureRecognizer(swipeUpGesture)
   }
   
@@ -257,7 +262,7 @@ class ViewController: UIViewController {
     present(destinationVC, animated: true, completion: nil)
   }
   
-  private func saveVideo() {
+  @objc private func saveVideo() {
     let savedVideoService: SavedVideoService = databaseService
     if let authUserId = usersession.getCurrentUser()?.uid {
       DatabaseService.fetchPerceptionUser(uid: authUserId, completion: { (user, error) in
@@ -281,6 +286,18 @@ class ViewController: UIViewController {
       })
     }
   }
+  
+  @objc private func shareVideo() {
+    if let videoToShare =  self.currentSKVideoNode?.name,
+      let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
+      let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
+      self.present(activityViewController, animated: true)
+      print("trying to share video")
+    } else {
+      self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
+    }
+  }
+  
   //
   private func addExpandingMenu() {
     let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
@@ -297,20 +314,8 @@ class ViewController: UIViewController {
     
     let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "shareBlue")!, highlightedImage: UIImage(named: "shareBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
       //        menuButton.addButton(title: <#T##String#>, image: <#T##UIImage#>, highlightedImage: <#T##UIImage#>, backgroundImage: <#T##UIImage?#>, backgroundHighlightedImage: <#T##UIImage#>, action: <#T##(() -> ())?##(() -> ())?##() -> ()#>)
+      self.shareVideo()
       
-      print("trying to share video")
-      
-      
-      if let videoToShare =  self.currentSKVideoNode?.name,
-        
-        let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
-        let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
-        self.present(activityViewController, animated: true)
-        
-      }
-      else {
-        self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
-      }
     }
     let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starBlue")!, highlightedImage: UIImage(named: "starBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
       print("video saved")
@@ -323,9 +328,8 @@ class ViewController: UIViewController {
     let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "tableBlue")!, highlightedImage: UIImage(named: "tableBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
       self.checkForLoggedUser()
       if self.userIsLoggedIn {
-        let destinationVC = SavedVideosViewController()
-        self.show(destinationVC, sender: self)
-        
+        let savedVideosVC = SavedVideosViewController()
+        self.navigationController?.pushViewController(savedVideosVC, animated: true)
       } else {
         self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
       }
@@ -412,27 +416,6 @@ extension ViewController: ARSCNViewDelegate {
         currentSKVideoNode = currentVideoPlaying
       }
     }
-  }
-}
-
-extension ViewController: ARSessionDelegate {
-  func session(_ session: ARSession, didUpdate frame: ARFrame) {
-    //        let image = CIImage(cvPixelBuffer: frame.capturedImage)
-    //        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
-    //        guard let features = detector?.features(in: image) else { return }
-    
-    //        for feature in features as! [CIQRCodeFeature] {
-    //            if let message = feature.messageString {
-    //                let url = URL(string: message)
-    //                let position = SCNVector3(frame.camera.transform.columns.3.x,
-    //                                          frame.camera.transform.columns.3.y,
-    //                                          frame.camera.transform.columns.3.z)
-    //                print(position)
-    //                print(message)
-    //                print(url)
-    //
-    //            }
-    //        }
   }
 }
 

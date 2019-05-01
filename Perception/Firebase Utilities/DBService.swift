@@ -307,17 +307,6 @@ extension DatabaseService: SavedVideoService {
           }
         }
     }
-    
-    
-  }
-  
-  func deleteVideo(video: SavedVideo, user:PerceptionUser) {
-    savedVideosCollection(user: user).document(video.id)
-      .delete { (error) in
-        if let error = error {
-          self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
-        }
-    }
   }
   
   func fetchVideo(video: SavedVideo, user:PerceptionUser) {
@@ -337,12 +326,17 @@ extension DatabaseService: SavedVideoService {
         self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
       } else if let snapshot = snapshot {
         let videos = snapshot.documents.compactMap { (document) in
-          SavedVideo(document: document.data(), id: document.documentID)
+          SavedVideo(document: document.data(), id: document.documentID)    
         }
-        
-        self.savedVideoServiceDelegate!.savedVideoService(self, didReceiveVideos: videos)
       }
     }
   }
-  
+  func deleteVideo(video: SavedVideo, user:PerceptionUser) {
+    savedVideosCollection(user: user).document(video.id)
+      .delete { (error) in
+        if let error = error {
+          self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+        }
+    }
+  }
 }
