@@ -12,7 +12,10 @@ class SavedVideosViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+<<<<<<< HEAD
     title = "My Favorite Videos"
+=======
+>>>>>>> a8e8b4bed56231306f7aab74f9e2e17d8e6c1363
     setupUI()
     setupDelegates()
     fetchVideos()
@@ -57,6 +60,7 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
                            for: indexPath) as? FavoriteCollectionCell,
       let url = URL(string: video.urlString) else { return UICollectionViewCell() }
     let player = AVPlayer(url: url)
+<<<<<<< HEAD
     cell.titleForSavedFavoriteVideo.text = video.name
     cell.descriptionForSavedFavoriteVideo.text =
     """
@@ -66,6 +70,10 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
 //    cell.layer.borderColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
 //    cell.layer.borderWidth = 0.5
 //    cell.layer.cornerRadius = 3
+=======
+    cell.textLabel.text = video.name
+    cell.videoView.player = player
+>>>>>>> a8e8b4bed56231306f7aab74f9e2e17d8e6c1363
     return cell
   }
   
@@ -76,7 +84,10 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
       let playerVC = AVPlayerViewController()
       present(playerVC, animated: true) {
         playerVC.player = player
+<<<<<<< HEAD
         playerVC.player?.play()
+=======
+>>>>>>> a8e8b4bed56231306f7aab74f9e2e17d8e6c1363
       }
     }
   }
@@ -103,4 +114,3 @@ extension SavedVideosViewController: SavedVideoServiceDelegate {
     favoriteVideos.myCollectionView.reloadData()
   }
 }
-
