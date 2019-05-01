@@ -367,7 +367,7 @@ class ViewController: UIViewController {
     menuButton.willPresentMenuItems = { (menu) -> Void in
       menuItems.forEach{ $0.isHidden = false }
     }
-    mainView.addSubview(menuButton)
+    view.addSubview(menuButton)
   }
   
 }
