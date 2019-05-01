@@ -3,7 +3,15 @@
 import UIKit
 import AVFoundation
 
+enum TextViewState {
+  case expanded
+  case contracted
+}
+
 class FavoriteCollectionCell: UICollectionViewCell {
+  
+  var textViewState: TextViewState = .contracted
+  
   lazy var imageView: UIImageView = {
     let iv = UIImageView()
     return iv
@@ -58,11 +66,26 @@ class FavoriteCollectionCell: UICollectionViewCell {
   }
   
   @objc private func buttonToExpandCellPressed() {
-    descriptionForSavedFavoriteVideo.sizeToFit()
-    expandTextViewButton.setImage(UIImage(named: "up"), for: .normal)
+    
+    switch textViewState {
+    case .contracted:
+      expandTextViewButton.setImage(UIImage(named: "down"), for: .normal)
+      textViewState = .expanded
+      descriptionForSavedFavoriteVideo.sizeToFit()
+
+    case .expanded:
+      expandTextViewButton.setImage(UIImage(named: "up"), for: .normal)
+      textViewState = .contracted
+    }
+
+    
     
 
+
   }
+  
+  
+  
   
 }
 
