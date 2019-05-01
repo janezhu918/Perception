@@ -64,7 +64,7 @@ class ViewController: UIViewController {
   }
   
   private func setupSaveGesture() {
-    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(shareVideo))
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(saveVideo))
     swipeUpGesture.direction = .right
     view.addGestureRecognizer(swipeUpGesture)
   }
