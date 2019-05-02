@@ -328,6 +328,7 @@ extension DatabaseService: SavedVideoService {
         let videos = snapshot.documents.compactMap { (document) in
           SavedVideo(document: document.data(), id: document.documentID)    
         }
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideos: videos)
       }
     }
   }
