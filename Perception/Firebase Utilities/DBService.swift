@@ -17,7 +17,7 @@ protocol ImageService {
   func fetchImage(imageName:String,
                   completion:@escaping(Result<PerceptionImage>) -> Void)
   func fetchImages(contextID:String,
-                  completion:@escaping(Result<[PerceptionImage]>) -> Void)
+                   completion:@escaping(Result<[PerceptionImage]>) -> Void)
   func updateImage(image:PerceptionImage, newValues:[String:Any],
                    completion:@escaping(Result<Bool>) -> Void)
   func generateImageId() -> String
@@ -228,121 +228,116 @@ extension DatabaseService: VideoService {
 
 
 extension DatabaseService {
-    static public func createPerceptionUser(perceptionUser: PerceptionUser, completion: @escaping (Error?) -> Void) {
-        firestoreDB
-            .collection(FirebaseCollections.users.rawValue)
-            .document(perceptionUser.userUID)
-            .setData([PerceptionUsersCollectionKeys.userUID : perceptionUser.userUID,
-                      PerceptionUsersCollectionKeys.email : perceptionUser.email,
-                      PerceptionUsersCollectionKeys.displayName : perceptionUser.displayName ?? "",
-                      PerceptionUsersCollectionKeys.firstName : perceptionUser.firstName ?? "",
-                      PerceptionUsersCollectionKeys.lastName : perceptionUser.lastName ?? "",
-                      PerceptionUsersCollectionKeys.photoURL : perceptionUser.photoURL ?? ""]) { (error) in
-                        if let error = error {
-                            completion(error)
-                        } else {
-                            completion(nil)
-                        }
-        }
-    }
-    
-    static public func updatePerceptionUser(perceptionUser: PerceptionUser, completion: @escaping (Error?) -> Void) {
-        firestoreDB
-        .collection(FirebaseCollections.users.rawValue)
-        .document(perceptionUser.userUID)
-            .updateData([PerceptionUsersCollectionKeys.displayName : perceptionUser.displayName ?? "",
-                         PerceptionUsersCollectionKeys.firstName : perceptionUser.firstName ?? "",
-                         PerceptionUsersCollectionKeys.lastName : perceptionUser.lastName ?? "",
-                         PerceptionUsersCollectionKeys.gender : perceptionUser.gender ?? "",
-                         PerceptionUsersCollectionKeys.birthday : perceptionUser.birthday ?? "",
-                         PerceptionUsersCollectionKeys.zipCode : perceptionUser.zipCode ?? ""]) { (error) in
-                if let error = error {
+  static public func createPerceptionUser(perceptionUser: PerceptionUser, completion: @escaping (Error?) -> Void) {
+    firestoreDB
+      .collection(FirebaseCollections.users.rawValue)
+      .document(perceptionUser.userUID)
+      .setData([PerceptionUsersCollectionKeys.userUID : perceptionUser.userUID,
+                PerceptionUsersCollectionKeys.email : perceptionUser.email,
+                PerceptionUsersCollectionKeys.displayName : perceptionUser.displayName ?? "",
+                PerceptionUsersCollectionKeys.firstName : perceptionUser.firstName ?? "",
+                PerceptionUsersCollectionKeys.lastName : perceptionUser.lastName ?? "",
+                PerceptionUsersCollectionKeys.photoURL : perceptionUser.photoURL ?? ""]) { (error) in
+                  if let error = error {
                     completion(error)
-                } else {
+                  } else {
                     completion(nil)
-                }
+                  }
+    }
+  }
+  
+  static public func updatePerceptionUser(perceptionUser: PerceptionUser, completion: @escaping (Error?) -> Void) {
+    firestoreDB
+      .collection(FirebaseCollections.users.rawValue)
+      .document(perceptionUser.userUID)
+      .updateData([PerceptionUsersCollectionKeys.displayName : perceptionUser.displayName ?? "",
+                   PerceptionUsersCollectionKeys.firstName : perceptionUser.firstName ?? "",
+                   PerceptionUsersCollectionKeys.lastName : perceptionUser.lastName ?? "",
+                   PerceptionUsersCollectionKeys.gender : perceptionUser.gender ?? "",
+                   PerceptionUsersCollectionKeys.birthday : perceptionUser.birthday ?? "",
+                   PerceptionUsersCollectionKeys.zipCode : perceptionUser.zipCode ?? ""]) { (error) in
+                    if let error = error {
+                      completion(error)
+                    } else {
+                      completion(nil)
+                    }
+    }
+  }
+  
+  static public func fetchPerceptionUser(uid: String, completion: @escaping (PerceptionUser?, Error?) -> Void) {
+    firestoreDB
+      .collection(FirebaseCollections.users.rawValue)
+      .whereField("userUID", isEqualTo: uid)
+      .getDocuments { (snapshot, error) in
+        if let error = error {
+          completion(nil, error)
+        } else if let snapshot = snapshot?.documents.first {
+          let perceptionUser = PerceptionUser(dict: snapshot.data())
+          completion(perceptionUser, nil)
         }
     }
-    
-    static public func fetchPerceptionUser(uid: String, completion: @escaping (PerceptionUser?, Error?) -> Void) {
-        firestoreDB
-            .collection(FirebaseCollections.users.rawValue)
-            .whereField("userUID", isEqualTo: uid)
-            .getDocuments { (snapshot, error) in
-                if let error = error {
-                    completion(nil, error)
-                } else if let snapshot = snapshot?.documents.first {
-                    let perceptionUser = PerceptionUser(dict: snapshot.data())
-                    completion(perceptionUser, nil)
-                }
-        }
-    }
+  }
 }
 
 extension DatabaseService: SavedVideoService {
-    
-    func generateSavedVideoId(user:PerceptionUser) -> String {
-        return savedVideosCollection(user: user).document().documentID
-    }
-    
-    func storeVideo(video: SavedVideo, user:PerceptionUser,
-                    completion: @escaping (Result<Bool>) -> Void) {
-      savedVideosCollection(user: user)
-        .whereField(SavedVideoCollectionKeys.name, isEqualTo: video.name)
-        .whereField(SavedVideoCollectionKeys.urlString, isEqualTo: video.urlString)
-        .getDocuments { (snapshot, error) in
-          if let error = error {
-            completion(.failure(error: error))
-          } else if let snapshot = snapshot {
-            guard snapshot.documents.count == 0 else {
-              let duplicateError = FirebaseError.duplicateError("Video with name \(video.name) exists")
-              completion(.failure(error: duplicateError))
-              return
-            }
-            self.savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
-              if let error = error {
-                completion(.failure(error: error))
-              }
-              completion(.success(true))
-            }
-          }
-      }
-      
-      
+  
+  func generateSavedVideoId(user:PerceptionUser) -> String {
+    return savedVideosCollection(user: user).document().documentID
   }
-    
-    func deleteVideo(video: SavedVideo, user:PerceptionUser) {
-        savedVideosCollection(user: user).document(video.id)
-            .delete { (error) in
-                if let error = error {
-                    self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
-                }
-        }
-    }
-    
-    func fetchVideo(video: SavedVideo, user:PerceptionUser) {
-        savedVideosCollection(user: user).document(video.id).getDocument { (snapshot, error) in
+  
+  func storeVideo(video: SavedVideo, user:PerceptionUser,
+                  completion: @escaping (Result<Bool>) -> Void) {
+    savedVideosCollection(user: user)
+      .whereField(SavedVideoCollectionKeys.name, isEqualTo: video.name)
+      .whereField(SavedVideoCollectionKeys.urlString, isEqualTo: video.urlString)
+      .getDocuments { (snapshot, error) in
+        if let error = error {
+          completion(.failure(error: error))
+        } else if let snapshot = snapshot {
+          guard snapshot.documents.count == 0 else {
+            let duplicateError = FirebaseError.duplicateError("Video with name \(video.name) exists")
+            completion(.failure(error: duplicateError))
+            return
+          }
+          self.savedVideosCollection(user: user).addDocument(data: video.firebaseRepresentation) { (error) in
             if let error = error {
-                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
-            } else if let snapshot = snapshot, let videoData = snapshot.data() {
-                let video = SavedVideo(document: videoData, id: snapshot.documentID)
-                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideo: video)
+              completion(.failure(error: error))
             }
+            completion(.success(true))
+          }
         }
     }
-    
-    func fetchUserSavedVideos(user:PerceptionUser) {
-        savedVideosCollection(user: user).addSnapshotListener { (snapshot, error) in
-            if let error = error {
-                self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
-            } else if let snapshot = snapshot {
-                let videos = snapshot.documents.compactMap { (document) in
-                    SavedVideo(document: document.data(), id: document.documentID)
-                }
-                
-                self.savedVideoServiceDelegate!.savedVideoService(self, didReceiveVideos: videos)
-            }
+  }
+  
+  func fetchVideo(video: SavedVideo, user:PerceptionUser) {
+    savedVideosCollection(user: user).document(video.id).getDocument { (snapshot, error) in
+      if let error = error {
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+      } else if let snapshot = snapshot, let videoData = snapshot.data() {
+        let video = SavedVideo(document: videoData, id: snapshot.documentID)
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideo: video)
+      }
+    }
+  }
+  
+  func fetchUserSavedVideos(user:PerceptionUser) {
+    savedVideosCollection(user: user).addSnapshotListener { (snapshot, error) in
+      if let error = error {
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
+      } else if let snapshot = snapshot {
+        let videos = snapshot.documents.compactMap { (document) in
+          SavedVideo(document: document.data(), id: document.documentID)
+          self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideos: videos)
+        }
+      }
+    }
+  }
+  func deleteVideo(video: SavedVideo, user:PerceptionUser) {
+    savedVideosCollection(user: user).document(video.id)
+      .delete { (error) in
+        if let error = error {
+          self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveError: error)
         }
     }
-    
+  }
 }
