@@ -12,7 +12,6 @@ class SavedVideosViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "My Favorite Videos"
     setupUI()
     setupDelegates()
     fetchVideos()
@@ -57,15 +56,8 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
                            for: indexPath) as? FavoriteCollectionCell,
       let url = URL(string: video.urlString) else { return UICollectionViewCell() }
     let player = AVPlayer(url: url)
-    cell.titleForSavedFavoriteVideo.text = video.name
-    cell.descriptionForSavedFavoriteVideo.text =
-    """
-    In the Dark is an American television comedy-drama series, created by Corinne Kingsbury for The CW, which debuted as a mid-season entry during the 2018–19 television season. On January 30, 2018, The CW ordered the show to pilot, with Michael Showalter set to direct. In May 2018, the show received a series order. The series premiered on April 4, 2019. In April 2019, the series was renewed for a second season.
-    """
+    cell.textLabel.text = video.name
     cell.videoView.player = player
-//    cell.layer.borderColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
-//    cell.layer.borderWidth = 0.5
-//    cell.layer.cornerRadius = 3
     return cell
   }
   
@@ -76,7 +68,6 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
       let playerVC = AVPlayerViewController()
       present(playerVC, animated: true) {
         playerVC.player = player
-        playerVC.player?.play()
       }
     }
   }
@@ -86,11 +77,7 @@ extension SavedVideosViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: UIScreen.main.bounds.width,
                   height: UIScreen.main.bounds.height / 2)
-
   }
-  
-  
-  
 }
 
 extension SavedVideosViewController: SavedVideoServiceDelegate {
@@ -103,4 +90,3 @@ extension SavedVideosViewController: SavedVideoServiceDelegate {
     favoriteVideos.myCollectionView.reloadData()
   }
 }
-
