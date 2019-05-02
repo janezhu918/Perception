@@ -15,13 +15,12 @@
 		1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
 		1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808D225B96A20071FA83 /* inTheDark.mp4 */; };
 		1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */; };
-		1E2E7E0F225FC89E007D0CE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E2E7E0E225FC89E007D0CE4 /* GoogleService-Info.plist */; };
 		1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */; };
 		1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */; };
 		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
 		1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8099225BAFF00071FA83 /* VideoView.swift */; };
 		1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */; };
-		1EFE87812277A82400CD71FF /* orbitron-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1EFE87802277A82400CD71FF /* orbitron-light.otf */; };
+		1ED491CB227A9587002230B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1ED491CA227A9587002230B2 /* GoogleService-Info.plist */; };
 		52A6DA2F8AF8D6217BD24C70 /* Pods_PerceptionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E56D28C1E6BA3B56FFC751 /* Pods_PerceptionTests.framework */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
@@ -71,7 +70,6 @@
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
-		1E2E7E0E225FC89E007D0CE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloackAndDagger.mp4; sourceTree = "<group>"; };
 		1E8B808D225B96A20071FA83 /* inTheDark.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = inTheDark.mp4; sourceTree = "<group>"; };
 		1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = loveDeathAndRobots.mp4; sourceTree = "<group>"; };
@@ -80,6 +78,7 @@
 		1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionImageCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionVideoCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8099225BAFF00071FA83 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		1ED491CA227A9587002230B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1EFE87802277A82400CD71FF /* orbitron-light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "orbitron-light.otf"; path = "../../../../Downloads/orbitron-light.otf"; sourceTree = "<group>"; };
 		5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.debug.xcconfig"; sourceTree = "<group>"; };
 		72061BAFBA39F37C10299E49 /* Pods-PerceptionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -197,7 +196,7 @@
 				A5B411C32257F00E006E14F7 /* Supporting Files */,
 				A507ECDD225654EF009B94A9 /* Main.storyboard */,
 				1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */,
-				1E2E7E0E225FC89E007D0CE4 /* GoogleService-Info.plist */,
+				1ED491CA227A9587002230B2 /* GoogleService-Info.plist */,
 				A507ECE5225654F0009B94A9 /* Info.plist */,
 			);
 			path = Perception;
@@ -406,15 +405,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */,
-				1E2E7E0F225FC89E007D0CE4 /* GoogleService-Info.plist in Resources */,
 				1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */,
+				1ED491CB227A9587002230B2 /* GoogleService-Info.plist in Resources */,
 				1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A599B0B9226E579D00615F4B /* perception.mp4 in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
-				1EFE87832277DB4300CD71FF /* orbitron-light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,7 +785,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.perceptionTestAppID.pursuit;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.perception.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = PerceptionTestAppIDDevProfile;
 				SWIFT_VERSION = 4.2;
@@ -808,7 +806,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.perceptionTestAppID.pursuit;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.perception.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = PerceptionTestAppIDDevProfile;
 				SWIFT_VERSION = 4.2;
