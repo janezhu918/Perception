@@ -17,6 +17,8 @@ target 'Perception' do
   perception_pods
   pod 'paper-onboarding'
   pod 'ExpandingMenu', '~> 0.4'
+  pod 'Fabric', '~> 1.9.0'
+  pod 'Crashlytics', '~> 3.12.0'
 end
 
 target 'PerceptionTests' do

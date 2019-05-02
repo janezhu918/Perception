@@ -10,9 +10,9 @@
 		1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */; };
 		1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */; };
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
+		1272FB7C2278B1A500C3C7E2 /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272FB7B2278B1A500C3C7E2 /* RotationSetup.swift */; };
 		127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */; };
 		127F854A2265191900DEC05D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85492265191900DEC05D /* ProfileView.swift */; };
-		1E0662C6227238C9004D4F58 /* perception.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E0662C5227238C9004D4F58 /* perception.mp4 */; };
 		1E0662C822723906004D4F58 /* orbitron-light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1E0662C722723906004D4F58 /* orbitron-light.otf */; };
 		1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
 		1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808D225B96A20071FA83 /* inTheDark.mp4 */; };
@@ -49,7 +49,7 @@
 		A5B411BC2257EE1C006E14F7 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BB2257EE1C006E14F7 /* DBService.swift */; };
 		A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BD2257EE24006E14F7 /* StorageService.swift */; };
 		B2E4EECC3D5BDA5239963CEE /* Pods_Perception.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */; };
-		D790EEEA22777F27007C1DDF /* PerceptionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D790EEE922777F27007C1DDF /* PerceptionMenuButton.swift */; };
+		D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */; };
 		D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */; };
 		D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +68,7 @@
 		1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1211DAC9225D34F200D40F51 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		1272FB7B2278B1A500C3C7E2 /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RotationSetup.swift; path = "../../../../../Desktop/Perception/Perception/Extensions/UIViewController Extensions/RotationSetup.swift"; sourceTree = "<group>"; };
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,7 +112,7 @@
 		A5B411BB2257EE1C006E14F7 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		A5B411BD2257EE24006E14F7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.release.xcconfig"; sourceTree = "<group>"; };
-		D790EEE922777F27007C1DDF /* PerceptionMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionMenuButton.swift; sourceTree = "<group>"; };
+		D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionMenuButton.swift; sourceTree = "<group>"; };
 		D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionTests.swift; sourceTree = "<group>"; };
@@ -184,8 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */,
-				1E0662C5227238C9004D4F58 /* perception.mp4 */,
 				1E8B808D225B96A20071FA83 /* inTheDark.mp4 */,
+				1272FB7D2278B38E00C3C7E2 /* perception.mp4 */,
 				1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */,
 				D7A1C7832264E09A00E33838 /* File Manager Helpers */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
@@ -210,11 +211,11 @@
 				A5B411962257EC7E006E14F7 /* LoginView.swift */,
 				A5B411982257EC85006E14F7 /* SavedVideos.swift */,
 				A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */,
+				D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */,
 				1211DAC9225D34F200D40F51 /* OnboardingView.swift */,
 				1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */,
 				1E8B8099225BAFF00071FA83 /* VideoView.swift */,
 				127F85492265191900DEC05D /* ProfileView.swift */,
-				D790EEE922777F27007C1DDF /* PerceptionMenuButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B411AC2257EDB4006E14F7 /* UIViewController+Alerts.swift */,
+				1272FB7B2278B1A500C3C7E2 /* RotationSetup.swift */,
 			);
 			path = "UIViewController Extensions";
 			sourceTree = "<group>";
@@ -331,6 +333,7 @@
 				A507ECD1225654EF009B94A9 /* Frameworks */,
 				A507ECD2225654EF009B94A9 /* Resources */,
 				C18275975B15E56BFBA49709 /* [CP] Embed Pods Frameworks */,
+				D790EEEB2277BE47007C1DDF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -559,6 +562,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Perception/Pods-Perception-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D790EEEB2277BE47007C1DDF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" f8005ae8e7325c1c499c40b6cc0702ecbcf3d1fa ce57ff1aa8c0f14e3314df419c3a4e4f22d2977716e44d9127f2f063efd3c191\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -585,6 +606,7 @@
 				A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */,
 				1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */,
 				127F854A2265191900DEC05D /* ProfileView.swift in Sources */,
+				1272FB7C2278B1A500C3C7E2 /* RotationSetup.swift in Sources */,
 				A5B411A42257ECF2006E14F7 /* VideoDetailViewController.swift in Sources */,
 				A5B411B02257EDCA006E14F7 /* Date+Extensions.swift in Sources */,
 				A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */,
@@ -597,7 +619,7 @@
 				A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */,
 				1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */,
 				A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */,
-				D790EEEA22777F27007C1DDF /* PerceptionMenuButton.swift in Sources */,
+				D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
