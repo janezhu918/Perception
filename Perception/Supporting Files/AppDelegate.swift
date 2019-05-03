@@ -50,10 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = mainStoryBoard.instantiateViewController(withIdentifier: "ViewController")
       //  let mainVC = ViewController()
-       // let navForMainVC = UINavigationController(rootViewController: mainVC)
+        let navForMainVC = UINavigationController(rootViewController: mainVC)
         let demoCompleted = userData.bool(forKey: Constants.DemoCompletedUserDefaultsKey)
         if demoCompleted {
-            self.window?.rootViewController = mainVC
+            self.window?.rootViewController = navForMainVC
         } else {
             self.window?.rootViewController = onboardingVC
         }
