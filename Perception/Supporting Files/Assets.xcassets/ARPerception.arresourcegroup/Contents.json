@@ -5,6 +5,9 @@
   },
   "resources" : [
     {
+      "filename" : "bigmouths.arreferenceimage"
+    },
+    {
       "filename" : "cloackAndDagger.arreferenceimage"
     },
     {
@@ -14,13 +17,22 @@
       "filename" : "inTheDark.arreferenceimage"
     },
     {
+      "filename" : "jason.arreferenceimage"
+    },
+    {
       "filename" : "loveDeathAndRobots.arreferenceimage"
     },
     {
-      "filename" : "perception.arreferenceimage"
+      "filename" : "maniac-1.arreferenceimage"
     },
     {
-      "filename" : "Twitter.arreferenceimage"
+      "filename" : "maniac.arreferenceimage"
+    },
+    {
+      "filename" : "pursuit.arreferenceimage"
+    },
+    {
+      "filename" : "starwars.arreferenceimage"
     }
   ]
 }
