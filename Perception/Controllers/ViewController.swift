@@ -4,6 +4,7 @@ import ARKit
 import ExpandingMenu
 import AVKit
 import Kingfisher
+import ProgressHUD
 
 class CustomSKVideoNode: SKVideoNode {
     public var videoPlayer: AVPlayer?
@@ -45,13 +46,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         fetchImages()
         fetchVideos()
+        authservice.authserviceSignOutDelegate = self
         self.navigationController?.navigationBar.isHidden = true
       //  view.addSubview(mainView)
       //  view.addSubview(sceneView)
         setupDoubleTapGesture()
         addExpandingMenu()
         self.sceneView.delegate = self
-        self.sceneView.session.delegate = self
         self.sceneView.showsStatistics = false
 //        mainView.sceneView.delegate = self
 //        mainView.sceneView.session.delegate = self
@@ -441,29 +442,19 @@ extension ViewController: ARSCNViewDelegate {
     }
 }
 
-extension ViewController: ARSessionDelegate {
-    func session(_ session: ARSession, didUpdate frame: ARFrame) {
-//        let image = CIImage(cvPixelBuffer: frame.capturedImage)
-//        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
-//        guard let features = detector?.features(in: image) else { return }
-      
-//        for feature in features as! [CIQRCodeFeature] {
-//            if let message = feature.messageString {
-//                let url = URL(string: message)
-//                let position = SCNVector3(frame.camera.transform.columns.3.x,
-//                                          frame.camera.transform.columns.3.y,
-//                                          frame.camera.transform.columns.3.z)
-//                print(position)
-//                print(message)
-//                print(url)
-//
-//            }
-//        }
-    }
-}
-
 extension ViewController: LoginViewControllerDelegate {
     func checkForLoggedUser(_ logged: Bool) {
         userIsLoggedIn = true
     }
+}
+
+extension ViewController: AuthServiceSignOutDelegate {
+  func didSignOutWithError(_ authservice: AuthService, error: Error) {
+    showAlert(title: "Error", message: error.localizedDescription)
+  }
+  
+  func didSignOut(_ authservice: AuthService) {
+    showAlert(title: "Signed Out", message: "Signed Out Successfully.")
+    ProgressHUD.dismiss()
+  }
 }
