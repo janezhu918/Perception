@@ -5,22 +5,31 @@
   },
   "resources" : [
     {
-      "filename" : "cloackAndDagger.arreferenceimage"
+      "filename" : "bigmouths.arreferenceimage"
     },
     {
-      "filename" : "facebook.arreferenceimage"
+      "filename" : "bigmouths2.arreferenceimage"
+    },
+    {
+      "filename" : "cloackAndDagger.arreferenceimage"
     },
     {
       "filename" : "inTheDark.arreferenceimage"
     },
     {
+      "filename" : "jason.arreferenceimage"
+    },
+    {
       "filename" : "loveDeathAndRobots.arreferenceimage"
     },
     {
-      "filename" : "perception.arreferenceimage"
+      "filename" : "maniac.arreferenceimage"
     },
     {
-      "filename" : "Twitter.arreferenceimage"
+      "filename" : "pursuit.arreferenceimage"
+    },
+    {
+      "filename" : "starwars.arreferenceimage"
     }
   ]
 }
