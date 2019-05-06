@@ -327,8 +327,8 @@ extension DatabaseService: SavedVideoService {
       } else if let snapshot = snapshot {
         let videos = snapshot.documents.compactMap { (document) in
           SavedVideo(document: document.data(), id: document.documentID)
-          self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideos: videos)
         }
+        self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideos: videos)
       }
     }
   }
