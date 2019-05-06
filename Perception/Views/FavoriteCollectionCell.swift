@@ -57,7 +57,7 @@ class FavoriteCollectionCell: UICollectionViewCell {
   }
   
   func commonInit() {
-    backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+    backgroundColor = #colorLiteral(red: 0.1294117647, green: 0.2039215686, blue: 0.3450980392, alpha: 1)
     favoriteCellConstraints()
   }
   
@@ -70,12 +70,12 @@ class FavoriteCollectionCell: UICollectionViewCell {
     switch sizeCell {
     case .contracted:
       expandTextViewButton.setImage(UIImage(named: "down"), for: .normal)
+      descriptionForSavedFavoriteVideo.adjustsFontForContentSizeCategory = true
       sizeCell = .expanded
-      
     case .expanded:
       expandTextViewButton.setImage(UIImage(named: "up"), for: .normal)
+      descriptionForSavedFavoriteVideo.adjustsFontForContentSizeCategory = false
       sizeCell = .contracted
-
     }
   }
   

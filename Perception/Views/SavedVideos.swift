@@ -4,7 +4,7 @@ class SavedVideos: UIView {
   
   lazy var myCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize.init(width: 150, height: 100)
+    layout.itemSize = CGSize.init(width: 100, height: 100)
     layout.scrollDirection = .vertical
     layout.sectionInset = UIEdgeInsets.init(top: 3, left: 20, bottom: 3, right: 20)
     let cv = UICollectionView.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
