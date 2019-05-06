@@ -4,6 +4,7 @@ import ARKit
 import ExpandingMenu
 import AVKit
 import Kingfisher
+import ProgressHUD
 
 class CustomSKVideoNode: SKVideoNode {
     public var videoPlayer: AVPlayer?
@@ -46,13 +47,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         fetchImages()
         fetchVideos()
+        authservice.authserviceSignOutDelegate = self
         self.navigationController?.navigationBar.isHidden = true
       //  view.addSubview(mainView)
       //  view.addSubview(sceneView)
-        setupSwipeUpGesture()
+        setupDoubleTapGesture()
         addExpandingMenu()
         self.sceneView.delegate = self
-        self.sceneView.session.delegate = self
         self.sceneView.showsStatistics = false
 //        mainView.sceneView.delegate = self
 //        mainView.sceneView.session.delegate = self
@@ -82,10 +83,10 @@ class ViewController: UIViewController {
         }
     }
   
-    private func setupSwipeUpGesture() {
-        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
-        swipeUpGesture.direction = .up
-        view.addGestureRecognizer(swipeUpGesture)
+    private func setupDoubleTapGesture() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
+        doubleTapGesture.numberOfTapsRequired = 2
+        view.addGestureRecognizer(doubleTapGesture)
     }
   
     private func checkForLoggedUser() {
@@ -96,18 +97,18 @@ class ViewController: UIViewController {
         }
     }
   
-    @objc private func swipeUp() {
+    @objc private func doubleTap() {
         //TODO: add up view that displays only the video
         let playerVC = AVPlayerViewController()
         if let currentSKVideoNode = currentSKVideoNode {
             if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
                 playerVC.player = currentVideoPlayer
+                let currentTime = currentVideoPlayer.currentTime()
                 present(playerVC, animated: true) {
-                    playerVC.player!.play()
+                    playerVC.player?.play()
+                    playerVC.player?.seek(to: currentTime)
                 }
             }
-            //TODO: need to debug. playerVC.player is not nil but won't play
-            // some : <AVPlayerItem: 0x282cf9e70, asset = <AVURLAsset: 0x282889aa0, URL = cloackAndDagger.mp4>>
         } else {
             print("no video to expand")
         }
@@ -438,29 +439,19 @@ extension ViewController: ARSCNViewDelegate {
     }
 }
 
-extension ViewController: ARSessionDelegate {
-    func session(_ session: ARSession, didUpdate frame: ARFrame) {
-//        let image = CIImage(cvPixelBuffer: frame.capturedImage)
-//        let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: nil)
-//        guard let features = detector?.features(in: image) else { return }
-      
-//        for feature in features as! [CIQRCodeFeature] {
-//            if let message = feature.messageString {
-//                let url = URL(string: message)
-//                let position = SCNVector3(frame.camera.transform.columns.3.x,
-//                                          frame.camera.transform.columns.3.y,
-//                                          frame.camera.transform.columns.3.z)
-//                print(position)
-//                print(message)
-//                print(url)
-//
-//            }
-//        }
-    }
-}
-
 extension ViewController: LoginViewControllerDelegate {
     func checkForLoggedUser(_ logged: Bool) {
         userIsLoggedIn = true
     }
+}
+
+extension ViewController: AuthServiceSignOutDelegate {
+  func didSignOutWithError(_ authservice: AuthService, error: Error) {
+    showAlert(title: "Error", message: error.localizedDescription)
+  }
+  
+  func didSignOut(_ authservice: AuthService) {
+    showAlert(title: "Signed Out", message: "Signed Out Successfully.")
+    ProgressHUD.dismiss()
+  }
 }

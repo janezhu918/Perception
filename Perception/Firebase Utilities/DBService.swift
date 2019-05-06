@@ -329,7 +329,6 @@ extension DatabaseService: SavedVideoService {
           SavedVideo(document: document.data(), id: document.documentID)
         }
         self.savedVideoServiceDelegate?.savedVideoService(self, didReceiveVideos: videos)
-
       }
     }
   }

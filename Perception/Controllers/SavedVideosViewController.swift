@@ -75,8 +75,10 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
       let player = cell.videoView.player {
       let playerVC = AVPlayerViewController()
       present(playerVC, animated: true) {
+        let currentTime = player.currentTime()
         playerVC.player = player
         playerVC.player?.play()
+        playerVC.player?.seek(to: currentTime)
       }
     }
   }
