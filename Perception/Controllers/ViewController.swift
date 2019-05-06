@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
       //  view.addSubview(mainView)
       //  view.addSubview(sceneView)
-        setupSwipeUpGesture()
+        setupDoubleTapGesture()
         addExpandingMenu()
         self.sceneView.delegate = self
         self.sceneView.session.delegate = self
@@ -81,10 +81,10 @@ class ViewController: UIViewController {
         }
     }
   
-    private func setupSwipeUpGesture() {
-        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
-        swipeUpGesture.direction = .up
-        view.addGestureRecognizer(swipeUpGesture)
+    private func setupDoubleTapGesture() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
+        doubleTapGesture.numberOfTapsRequired = 2
+        view.addGestureRecognizer(doubleTapGesture)
     }
   
     private func checkForLoggedUser() {
@@ -95,18 +95,18 @@ class ViewController: UIViewController {
         }
     }
   
-    @objc private func swipeUp() {
+    @objc private func doubleTap() {
         //TODO: add up view that displays only the video
         let playerVC = AVPlayerViewController()
         if let currentSKVideoNode = currentSKVideoNode {
             if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
                 playerVC.player = currentVideoPlayer
+                let currentTime = currentVideoPlayer.currentTime()
                 present(playerVC, animated: true) {
-                    playerVC.player!.play()
+                    playerVC.player?.play()
+                    playerVC.player?.seek(to: currentTime)
                 }
             }
-            //TODO: need to debug. playerVC.player is not nil but won't play
-            // some : <AVPlayerItem: 0x282cf9e70, asset = <AVURLAsset: 0x282889aa0, URL = cloackAndDagger.mp4>>
         } else {
             print("no video to expand")
         }
