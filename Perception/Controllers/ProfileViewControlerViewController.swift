@@ -53,7 +53,7 @@ class ProfileViewControlerViewController: UIViewController {
         
         AppUtility.lockOrientation(.portrait)
         // Or to rotate and lock
-         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         
     }
     
@@ -62,11 +62,6 @@ class ProfileViewControlerViewController: UIViewController {
         
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
-    }
-    
-  
-    override var shouldAutorotate: Bool {
-        return false 
     }
     
     
