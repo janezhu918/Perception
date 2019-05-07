@@ -54,6 +54,7 @@
 		A5B411BC2257EE1C006E14F7 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BB2257EE1C006E14F7 /* DBService.swift */; };
 		A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BD2257EE24006E14F7 /* StorageService.swift */; };
 		B2E4EECC3D5BDA5239963CEE /* Pods_Perception.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */; };
+		D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D741FCE4228224BA003BD760 /* PlayerViewController.swift */; };
 		D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */; };
 		D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */; };
 		D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */; };
@@ -121,6 +122,7 @@
 		A5B411BB2257EE1C006E14F7 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		A5B411BD2257EE24006E14F7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.release.xcconfig"; sourceTree = "<group>"; };
+		D741FCE4228224BA003BD760 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionMenuButton.swift; sourceTree = "<group>"; };
 		D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				A507ECDB225654EF009B94A9 /* ViewController.swift */,
+				D741FCE4228224BA003BD760 /* PlayerViewController.swift */,
 				1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */,
 				A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */,
 				A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */,
@@ -637,6 +640,7 @@
 				1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */,
 				A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */,
 				D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */,
+				D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
