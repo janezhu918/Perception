@@ -26,7 +26,7 @@ class PerceptionTests: XCTestCase {
     let imageId = imageService.generateImageId()
     let videoId = videoService.generateVideoId()
     // ADD WIDTH AND NAME
-    let name = "jason"
+    let name = "starwars"
     let title = "OMG The New Star Wars!!!!!"
     let description = "Can't wait to see this movie!"
     
@@ -54,7 +54,7 @@ class PerceptionTests: XCTestCase {
               case .failure(error: let _): XCTFail()
               }
             })
-            let pImage = PerceptionImage(videoURLString: videoURL.absoluteString, name: name, id: imageId, urlString: imageURL.absoluteString, width: width, orientation: .up)
+            let pImage = PerceptionImage(videoURLString: storedVideoURL.absoluteString, name: name, id: imageId, urlString: imageURL.absoluteString, width: width, orientation: .up)
             imageService.storeImage(image: pImage, completion: { (result) in
               switch result {
               case .success(let success):
