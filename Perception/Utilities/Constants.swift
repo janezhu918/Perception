@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 class Constants {
     static let loginViewMessageSaveVideo = "⚠️ Please sign in to save video ⚠️"
@@ -10,4 +10,7 @@ class Constants {
         case myVideos
         case myProfile
     }
+    
+    static let savedVideoCollectionViewCellExpandedHeight: CGFloat = 375
+    static let savedVideoCollectionViewCellNonExpandedHeight: CGFloat = 275
 }
