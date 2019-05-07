@@ -17,9 +17,11 @@ class OnBoardingViewController: UIViewController {
     
     @objc func segueToMainVC() {
         UserDefaults.standard.set(false, forKey: "Show onboarding") // refarctor
-        let viewController = ViewController()
-        let navForVC = UINavigationController(rootViewController: viewController)
-        self.present(navForVC, animated: true)
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = mainStoryBoard.instantiateViewController(withIdentifier: "ViewController")
+        //  let mainVC = ViewController()
+        let navForMainVC = UINavigationController(rootViewController: mainVC)
+        self.present(navForMainVC, animated: true)
         
     }
     
