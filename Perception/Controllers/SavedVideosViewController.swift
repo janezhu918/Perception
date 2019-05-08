@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
 import AVKit
+import ProgressHUD
 
 class SavedVideosViewController: UIViewController {
     
@@ -10,12 +11,12 @@ class SavedVideosViewController: UIViewController {
         }
     }
 
-    private let favoriteVideos = SavedVideos()
+    private let savedVideoView = SavedVideos()
     private var savedVideoService: SavedVideoService = DatabaseService()
     private var authservice = AppDelegate.authservice
     private var perceptionUser: PerceptionUser?
     private var cellWidth: CGFloat {
-        return favoriteVideos.myCollectionView.frame.size.width
+        return savedVideoView.myCollectionView.frame.size.width
     }
     private var isExpanded = [Bool]()
     private var expandedHeight: CGFloat = Constants.savedVideoCollectionViewCellExpandedHeight
@@ -23,20 +24,21 @@ class SavedVideosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ProgressHUD.show("Loading Videos")
         setupUI()
         setupDelegates()
         fetchVideos()
     }
     
     private func setupDelegates(){
-        favoriteVideos.myCollectionView.delegate = self
-        favoriteVideos.myCollectionView.dataSource = self
+        savedVideoView.myCollectionView.delegate = self
+        savedVideoView.myCollectionView.dataSource = self
         savedVideoService.savedVideoServiceDelegate = self
     }
     
     private func setupUI(){
         navigationController?.navigationBar.isHidden = false
-        view.addSubview(favoriteVideos)
+        view.addSubview(savedVideoView)
     }
     
     private func fetchVideos(){
@@ -65,12 +67,13 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let video = savedVideos[indexPath.row]
-        guard let cell = favoriteVideos.myCollectionView
+        guard let cell = savedVideoView.myCollectionView
             .dequeueReusableCell(withReuseIdentifier: "FavoriteCell",
                                  for: indexPath) as? FavoriteCollectionCell,
             let url = URL(string: video.urlString) else { return UICollectionViewCell() }
         let player = AVPlayer(url: url)
-        cell.textLabel.text = video.name
+        cell.videoTitleLabel.text = video.title
+        cell.videoDescriptionLabel.text = video.description
         cell.videoView.player = player
         cell.indexPath = indexPath
         cell.delegate = self
@@ -78,7 +81,7 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let savedVideo = savedVideos[indexPath.row]
+//        let savedVideo = savedVideos[indexPath.row]
         if let cell = collectionView.cellForItem(at: indexPath) as? FavoriteCollectionCell,
             let player = cell.videoView.player {
             let playerVC = AVPlayerViewController()
@@ -93,14 +96,17 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
 
 extension SavedVideosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = UIScreen.main.bounds.width
-//        let height = UIScreen.main.bounds.height / 2
-        if isExpanded[indexPath.row] {
-            print("expanding cell")
-            return CGSize(width: cellWidth, height: expandedHeight)
-        } else {
-            return CGSize(width: cellWidth, height: nonExpandedHeight)
+        if let cell = collectionView.cellForItem(at: indexPath) as? FavoriteCollectionCell {
+            if isExpanded[indexPath.row] {
+                //MARK: right here, the label doesn't appear and disappear accordingly.
+                cell.videoDescriptionLabel.isHidden = false
+                return CGSize(width: cellWidth, height: expandedHeight)
+            } else {
+                cell.videoDescriptionLabel.isHidden = true
+                return CGSize(width: cellWidth, height: nonExpandedHeight)
+            }
         }
+        return CGSize(width: cellWidth, height: nonExpandedHeight)
     }
 }
 
@@ -111,23 +117,16 @@ extension SavedVideosViewController: SavedVideoServiceDelegate {
     
     func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideos videos: [SavedVideo]) {
         self.savedVideos = videos
-        favoriteVideos.myCollectionView.reloadData()
+        savedVideoView.myCollectionView.reloadData()
+        ProgressHUD.dismiss()
     }
 }
 
 extension SavedVideosViewController: FavoriteCollectionCellDelegate {
     func cellTapped(indexPath: IndexPath) {
-        print("tapped")
         isExpanded[indexPath.row] = !isExpanded[indexPath.row]
         UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.9, options: [.curveEaseInOut], animations: {
-            self.favoriteVideos.myCollectionView.reloadItems(at: [indexPath])
-        }) { (success) in
-            print("success")
-        }
-//        UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.9, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-//            self.collectionView.reloadItems(at: [indexPath])
-//        }, completion: { success in
-//            print("success")
-//        })
+            self.savedVideoView.myCollectionView.reloadItems(at: [indexPath])
+        })
     }
 }
