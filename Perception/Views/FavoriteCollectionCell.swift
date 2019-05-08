@@ -27,9 +27,8 @@ class FavoriteCollectionCell: UICollectionViewCell {
     
     public lazy var videoDescriptionLabel: UILabel = {
         let videoDescriptionLabel = UILabel()
-//        videoDescriptionLabel.isHidden = true
+        videoDescriptionLabel.numberOfLines = 0
         videoDescriptionLabel.textColor = Constants.perceptionGrayColor
-        videoDescriptionLabel.text = "Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing"
         return videoDescriptionLabel
     }()
     
@@ -49,7 +48,7 @@ class FavoriteCollectionCell: UICollectionViewCell {
         textLabel.text = "Your videos"
         textLabel.textAlignment = .center
         textLabel.textColor = .white
-        textLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        textLabel.font = UIFont.boldSystemFont(ofSize: 20)
         return textLabel
     }()
     
@@ -73,13 +72,6 @@ class FavoriteCollectionCell: UICollectionViewCell {
     }
     
     public func cellConstrains() {
-        videoView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            videoView.topAnchor.constraint(equalTo: videoTitleLabel.bottomAnchor, constant: -5),
-            videoView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
-            videoView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.66),
-            videoView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor)])
-        
         videoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             videoTitleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
@@ -87,14 +79,22 @@ class FavoriteCollectionCell: UICollectionViewCell {
             videoTitleLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11),
             videoTitleLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11)])
         
+        videoView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            videoView.topAnchor.constraint(equalTo: videoTitleLabel.bottomAnchor, constant: -18),
+            videoView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
+            videoView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.66),
+            videoView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor)])
+        
         expandingButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             expandingButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
-            expandingButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -11)])
+            expandingButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)])
         
         videoDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        videoDescriptionLabel.clipsToBounds = true
         NSLayoutConstraint.activate([
-            videoDescriptionLabel.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 5),
+            videoDescriptionLabel.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 15),
             videoDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
             videoDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11),
 //            videoDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11)
