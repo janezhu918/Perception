@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120698742283810400979CFC /* messageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120698732283810400979CFC /* messageViews.swift */; };
 		1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */; };
 		1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */; };
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120698732283810400979CFC /* messageViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageViews.swift; sourceTree = "<group>"; };
 		1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1211DAC9225D34F200D40F51 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B411932257EC45006E14F7 /* Main.swift */,
+				120698732283810400979CFC /* messageViews.swift */,
 				A5B411962257EC7E006E14F7 /* LoginView.swift */,
 				A5B411982257EC85006E14F7 /* SavedVideos.swift */,
 				A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */,
@@ -615,6 +618,7 @@
 				1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */,
 				A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */,
 				A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */,
+				120698742283810400979CFC /* messageViews.swift in Sources */,
 				127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */,
 				1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */,
 				A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */,
