@@ -12,17 +12,25 @@ class FavoriteCollectionCell: UICollectionViewCell {
     weak var delegate: FavoriteCollectionCellDelegate?
     public var indexPath: IndexPath!
     
-    lazy var imageView: UIImageView = {
+    public lazy var imageView: UIImageView = {
         let iv = UIImageView()
         
         return iv
     }()
     
-    lazy var expandingButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("↓", for: .normal)
-        button.addTarget(self, action: #selector(expandingButtontapped(_:)), for: .touchUpInside)
-        return button
+    public lazy var expandingButton: UIButton = {
+        let expandingButton = UIButton()
+        expandingButton.setTitle("↓", for: .normal)
+        expandingButton.addTarget(self, action: #selector(expandingButtontapped(_:)), for: .touchUpInside)
+        return expandingButton
+    }()
+    
+    public lazy var videoDescriptionLabel: UILabel = {
+        let videoDescriptionLabel = UILabel()
+//        videoDescriptionLabel.isHidden = true
+        videoDescriptionLabel.textColor = Constants.perceptionGrayColor
+        videoDescriptionLabel.text = "Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing"
+        return videoDescriptionLabel
     }()
     
     @objc public func expandingButtontapped(_ sender: UIButton) {
@@ -31,16 +39,17 @@ class FavoriteCollectionCell: UICollectionViewCell {
         }
     }
     
-    lazy var videoView: VideoView = {
-        let savedVideo = VideoView()
-        return savedVideo
+    public lazy var videoView: VideoView = {
+        let videoView = VideoView()
+        return videoView
     }()
     
-    lazy var textLabel: UILabel = {
+    public lazy var videoTitleLabel: UILabel = {
         let textLabel = UILabel()
         textLabel.text = "Your videos"
         textLabel.textAlignment = .center
-        textLabel.font = UIFont.boldSystemFont(ofSize: 30)
+        textLabel.textColor = .white
+        textLabel.font = UIFont.boldSystemFont(ofSize: 24)
         return textLabel
     }()
     
@@ -49,11 +58,12 @@ class FavoriteCollectionCell: UICollectionViewCell {
         commonInit()
     }
     
-    func commonInit() {
-        backgroundColor = #colorLiteral(red: 0.1276455522, green: 0.2034990788, blue: 0.3436715901, alpha: 1)
+    public func commonInit() {
+        backgroundColor = Constants.perceptionNavyColor
         addSubview(videoView)
-        addSubview(textLabel)
+        addSubview(videoTitleLabel)
         addSubview(expandingButton)
+        addSubview(videoDescriptionLabel)
         cellConstrains()
     }
     
@@ -62,21 +72,33 @@ class FavoriteCollectionCell: UICollectionViewCell {
         
     }
     
-    func cellConstrains() {
+    public func cellConstrains() {
         videoView.translatesAutoresizingMaskIntoConstraints = false
-        videoView.topAnchor.constraint(equalTo: topAnchor, constant: 11).isActive = true
-        videoView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.8).isActive = true
-        videoView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1).isActive = true
-        videoView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            videoView.topAnchor.constraint(equalTo: videoTitleLabel.bottomAnchor, constant: -5),
+            videoView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
+            videoView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.66),
+            videoView.centerXAnchor.constraint(equalTo:safeAreaLayoutGuide.centerXAnchor)])
         
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        [textLabel.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 8),
-         textLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: 10),  textLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11), textLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11)].forEach{ $0.isActive = true }
+        videoTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            videoTitleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
+            videoTitleLabel.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: 10),
+            videoTitleLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 11),
+            videoTitleLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11)])
         
         expandingButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             expandingButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
             expandingButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -11)])
+        
+        videoDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            videoDescriptionLabel.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 5),
+            videoDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
+            videoDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11),
+//            videoDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11)
+            ])
     }
     
 }
