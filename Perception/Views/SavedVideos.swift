@@ -5,9 +5,9 @@ class SavedVideos: UIView {
     lazy var myCollectionView: UICollectionView = {
         //CREATE THE LAYOUT:
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 200, height: 275)
+        layout.itemSize = CGSize.init(width: 200, height: Constants.savedVideoCollectionViewCellNonExpandedHeight)
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
+        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         let cv = UICollectionView.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         cv.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         return cv
@@ -20,7 +20,7 @@ class SavedVideos: UIView {
     }
     
     func commonInit() {
-        backgroundColor = #colorLiteral(red: 0.1276455522, green: 0.2034990788, blue: 0.3436715901, alpha: 1)
+        backgroundColor = Constants.perceptionNavyColor
         addSubview(myCollectionView)
         myCollectionView.register(FavoriteCollectionCell.self, forCellWithReuseIdentifier: "FavoriteCell")
         cvConstrains()
