@@ -33,6 +33,21 @@ class LoginViewController: UIViewController {
         authservice.authserviceCreateNewAccountDelegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait)
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
+    }
+    
     private func setupView() {
         loginView.emailTextField.delegate = self
         loginView.passwordTextField.delegate = self
