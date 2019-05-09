@@ -44,19 +44,18 @@ class ViewController: UIViewController {
     private var videos = [PerceptionVideo]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        super.viewDidLoad()
+        addExpandingMenu()
+        orientationSetup()
         fetchImages()
         fetchVideos()
+        self.view.backgroundColor = .clear
         authservice.authserviceSignOutDelegate = self
         self.navigationController?.navigationBar.isHidden = true
-      //  view.addSubview(mainView)
-      //  view.addSubview(sceneView)
         setupDoubleTapGesture()
-        addExpandingMenu()
+        // addExpandingMenu()
         self.sceneView.delegate = self
         self.sceneView.showsStatistics = false
-//        mainView.sceneView.delegate = self
-//        mainView.sceneView.session.delegate = self
-//        mainView.sceneView.showsStatistics = false
         checkForLoggedUser()
     }
   
@@ -308,7 +307,24 @@ class ViewController: UIViewController {
       })
     }
   }
-//
+
+    private func orientationSetup() {
+        
+        //TODO: not add the view everytime it rotates
+        if UIDevice.current.orientation.isPortrait {
+            addExpandingMenu()
+        } else if UIDevice.current.orientation.isLandscape {
+            addExpandingMenu()
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: nil) { (_) in
+            self.orientationSetup()
+        }
+        //change the frame
+    }
+    
   private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
