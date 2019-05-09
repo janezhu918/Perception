@@ -358,21 +358,17 @@ class ViewController: UIViewController {
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
         menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 34.0)
 
-//        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
         menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
         view.addSubview(menuButton)
         menuButton.layer.cornerRadius = 5
-        //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
-        //        menuButton.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5)
+    
         menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
     
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "shareBlue")!, highlightedImage: UIImage(named: "shareBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-//        menuButton.addButton(title: <#T##String#>, image: <#T##UIImage#>, highlightedImage: <#T##UIImage#>, backgroundImage: <#T##UIImage?#>, backgroundHighlightedImage: <#T##UIImage#>, action: <#T##(() -> ())?##(() -> ())?##() -> ()#>)
   
             print("trying to share video")
           
-          
-                            if let videoToShare =  self.currentSKVideoNode?.name,
+                if let videoToShare =  self.currentSKVideoNode?.name,
                     
                                 let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
                                         let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
