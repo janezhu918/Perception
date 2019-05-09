@@ -21,6 +21,13 @@ class CustomSKVideoNode: SKVideoNode {
 class ViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
+    let messageView = AnimationMessage()
+    let defaults = UserDefaults.standard
+    var defaultsBool = Bool()
+    
+    struct Keys {
+        static let noMoreMessage = "messageGoAway"
+    }
     
     private let databaseService = DatabaseService()
    // private let mainView = Main()
@@ -44,20 +51,40 @@ class ViewController: UIViewController {
     private var videos = [PerceptionVideo]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(messageView)
+        addExpandingMenu()
+        orientationSetup()
         fetchImages()
         fetchVideos()
+        self.view.backgroundColor = .clear
         authservice.authserviceSignOutDelegate = self
         self.navigationController?.navigationBar.isHidden = true
-      //  view.addSubview(mainView)
-      //  view.addSubview(sceneView)
         setupDoubleTapGesture()
-        addExpandingMenu()
+        // addExpandingMenu()
         self.sceneView.delegate = self
         self.sceneView.showsStatistics = false
-//        mainView.sceneView.delegate = self
-//        mainView.sceneView.session.delegate = self
-//        mainView.sceneView.showsStatistics = false
         checkForLoggedUser()
+        messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
+        checkForPreference()
+    }
+    
+ 
+    @objc func setView() {
+        defaultsBool = true
+        if defaultsBool {
+          messageView.fadeOut()
+             defaults.set(defaultsBool, forKey: Keys.noMoreMessage)
+            }
+        }
+    
+    func checkForPreference() {
+        let preference = defaults.bool(forKey: Keys.noMoreMessage)
+        
+        if preference {
+            defaultsBool = true
+            messageView.isHidden = true 
+            
+        }
     }
   
     override var shouldAutorotate: Bool {
@@ -308,7 +335,24 @@ class ViewController: UIViewController {
       })
     }
   }
-//
+
+    private func orientationSetup() {
+        
+        //TODO: not add the view everytime it rotates
+        if UIDevice.current.orientation.isPortrait {
+            addExpandingMenu()
+        } else if UIDevice.current.orientation.isLandscape {
+            addExpandingMenu()
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: nil) { (_) in
+            self.orientationSetup()
+        }
+        //change the frame
+    }
+    
   private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
