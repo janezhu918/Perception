@@ -192,7 +192,7 @@ class ViewController: UIViewController {
         
 //        AppUtility.lockOrientation(.portrait)
         //        // Or to rotate and lock
-       AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+         AppUtility.lockOrientation(.portrait)
 
     }
   
@@ -294,7 +294,7 @@ class ViewController: UIViewController {
         currentSKVideoNode?.pause()
         
         // Don't forget to reset when view is being removed
-          AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+             AppUtility.lockOrientation(.all)
     }
   
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
