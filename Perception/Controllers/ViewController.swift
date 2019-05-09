@@ -21,6 +21,13 @@ class CustomSKVideoNode: SKVideoNode {
 class ViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
+    let messageView = AnimationMessage()
+    let defaults = UserDefaults.standard
+    var defaultsBool = Bool()
+    
+    struct Keys {
+        static let noMoreMessage = "messageGoAway"
+    }
     
     private let databaseService = DatabaseService()
    // private let mainView = Main()
@@ -44,7 +51,7 @@ class ViewController: UIViewController {
     private var videos = [PerceptionVideo]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.viewDidLoad()
+        view.addSubview(messageView)
         addExpandingMenu()
         orientationSetup()
         fetchImages()
@@ -57,6 +64,27 @@ class ViewController: UIViewController {
         self.sceneView.delegate = self
         self.sceneView.showsStatistics = false
         checkForLoggedUser()
+        messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
+        checkForPreference()
+    }
+    
+ 
+    @objc func setView() {
+        defaultsBool = true
+        if defaultsBool {
+          messageView.fadeOut()
+             defaults.set(defaultsBool, forKey: Keys.noMoreMessage)
+            }
+        }
+    
+    func checkForPreference() {
+        let preference = defaults.bool(forKey: Keys.noMoreMessage)
+        
+        if preference {
+            defaultsBool = true
+            messageView.isHidden = true 
+            
+        }
     }
   
     override var shouldAutorotate: Bool {
