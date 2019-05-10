@@ -16,27 +16,41 @@ class PerceptionTests: XCTestCase {
   }
   
   func testExample() {
-        let exp = expectation(description: "Video stored")
-        let exp1 = expectation(description: "Image stored")
-        let exp2 = expectation(description: "Video added to firebase")
-        let exp3 = expectation(description: "Video and Image added to firebase")
+    let exp = expectation(description: "Video stored")
+    let exp1 = expectation(description: "Image stored")
+    let exp2 = expectation(description: "Video added to firebase")
+    let exp3 = expectation(description: "Video and Image added to firebase")
     let imageService: ImageService = databaseService
     let videoService: VideoService = databaseService
     
     let imageId = imageService.generateImageId()
     let videoId = videoService.generateVideoId()
     // ADD WIDTH AND NAME
-    let name = "facebook"
+    let name = "jason"
+    let title = "OMG The New Star Wars!!!!!"
+    let description = "Can't wait to see this movie!"    
     let width = 10.0
     let imageStorageService: ImageStorageService = storageService
     let videoStorageService: VideoStorageService = storageService
     guard let data = UIImage(named: name)?.jpegData(compressionQuality: 1.0),
       let videoURL = Bundle.main.url(forResource: name, withExtension: ".mp4") else {
+        XCTFail()
         return
     }
     imageStorageService.storeImage(data: data, id: imageId) { (result) in
       switch result {
       case .success(let imageURL):
+        exp1.fulfill()
+        videoStorageService.storeVideo(url: videoURL, id: videoId, completion: { (result) in
+          switch result {
+          case .success(let storedVideoURL):
+            exp.fulfill()
+            let date = Date.getISOTimestamp()
+            let pvideo = PerceptionVideo(name: name, id: videoId, createdAt: date, title: title, currentPlaybackTime: 0.0, description: description, urlString: storedVideoURL.absoluteString)
+            videoService.storeVideo(video: pvideo, completion: { (result) in
+              switch result {
+              case .success: exp2.fulfill()
+              case .failure(error: let _): XCTFail()
         videoStorageService.storeVideo(url: videoURL, id: videoId, completion: { (result) in
           switch result {
           case .success(let storedVideoURL):
@@ -54,6 +68,15 @@ class PerceptionTests: XCTestCase {
             imageService.storeImage(image: pImage, completion: { (result) in
               switch result {
               case .success(let success):
+                exp3.fulfill()
+                XCTAssert(success, "All things are fine")
+              case .failure(error: let _): XCTFail()
+              }
+            })
+          case .failure(error: let _): XCTFail()
+          }
+        })
+      case .failure(error: let _): XCTFail()
                 exp1.fulfill()
                 XCTAssert(success, "All things are fine")
               case .failure(error: let _):
