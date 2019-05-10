@@ -21,6 +21,13 @@ class CustomSKVideoNode: SKVideoNode {
 class ViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
+    let messageView = AnimationMessage()
+    let defaults = UserDefaults.standard
+    var defaultsBool = Bool()
+    
+    struct Keys {
+        static let noMoreMessage = "messageGoAway"
+    }
     
     private let databaseService = DatabaseService()
    // private let mainView = Main()
@@ -45,20 +52,40 @@ class ViewController: UIViewController {
     private var menuButton: ExpandingMenuButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(messageView)
         addExpandingMenu()
         orientationSetup()
         fetchImages()
         fetchVideos()
-        self.view.backgroundColor = .clear 
+        self.view.backgroundColor = .clear
         authservice.authserviceSignOutDelegate = self
         self.navigationController?.navigationBar.isHidden = true
         setupDoubleTapGesture()
-       // addExpandingMenu()
+        // addExpandingMenu()
         self.sceneView.delegate = self
         self.sceneView.showsStatistics = false
         checkForLoggedUser()
+        messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
+        checkForPreference()
+    }
+    
+ 
+    @objc func setView() {
+        defaultsBool = true
+        if defaultsBool {
+          messageView.fadeOut()
+             defaults.set(defaultsBool, forKey: Keys.noMoreMessage)
+            }
+        }
+    
+    func checkForPreference() {
+        let preference = defaults.bool(forKey: Keys.noMoreMessage)
         
-        
+        if preference {
+            defaultsBool = true
+            messageView.isHidden = true 
+            
+        }
     }
   
     override var shouldAutorotate: Bool {
@@ -161,9 +188,7 @@ class ViewController: UIViewController {
             configuration.maximumNumberOfTrackedImages = 1
         }
         checkForLoggedUser()
-        
         sceneView.session.run(configuration)
-        
        AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
 
     }
@@ -266,7 +291,7 @@ class ViewController: UIViewController {
         currentSKVideoNode?.pause()
         
         // Don't forget to reset when view is being removed
-          AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+             AppUtility.lockOrientation(.all)
     }
   
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -307,10 +332,11 @@ class ViewController: UIViewController {
       })
     }
   }
+
     private func orientationSetup() {
         
         //TODO: not add the view everytime it rotates
-            if UIDevice.current.orientation.isPortrait {
+        if UIDevice.current.orientation.isPortrait {
             addExpandingMenu()
         } else if UIDevice.current.orientation.isLandscape {
             addExpandingMenu()
@@ -323,33 +349,23 @@ class ViewController: UIViewController {
         }
      //change the frame
     }
-    
-    
-    
-    
+
   private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
         menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
 
-            menuButton.center = CGPoint(x: self.view.bounds.width - 32.0 , y: self.view.bounds.height - 32.0)
-        
-    
-    
-//    menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
-//       view.addSubview(menuButton)
-    
+
+        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
+        view.addSubview(menuButton)
         menuButton.layer.cornerRadius = 5
-        //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
-        //        menuButton.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5)
+    
         menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
     
         let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "shareBlue")!, highlightedImage: UIImage(named: "shareBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-//        menuButton.addButton(title: <#T##String#>, image: <#T##UIImage#>, highlightedImage: <#T##UIImage#>, backgroundImage: <#T##UIImage?#>, backgroundHighlightedImage: <#T##UIImage#>, action: <#T##(() -> ())?##(() -> ())?##() -> ()#>)
   
             print("trying to share video")
           
-          
-                            if let videoToShare =  self.currentSKVideoNode?.name,
+                if let videoToShare =  self.currentSKVideoNode?.name,
                     
                                 let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
                                         let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)

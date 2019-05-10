@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120698742283810400979CFC /* messageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120698732283810400979CFC /* messageViews.swift */; };
 		1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */; };
 		1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */; };
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
@@ -35,6 +36,12 @@
 		A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE0225654F0009B94A9 /* Assets.xcassets */; };
 		A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */; };
 		A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541DC47225F97BC00E30D6E /* UserSession.swift */; };
+		A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5565BE82281E6A0006E611C /* RotationSetup.swift */; };
+		A5565BF22281E74E006E611C /* jason.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BEC2281E74E006E611C /* jason.mp4 */; };
+		A5565BF32281E74E006E611C /* bigmouths.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BED2281E74E006E611C /* bigmouths.mp4 */; };
+		A5565BF42281E74E006E611C /* pursuit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BEE2281E74E006E611C /* pursuit.mp4 */; };
+		A5565BF62281E74E006E611C /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BF02281E74E006E611C /* maniac.mp4 */; };
+		A5565BF72281E74E006E611C /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BF12281E74E006E611C /* starwars.mp4 */; };
 		A5B411942257EC45006E14F7 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411932257EC45006E14F7 /* Main.swift */; };
 		A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411962257EC7E006E14F7 /* LoginView.swift */; };
 		A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411982257EC85006E14F7 /* SavedVideos.swift */; };
@@ -54,6 +61,7 @@
 		A5B411BC2257EE1C006E14F7 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BB2257EE1C006E14F7 /* DBService.swift */; };
 		A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BD2257EE24006E14F7 /* StorageService.swift */; };
 		B2E4EECC3D5BDA5239963CEE /* Pods_Perception.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */; };
+		D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D741FCE4228224BA003BD760 /* PlayerViewController.swift */; };
 		D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */; };
 		D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */; };
 		D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */; };
@@ -70,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120698732283810400979CFC /* messageViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageViews.swift; sourceTree = "<group>"; };
 		1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1211DAC9225D34F200D40F51 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -102,6 +111,12 @@
 		A507ECE3225654F0009B94A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A507ECE5225654F0009B94A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A541DC47225F97BC00E30D6E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		A5565BE82281E6A0006E611C /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSetup.swift; sourceTree = "<group>"; };
+		A5565BEC2281E74E006E611C /* jason.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jason.mp4; sourceTree = "<group>"; };
+		A5565BED2281E74E006E611C /* bigmouths.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths.mp4; sourceTree = "<group>"; };
+		A5565BEE2281E74E006E611C /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
+		A5565BF02281E74E006E611C /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
+		A5565BF12281E74E006E611C /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
 		A5B411932257EC45006E14F7 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		A5B411962257EC7E006E14F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A5B411982257EC85006E14F7 /* SavedVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideos.swift; sourceTree = "<group>"; };
@@ -121,6 +136,7 @@
 		A5B411BB2257EE1C006E14F7 /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		A5B411BD2257EE24006E14F7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.release.xcconfig"; sourceTree = "<group>"; };
+		D741FCE4228224BA003BD760 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionMenuButton.swift; sourceTree = "<group>"; };
 		D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +212,11 @@
 				121B5F5D2280CE570070CC4B /* pursuit.mp4 */,
 				121B5F5F2280CE600070CC4B /* bigmouths.mp4 */,
 				121B5F612280CE6C0070CC4B /* bigmouths2.mp4 */,
+				A5565BED2281E74E006E611C /* bigmouths.mp4 */,
+				A5565BEC2281E74E006E611C /* jason.mp4 */,
+				A5565BF02281E74E006E611C /* maniac.mp4 */,
+				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
+				A5565BF12281E74E006E611C /* starwars.mp4 */,
 				1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */,
 				121B5F652280CE820070CC4B /* maniac.mp4 */,
 				121B5F672280CE890070CC4B /* starwars.mp4 */,
@@ -222,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B411932257EC45006E14F7 /* Main.swift */,
+				120698732283810400979CFC /* messageViews.swift */,
 				A5B411962257EC7E006E14F7 /* LoginView.swift */,
 				A5B411982257EC85006E14F7 /* SavedVideos.swift */,
 				A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */,
@@ -238,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				A507ECDB225654EF009B94A9 /* ViewController.swift */,
+				D741FCE4228224BA003BD760 /* PlayerViewController.swift */,
 				1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */,
 				A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */,
 				A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */,
@@ -301,8 +324,8 @@
 		A5B411C02257EFD7006E14F7 /* UIViewController Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A5565BE82281E6A0006E611C /* RotationSetup.swift */,
 				A5B411AC2257EDB4006E14F7 /* UIViewController+Alerts.swift */,
-				1272FB7B2278B1A500C3C7E2 /* RotationSetup.swift */,
 			);
 			path = "UIViewController Extensions";
 			sourceTree = "<group>";
@@ -432,6 +455,11 @@
 				121B5F662280CE820070CC4B /* maniac.mp4 in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				121B5F622280CE6C0070CC4B /* bigmouths2.mp4 in Resources */,
+				A5565BF72281E74E006E611C /* starwars.mp4 in Resources */,
+				A5565BF32281E74E006E611C /* bigmouths.mp4 in Resources */,
+				A5565BF42281E74E006E611C /* pursuit.mp4 in Resources */,
+				A5565BF62281E74E006E611C /* maniac.mp4 in Resources */,
+				A5565BF22281E74E006E611C /* jason.mp4 in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
 			);
@@ -616,6 +644,7 @@
 				1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */,
 				A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */,
 				A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */,
+				120698742283810400979CFC /* messageViews.swift in Sources */,
 				127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */,
 				1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */,
 				A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */,
@@ -623,7 +652,6 @@
 				A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */,
 				1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */,
 				127F854A2265191900DEC05D /* ProfileView.swift in Sources */,
-				1272FB7C2278B1A500C3C7E2 /* RotationSetup.swift in Sources */,
 				A5B411A42257ECF2006E14F7 /* VideoDetailViewController.swift in Sources */,
 				A5B411B02257EDCA006E14F7 /* Date+Extensions.swift in Sources */,
 				A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */,
@@ -631,12 +659,14 @@
 				A5B411A22257ECEA006E14F7 /* SavedVideosViewController.swift in Sources */,
 				1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */,
 				A5B411A02257ECDA006E14F7 /* LoginViewController.swift in Sources */,
+				A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */,
 				A5B411B22257EDD0006E14F7 /* String+DateExtensions.swift in Sources */,
 				A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */,
 				A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */,
 				1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */,
 				A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */,
 				D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */,
+				D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,16 +830,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DN3HV8LU2;
 				INFOPLIST_FILE = Perception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.perceptionTestAppID.pursuit;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.perception.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = PerceptionTestAppIDDevProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -821,16 +851,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DN3HV8LU2;
 				INFOPLIST_FILE = Perception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.perceptionTestAppID.pursuit;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.perception.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = PerceptionTestAppIDDevProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
