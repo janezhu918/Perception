@@ -5,7 +5,7 @@ import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+  
     var userSession: UserSession!
     var window: UIWindow?
     var userData = UserDefaults.standard

@@ -86,21 +86,24 @@ class ViewController: UIViewController {
             messageView.isHidden = true 
             
         }
+  }
+  
+  
+  private var isPlaying = false {
+    didSet {
+      switchPlayback(isPlaying)
     }
+  }
   
     override var shouldAutorotate: Bool {
         return true
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        
-   
         return UIInterfaceOrientationMask.all
     }
     
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        
-       
         return UIInterfaceOrientation.portrait
     }
     
@@ -116,13 +119,25 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(doubleTapGesture)
     }
   
-    private func checkForLoggedUser() {
-        if usersession.getCurrentUser() != nil {
-            userIsLoggedIn = true
-        } else {
-            userIsLoggedIn = false
-        }
+  private func setupExpandingGesture() {
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
+    swipeUpGesture.direction = .up
+    view.addGestureRecognizer(swipeUpGesture)
+  }
+  
+  private func setupSaveGesture() {
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(saveVideo))
+    swipeUpGesture.direction = .right
+    view.addGestureRecognizer(swipeUpGesture)
+  }
+  
+  private func checkForLoggedUser() {
+    if usersession.getCurrentUser() != nil {
+      userIsLoggedIn = true
+    } else {
+      userIsLoggedIn = false
     }
+  }
   
     @objc private func doubleTap() {
         //TODO: add up view that displays only the video
@@ -308,7 +323,7 @@ class ViewController: UIViewController {
         present(destinationVC, animated: true, completion: nil)
     }
   
-  private func saveVideo() {
+  @objc private func saveVideo() {
     let savedVideoService: SavedVideoService = databaseService
     if let authUserId = usersession.getCurrentUser()?.uid {
       DatabaseService.fetchPerceptionUser(uid: authUserId, completion: { (user, error) in
@@ -347,8 +362,57 @@ class ViewController: UIViewController {
         coordinator.animate(alongsideTransition: nil) { (_) in
                self.orientationSetup()
         }
-     //change the frame
     }
+     //change the frame
+  
+  @objc private func shareVideo() {
+    if let videoToShare =  self.currentSKVideoNode?.name,
+      let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
+      let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
+      self.present(activityViewController, animated: true)
+      print("trying to share video")
+    } else {
+      self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
+    }
+  }
+  
+  //
+  private func addExpandingMenu() {
+    let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
+    let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
+    menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 34.0)
+    
+    //        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
+    menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
+    view.addSubview(menuButton)
+    menuButton.layer.cornerRadius = 5
+    //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
+    //        menuButton.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5)
+    menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
+    
+    let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "shareBlue")!, highlightedImage: UIImage(named: "shareBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+      //        menuButton.addButton(title: <#T##String#>, image: <#T##UIImage#>, highlightedImage: <#T##UIImage#>, backgroundImage: <#T##UIImage?#>, backgroundHighlightedImage: <#T##UIImage#>, action: <#T##(() -> ())?##(() -> ())?##() -> ()#>)
+      self.shareVideo()
+      
+    }
+    let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starBlue")!, highlightedImage: UIImage(named: "starBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+      print("video saved")
+      if self.userIsLoggedIn {
+        self.saveVideo()
+      } else {
+        self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo, destination: .myVideos)
+      }
+    }
+    let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "tableBlue")!, highlightedImage: UIImage(named: "tableBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+      self.checkForLoggedUser()
+      if self.userIsLoggedIn {
+        let savedVideosVC = SavedVideosViewController()
+        self.navigationController?.pushViewController(savedVideosVC, animated: true)
+      } else {
+        self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
+      }
+    }
+  }
 
   private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
@@ -497,5 +561,8 @@ extension ViewController: AuthServiceSignOutDelegate {
   func didSignOut(_ authservice: AuthService) {
     showAlert(title: "Signed Out", message: "Signed Out Successfully.")
     ProgressHUD.dismiss()
+  func checkForLoggedUser(_ logged: Bool) {
+    userIsLoggedIn = true
   }
+}
 }
