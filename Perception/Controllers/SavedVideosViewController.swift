@@ -4,12 +4,16 @@ import AVKit
 import ProgressHUD
 
 class SavedVideosViewController: UIViewController {
-  
-  private var savedVideos = [SavedVideo]()
   private let favoriteVideos = SavedVideos()
   private var savedVideoService: SavedVideoService = DatabaseService()
   private var authservice = AppDelegate.authservice
   private var perceptionUser: PerceptionUser?
+  private var cellWidth: CGFloat {
+    return favoriteVideos.myCollectionView.frame.size.width
+  }
+  private var isExpanded = [Bool]()
+  private var expandedHeight: CGFloat = Constants.savedVideoCollectionViewCellExpandedHeight
+  private var nonExpandedHeight: CGFloat = Constants.savedVideoCollectionViewCellNonExpandedHeight
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -58,67 +62,10 @@ class SavedVideosViewController: UIViewController {
         }
        }
     }
-          private var savedVideos = [SavedVideo]() {
+  }
+    private var savedVideos = [SavedVideo]() {
         didSet {
             setupExpandingCells()
-        }
-    }
-
-    private let savedVideoView = SavedVideos()
-    private var savedVideoService: SavedVideoService = DatabaseService()
-    private var authservice = AppDelegate.authservice
-    private var perceptionUser: PerceptionUser?
-    private var cellWidth: CGFloat {
-        return savedVideoView.myCollectionView.frame.size.width
-    }
-    private var isExpanded = [Bool]()
-    private var expandedHeight: CGFloat = Constants.savedVideoCollectionViewCellExpandedHeight
-    private var nonExpandedHeight: CGFloat = Constants.savedVideoCollectionViewCellNonExpandedHeight
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        ProgressHUD.show("Loading Videos")
-        setupUI()
-        setupDelegates()
-        fetchVideos()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        AppUtility.lockOrientation(.portrait)
-        
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Don't forget to reset when view is being removed
-        AppUtility.lockOrientation(.all)
-    }
-    
-    private func setupDelegates(){
-        savedVideoView.myCollectionView.delegate = self
-        savedVideoView.myCollectionView.dataSource = self
-        savedVideoService.savedVideoServiceDelegate = self
-    }
-    
-    private func setupUI(){
-        navigationController?.navigationBar.isHidden = false
-        view.addSubview(savedVideoView)
-    }
-    
-    private func fetchVideos(){
-        if let user = authservice.getCurrentUser() {
-            DatabaseService.fetchPerceptionUser(uid: user.uid) { [weak self] (perceptionUser, error) in
-                if let error = error {
-                    print("error getting perceptionUser: \(error.localizedDescription)")
-                } else if let perceptionUser = perceptionUser {
-                    self?.perceptionUser = perceptionUser
-                    self?.savedVideoService.fetchUserSavedVideos(user: perceptionUser)
-                }
-            }
         }
     }
     
@@ -135,7 +82,7 @@ extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let video = savedVideos[indexPath.row]
-        guard let cell = savedVideoView.myCollectionView
+        guard let cell = favoriteVideos.myCollectionView
             .dequeueReusableCell(withReuseIdentifier: "FavoriteCell",
                                  for: indexPath) as? FavoriteCollectionCell,
             let url = URL(string: video.urlString) else { return UICollectionViewCell() }
@@ -185,7 +132,7 @@ extension SavedVideosViewController: SavedVideoServiceDelegate {
     
     func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideos videos: [SavedVideo]) {
         self.savedVideos = videos
-        savedVideoView.myCollectionView.reloadData()
+        favoriteVideos.myCollectionView.reloadData()
         ProgressHUD.dismiss()
     }
 }
@@ -194,7 +141,7 @@ extension SavedVideosViewController: FavoriteCollectionCellDelegate {
     func cellTapped(indexPath: IndexPath) {
         isExpanded[indexPath.row] = !isExpanded[indexPath.row]
         UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.9, options: [.curveEaseInOut], animations: {
-            self.savedVideoView.myCollectionView.reloadItems(at: [indexPath])
+            self.favoriteVideos.myCollectionView.reloadItems(at: [indexPath])
         })
     }
 }
