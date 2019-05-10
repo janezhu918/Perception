@@ -1,6 +1,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import ProgressHUD
 
 protocol LoginViewControllerDelegate: AnyObject {
     func checkForLoggedUser(_ logged: Bool)
@@ -28,6 +29,23 @@ class LoginViewController: UIViewController {
         view.addSubview(loginView)
         loginView.messageLabel.text = displayMessage
         setupView()
+        authservice.authserviceExistingAccountDelegate = self
+        authservice.authserviceCreateNewAccountDelegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait)
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
     }
     
     private func setupView() {
@@ -80,13 +98,11 @@ class LoginViewController: UIViewController {
         
         switch signInMethod {
         case .logIn:
-            authservice.signInExistingAccount(email: email, password: password)
+          authservice.signInExistingAccount(email: email, password: password)
         case .register:
             authservice.createNewAccount(email: email, password: password)
         }
-        
         delegate?.checkForLoggedUser(true)
-        dismissButtonPressed()
         
         //        switch ultimateDestination {
         //        case .myProfile:
@@ -107,4 +123,28 @@ extension LoginViewController: UITextFieldDelegate {
         logInOrRegister()
         return true
     }
+}
+
+extension LoginViewController: AuthServiceExistingAccountDelegate {
+  func didReceiveErrorSigningToExistingAccount(_ authservice: AuthService, error: Error) {
+    ProgressHUD.dismiss()
+    showAlert(title: "Error", message: error.localizedDescription)
+  }
+  
+  func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
+    ProgressHUD.dismiss()
+    dismissButtonPressed()
+  }
+}
+
+extension LoginViewController: AuthServiceCreateNewAccountDelegate {
+  func didReceiveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
+    ProgressHUD.dismiss()
+    showAlert(title: "Error", message: error.localizedDescription)
+  }
+  
+  func didCreateNewAccount(_ authservice: AuthService, perceptionUser: PerceptionUser) {
+    ProgressHUD.dismiss()
+    dismissButtonPressed()
+  }
 }

@@ -43,7 +43,6 @@ final class AuthService {
                         self.authserviceCreateNewAccountDelegate?.didReceiveErrorCreatingAccount(self, error: error)
                     } else {
                         self.authserviceCreateNewAccountDelegate?.didCreateNewAccount(self, perceptionUser: perceptionUser)
-                        ProgressHUD.dismiss()
                     }
                 })
             }
@@ -54,10 +53,11 @@ final class AuthService {
         ProgressHUD.show()
         Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
-                self.authserviceExistingAccountDelegate?.didReceiveErrorSigningToExistingAccount(self, error: error)
+              self.authserviceExistingAccountDelegate?
+                .didReceiveErrorSigningToExistingAccount(self, error: error)
             } else if let authDataResult = authDataResult {
-                self.authserviceExistingAccountDelegate?.didSignInToExistingAccount(self, user: authDataResult.user)
-                ProgressHUD.dismiss()
+                self.authserviceExistingAccountDelegate?
+                  .didSignInToExistingAccount(self, user: authDataResult.user)
             }
         }
     }
@@ -71,7 +71,6 @@ final class AuthService {
         do {
             try Auth.auth().signOut()
             authserviceSignOutDelegate?.didSignOut(self)
-            ProgressHUD.dismiss()
         } catch {
             authserviceSignOutDelegate?.didSignOutWithError(self, error: error)
         }
