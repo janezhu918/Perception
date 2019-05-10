@@ -4,6 +4,7 @@ import FirebaseStorage
 
 
 class ProfileViewControlerViewController: UIViewController {
+<<<<<<< HEAD
     
     
     
@@ -78,6 +79,77 @@ class ProfileViewControlerViewController: UIViewController {
       
     }
     
+=======
+    
+    
+    
+    let profileView = ProfileView()
+    private var ussersession = AppDelegate.authservice
+    private var datePicker: UIDatePicker?
+   
+    private var currentUser: PerceptionUser!
+    
+
+    override func viewDidLoad() {
+      
+        
+        super.viewDidLoad()
+         view.addSubview(profileView)
+        profileView.nameTextField.delegate = self
+        ussersession.authserviceSignOutDelegate = self
+        setupUI()
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+        profileView.agePicker.inputView = datePicker
+        
+       guard let user = ussersession.getCurrentUser() else {
+            profileView.userEmailTextField.text = "no logged user"
+            return
+        }
+        let button1 = UIBarButtonItem(title: "Save changes", style: .plain, target: self, action: #selector(savePreferences))
+        self.navigationItem.rightBarButtonItem  = button1
+        profileView.userEmailTextField.text = user.email
+        DatabaseService.fetchPerceptionUser(uid: user.uid) { (perceptionUser, error) in
+            if let perceptionUser = perceptionUser {
+                self.profileView.nameTextField.text = perceptionUser.displayName
+            } else if let error = error {
+                print("if there's an error is here! \(error.localizedDescription)")
+            }
+        }
+        
+        profileView.nameTextField.text = ""
+         keyboardDismiss()
+        
+      
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait)
+        // Or to rotate and lock
+        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
+    }
+    
+    
+    
+   @objc func dateChanged() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        profileView.agePicker.text = dateFormatter.string(from: datePicker!.date)
+      
+    }
+    
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
     @objc func savePreferences() {
         guard let userName = profileView.nameTextField.text,
             let userID = ussersession.getCurrentUser()?.uid,

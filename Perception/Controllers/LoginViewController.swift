@@ -31,6 +31,24 @@ class LoginViewController: UIViewController {
         setupView()
         authservice.authserviceExistingAccountDelegate = self
         authservice.authserviceCreateNewAccountDelegate = self
+<<<<<<< HEAD
+=======
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait)
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
     }
     
     private func setupView() {

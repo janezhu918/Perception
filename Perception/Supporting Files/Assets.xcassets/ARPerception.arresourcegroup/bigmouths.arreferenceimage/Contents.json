@@ -10,7 +10,18 @@
     "author" : "xcode"
   },
   "properties" : {
+<<<<<<< HEAD
     "width" : 7.2442019099590729,
     "unit" : "inches"
   }
 }
+=======
+<<<<<<< HEAD:Perception/Supporting Files/Assets.xcassets/ARPerception.arresourcegroup/bigmouths.arreferenceimage/Contents.json
+    "width" : 7.2442019099590729,
+    "unit" : "inches"
+=======
+    "width" : 0.19999999999999998
+>>>>>>> master:Perception/Supporting Files/Assets.xcassets/ARPerception.arresourcegroup/perception.arreferenceimage/Contents.json
+  }
+}
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101

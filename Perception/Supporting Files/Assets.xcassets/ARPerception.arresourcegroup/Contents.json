@@ -33,6 +33,13 @@
     },
     {
       "filename" : "starwars.arreferenceimage"
+<<<<<<< HEAD
+=======
+      "filename" : "perception.arreferenceimage"
+    },
+    {
+      "filename" : "Twitter.arreferenceimage"
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
     }
   ]
 }

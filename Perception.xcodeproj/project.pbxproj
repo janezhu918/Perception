@@ -7,9 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120698742283810400979CFC /* messageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120698732283810400979CFC /* messageViews.swift */; };
 		1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */; };
 		1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */; };
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
+<<<<<<< HEAD
+=======
+		121B5F5E2280CE570070CC4B /* pursuit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F5D2280CE570070CC4B /* pursuit.mp4 */; };
+		121B5F602280CE600070CC4B /* bigmouths.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F5F2280CE600070CC4B /* bigmouths.mp4 */; };
+		121B5F622280CE6C0070CC4B /* bigmouths2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F612280CE6C0070CC4B /* bigmouths2.mp4 */; };
+		121B5F642280CE7B0070CC4B /* jason.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F632280CE7B0070CC4B /* jason.mp4 */; };
+		121B5F662280CE820070CC4B /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F652280CE820070CC4B /* maniac.mp4 */; };
+		121B5F682280CE890070CC4B /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F672280CE890070CC4B /* starwars.mp4 */; };
+		1272FB7C2278B1A500C3C7E2 /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272FB7B2278B1A500C3C7E2 /* RotationSetup.swift */; };
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
 		127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */; };
 		127F854A2265191900DEC05D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85492265191900DEC05D /* ProfileView.swift */; };
 		1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
@@ -70,9 +81,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120698732283810400979CFC /* messageViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageViews.swift; sourceTree = "<group>"; };
 		1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1211DAC9225D34F200D40F51 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		121B5F5D2280CE570070CC4B /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
+		121B5F5F2280CE600070CC4B /* bigmouths.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths.mp4; sourceTree = "<group>"; };
+		121B5F612280CE6C0070CC4B /* bigmouths2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths2.mp4; sourceTree = "<group>"; };
+		121B5F632280CE7B0070CC4B /* jason.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jason.mp4; sourceTree = "<group>"; };
+		121B5F652280CE820070CC4B /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
+		121B5F672280CE890070CC4B /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
+		1272FB7B2278B1A500C3C7E2 /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RotationSetup.swift; path = "../../../../../Desktop/Perception/Perception/Extensions/UIViewController Extensions/RotationSetup.swift"; sourceTree = "<group>"; };
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,13 +215,25 @@
 		A507ECD6225654EF009B94A9 /* Perception */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+=======
+				121B5F5D2280CE570070CC4B /* pursuit.mp4 */,
+				121B5F5F2280CE600070CC4B /* bigmouths.mp4 */,
+				121B5F612280CE6C0070CC4B /* bigmouths2.mp4 */,
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
 				A5565BED2281E74E006E611C /* bigmouths.mp4 */,
 				A5565BEC2281E74E006E611C /* jason.mp4 */,
 				A5565BF02281E74E006E611C /* maniac.mp4 */,
 				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
 				A5565BF12281E74E006E611C /* starwars.mp4 */,
 				1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */,
+				121B5F652280CE820070CC4B /* maniac.mp4 */,
+				121B5F672280CE890070CC4B /* starwars.mp4 */,
 				1E8B808D225B96A20071FA83 /* inTheDark.mp4 */,
+<<<<<<< HEAD
+=======
+				121B5F632280CE7B0070CC4B /* jason.mp4 */,
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
 				1E8B808F225B96AC0071FA83 /* loveDeathAndRobots.mp4 */,
 				D7A1C7832264E09A00E33838 /* File Manager Helpers */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
@@ -221,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B411932257EC45006E14F7 /* Main.swift */,
+				120698732283810400979CFC /* messageViews.swift */,
 				A5B411962257EC7E006E14F7 /* LoginView.swift */,
 				A5B411982257EC85006E14F7 /* SavedVideos.swift */,
 				A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */,
@@ -423,9 +458,18 @@
 				1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */,
 				1E2E7E0F225FC89E007D0CE4 /* GoogleService-Info.plist in Resources */,
 				1E2E7E0A225BE2B5007D0CE4 /* inTheDark.mp4 in Resources */,
+				121B5F642280CE7B0070CC4B /* jason.mp4 in Resources */,
 				1E2E7E0B225BE2B5007D0CE4 /* loveDeathAndRobots.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
+				121B5F682280CE890070CC4B /* starwars.mp4 in Resources */,
+				121B5F5E2280CE570070CC4B /* pursuit.mp4 in Resources */,
+				121B5F602280CE600070CC4B /* bigmouths.mp4 in Resources */,
+				121B5F662280CE820070CC4B /* maniac.mp4 in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
+<<<<<<< HEAD
+=======
+				121B5F622280CE6C0070CC4B /* bigmouths2.mp4 in Resources */,
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
 				A5565BF72281E74E006E611C /* starwars.mp4 in Resources */,
 				A5565BF32281E74E006E611C /* bigmouths.mp4 in Resources */,
 				A5565BF42281E74E006E611C /* pursuit.mp4 in Resources */,
@@ -615,6 +659,7 @@
 				1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */,
 				A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */,
 				A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */,
+				120698742283810400979CFC /* messageViews.swift in Sources */,
 				127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */,
 				1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */,
 				A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */,
@@ -842,6 +887,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = PerceptionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -862,6 +908,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = PerceptionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

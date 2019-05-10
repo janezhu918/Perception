@@ -4,12 +4,74 @@ import AVKit
 import ProgressHUD
 
 class SavedVideosViewController: UIViewController {
+<<<<<<< HEAD
     
     private var savedVideos = [SavedVideo]() {
         didSet {
             setupExpandingCells()
         }
     }
+=======
+  
+  private var savedVideos = [SavedVideo]()
+  private let favoriteVideos = SavedVideos()
+  private var savedVideoService: SavedVideoService = DatabaseService()
+  private var authservice = AppDelegate.authservice
+  private var perceptionUser: PerceptionUser?
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupUI()
+    setupDelegates()
+    fetchVideos()
+    savedVideoService.savedVideoServiceDelegate = self
+  }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait)
+     
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
+    }
+    
+ 
+  
+  private func setupDelegates(){
+    favoriteVideos.myCollectionView.delegate = self
+    favoriteVideos.myCollectionView.dataSource = self
+    savedVideoService.savedVideoServiceDelegate = self
+  }
+  
+  private func setupUI(){
+    navigationController?.navigationBar.isHidden = false
+    view.addSubview(favoriteVideos)
+  }
+  
+  private func fetchVideos(){
+    if let user = authservice.getCurrentUser() {
+      DatabaseService.fetchPerceptionUser(uid: user.uid) { [weak self] (perceptionUser, error) in
+        if let error = error {
+          print("error getting perceptionUser: \(error.localizedDescription)")
+        } else if let perceptionUser = perceptionUser {
+          self?.perceptionUser = perceptionUser
+          self?.savedVideoService.fetchUserSavedVideos(user: perceptionUser)
+        }
+       }
+    }
+          private var savedVideos = [SavedVideo]() {
+        didSet {
+            setupExpandingCells()
+        }
+    }
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
 
     private let savedVideoView = SavedVideos()
     private var savedVideoService: SavedVideoService = DatabaseService()
@@ -30,6 +92,24 @@ class SavedVideosViewController: UIViewController {
         fetchVideos()
     }
     
+<<<<<<< HEAD
+=======
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait)
+        
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
+    }
+    
+>>>>>>> 556e7b06d0d4997746a251405bdd2b9454350101
     private func setupDelegates(){
         savedVideoView.myCollectionView.delegate = self
         savedVideoView.myCollectionView.dataSource = self
