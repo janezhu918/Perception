@@ -49,6 +49,7 @@ class ViewController: UIViewController {
     private var images = [PerceptionImage]()
     private var savedVideos = [SavedVideo]()
     private var videos = [PerceptionVideo]()
+    private var menuButton: ExpandingMenuButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(messageView)
@@ -93,13 +94,13 @@ class ViewController: UIViewController {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         
-        // Only allow Portrait
+   
         return UIInterfaceOrientationMask.all
     }
     
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         
-        // Only allow Portrait
+       
         return UIInterfaceOrientation.portrait
     }
     
@@ -129,10 +130,11 @@ class ViewController: UIViewController {
         if let currentSKVideoNode = currentSKVideoNode {
             if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
                 playerVC.player = currentVideoPlayer
-                let currentTime = currentVideoPlayer.currentTime()
+               // let currentTime = currentVideoPlayer.currentTime()
+                let currentItem = currentVideoPlayer.currentItem?.currentTime()
                 present(playerVC, animated: true) {
-                    playerVC.player?.play()
-                    playerVC.player?.seek(to: currentTime)
+                 //  playerVC.player?.playImmediately(atRate: 1.0)
+                    playerVC.player?.seek(to: currentItem!)
                 }
             }
         } else {
@@ -186,13 +188,8 @@ class ViewController: UIViewController {
             configuration.maximumNumberOfTrackedImages = 1
         }
         checkForLoggedUser()
-//        mainView.sceneView.session.run(configuration)
-      sceneView.session.run(configuration)
-
-        
-//        AppUtility.lockOrientation(.portrait)
-        //        // Or to rotate and lock
-         AppUtility.lockOrientation(.portrait)
+        sceneView.session.run(configuration)
+       AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
 
     }
   
@@ -348,15 +345,15 @@ class ViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: nil) { (_) in
-            self.orientationSetup()
+               self.orientationSetup()
         }
-        //change the frame
+     //change the frame
     }
-    
+
   private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
-        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
-        menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 34.0)
+        menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
+
 
         menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
         view.addSubview(menuButton)
@@ -429,7 +426,11 @@ class ViewController: UIViewController {
         menuButton.willPresentMenuItems = { (menu) -> Void in
             menuItems.forEach{ $0.isHidden = false }
         }
+    
+    
         view.addSubview(menuButton)
+    
+    
     }
   
 }
