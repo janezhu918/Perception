@@ -1,13 +1,16 @@
 {
   "images" : [
-
+    {
+      "idiom" : "universal",
+      "filename" : "maniac.png"
+    }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
   },
   "properties" : {
-    "width" : 2.6167076167076169,
+    "width" : 3.8403614457831328,
     "unit" : "inches"
   }
 }

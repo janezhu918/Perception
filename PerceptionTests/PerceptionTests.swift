@@ -55,7 +55,7 @@ class PerceptionTests: XCTestCase {
           switch result {
           case .success(let storedVideoURL):
             let date = Date.getISOTimestamp()
-            let pvideo = PerceptionVideo(name: name, id: videoId, createdAt: date, currentPlaybackTime: 0, description: "", urlString: storedVideoURL.absoluteString)
+            let pvideo = PerceptionVideo(name: name, id: videoId, createdAt: date, title: title, currentPlaybackTime: 0, description: "", urlString: storedVideoURL.absoluteString)
             videoService.storeVideo(video: pvideo, completion: { (result) in
               switch result {
               case .success:
@@ -77,10 +77,7 @@ class PerceptionTests: XCTestCase {
           }
         })
       case .failure(error: let _): XCTFail()
-                exp1.fulfill()
-                XCTAssert(success, "All things are fine")
-              case .failure(error: let _):
-                XCTFail()
+      case .failure(error: let _): XCTFail()
               }
             })
           case .failure(error: let _):

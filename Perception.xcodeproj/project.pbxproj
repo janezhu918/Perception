@@ -17,7 +17,6 @@
 		121B5F642280CE7B0070CC4B /* jason.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F632280CE7B0070CC4B /* jason.mp4 */; };
 		121B5F662280CE820070CC4B /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F652280CE820070CC4B /* maniac.mp4 */; };
 		121B5F682280CE890070CC4B /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F672280CE890070CC4B /* starwars.mp4 */; };
-		1272FB7C2278B1A500C3C7E2 /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272FB7B2278B1A500C3C7E2 /* RotationSetup.swift */; };
 		127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */; };
 		127F854A2265191900DEC05D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85492265191900DEC05D /* ProfileView.swift */; };
 		1E2E7E09225BE2B5007D0CE4 /* cloackAndDagger.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E8B808B225B96970071FA83 /* cloackAndDagger.mp4 */; };
@@ -88,7 +87,6 @@
 		121B5F632280CE7B0070CC4B /* jason.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jason.mp4; sourceTree = "<group>"; };
 		121B5F652280CE820070CC4B /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
 		121B5F672280CE890070CC4B /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
-		1272FB7B2278B1A500C3C7E2 /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RotationSetup.swift; path = "../../../../../Desktop/Perception/Perception/Extensions/UIViewController Extensions/RotationSetup.swift"; sourceTree = "<group>"; };
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
@@ -831,7 +829,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9DN3HV8LU2;
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = Perception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -852,7 +850,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9DN3HV8LU2;
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = Perception/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

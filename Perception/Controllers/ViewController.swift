@@ -106,24 +106,12 @@ class ViewController: UIViewController {
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         return UIInterfaceOrientation.portrait
     }
-    
-    private var isPlaying = false {
-        didSet {
-            switchPlayback(isPlaying)
-        }
-    }
   
     private func setupDoubleTapGesture() {
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
         doubleTapGesture.numberOfTapsRequired = 2
         view.addGestureRecognizer(doubleTapGesture)
     }
-  
-  private func setupExpandingGesture() {
-    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp))
-    swipeUpGesture.direction = .up
-    view.addGestureRecognizer(swipeUpGesture)
-  }
   
   private func setupSaveGesture() {
     let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(saveVideo))
@@ -150,6 +138,7 @@ class ViewController: UIViewController {
                 present(playerVC, animated: true) {
                  //  playerVC.player?.playImmediately(atRate: 1.0)
                     playerVC.player?.seek(to: currentItem!)
+                    playerVC.player?.play()
                 }
             }
         } else {
@@ -172,7 +161,6 @@ class ViewController: UIViewController {
         switch result {
         case .success(let images):
           self?.images = images
-          self?.setupARImages()
         case .failure(error: let error):
           self?.showAlert(title: "Error", message: error.localizedDescription)
         }
@@ -204,7 +192,7 @@ class ViewController: UIViewController {
         }
         checkForLoggedUser()
         sceneView.session.run(configuration)
-       AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+       AppUtility.lockOrientation(.portrait)
 
     }
   
@@ -412,91 +400,38 @@ class ViewController: UIViewController {
         self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
       }
     }
-  }
-
-  private func addExpandingMenu() {
-        let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
-        menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
-
-
-        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
-        view.addSubview(menuButton)
-        menuButton.layer.cornerRadius = 5
-    
-        menuButton.backgroundColor = .init(red: 1, green: 1, blue: 1, alpha: 0.5)
-    
-        let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "shareBlue")!, highlightedImage: UIImage(named: "shareBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-  
-            print("trying to share video")
-          
-                if let videoToShare =  self.currentSKVideoNode?.name,
-                    
-                                let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
-                                        let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
-                                        self.present(activityViewController, animated: true)
-                                
-                                    }
-                            else {
-                                self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
-            }
-        }
-        let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starBlue")!, highlightedImage: UIImage(named: "starBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            print("video saved")
-            if self.userIsLoggedIn {
-              self.saveVideo()
-            } else {
-                self.segueToLoginPage(withMessage: Constants.loginViewMessageSaveVideo, destination: .myVideos)
-            }
-        }
-        let myVideos = ExpandingMenuItem(size: menuButtonSize, title: "My Videos", image: UIImage(named: "tableBlue")!, highlightedImage: UIImage(named: "tableBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            self.checkForLoggedUser()
-            if self.userIsLoggedIn {
-                let destinationVC = SavedVideosViewController()
-                self.show(destinationVC, sender: self)
-           
-            } else {
-                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
-            }
-        }
-    
-    
-        let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            if self.usersession.getCurrentUser() != nil {
-                let profileVC = ProfileViewControlerViewController()
-                    self.navigationController?.pushViewController(profileVC, animated: true)
-            } else if self.userIsLoggedIn == false {
-                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
-                print("nothing happened")
-            }
-        }
-    
-        let signOut = ExpandingMenuItem(size: menuButtonSize, title: "Sign Out", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
-            if self.userIsLoggedIn {
-                self.authservice.signOutAccount()
-            } else {
-                self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
-            }
-        }
-        let menuItems = [signOut, share, save, myVideos, profile]
-        menuItems.forEach{ $0.layer.cornerRadius = 5 }
-        menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5) }
-        menuItems.forEach{ $0.titleColor = .init(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
-        menuItems.forEach{ $0.titleMargin = 5 }
-        menuButton.playSound = false
-        menuButton.addMenuItems(menuItems)
-        menuButton.willDismissMenuItems = { (menu) -> Void in
-            menuItems.forEach{ $0.isHidden = true }
-        }
-        menuButton.willPresentMenuItems = { (menu) -> Void in
-            menuItems.forEach{ $0.isHidden = false }
-        }
-    
-    
-        view.addSubview(menuButton)
-    
-    
+    let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+      if self.usersession.getCurrentUser() != nil {
+        let profileVC = ProfileViewControlerViewController()
+        self.navigationController?.pushViewController(profileVC, animated: true)
+      } else if self.userIsLoggedIn == false {
+        self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
+        print("nothing happened")
+      }
     }
-  
+    
+    let signOut = ExpandingMenuItem(size: menuButtonSize, title: "Sign Out", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+      if self.userIsLoggedIn {
+        self.authservice.signOutAccount()
+      } else {
+        self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
+      }
+    }
+    let menuItems = [signOut, share, save, myVideos, profile]
+    menuItems.forEach{ $0.layer.cornerRadius = 5 }
+    menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5) }
+    menuItems.forEach{ $0.titleColor = .init(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
+    menuItems.forEach{ $0.titleMargin = 5 }
+    menuButton.playSound = false
+    menuButton.addMenuItems(menuItems)
+    menuButton.willDismissMenuItems = { (menu) -> Void in
+      menuItems.forEach{ $0.isHidden = true }
+    }
+    menuButton.willPresentMenuItems = { (menu) -> Void in
+      menuItems.forEach{ $0.isHidden = false }
+    }
+    view.addSubview(menuButton)
+  }
 }
 
 extension ViewController: ARSCNViewDelegate {
@@ -506,8 +441,8 @@ extension ViewController: ARSCNViewDelegate {
         let node = SCNNode()
         if let imageAnchor = anchor as? ARImageAnchor {
             let referenceImage = imageAnchor.referenceImage.name!.description
-            let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4")
-            let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer!)
+            guard let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4") else  { return node }
+            let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer)
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
             videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
             videoNode.yScale = -1.0
