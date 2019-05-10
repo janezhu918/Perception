@@ -410,8 +410,8 @@ extension ViewController: ARSCNViewDelegate {
         let node = SCNNode()
         if let imageAnchor = anchor as? ARImageAnchor {
             let referenceImage = imageAnchor.referenceImage.name!.description
-            let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4")
-            let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer!)
+            guard let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4") else  { return node }
+            let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer)
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
             videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
             videoNode.yScale = -1.0
