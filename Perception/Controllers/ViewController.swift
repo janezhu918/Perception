@@ -400,6 +400,37 @@ class ViewController: UIViewController {
         self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
       }
     }
+    let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+      if self.usersession.getCurrentUser() != nil {
+        let profileVC = ProfileViewControlerViewController()
+        self.navigationController?.pushViewController(profileVC, animated: true)
+      } else if self.userIsLoggedIn == false {
+        self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
+        print("nothing happened")
+      }
+    }
+    
+    let signOut = ExpandingMenuItem(size: menuButtonSize, title: "Sign Out", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
+      if self.userIsLoggedIn {
+        self.authservice.signOutAccount()
+      } else {
+        self.segueToLoginPage(withMessage: Constants.loginViewMessageViewProfile, destination: .myProfile)
+      }
+    }
+    let menuItems = [signOut, share, save, myVideos, profile]
+    menuItems.forEach{ $0.layer.cornerRadius = 5 }
+    menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5) }
+    menuItems.forEach{ $0.titleColor = .init(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
+    menuItems.forEach{ $0.titleMargin = 5 }
+    menuButton.playSound = false
+    menuButton.addMenuItems(menuItems)
+    menuButton.willDismissMenuItems = { (menu) -> Void in
+      menuItems.forEach{ $0.isHidden = true }
+    }
+    menuButton.willPresentMenuItems = { (menu) -> Void in
+      menuItems.forEach{ $0.isHidden = false }
+    }
+    view.addSubview(menuButton)
   }
 }
 
