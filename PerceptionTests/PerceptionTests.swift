@@ -26,10 +26,16 @@ class PerceptionTests: XCTestCase {
     let imageId = imageService.generateImageId()
     let videoId = videoService.generateVideoId()
     // ADD WIDTH AND NAME
+<<<<<<< HEAD
     let name = "starwars"
     let title = "OMG The New Star Wars!!!!!"
     let description = "Can't wait to see this movie!"
     
+=======
+    let name = "jason"
+    let title = "OMG The New Star Wars!!!!!"
+    let description = "Can't wait to see this movie!"    
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
     let width = 10.0
     let imageStorageService: ImageStorageService = storageService
     let videoStorageService: VideoStorageService = storageService
@@ -52,9 +58,26 @@ class PerceptionTests: XCTestCase {
               switch result {
               case .success: exp2.fulfill()
               case .failure(error: let _): XCTFail()
+<<<<<<< HEAD
               }
             })
             let pImage = PerceptionImage(videoURLString: storedVideoURL.absoluteString, name: name, id: imageId, urlString: imageURL.absoluteString, width: width, orientation: .up)
+=======
+        videoStorageService.storeVideo(url: videoURL, id: videoId, completion: { (result) in
+          switch result {
+          case .success(let storedVideoURL):
+            let date = Date.getISOTimestamp()
+            let pvideo = PerceptionVideo(name: name, id: videoId, createdAt: date, title: title, currentPlaybackTime: 0, description: "", urlString: storedVideoURL.absoluteString)
+            videoService.storeVideo(video: pvideo, completion: { (result) in
+              switch result {
+              case .success:
+                exp.fulfill()
+              case .failure(error: let _):
+                XCTFail()
+              }
+            })
+            let pImage = PerceptionImage(videoURLString: videoURL.absoluteString, name: name, id: imageId, urlString: imageURL.absoluteString, width: width, orientation: .up)
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
             imageService.storeImage(image: pImage, completion: { (result) in
               switch result {
               case .success(let success):
@@ -67,6 +90,18 @@ class PerceptionTests: XCTestCase {
           }
         })
       case .failure(error: let _): XCTFail()
+<<<<<<< HEAD
+=======
+      case .failure(error: let _): XCTFail()
+              }
+            })
+          case .failure(error: let _):
+            XCTFail()
+          }
+        })
+      case .failure(error: let _):
+        XCTFail()
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
       }
     }
     wait(for: [exp,exp1,exp2,exp3], timeout: 15.0)

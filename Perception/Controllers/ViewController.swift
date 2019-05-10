@@ -21,6 +21,7 @@ class CustomSKVideoNode: SKVideoNode {
 class ViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
+<<<<<<< HEAD
     
     private let databaseService = DatabaseService()
    // private let mainView = Main()
@@ -34,6 +35,27 @@ class ViewController: UIViewController {
       }
     }
 
+=======
+    let messageView = AnimationMessage()
+    let defaults = UserDefaults.standard
+    var defaultsBool = Bool()
+    
+    struct Keys {
+        static let noMoreMessage = "messageGoAway"
+    }
+    
+    private let databaseService = DatabaseService()
+   // private let mainView = Main()
+    private var ARImages = Set<ARReferenceImage>() {
+      didSet {
+        guard oldValue.count == images.count - 1 else { return }
+        let configuration = ARImageTrackingConfiguration()
+        configuration.trackingImages = ARImages
+        configuration.maximumNumberOfTrackedImages = 1
+       // mainView.sceneView.session.run(configuration)
+      }
+    }
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
     private var currentSCNNode: SCNNode?
     private var currentSKVideoNode: CustomSKVideoNode?
@@ -43,6 +65,7 @@ class ViewController: UIViewController {
     private var images = [PerceptionImage]()
     private var savedVideos = [SavedVideo]()
     private var videos = [PerceptionVideo]()
+<<<<<<< HEAD
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchImages()
@@ -59,6 +82,51 @@ class ViewController: UIViewController {
 //        mainView.sceneView.session.delegate = self
 //        mainView.sceneView.showsStatistics = false
         checkForLoggedUser()
+=======
+    private var menuButton: ExpandingMenuButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(messageView)
+        addExpandingMenu()
+        orientationSetup()
+        fetchImages()
+        fetchVideos()
+        self.view.backgroundColor = .clear
+        authservice.authserviceSignOutDelegate = self
+        self.navigationController?.navigationBar.isHidden = true
+        setupDoubleTapGesture()
+        // addExpandingMenu()
+        self.sceneView.delegate = self
+        self.sceneView.showsStatistics = false
+        checkForLoggedUser()
+        messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
+        checkForPreference()
+    }
+    
+ 
+    @objc func setView() {
+        defaultsBool = true
+        if defaultsBool {
+          messageView.fadeOut()
+             defaults.set(defaultsBool, forKey: Keys.noMoreMessage)
+            }
+        }
+    
+    func checkForPreference() {
+        let preference = defaults.bool(forKey: Keys.noMoreMessage)
+        
+        if preference {
+            defaultsBool = true
+            messageView.isHidden = true 
+            
+        }
+  }
+  
+  
+  private var isPlaying = false {
+    didSet {
+      switchPlayback(isPlaying)
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
     }
   
     override var shouldAutorotate: Bool {
@@ -66,12 +134,16 @@ class ViewController: UIViewController {
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+<<<<<<< HEAD
         
         // Only allow Portrait
+=======
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
         return UIInterfaceOrientationMask.all
     }
     
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+<<<<<<< HEAD
         
         // Only allow Portrait
         return UIInterfaceOrientation.portrait
@@ -82,6 +154,9 @@ class ViewController: UIViewController {
             switchPlayback(isPlaying)
         }
     }
+=======
+        return UIInterfaceOrientation.portrait
+    }
   
     private func setupDoubleTapGesture() {
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
@@ -89,6 +164,20 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(doubleTapGesture)
     }
   
+  private func setupSaveGesture() {
+    let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(saveVideo))
+    swipeUpGesture.direction = .right
+    view.addGestureRecognizer(swipeUpGesture)
+  }
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
+  
+    private func setupDoubleTapGesture() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(doubleTap))
+        doubleTapGesture.numberOfTapsRequired = 2
+        view.addGestureRecognizer(doubleTapGesture)
+    }
+  
+<<<<<<< HEAD
     private func checkForLoggedUser() {
         if usersession.getCurrentUser() != nil {
             userIsLoggedIn = true
@@ -123,6 +212,34 @@ class ViewController: UIViewController {
         }
     }
 
+=======
+    @objc private func doubleTap() {
+        //TODO: add up view that displays only the video
+        let playerVC = AVPlayerViewController()
+        if let currentSKVideoNode = currentSKVideoNode {
+            if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
+                playerVC.player = currentVideoPlayer
+               // let currentTime = currentVideoPlayer.currentTime()
+                let currentItem = currentVideoPlayer.currentItem?.currentTime()
+                present(playerVC, animated: true) {
+                 //  playerVC.player?.playImmediately(atRate: 1.0)
+                    playerVC.player?.seek(to: currentItem!)
+                }
+            }
+        } else {
+            print("no video to expand")
+        }
+    }
+  
+    private func switchPlayback(_ isPlaying: Bool) {
+        if isPlaying {
+            currentSKVideoNode?.pause()
+        } else {
+            currentSKVideoNode?.play()
+        }
+    }
+
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
 
   private func fetchImages() {
       let imageService: ImageService = databaseService
@@ -161,12 +278,16 @@ class ViewController: UIViewController {
             configuration.maximumNumberOfTrackedImages = 1
         }
         checkForLoggedUser()
+<<<<<<< HEAD
 //        mainView.sceneView.session.run(configuration)
       sceneView.session.run(configuration)
 
         
 //        AppUtility.lockOrientation(.portrait)
         //        // Or to rotate and lock
+=======
+        sceneView.session.run(configuration)
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
        AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
 
     }
@@ -269,7 +390,11 @@ class ViewController: UIViewController {
         currentSKVideoNode?.pause()
         
         // Don't forget to reset when view is being removed
+<<<<<<< HEAD
           AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+=======
+             AppUtility.lockOrientation(.all)
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
     }
   
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -310,7 +435,40 @@ class ViewController: UIViewController {
       })
     }
   }
+<<<<<<< HEAD
   
+=======
+
+    private func orientationSetup() {
+        
+        //TODO: not add the view everytime it rotates
+        if UIDevice.current.orientation.isPortrait {
+            addExpandingMenu()
+        } else if UIDevice.current.orientation.isLandscape {
+            addExpandingMenu()
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: nil) { (_) in
+               self.orientationSetup()
+        }
+    }
+     //change the frame
+  
+  @objc private func shareVideo() {
+    if let videoToShare =  self.currentSKVideoNode?.name,
+      let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
+      let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
+      self.present(activityViewController, animated: true)
+      print("trying to share video")
+    } else {
+      self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
+    }
+  }
+  
+  //
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
   private func addExpandingMenu() {
         let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
@@ -326,6 +484,7 @@ class ViewController: UIViewController {
     
     let share = ExpandingMenuItem(size: menuButtonSize, title: "Share", image: UIImage(named: "shareBlue")!, highlightedImage: UIImage(named: "shareBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
       //        menuButton.addButton(title: <#T##String#>, image: <#T##UIImage#>, highlightedImage: <#T##UIImage#>, backgroundImage: <#T##UIImage?#>, backgroundHighlightedImage: <#T##UIImage#>, action: <#T##(() -> ())?##(() -> ())?##() -> ()#>)
+<<<<<<< HEAD
       if let videoToShare =  self.currentSKVideoNode?.name,
         
         let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
@@ -336,6 +495,9 @@ class ViewController: UIViewController {
       else {
         self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
       }
+=======
+      self.shareVideo()
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
       
     }
     let save = ExpandingMenuItem(size: menuButtonSize, title: "Save", image: UIImage(named: "starBlue")!, highlightedImage: UIImage(named: "starBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
@@ -355,6 +517,7 @@ class ViewController: UIViewController {
         self.segueToLoginPage(withMessage: Constants.loginViewMessageViewMyVideos, destination: .myVideos)
       }
     }
+<<<<<<< HEAD
     
         let profile = ExpandingMenuItem(size: menuButtonSize, title: "Profile", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.usersession.getCurrentUser() != nil {
@@ -389,6 +552,9 @@ class ViewController: UIViewController {
         view.addSubview(menuButton)
     }
   
+=======
+  }
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
 }
 
 extension ViewController: ARSCNViewDelegate {
@@ -398,8 +564,13 @@ extension ViewController: ARSCNViewDelegate {
         let node = SCNNode()
         if let imageAnchor = anchor as? ARImageAnchor {
             let referenceImage = imageAnchor.referenceImage.name!.description
+<<<<<<< HEAD
             let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4")
             let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer!)
+=======
+            guard let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4") else  { return node }
+            let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer)
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
             videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
             videoNode.yScale = -1.0
@@ -453,5 +624,11 @@ extension ViewController: AuthServiceSignOutDelegate {
   func didSignOut(_ authservice: AuthService) {
     showAlert(title: "Signed Out", message: "Signed Out Successfully.")
     ProgressHUD.dismiss()
+<<<<<<< HEAD
+=======
+  func checkForLoggedUser(_ logged: Bool) {
+    userIsLoggedIn = true
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
   }
+}
 }

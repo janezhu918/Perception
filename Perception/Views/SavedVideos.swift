@@ -1,6 +1,7 @@
 import UIKit
 
 class SavedVideos: UIView {
+<<<<<<< HEAD
   
   lazy var myCollectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
@@ -15,6 +16,32 @@ class SavedVideos: UIView {
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
     commonInit()
+=======
+
+    lazy var myCollectionView: UICollectionView = {
+        //CREATE THE LAYOUT:
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize.init(width: 200, height: Constants.savedVideoCollectionViewCellNonExpandedHeight)
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        let cv = UICollectionView.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
+        cv.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        return cv
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+       commonInit()
+        
+    }
+    
+    func commonInit() {
+        backgroundColor = Constants.perceptionNavyColor
+        addSubview(myCollectionView)
+        myCollectionView.register(FavoriteCollectionCell.self, forCellWithReuseIdentifier: "FavoriteCell")
+        cvConstrains()
+    }
+>>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
     
   }
   
