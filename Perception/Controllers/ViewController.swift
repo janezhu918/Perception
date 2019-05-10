@@ -192,7 +192,7 @@ class ViewController: UIViewController {
         }
         checkForLoggedUser()
         sceneView.session.run(configuration)
-       AppUtility.lockOrientation(UIInterfaceOrientationMask.all)
+       AppUtility.lockOrientation(.portrait)
 
     }
   
