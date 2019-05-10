@@ -138,6 +138,7 @@ class ViewController: UIViewController {
                 present(playerVC, animated: true) {
                  //  playerVC.player?.playImmediately(atRate: 1.0)
                     playerVC.player?.seek(to: currentItem!)
+                    playerVC.player?.play()
                 }
             }
         } else {
@@ -160,7 +161,6 @@ class ViewController: UIViewController {
         switch result {
         case .success(let images):
           self?.images = images
-//          self?.setupARImages()
         case .failure(error: let error):
           self?.showAlert(title: "Error", message: error.localizedDescription)
         }
