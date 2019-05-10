@@ -160,7 +160,7 @@ class ViewController: UIViewController {
         switch result {
         case .success(let images):
           self?.images = images
-          self?.setupARImages()
+//          self?.setupARImages()
         case .failure(error: let error):
           self?.showAlert(title: "Error", message: error.localizedDescription)
         }
