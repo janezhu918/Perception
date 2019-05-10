@@ -8,12 +8,6 @@
       "filename" : "bigmouths.arreferenceimage"
     },
     {
-<<<<<<< HEAD
-      "filename" : "bigmouths2.arreferenceimage"
-    },
-    {
-=======
->>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
       "filename" : "cloackAndDagger.arreferenceimage"
     },
     {
@@ -29,28 +23,19 @@
       "filename" : "loveDeathAndRobots.arreferenceimage"
     },
     {
-<<<<<<< HEAD
-=======
-      "filename" : "maniac-1.arreferenceimage"
+      "filename" : "maniac.arreferenceimage"
     },
     {
->>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
-      "filename" : "maniac.arreferenceimage"
+      "filename" : "perception.arreferenceimage"
     },
     {
       "filename" : "pursuit.arreferenceimage"
     },
     {
       "filename" : "starwars.arreferenceimage"
-<<<<<<< HEAD
-=======
-    },
-    {
-      "filename" : "perception.arreferenceimage"
     },
     {
       "filename" : "Twitter.arreferenceimage"
->>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
     }
   ]
 }

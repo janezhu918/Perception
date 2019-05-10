@@ -1,52 +1,26 @@
 import UIKit
 
 class SavedVideos: UIView {
-<<<<<<< HEAD
   
   lazy var myCollectionView: UICollectionView = {
+    //CREATE THE LAYOUT:
     let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize.init(width: 100, height: 100)
+    layout.itemSize = CGSize.init(width: 200, height: Constants.savedVideoCollectionViewCellNonExpandedHeight)
     layout.scrollDirection = .vertical
-    layout.sectionInset = UIEdgeInsets.init(top: 3, left: 20, bottom: 3, right: 20)
+    layout.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
     let cv = UICollectionView.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-    cv.backgroundColor = #colorLiteral(red: 0.1294117647, green: 0.2039215686, blue: 0.3450980392, alpha: 1)
+    cv.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     return cv
   }()
   
   override init(frame: CGRect) {
     super.init(frame: UIScreen.main.bounds)
     commonInit()
-=======
-
-    lazy var myCollectionView: UICollectionView = {
-        //CREATE THE LAYOUT:
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 200, height: Constants.savedVideoCollectionViewCellNonExpandedHeight)
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-        let cv = UICollectionView.init(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-        cv.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
-        return cv
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: UIScreen.main.bounds)
-       commonInit()
-        
-    }
-    
-    func commonInit() {
-        backgroundColor = Constants.perceptionNavyColor
-        addSubview(myCollectionView)
-        myCollectionView.register(FavoriteCollectionCell.self, forCellWithReuseIdentifier: "FavoriteCell")
-        cvConstrains()
-    }
->>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
     
   }
   
   func commonInit() {
-    backgroundColor = #colorLiteral(red: 0.1294117647, green: 0.2039215686, blue: 0.3450980392, alpha: 1)
+    backgroundColor = Constants.perceptionNavyColor
     addSubview(myCollectionView)
     myCollectionView.register(FavoriteCollectionCell.self, forCellWithReuseIdentifier: "FavoriteCell")
     cvConstrains()
@@ -58,10 +32,7 @@ class SavedVideos: UIView {
   
   func cvConstrains() {
     myCollectionView.translatesAutoresizingMaskIntoConstraints = false
-    [myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-     myCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-     myCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-     myCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)]
+    [myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor), myCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor), myCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor), myCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)]
       .forEach{$0.isActive = true }
     
   }

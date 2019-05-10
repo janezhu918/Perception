@@ -19,8 +19,9 @@ class OnBoardingViewController: UIViewController {
     UserDefaults.standard.set(false, forKey: "Show onboarding") // refarctor
     let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
     let mainVC = mainStoryBoard.instantiateViewController(withIdentifier: "ViewController")
-    let navForVC = UINavigationController(rootViewController: mainVC)
-    self.present(navForVC, animated: true)
+    //  let mainVC = ViewController()
+    let navForMainVC = UINavigationController(rootViewController: mainVC)
+    self.present(navForMainVC, animated: true)
     
   }
   
@@ -43,20 +44,8 @@ extension OnBoardingViewController: PaperOnboardingDataSource, PaperOnboardingDe
     let bgTwo = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     let bgThree = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
     
-<<<<<<< HEAD
     let largeFont = UIFont(name: "HelveticaNeue-Bold", size: 18)!
     let smallFont = UIFont(name: "HelveticaNeue", size: 16)!
-=======
-    @objc func segueToMainVC() {
-        UserDefaults.standard.set(false, forKey: "Show onboarding") // refarctor
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = mainStoryBoard.instantiateViewController(withIdentifier: "ViewController")
-        //  let mainVC = ViewController()
-        let navForMainVC = UINavigationController(rootViewController: mainVC)
-        self.present(navForMainVC, animated: true)
-        
-    }
->>>>>>> 013415fe27c162a6e9038de9ea51fabb0004367a
     
     
     
@@ -81,6 +70,8 @@ You can change this by clicking Start, then select Settings > Privacy > Camera. 
       }
     }
   }
+  
+  
   
   
 }
