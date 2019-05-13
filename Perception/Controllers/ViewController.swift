@@ -50,6 +50,7 @@ class ViewController: UIViewController {
   private var savedVideos = [SavedVideo]()
   private var videos = [PerceptionVideo]()
   private var menuButton: ExpandingMenuButton!
+  private var isAnImageDetected = Bool()
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(messageView)
@@ -66,9 +67,20 @@ class ViewController: UIViewController {
     self.sceneView.showsStatistics = false
     checkForLoggedUser()
     messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
+    messageView.okButton.addTarget(self, action: #selector(okPressed), for: .touchUpInside)
+    hideDoubleTapMessage()
     checkForPreference()
   }
   
+    @objc func okPressed() {
+        
+        messageView.alertView.fadeOut()
+        messageView.messageLabel.fadeOut()
+        messageView.titleLabel.fadeOut()
+        messageView.okButton.fadeOut()
+        messageView.buttonScape.fadeOut()
+     
+    }
   
   @objc func setView() {
     defaultsBool = true
@@ -77,7 +89,27 @@ class ViewController: UIViewController {
       defaults.set(defaultsBool, forKey: Keys.noMoreMessage)
     }
   }
-  
+    
+    func showOneView() {
+        messageView.doubleTapView.isHidden = false
+        messageView.doubleTapMessage.isHidden = false
+        
+        messageView.doubleTapView.fadeIn()
+        messageView.doubleTapMessage.fadeIn()
+    }
+    
+    func hideOneView() {
+        messageView.doubleTapView.isHidden = true
+        messageView.doubleTapMessage.isHidden = true
+        
+        messageView.doubleTapView.fadeOut()
+        messageView.doubleTapMessage.fadeOut()
+    }
+    
+    func hideDoubleTapMessage() {
+        messageView.doubleTapView.isHidden = true
+        messageView.doubleTapMessage.isHidden = true
+    }
   func checkForPreference() {
     let preference = defaults.bool(forKey: Keys.noMoreMessage)
     
@@ -187,6 +219,7 @@ class ViewController: UIViewController {
     let configuration = ARImageTrackingConfiguration()
     
     if let trackedImage = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
+        
       configuration.trackingImages = trackedImage
       configuration.maximumNumberOfTrackedImages = 1
     }
@@ -466,9 +499,22 @@ extension ViewController: ARSCNViewDelegate {
   func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
     if let currentSCNNode = currentSCNNode, let currentSKVideoNode = currentSKVideoNode {
       videoDictionary[currentSCNNode] = currentSKVideoNode
+      
+        DispatchQueue.main.async {
+           
+                self.showOneView()
+                // make shit happend here!!
+                print("print goes here!")
+            }
+        
+    } else {
+      self.hideOneView()
     }
+    
   }
   
+   
+    
   func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
     if let currentVideoPlaying = videoDictionary[node], let trackable = anchor as? ARImageAnchor {
       currentSKVideoNode = currentVideoPlaying
