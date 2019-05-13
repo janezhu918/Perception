@@ -368,10 +368,10 @@ class ViewController: UIViewController {
   private func addExpandingMenu() {
     let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
     let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
-    menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 34.0)
+    menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 50.0)
     
     //        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
-    menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
+//    menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
     view.addSubview(menuButton)
     menuButton.layer.cornerRadius = 5
     //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
