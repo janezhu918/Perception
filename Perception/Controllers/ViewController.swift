@@ -72,6 +72,9 @@ class ViewController: UIViewController {
     checkForPreference()
     messageView.okOndoubleTap.addTarget(self, action: #selector(okDoubleTapPressed), for: .touchUpInside)
     messageView.doubleTapNotShow.addTarget(self, action: #selector(dtViewGoAway), for: .touchUpInside)
+    
+  
+
   }
   
     @objc func okPressed() {
@@ -81,6 +84,7 @@ class ViewController: UIViewController {
         messageView.titleLabel.fadeOut()
         messageView.okButton.fadeOut()
         messageView.buttonScape.fadeOut()
+        messageView.closeButton.fadeOut()
      
     }
     
@@ -121,17 +125,19 @@ class ViewController: UIViewController {
         messageView.doubleTapMessage.isHidden = true
         messageView.okOndoubleTap.isHidden = true
         messageView.doubleTapNotShow.isHidden = true
+        messageView.closeButton.isHidden = true
         messageView.doubleTapView.fadeOut()
         messageView.doubleTapMessage.fadeOut()
         messageView.okOndoubleTap.fadeOut()
-         messageView.doubleTapNotShow.fadeOut()
+        messageView.doubleTapNotShow.fadeOut()
+        messageView.closeButton.fadeOut()
         
     }
     
     func hideDoubleTapMessage() {
         messageView.doubleTapView.isHidden = true
         messageView.doubleTapMessage.isHidden = true
-          messageView.okOndoubleTap.isHidden = true
+        messageView.okOndoubleTap.isHidden = true
         messageView.doubleTapNotShow.isHidden = true
     }
   
@@ -145,6 +151,7 @@ class ViewController: UIViewController {
         messageView.titleLabel.isHidden = true
         messageView.okButton.isHidden = true
         messageView.buttonScape.isHidden = true
+        messageView.closeButton.isHidden = true
       
     }
   }
@@ -550,15 +557,15 @@ extension ViewController: ARSCNViewDelegate {
         currentSKVideoNode = nil
         DispatchQueue.main.async {
             self.hideOneView()
-          
+    
         }
         
       } else {
         currentSKVideoNode = currentVideoPlaying
-        DispatchQueue.main.async {
-            self.showOneView()
-
-        }
+//        DispatchQueue.main.async {
+//            self.showOneView()
+//
+//        }
       }
     }
   }
