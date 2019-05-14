@@ -20,6 +20,33 @@ class AnimationMessage: UIView {
         return doubleTapMessage
     }()
     
+    lazy var okOndoubleTap: UIButton = {
+       let okOndoubleTap = UIButton()
+        okOndoubleTap.setTitle("Ok", for: .normal)
+        okOndoubleTap.titleLabel?.textColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        okOndoubleTap.titleLabel?.textAlignment = .center
+        okOndoubleTap.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 12)
+        okOndoubleTap.layer.cornerRadius = 8
+        okOndoubleTap.layer.borderWidth = 0.5
+        okOndoubleTap.layer.borderColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        okOndoubleTap.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.1960784314, blue: 0.3176470588, alpha: 1)
+        okOndoubleTap.setTitleColor(#colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1), for: .normal)
+        return okOndoubleTap
+    }()
+    
+    lazy var doubleTapNotShow: UIButton = {
+       let doubleTapNotShow = UIButton()
+        doubleTapNotShow.setTitle("Don't show again", for: .normal)
+        doubleTapNotShow.titleLabel?.textColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        doubleTapNotShow.titleLabel?.textAlignment = .center
+        doubleTapNotShow.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 12)
+        doubleTapNotShow.layer.cornerRadius = 8
+        doubleTapNotShow.layer.borderWidth = 0.5
+        doubleTapNotShow.layer.borderColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        doubleTapNotShow.backgroundColor = #colorLiteral(red: 0.1411764706, green: 0.1960784314, blue: 0.3176470588, alpha: 1)
+        doubleTapNotShow.setTitleColor(#colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1), for: .normal)
+        return doubleTapNotShow
+    }()
     
     
     lazy var alertView: UIView = {
@@ -103,6 +130,8 @@ class AnimationMessage: UIView {
     func commonInit() {
         addSubview(doubleTapView)
         addSubview(doubleTapMessage)
+        addSubview(okOndoubleTap)
+        addSubview(doubleTapNotShow)
         addSubview(alertView)
         addSubview(titleLabel)
         addSubview(messageLabel)
@@ -119,11 +148,17 @@ class AnimationMessage: UIView {
     
     func setConstrains() {
         
-                doubleTapView.translatesAutoresizingMaskIntoConstraints = false
-                [doubleTapView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 33), doubleTapView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 22), doubleTapView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -22), doubleTapView.bottomAnchor.constraint(equalTo: alertView.topAnchor, constant: -50)].forEach{ $0.isActive = true }
+        doubleTapView.translatesAutoresizingMaskIntoConstraints = false
+                [doubleTapView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 33), doubleTapView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 33), doubleTapView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -33), doubleTapView.bottomAnchor.constraint(equalTo: alertView.topAnchor, constant: -50)].forEach{ $0.isActive = true }
         
                 doubleTapMessage.translatesAutoresizingMaskIntoConstraints = false
-                [doubleTapMessage.topAnchor.constraint(equalTo: doubleTapView.topAnchor, constant: 8), doubleTapMessage.bottomAnchor.constraint(equalTo: doubleTapView.bottomAnchor, constant: -22), doubleTapMessage.leadingAnchor.constraint(equalTo: doubleTapView.leadingAnchor, constant: 22), doubleTapMessage.trailingAnchor.constraint(equalTo: doubleTapView.trailingAnchor, constant: -22)].forEach{ $0.isActive = true }
+                [doubleTapMessage.topAnchor.constraint(equalTo: doubleTapView.topAnchor, constant: 11),  doubleTapMessage.leadingAnchor.constraint(equalTo: doubleTapView.leadingAnchor, constant: 33), doubleTapMessage.trailingAnchor.constraint(equalTo: doubleTapView.trailingAnchor, constant: -33)].forEach{ $0.isActive = true }
+        
+        okOndoubleTap.translatesAutoresizingMaskIntoConstraints = false
+        [okOndoubleTap.topAnchor.constraint(equalTo: doubleTapMessage.bottomAnchor, constant: 11), okOndoubleTap.leadingAnchor.constraint(equalTo: doubleTapMessage.leadingAnchor, constant: 11), okOndoubleTap.trailingAnchor.constraint(equalTo: doubleTapMessage.trailingAnchor, constant: -140), okOndoubleTap.bottomAnchor.constraint(equalTo: doubleTapView.bottomAnchor, constant: -11)].forEach{ $0.isActive = true }
+        
+        doubleTapNotShow.translatesAutoresizingMaskIntoConstraints = false
+        [doubleTapNotShow.topAnchor.constraint(equalTo: doubleTapMessage.bottomAnchor, constant: 11), doubleTapNotShow.leadingAnchor.constraint(equalTo: okOndoubleTap.trailingAnchor, constant: 0), doubleTapNotShow.trailingAnchor.constraint(equalTo: doubleTapMessage.trailingAnchor, constant: -11), doubleTapNotShow.bottomAnchor.constraint(equalTo: doubleTapView.bottomAnchor, constant: -11)].forEach{ $0.isActive = true }
         
         alertView.translatesAutoresizingMaskIntoConstraints = false
         [alertView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 170), alertView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -200), alertView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 88), alertView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -88)].forEach{ $0.isActive = true }

@@ -70,6 +70,8 @@ class ViewController: UIViewController {
     messageView.okButton.addTarget(self, action: #selector(okPressed), for: .touchUpInside)
     hideDoubleTapMessage()
     checkForPreference()
+    messageView.okOndoubleTap.addTarget(self, action: #selector(okDoubleTapPressed), for: .touchUpInside)
+    messageView.doubleTapNotShow.addTarget(self, action: #selector(dtViewGoAway), for: .touchUpInside)
   }
   
     @objc func okPressed() {
@@ -81,6 +83,11 @@ class ViewController: UIViewController {
         messageView.buttonScape.fadeOut()
      
     }
+    
+    @objc func okDoubleTapPressed() {
+        hideOneView()
+        
+    }
   
   @objc func setView() {
     defaultsBool = true
@@ -90,35 +97,59 @@ class ViewController: UIViewController {
     }
   }
     
+    @objc func dtViewGoAway() {
+        messageView.doubleTapView.fadeOut()
+        messageView.doubleTapMessage.fadeOut()
+        messageView.okOndoubleTap.fadeOut()
+        messageView.doubleTapNotShow.fadeOut()
+    }
+    
     func showOneView() {
         messageView.doubleTapView.isHidden = false
         messageView.doubleTapMessage.isHidden = false
+        messageView.okOndoubleTap.isHidden = false
+        messageView.doubleTapNotShow.isHidden = false
         
         messageView.doubleTapView.fadeIn()
         messageView.doubleTapMessage.fadeIn()
+        messageView.okOndoubleTap.fadeIn()
+        messageView.doubleTapNotShow.fadeIn()
     }
     
     func hideOneView() {
         messageView.doubleTapView.isHidden = true
         messageView.doubleTapMessage.isHidden = true
-        
+        messageView.okOndoubleTap.isHidden = true
+        messageView.doubleTapNotShow.isHidden = true
         messageView.doubleTapView.fadeOut()
         messageView.doubleTapMessage.fadeOut()
+        messageView.okOndoubleTap.fadeOut()
+         messageView.doubleTapNotShow.fadeOut()
+        
     }
     
     func hideDoubleTapMessage() {
         messageView.doubleTapView.isHidden = true
         messageView.doubleTapMessage.isHidden = true
+          messageView.okOndoubleTap.isHidden = true
+        messageView.doubleTapNotShow.isHidden = true
     }
-  func checkForPreference() {
+  
+    func checkForPreference() {
     let preference = defaults.bool(forKey: Keys.noMoreMessage)
     
     if preference {
       defaultsBool = true
-      messageView.isHidden = true
+        messageView.alertView.isHidden = true
+        messageView.messageLabel.isHidden = true
+        messageView.titleLabel.isHidden = true
+        messageView.okButton.isHidden = true
+        messageView.buttonScape.isHidden = true
       
     }
   }
+    
+
   
   
   private var isPlaying = false {
@@ -501,14 +532,10 @@ extension ViewController: ARSCNViewDelegate {
       videoDictionary[currentSCNNode] = currentSKVideoNode
       
         DispatchQueue.main.async {
-           
-                self.showOneView()
-                // make shit happend here!!
+            self.showOneView()
                 print("print goes here!")
             }
         
-    } else {
-      self.hideOneView()
     }
     
   }
@@ -521,8 +548,17 @@ extension ViewController: ARSCNViewDelegate {
       if !trackable.isTracked {
         currentVideoPlaying.pause()
         currentSKVideoNode = nil
+        DispatchQueue.main.async {
+            self.hideOneView()
+          
+        }
+        
       } else {
         currentSKVideoNode = currentVideoPlaying
+        DispatchQueue.main.async {
+            self.showOneView()
+
+        }
       }
     }
   }
