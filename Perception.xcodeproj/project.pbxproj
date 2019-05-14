@@ -13,12 +13,9 @@
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
 		127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */; };
 		127F854A2265191900DEC05D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85492265191900DEC05D /* ProfileView.swift */; };
-		1E4AFD2E22808CB7006D341B /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD2D22808CB7006D341B /* starwars.mp4 */; };
-		1E4AFD3022808D4E006D341B /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD2F22808D4D006D341B /* maniac.mp4 */; };
-		1E4AFD3222808D5C006D341B /* bigmouths.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD3122808D5C006D341B /* bigmouths.mp4 */; };
-		1E4AFD3422808D70006D341B /* jason.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD3322808D70006D341B /* jason.mp4 */; };
-		1E4AFD3622808ED3006D341B /* pursuit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD3522808ED3006D341B /* pursuit.mp4 */; };
-		1E4AFD3822809005006D341B /* bigmouths2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD3722809005006D341B /* bigmouths2.mp4 */; };
+		1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BEE2281E74E006E611C /* pursuit.mp4 */; };
+		1E3A41BC2289DD6A00FC6B85 /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F652280CE820070CC4B /* maniac.mp4 */; };
+		1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F672280CE890070CC4B /* starwars.mp4 */; };
 		1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */; };
 		1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */; };
 		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
@@ -73,20 +70,11 @@
 		1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1211DAC9225D34F200D40F51 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		121B5F5D2280CE570070CC4B /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
-		121B5F5F2280CE600070CC4B /* bigmouths.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths.mp4; sourceTree = "<group>"; };
-		121B5F612280CE6C0070CC4B /* bigmouths2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths2.mp4; sourceTree = "<group>"; };
 		121B5F652280CE820070CC4B /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
 		121B5F672280CE890070CC4B /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
-		1E4AFD2D22808CB7006D341B /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
-		1E4AFD2F22808D4D006D341B /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
-		1E4AFD3122808D5C006D341B /* bigmouths.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths.mp4; sourceTree = "<group>"; };
-		1E4AFD3322808D70006D341B /* jason.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jason.mp4; sourceTree = "<group>"; };
-		1E4AFD3522808ED3006D341B /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
-		1E4AFD3722809005006D341B /* bigmouths2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths2.mp4; sourceTree = "<group>"; };
 		1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionImage.swift; sourceTree = "<group>"; };
 		1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionCell.swift; sourceTree = "<group>"; };
 		1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionImageCollectionKeys.swift; sourceTree = "<group>"; };
@@ -104,11 +92,7 @@
 		A507ECE5225654F0009B94A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A541DC47225F97BC00E30D6E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		A5565BE82281E6A0006E611C /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSetup.swift; sourceTree = "<group>"; };
-		A5565BEC2281E74E006E611C /* jason.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jason.mp4; sourceTree = "<group>"; };
-		A5565BED2281E74E006E611C /* bigmouths.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths.mp4; sourceTree = "<group>"; };
 		A5565BEE2281E74E006E611C /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
-		A5565BF02281E74E006E611C /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
-		A5565BF12281E74E006E611C /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
 		A5B411932257EC45006E14F7 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		A5B411962257EC7E006E14F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A5B411982257EC85006E14F7 /* SavedVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideos.swift; sourceTree = "<group>"; };
@@ -201,22 +185,9 @@
 		A507ECD6225654EF009B94A9 /* Perception */ = {
 			isa = PBXGroup;
 			children = (
-				121B5F5D2280CE570070CC4B /* pursuit.mp4 */,
-				121B5F5F2280CE600070CC4B /* bigmouths.mp4 */,
-				121B5F612280CE6C0070CC4B /* bigmouths2.mp4 */,
-				A5565BED2281E74E006E611C /* bigmouths.mp4 */,
-				A5565BEC2281E74E006E611C /* jason.mp4 */,
-				A5565BF02281E74E006E611C /* maniac.mp4 */,
 				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
-				A5565BF12281E74E006E611C /* starwars.mp4 */,
 				121B5F652280CE820070CC4B /* maniac.mp4 */,
 				121B5F672280CE890070CC4B /* starwars.mp4 */,
-				1E4AFD2F22808D4D006D341B /* maniac.mp4 */,
-				1E4AFD3122808D5C006D341B /* bigmouths.mp4 */,
-				1E4AFD3522808ED3006D341B /* pursuit.mp4 */,
-				1E4AFD3322808D70006D341B /* jason.mp4 */,
-				1E4AFD3722809005006D341B /* bigmouths2.mp4 */,
-				1E4AFD2D22808CB7006D341B /* starwars.mp4 */,
 				D7A1C7832264E09A00E33838 /* File Manager Helpers */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
 				A5B411A72257ED4D006E14F7 /* Models */,
@@ -437,14 +408,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E4AFD3822809005006D341B /* bigmouths2.mp4 in Resources */,
-				1E4AFD2E22808CB7006D341B /* starwars.mp4 in Resources */,
-				1E4AFD3222808D5C006D341B /* bigmouths.mp4 in Resources */,
-				1E4AFD3422808D70006D341B /* jason.mp4 in Resources */,
+				1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */,
+				1E3A41BC2289DD6A00FC6B85 /* maniac.mp4 in Resources */,
+				1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */,
 				1ED491CB227A9587002230B2 /* GoogleService-Info.plist in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
-				1E4AFD3622808ED3006D341B /* pursuit.mp4 in Resources */,
-				1E4AFD3022808D4E006D341B /* maniac.mp4 in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
