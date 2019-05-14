@@ -497,13 +497,14 @@ class ViewController: UIViewController {
     menuButton.playSound = false
     menuButton.addMenuItems(menuItems)
     menuButton.willDismissMenuItems = { (menu) -> Void in
-      menuItems.forEach{ $0.isHidden = true }
+        menuItems.forEach{ $0.isHidden = true }
     }
     menuButton.willPresentMenuItems = { (menu) -> Void in
-      menuItems.forEach{ $0.isHidden = false }
+        menuItems.forEach{ $0.isHidden = false }
     }
     view.addSubview(menuButton)
-  }
+    }
+    
 }
 
 extension ViewController: ARSCNViewDelegate {
