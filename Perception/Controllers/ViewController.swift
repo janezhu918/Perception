@@ -83,6 +83,7 @@ class ViewController: UIViewController {
         messageView.messageLabel.fadeOut()
         messageView.titleLabel.fadeOut()
         messageView.okButton.fadeOut()
+        messageView.menuImage.fadeOut()
         messageView.buttonScape.fadeOut()
         messageView.closeButton.fadeOut()
      
@@ -121,16 +122,16 @@ class ViewController: UIViewController {
     }
     
     func hideOneView() {
-        messageView.doubleTapView.isHidden = true
-        messageView.doubleTapMessage.isHidden = true
-        messageView.okOndoubleTap.isHidden = true
-        messageView.doubleTapNotShow.isHidden = true
-        messageView.closeButton.isHidden = true
+//        messageView.doubleTapView.isHidden = true
+//        messageView.doubleTapMessage.isHidden = true
+//        messageView.okOndoubleTap.isHidden = true
+//        messageView.doubleTapNotShow.isHidden = true
+      
         messageView.doubleTapView.fadeOut()
         messageView.doubleTapMessage.fadeOut()
         messageView.okOndoubleTap.fadeOut()
         messageView.doubleTapNotShow.fadeOut()
-        messageView.closeButton.fadeOut()
+    
         
     }
     

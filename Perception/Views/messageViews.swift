@@ -68,19 +68,28 @@ class AnimationMessage: UIView {
     
     lazy var titleLabel: UILabel = {
         var titleLabel = UILabel()
-        titleLabel.text = "Title of the message"
+        titleLabel.text = "Expore the App"
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         titleLabel.textColor = #colorLiteral(red: 0.1411764706, green: 0.1960784314, blue: 0.3176470588, alpha: 1)
         return titleLabel
     }()
     
+    lazy var menuImage: UIButton = {
+        let menuImage = UIButton()
+        let image = UIImage(named: "Screen Shot 2019-05-14 at 12.12.15 PM")
+        menuImage.setImage(image, for: .normal)
+       menuImage.rotate()
+        return menuImage
+    }()
+    
+    
     lazy var messageLabel: UILabel = {
         var messageLabel = UILabel()
-        messageLabel.text = "Title of the mesage that takes up more space bla bla, yeah aja Ermis is my baby"
+        messageLabel.text = "Tap the menu button to start exploring Perception"
         messageLabel.textAlignment = .center
         messageLabel.numberOfLines = 0
-        messageLabel.font = UIFont(name: "HelveticaNeue", size: 16)
+        messageLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
         messageLabel.textColor = #colorLiteral(red: 0.1411764706, green: 0.1960784314, blue: 0.3176470588, alpha: 1)
         return messageLabel
     }()
@@ -134,6 +143,7 @@ class AnimationMessage: UIView {
         addSubview(doubleTapNotShow)
         addSubview(alertView)
         addSubview(titleLabel)
+        addSubview(menuImage)
         addSubview(messageLabel)
         addSubview(okButton)
         addSubview(buttonScape)
@@ -167,10 +177,13 @@ class AnimationMessage: UIView {
         [titleLabel.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 44), titleLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 22), titleLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -22)].forEach{ $0.isActive = true }
         
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
-        [messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 44), messageLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 22), messageLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -22)].forEach{ $0.isActive = true }
+        [messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 22), messageLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 22), messageLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -22)].forEach{ $0.isActive = true }
+        
+        menuImage.translatesAutoresizingMaskIntoConstraints = false
+        [menuImage.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 22), menuImage.centerXAnchor.constraint(equalTo: messageLabel.centerXAnchor), menuImage.heightAnchor.constraint(equalTo: alertView.heightAnchor, multiplier: 0.10), menuImage.widthAnchor.constraint(equalTo: alertView.widthAnchor, multiplier: 0.15)].forEach{ $0.isActive = true }
         
         okButton.translatesAutoresizingMaskIntoConstraints = false
-        [okButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 44), okButton.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 22), okButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -22)].forEach{ $0.isActive = true }
+        [okButton.topAnchor.constraint(equalTo: menuImage.bottomAnchor, constant: 22), okButton.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 22), okButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -22)].forEach{ $0.isActive = true }
         
         buttonScape.translatesAutoresizingMaskIntoConstraints = false
         [buttonScape.topAnchor.constraint(equalTo: okButton.bottomAnchor, constant: 11), buttonScape.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 22), buttonScape.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -22)].forEach{ $0.isActive = true }
@@ -203,5 +216,18 @@ extension UIView {
         UIView.animate(withDuration: 1.0, delay: 0.0, options: UIView.AnimationOptions.curveEaseOut, animations: {
             self.alpha = 0.0
         }, completion: nil)
+    }
+}
+
+extension UIView{
+    func rotate() {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 1)
+        rotation.duration = 1
+        rotation.repeatDuration = 3
+        
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
     }
 }
