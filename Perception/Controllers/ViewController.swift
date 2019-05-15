@@ -50,6 +50,7 @@ class ViewController: UIViewController {
   private var savedVideos = [SavedVideo]()
   private var videos = [PerceptionVideo]()
   private var menuButton: ExpandingMenuButton!
+  private var isAnImageDetected = Bool()
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(messageView)
@@ -66,9 +67,31 @@ class ViewController: UIViewController {
     self.sceneView.showsStatistics = false
     checkForLoggedUser()
     messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
+    messageView.okButton.addTarget(self, action: #selector(okPressed), for: .touchUpInside)
+    hideDoubleTapMessage()
     checkForPreference()
+    messageView.okOndoubleTap.addTarget(self, action: #selector(okDoubleTapPressed), for: .touchUpInside)
+    messageView.doubleTapNotShow.addTarget(self, action: #selector(dtViewGoAway), for: .touchUpInside)
+    
+  
+
   }
   
+    @objc func okPressed() {
+        
+        messageView.alertView.fadeOut()
+        messageView.messageLabel.fadeOut()
+        messageView.titleLabel.fadeOut()
+        messageView.okButton.fadeOut()
+        messageView.buttonScape.fadeOut()
+        messageView.closeButton.fadeOut()
+     
+    }
+    
+    @objc func okDoubleTapPressed() {
+        hideOneView()
+        
+    }
   
   @objc func setView() {
     defaultsBool = true
@@ -77,16 +100,63 @@ class ViewController: UIViewController {
       defaults.set(defaultsBool, forKey: Keys.noMoreMessage)
     }
   }
+    
+    @objc func dtViewGoAway() {
+        messageView.doubleTapView.fadeOut()
+        messageView.doubleTapMessage.fadeOut()
+        messageView.okOndoubleTap.fadeOut()
+        messageView.doubleTapNotShow.fadeOut()
+    }
+    
+    func showOneView() {
+        messageView.doubleTapView.isHidden = false
+        messageView.doubleTapMessage.isHidden = false
+        messageView.okOndoubleTap.isHidden = false
+        messageView.doubleTapNotShow.isHidden = false
+        
+        messageView.doubleTapView.fadeIn()
+        messageView.doubleTapMessage.fadeIn()
+        messageView.okOndoubleTap.fadeIn()
+        messageView.doubleTapNotShow.fadeIn()
+    }
+    
+    func hideOneView() {
+        messageView.doubleTapView.isHidden = true
+        messageView.doubleTapMessage.isHidden = true
+        messageView.okOndoubleTap.isHidden = true
+        messageView.doubleTapNotShow.isHidden = true
+        messageView.closeButton.isHidden = true
+        messageView.doubleTapView.fadeOut()
+        messageView.doubleTapMessage.fadeOut()
+        messageView.okOndoubleTap.fadeOut()
+        messageView.doubleTapNotShow.fadeOut()
+        messageView.closeButton.fadeOut()
+        
+    }
+    
+    func hideDoubleTapMessage() {
+        messageView.doubleTapView.isHidden = true
+        messageView.doubleTapMessage.isHidden = true
+        messageView.okOndoubleTap.isHidden = true
+        messageView.doubleTapNotShow.isHidden = true
+    }
   
-  func checkForPreference() {
+    func checkForPreference() {
     let preference = defaults.bool(forKey: Keys.noMoreMessage)
     
     if preference {
       defaultsBool = true
-      messageView.isHidden = true
+        messageView.alertView.isHidden = true
+        messageView.messageLabel.isHidden = true
+        messageView.titleLabel.isHidden = true
+        messageView.okButton.isHidden = true
+        messageView.buttonScape.isHidden = true
+        messageView.closeButton.isHidden = true
       
     }
   }
+    
+
   
   
   private var isPlaying = false {
@@ -187,6 +257,7 @@ class ViewController: UIViewController {
     let configuration = ARImageTrackingConfiguration()
     
     if let trackedImage = ARReferenceImage.referenceImages(inGroupNamed: "ARPerception", bundle: Bundle.main){
+        
       configuration.trackingImages = trackedImage
       configuration.maximumNumberOfTrackedImages = 1
     }
@@ -368,10 +439,10 @@ class ViewController: UIViewController {
   private func addExpandingMenu() {
     let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
     let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
-    menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 50.0)
+    menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 34.0)
     
     //        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
-//    menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
+    menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
     view.addSubview(menuButton)
     menuButton.layer.cornerRadius = 5
     //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -466,17 +537,35 @@ extension ViewController: ARSCNViewDelegate {
   func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
     if let currentSCNNode = currentSCNNode, let currentSKVideoNode = currentSKVideoNode {
       videoDictionary[currentSCNNode] = currentSKVideoNode
+      
+        DispatchQueue.main.async {
+            self.showOneView()
+                print("print goes here!")
+            }
+        
     }
+    
   }
   
+   
+    
   func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
     if let currentVideoPlaying = videoDictionary[node], let trackable = anchor as? ARImageAnchor {
       currentSKVideoNode = currentVideoPlaying
       if !trackable.isTracked {
         currentVideoPlaying.pause()
         currentSKVideoNode = nil
+        DispatchQueue.main.async {
+            self.hideOneView()
+    
+        }
+        
       } else {
         currentSKVideoNode = currentVideoPlaying
+//        DispatchQueue.main.async {
+//            self.showOneView()
+//
+//        }
       }
     }
   }
