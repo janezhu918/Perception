@@ -21,7 +21,7 @@ class AnimationMessage: UIView {
     }()
     
     lazy var okOndoubleTap: UIButton = {
-       let okOndoubleTap = UIButton()
+        let okOndoubleTap = UIButton()
         okOndoubleTap.setTitle("Ok", for: .normal)
         okOndoubleTap.titleLabel?.textColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         okOndoubleTap.titleLabel?.textAlignment = .center
@@ -35,7 +35,7 @@ class AnimationMessage: UIView {
     }()
     
     lazy var doubleTapNotShow: UIButton = {
-       let doubleTapNotShow = UIButton()
+        let doubleTapNotShow = UIButton()
         doubleTapNotShow.setTitle("Don't show again", for: .normal)
         doubleTapNotShow.titleLabel?.textColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         doubleTapNotShow.titleLabel?.textAlignment = .center
@@ -79,7 +79,7 @@ class AnimationMessage: UIView {
         let menuImage = UIButton()
         let image = UIImage(named: "Screen Shot 2019-05-14 at 12.12.15 PM")
         menuImage.setImage(image, for: .normal)
-       menuImage.rotate()
+        menuImage.rotate()
         return menuImage
     }()
     
@@ -159,10 +159,10 @@ class AnimationMessage: UIView {
     func setConstrains() {
         
         doubleTapView.translatesAutoresizingMaskIntoConstraints = false
-                [doubleTapView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 33), doubleTapView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 33), doubleTapView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -33), doubleTapView.bottomAnchor.constraint(equalTo: alertView.topAnchor, constant: -50)].forEach{ $0.isActive = true }
+        [doubleTapView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 33), doubleTapView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 33), doubleTapView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -33), doubleTapView.bottomAnchor.constraint(equalTo: alertView.topAnchor, constant: -50)].forEach{ $0.isActive = true }
         
-                doubleTapMessage.translatesAutoresizingMaskIntoConstraints = false
-                [doubleTapMessage.topAnchor.constraint(equalTo: doubleTapView.topAnchor, constant: 11),  doubleTapMessage.leadingAnchor.constraint(equalTo: doubleTapView.leadingAnchor, constant: 33), doubleTapMessage.trailingAnchor.constraint(equalTo: doubleTapView.trailingAnchor, constant: -33)].forEach{ $0.isActive = true }
+        doubleTapMessage.translatesAutoresizingMaskIntoConstraints = false
+        [doubleTapMessage.topAnchor.constraint(equalTo: doubleTapView.topAnchor, constant: 11),  doubleTapMessage.leadingAnchor.constraint(equalTo: doubleTapView.leadingAnchor, constant: 33), doubleTapMessage.trailingAnchor.constraint(equalTo: doubleTapView.trailingAnchor, constant: -33)].forEach{ $0.isActive = true }
         
         okOndoubleTap.translatesAutoresizingMaskIntoConstraints = false
         [okOndoubleTap.topAnchor.constraint(equalTo: doubleTapMessage.bottomAnchor, constant: 11), okOndoubleTap.leadingAnchor.constraint(equalTo: doubleTapMessage.leadingAnchor, constant: 11), okOndoubleTap.trailingAnchor.constraint(equalTo: doubleTapMessage.trailingAnchor, constant: -140), okOndoubleTap.bottomAnchor.constraint(equalTo: doubleTapView.bottomAnchor, constant: -11)].forEach{ $0.isActive = true }

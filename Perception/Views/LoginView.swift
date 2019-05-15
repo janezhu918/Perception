@@ -18,7 +18,7 @@ class LoginView: UIView {
     public lazy var messageView: UIView = {
         let v = UIView()
         v.isHidden = true
-//        v.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
+        //        v.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1)
         v.backgroundColor = .white
         return v
     }()

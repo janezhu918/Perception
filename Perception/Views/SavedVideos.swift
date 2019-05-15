@@ -1,7 +1,7 @@
 import UIKit
 
 class SavedVideos: UIView {
-
+    
     lazy var myCollectionView: UICollectionView = {
         //CREATE THE LAYOUT:
         let layout = UICollectionViewFlowLayout()
@@ -15,7 +15,7 @@ class SavedVideos: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-       commonInit()
+        commonInit()
         
     }
     
@@ -33,9 +33,9 @@ class SavedVideos: UIView {
     func cvConstrains() {
         myCollectionView.translatesAutoresizingMaskIntoConstraints = false
         [myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor), myCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor), myCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor), myCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)]
-          .forEach{$0.isActive = true }
+            .forEach{$0.isActive = true }
         
     }
     
-
+    
 }

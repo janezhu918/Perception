@@ -6,7 +6,7 @@ import Foundation
 class ProfileView: UIView {
     
     lazy var imageProfile: UIImageView = {
-       var imageProfile = CircularImageView()
+        var imageProfile = CircularImageView()
         imageProfile.image = #imageLiteral(resourceName: "placeholder")
         imageProfile.contentMode = .scaleAspectFit
         return imageProfile
@@ -21,7 +21,7 @@ class ProfileView: UIView {
     
     lazy var userEmailTextField: UITextField = {
         let userEmail = UITextField()
-      
+        
         userEmail.font = UIFont(name: "Helvetica", size: 24)
         userEmail.textColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
         return userEmail
@@ -65,7 +65,7 @@ class ProfileView: UIView {
     }()
     
     lazy var userGender: UILabel = {
-       let gender = UILabel()
+        let gender = UILabel()
         gender.text = "Gender:"
         gender.textColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
         return gender
@@ -81,7 +81,7 @@ class ProfileView: UIView {
     }()
     
     lazy var locationLabel: UILabel = {
-       let locationLabel = UILabel()
+        let locationLabel = UILabel()
         locationLabel.text = "Zip Code:"
         locationLabel.textColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 1)
         return locationLabel
@@ -106,9 +106,9 @@ class ProfileView: UIView {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
         
-//            func shouldAutorotate() -> Bool {
-//                return false
-//            }
+        //            func shouldAutorotate() -> Bool {
+        //                return false
+        //            }
         
     }
     
@@ -139,8 +139,8 @@ class ProfileView: UIView {
         imageProfile.translatesAutoresizingMaskIntoConstraints = false
         [imageProfile.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 22), imageProfile.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor), imageProfile.widthAnchor.constraint(equalToConstant: 100), imageProfile.heightAnchor.constraint(equalToConstant: 100)].forEach{ $0.isActive = true }
         
-
-
+        
+        
         userEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         [userEmailTextField.topAnchor.constraint(equalTo: imageProfile.bottomAnchor, constant: 33), userEmailTextField.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)].forEach{ $0.isActive = true }
         
@@ -192,7 +192,7 @@ class ProfileView: UIView {
             layer.borderWidth = 0.5
             clipsToBounds = true
         }
-}
+    }
 }
 
 
