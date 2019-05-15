@@ -505,7 +505,7 @@ class ViewController: UIViewController {
     view.addSubview(menuButton)
     }
     
-}
+} 
 
 extension ViewController: ARSCNViewDelegate {
   
