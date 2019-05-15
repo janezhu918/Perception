@@ -21,7 +21,6 @@
 		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
 		1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8099225BAFF00071FA83 /* VideoView.swift */; };
 		1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */; };
-		1ED491CB227A9587002230B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1ED491CA227A9587002230B2 /* GoogleService-Info.plist */; };
 		52A6DA2F8AF8D6217BD24C70 /* Pods_PerceptionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E56D28C1E6BA3B56FFC751 /* Pods_PerceptionTests.framework */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
@@ -30,6 +29,7 @@
 		A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */; };
 		A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541DC47225F97BC00E30D6E /* UserSession.swift */; };
 		A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5565BE82281E6A0006E611C /* RotationSetup.swift */; };
+		A5B20AE3228C865F002BB8C4 /* spiderman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */; };
 		A5B411942257EC45006E14F7 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411932257EC45006E14F7 /* Main.swift */; };
 		A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411962257EC7E006E14F7 /* LoginView.swift */; };
 		A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411982257EC85006E14F7 /* SavedVideos.swift */; };
@@ -50,6 +50,7 @@
 		A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BD2257EE24006E14F7 /* StorageService.swift */; };
 		B2E4EECC3D5BDA5239963CEE /* Pods_Perception.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */; };
 		D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D741FCE4228224BA003BD760 /* PlayerViewController.swift */; };
+		D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */; };
 		D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */; };
 		D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */; };
 		D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */; };
@@ -80,7 +81,6 @@
 		1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionImageCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionVideoCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8099225BAFF00071FA83 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
-		1ED491CA227A9587002230B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.debug.xcconfig"; sourceTree = "<group>"; };
 		72061BAFBA39F37C10299E49 /* Pods-PerceptionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A507ECD4225654EF009B94A9 /* Perception.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perception.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +93,7 @@
 		A541DC47225F97BC00E30D6E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		A5565BE82281E6A0006E611C /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSetup.swift; sourceTree = "<group>"; };
 		A5565BEE2281E74E006E611C /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
+		A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spiderman.mp4; sourceTree = "<group>"; };
 		A5B411932257EC45006E14F7 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		A5B411962257EC7E006E14F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A5B411982257EC85006E14F7 /* SavedVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideos.swift; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		A5B411BD2257EE24006E14F7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.release.xcconfig"; sourceTree = "<group>"; };
 		D741FCE4228224BA003BD760 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionMenuButton.swift; sourceTree = "<group>"; };
 		D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 		A507ECD6225654EF009B94A9 /* Perception */ = {
 			isa = PBXGroup;
 			children = (
+				A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */,
 				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
 				121B5F652280CE820070CC4B /* maniac.mp4 */,
 				121B5F672280CE890070CC4B /* starwars.mp4 */,
@@ -198,8 +201,8 @@
 				A5B411C32257F00E006E14F7 /* Supporting Files */,
 				A507ECDD225654EF009B94A9 /* Main.storyboard */,
 				1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */,
-				1ED491CA227A9587002230B2 /* GoogleService-Info.plist */,
 				A507ECE5225654F0009B94A9 /* Info.plist */,
+				D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */,
 			);
 			path = Perception;
 			sourceTree = "<group>";
@@ -409,13 +412,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */,
+				D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */,
 				1E3A41BC2289DD6A00FC6B85 /* maniac.mp4 in Resources */,
 				1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */,
-				1ED491CB227A9587002230B2 /* GoogleService-Info.plist in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
+				A5B20AE3228C865F002BB8C4 /* spiderman.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
