@@ -42,8 +42,9 @@ class ViewController: UIViewController {
   }
   private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
   private var currentSCNNode: SCNNode?
-  private var currentSKVideoNode: CustomSKVideoNode?
-  private var videoDictionary: [SCNNode:CustomSKVideoNode] = [:]
+  private var currentSKVideoNode: SKVideoNode?
+  private var videoPlayer: AVPlayer?
+  private var videoDictionary: [SCNNode:SKVideoNode] = [:]
   private var userIsLoggedIn = false
   private var authservice = AppDelegate.authservice
   private var images = [PerceptionImage]()
@@ -129,15 +130,15 @@ class ViewController: UIViewController {
     //TODO: add up view that displays only the video
     let playerVC = AVPlayerViewController()
     guard let confirmedVideoTimeState = currentTime else {fatalError("confirmedVideoTimeState at objc doubleTap method is nil")}
-    if let currentSKVideoNode = currentSKVideoNode {
-      if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
+//    if let currentSKVideoNode = videoPlayer {
+      if let currentVideoPlayer = videoPlayer {
         playerVC.player = currentVideoPlayer
         present(playerVC, animated: true) {
           //  playerVC.player?.playImmediately(atRate: 1.0)
           playerVC.player?.seek(to: confirmedVideoTimeState)
           playerVC.player?.play()
         }
-      }
+//      }
     } else {
       print("no video to expand")
     }
@@ -445,7 +446,8 @@ extension ViewController: ARSCNViewDelegate {
       
       guard let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4") else  { return node }
       //
-      //            let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer)
+                  let player = AVPlayer(url: videoUrlForVideoPlayer)
+                  let videoNode = SKVideoNode(avPlayer: player)
       //            let videoScene = SKScene(size: CGSize(width: 480, height: 360))
       //            videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
       //            videoNode.yScale = -1.0
@@ -456,25 +458,34 @@ extension ViewController: ARSCNViewDelegate {
       
       currentSKVideoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer)
       
+//      currentSKVideoNode =
       guard let unwrappedVideoNode = currentSKVideoNode else { fatalError("error unwrapping currentSKVideoNode in first renderer") }
       
       
       let videoScene = SKScene(size: CGSize(width: 480, height: 360))
-      unwrappedVideoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
-      unwrappedVideoNode.yScale = -1.0
-      unwrappedVideoNode.name = imageAnchor.referenceImage.name!.description
+      videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
+      videoNode.yScale = -1.0
+      videoNode.name = imageAnchor.referenceImage.name!.description
       
       
-      videoScene.addChild(unwrappedVideoNode)
+//      videoScene.addChild(unwrappedVideoNode)
+      videoScene.addChild(videoNode)
       
-      observer = unwrappedVideoNode.videoPlayer?.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: 0.05, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { (time) in
+//      observer = unwrappedVideoNode.videoPlayer?.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: 0.05, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { (time) in
+//        self.currentTime = time
+//        print("This is the observer at first renderer printing time\(time)")
+//
+//      })
+      observer = player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: 0.05, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { (time) in
         self.currentTime = time
         print("This is the observer at first renderer printing time\(time)")
         
       })
       
-      unwrappedVideoNode.videoPlayer?.play()
-      
+//      unwrappedVideoNode.videoPlayer?.play()
+//      currentSKVideoNode?.play()
+      videoPlayer = player
+      videoNode.play()
       let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
       plane.firstMaterial?.diffuse.contents = videoScene
       let planeNode = SCNNode(geometry: plane)
@@ -497,14 +508,14 @@ extension ViewController: ARSCNViewDelegate {
   
   func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
     print ("This is the observer at didUpdate renderer \(String(describing: currentTime)) - \(String(describing: observer))")
-    if let currentVideoPlaying = videoDictionary[node], let trackable = anchor as? ARImageAnchor {
-      currentSKVideoNode = currentVideoPlaying
+    if let currentVideoPlaying = videoPlayer, let trackable = anchor as? ARImageAnchor {
       if !trackable.isTracked {
         currentVideoPlaying.pause()
         currentSKVideoNode = nil
-      } else {
-        currentSKVideoNode = currentVideoPlaying
       }
+//      else {
+//        currentSKVideoNode = currentVideoPlaying
+//      }
     }
   }
 }
