@@ -439,11 +439,7 @@ class ViewController: UIViewController {
   private func addExpandingMenu() {
     let menuButtonSize: CGSize = CGSize(width: 35, height: 35)
     let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "moreBlue")!, rotatedImage: UIImage(named: "moreBlue")!)
-    menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 34.0)
-    
-    //        let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), image: UIImage(named: "more")!, rotatedImage: UIImage(named: "more")!)
-    menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 32.0)
-    view.addSubview(menuButton)
+    menuButton.center = CGPoint(x: self.view.bounds.width - 34.0, y: self.view.bounds.height - 78.0)
     menuButton.layer.cornerRadius = 5
     //        menuButton.bottomViewColor = .init(red: 0, green: 0, blue: 0, alpha: 0.5)
     //        menuButton.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 0.5)
@@ -490,7 +486,7 @@ class ViewController: UIViewController {
     }
     let menuItems = [signOut, share, save, myVideos, profile]
     menuItems.forEach{ $0.layer.cornerRadius = 5 }
-    menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5) }
+    menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) }
     menuItems.forEach{ $0.titleColor = .init(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
     menuItems.forEach{ $0.titleMargin = 5 }
     menuButton.playSound = false
