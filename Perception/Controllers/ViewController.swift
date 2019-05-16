@@ -30,28 +30,33 @@ class ViewController: UIViewController {
         static let noMoreMessage = "messageGoAway"
     }
     
+    struct DoubleTapKey {
+        static let noMoreDoubleTap = "noMoreDoubleTap"
+    }
+    
     private let databaseService = DatabaseService()
-    // private let mainView = Main()
     private var ARImages = Set<ARReferenceImage>() {
         didSet {
             guard oldValue.count == images.count - 1 else { return }
             let configuration = ARImageTrackingConfiguration()
             configuration.trackingImages = ARImages
             configuration.maximumNumberOfTrackedImages = 1
-            // mainView.sceneView.session.run(configuration)
         }
     }
     private let usersession: UserSession = (UIApplication.shared.delegate as! AppDelegate).userSession
     private var currentSCNNode: SCNNode?
-    private var currentSKVideoNode: CustomSKVideoNode?
-    private var videoDictionary: [SCNNode:CustomSKVideoNode] = [:]
+    private var currentSKVideoNode: SKVideoNode?
+    private var videoPlayer: AVPlayer?
+    private var videoDictionary: [SCNNode:SKVideoNode] = [:]
     private var userIsLoggedIn = false
     private var authservice = AppDelegate.authservice
     private var images = [PerceptionImage]()
     private var savedVideos = [SavedVideo]()
     private var videos = [PerceptionVideo]()
-//    private var menuButton: ExpandingMenuButton!
     private var isAnImageDetected = Bool()
+    private var videoObservationToken: NSKeyValueObservation?
+    private var currentTime: CMTime?
+    private var observer: Any?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,13 +69,19 @@ class ViewController: UIViewController {
         authservice.authserviceSignOutDelegate = self
         self.navigationController?.navigationBar.isHidden = true
         setupDoubleTapGesture()
+        setupSaveGesture()
         self.sceneView.delegate = self
         self.sceneView.showsStatistics = false
+        setupAlertMessages()
         checkForLoggedUser()
-        messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
-        messageView.okButton.addTarget(self, action: #selector(okPressed), for: .touchUpInside)
+        doubleTapPreference()
         hideDoubleTapMessage()
         checkForPreference()
+    }
+    
+    private func setupAlertMessages() {
+        messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
+        messageView.okButton.addTarget(self, action: #selector(okPressed), for: .touchUpInside)
         messageView.okOndoubleTap.addTarget(self, action: #selector(okDoubleTapPressed), for: .touchUpInside)
         messageView.doubleTapNotShow.addTarget(self, action: #selector(dtViewGoAway), for: .touchUpInside)
     }
@@ -87,7 +98,6 @@ class ViewController: UIViewController {
     
     @objc func okDoubleTapPressed() {
         hideOneView()
-        
     }
     
     @objc func setView() {
@@ -99,10 +109,11 @@ class ViewController: UIViewController {
     }
     
     @objc func dtViewGoAway() {
-        messageView.doubleTapView.fadeOut()
-        messageView.doubleTapMessage.fadeOut()
-        messageView.okOndoubleTap.fadeOut()
-        messageView.doubleTapNotShow.fadeOut()
+        defaultsBool = true
+        if defaultsBool {
+            messageView.fadeOut()
+            defaults.set(defaultsBool, forKey: DoubleTapKey.noMoreDoubleTap)
+        }
     }
     
     func showOneView() {
@@ -110,25 +121,21 @@ class ViewController: UIViewController {
         messageView.doubleTapMessage.isHidden = false
         messageView.okOndoubleTap.isHidden = false
         messageView.doubleTapNotShow.isHidden = false
+        messageView.iconDoubleTap.isHidden = false
         
         messageView.doubleTapView.fadeIn()
         messageView.doubleTapMessage.fadeIn()
         messageView.okOndoubleTap.fadeIn()
         messageView.doubleTapNotShow.fadeIn()
+        messageView.iconDoubleTap.fadeIn()
     }
     
     func hideOneView() {
-        //        messageView.doubleTapView.isHidden = true
-        //        messageView.doubleTapMessage.isHidden = true
-        //        messageView.okOndoubleTap.isHidden = true
-        //        messageView.doubleTapNotShow.isHidden = true
-        
         messageView.doubleTapView.fadeOut()
         messageView.doubleTapMessage.fadeOut()
         messageView.okOndoubleTap.fadeOut()
         messageView.doubleTapNotShow.fadeOut()
-        
-        
+        messageView.iconDoubleTap.fadeOut()
     }
     
     func hideDoubleTapMessage() {
@@ -136,6 +143,7 @@ class ViewController: UIViewController {
         messageView.doubleTapMessage.isHidden = true
         messageView.okOndoubleTap.isHidden = true
         messageView.doubleTapNotShow.isHidden = true
+        messageView.iconDoubleTap.isHidden = true
     }
     
     func checkForPreference() {
@@ -149,12 +157,18 @@ class ViewController: UIViewController {
             messageView.okButton.isHidden = true
             messageView.buttonScape.isHidden = true
             messageView.closeButton.isHidden = true
-            
+            messageView.menuImage.isHidden = true
         }
     }
     
-    
-    
+    func doubleTapPreference() {
+        let doubleTapPref = defaults.bool(forKey: DoubleTapKey.noMoreDoubleTap)
+        
+        if doubleTapPref {
+            defaultsBool = true
+            hideDoubleTapMessage()
+        }
+    }
     
     private var isPlaying = false {
         didSet {
@@ -195,18 +209,13 @@ class ViewController: UIViewController {
     }
     
     @objc private func doubleTap() {
-        //TODO: add up view that displays only the video
         let playerVC = AVPlayerViewController()
-        if let currentSKVideoNode = currentSKVideoNode {
-            if let currentVideoPlayer = currentSKVideoNode.videoPlayer {
-                playerVC.player = currentVideoPlayer
-                // let currentTime = currentVideoPlayer.currentTime()
-                let currentItem = currentVideoPlayer.currentItem?.currentTime()
-                present(playerVC, animated: true) {
-                    //  playerVC.player?.playImmediately(atRate: 1.0)
-                    playerVC.player?.seek(to: currentItem!)
-                    playerVC.player?.play()
-                }
+        guard let confirmedVideoTimeState = currentTime else {fatalError("confirmedVideoTimeState at objc doubleTap method is nil")}
+        if let currentVideoPlayer = videoPlayer {
+            playerVC.player = currentVideoPlayer
+            present(playerVC, animated: true) {
+                playerVC.player?.seek(to: confirmedVideoTimeState)
+                playerVC.player?.play()
             }
         } else {
             print("no video to expand")
@@ -502,18 +511,31 @@ extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         
         let node = SCNNode()
+        
         if let imageAnchor = anchor as? ARImageAnchor {
             let referenceImage = imageAnchor.referenceImage.name!.description
+            
             guard let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4") else  { return node }
-            let videoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer)
+            let player = AVPlayer(url: videoUrlForVideoPlayer)
+            let videoNode = SKVideoNode(avPlayer: player)
+            
+            currentSKVideoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer)
+            
+            guard currentSKVideoNode != nil else { fatalError("error unwrapping currentSKVideoNode in first renderer") }
+            
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
             videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
             videoNode.yScale = -1.0
-            videoScene.addChild(videoNode)
             videoNode.name = imageAnchor.referenceImage.name!.description
-            currentSKVideoNode = videoNode
-            videoNode.play()
+            videoScene.addChild(videoNode)
             
+            observer = player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: 0.05, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { (time) in
+                self.currentTime = time
+                print("This is the observer at first renderer printing time\(time)")
+            })
+            
+            videoPlayer = player
+            videoNode.play()
             let plane = SCNPlane(width: imageAnchor.referenceImage.physicalSize.width, height: imageAnchor.referenceImage.physicalSize.height)
             plane.firstMaterial?.diffuse.contents = videoScene
             let planeNode = SCNNode(geometry: plane)
@@ -522,6 +544,7 @@ extension ViewController: ARSCNViewDelegate {
         } else {
             print("No image was detected at renderer function")
         }
+        
         currentSCNNode = node
         return node
     }
@@ -529,35 +552,15 @@ extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let currentSCNNode = currentSCNNode, let currentSKVideoNode = currentSKVideoNode {
             videoDictionary[currentSCNNode] = currentSKVideoNode
-            
-            DispatchQueue.main.async {
-                self.showOneView()
-                print("print goes here!")
-            }
-            
         }
-        
     }
     
-    
-    
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        if let currentVideoPlaying = videoDictionary[node], let trackable = anchor as? ARImageAnchor {
-            currentSKVideoNode = currentVideoPlaying
+        print ("This is the observer at didUpdate renderer \(String(describing: currentTime)) - \(String(describing: observer))")
+        if let currentVideoPlaying = videoPlayer, let trackable = anchor as? ARImageAnchor {
             if !trackable.isTracked {
                 currentVideoPlaying.pause()
                 currentSKVideoNode = nil
-                DispatchQueue.main.async {
-                    self.hideOneView()
-                    
-                }
-                
-            } else {
-                currentSKVideoNode = currentVideoPlaying
-                //        DispatchQueue.main.async {
-                //            self.showOneView()
-                //
-                //        }
             }
         }
     }
