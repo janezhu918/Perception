@@ -9,11 +9,9 @@ Perception is an app that is designed and built to enhance printed media by addi
 ## Technologies 
 - Swift 5
 - Xcode 10.2
-- ARKit 
-- AVFoundation
-- SceneKit
-- SpriteKit
-- Firebase
+- Frameworks: ARKit, SceneKit, SpriteKit, AVFoundation, 
+- Cocoapods: ProgressHUD, Crashlytics, Fabric, ExpandingMenu, Paper-Onboarding
+- Google Firebase
 
 ## Setup
 1. To run this project, install it locally using Terminal...
@@ -51,3 +49,9 @@ Perception can be used in numerous ways across all printed media. Future iterati
 - [Jevon Gordon](https://github.com/iosdevtrainee/)
 - [Eli Peraza](https://github.com/EliPeraza)
 - [Jane Zhu](https://github.com/janezhu1618)
+
+## Special Thanks
+- Instructors: [Alex Paul](https://github.com/alexpaul) & [Alan Holguin](https://github.com/lynksdomain)
+- Technical Mentors: Gabe Heafitz & Dan Rosenstark
+- PMs: Istishna Hussain & Jamie Byrne
+- TAs
