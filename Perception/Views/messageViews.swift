@@ -13,7 +13,7 @@ class AnimationMessage: UIView {
     
     lazy var doubleTapMessage: UILabel = {
         let doubleTapMessage = UILabel()
-        doubleTapMessage.text = "Double tap anywhere to watch full video"
+        doubleTapMessage.text = "Double tap to watch full video"
         doubleTapMessage.numberOfLines = 0
         doubleTapMessage.textAlignment = .center
         doubleTapMessage.font = UIFont(name: "KohinoorTelugu-Regular", size: 14)
@@ -28,7 +28,7 @@ class AnimationMessage: UIView {
     
     lazy var okOndoubleTap: UIButton = {
         let okOndoubleTap = UIButton()
-        okOndoubleTap.setTitle("Ok", for: .normal)
+        okOndoubleTap.setTitle("OK", for: .normal)
         okOndoubleTap.titleLabel?.textColor = #colorLiteral(red: 1, green: 0.8288275599, blue: 0, alpha: 1)
         okOndoubleTap.titleLabel?.textAlignment = .center
         okOndoubleTap.titleLabel?.font = UIFont(name: "KohinoorTelugu-Regular", size: 12)
@@ -42,7 +42,7 @@ class AnimationMessage: UIView {
     
     lazy var doubleTapNotShow: UIButton = {
         let doubleTapNotShow = UIButton()
-        doubleTapNotShow.setTitle("Don't show again", for: .normal)
+        doubleTapNotShow.setTitle("Don't Show Again", for: .normal)
         doubleTapNotShow.titleLabel?.textColor = #colorLiteral(red: 1, green: 0.8288275599, blue: 0, alpha: 1)
         doubleTapNotShow.titleLabel?.textAlignment = .center
         doubleTapNotShow.titleLabel?.font = UIFont(name: "KohinoorTelugu-Regular", size: 12)
@@ -74,7 +74,7 @@ class AnimationMessage: UIView {
     
     lazy var titleLabel: UILabel = {
         var titleLabel = UILabel()
-        titleLabel.text = "Expore the App"
+        titleLabel.text = "Explore the App"
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "KohinoorTelugu-Regular", size: 20)
         titleLabel.textColor = #colorLiteral(red: 0.1411764706, green: 0.1960784314, blue: 0.3176470588, alpha: 1)
@@ -88,7 +88,6 @@ class AnimationMessage: UIView {
         return menuImage
     }()
     
-    
     lazy var messageLabel: UILabel = {
         var messageLabel = UILabel()
         messageLabel.text = "Tap the menu button to start exploring Perception"
@@ -101,7 +100,7 @@ class AnimationMessage: UIView {
     
     lazy var okButton: UIButton = {
         let okButton = UIButton()
-        okButton.setTitle("Ok", for: .normal)
+        okButton.setTitle("OK", for: .normal)
         okButton.titleLabel?.textColor = #colorLiteral(red: 1, green: 0.8288275599, blue: 0, alpha: 1)
         okButton.titleLabel?.textAlignment = .center
         okButton.titleLabel?.font = UIFont(name: "KohinoorTelugu-Regular", size: 14)
@@ -115,7 +114,7 @@ class AnimationMessage: UIView {
     
     lazy var buttonScape: UIButton = {
         let buttonScape = UIButton()
-        buttonScape.setTitle("Don't show again", for: .normal)
+        buttonScape.setTitle("Don't Show Again", for: .normal)
         buttonScape.titleLabel?.textColor = #colorLiteral(red: 1, green: 0.8288275599, blue: 0, alpha: 1)
         buttonScape.titleLabel?.textAlignment = .center
         buttonScape.titleLabel?.font = UIFont(name: "KohinoorTelugu-Regular", size: 14)
@@ -127,12 +126,9 @@ class AnimationMessage: UIView {
         return buttonScape
     }()
     
-    
-    
-    
     lazy var msgButton: UIButton = {
         let msgButton = UIButton()
-        msgButton.setTitle("Don't show me this again", for: .normal)
+        msgButton.setTitle("Don't Show Again", for: .normal)
         return msgButton
     }()
     
@@ -169,7 +165,6 @@ class AnimationMessage: UIView {
         
         iconDoubleTap.translatesAutoresizingMaskIntoConstraints = false
         [iconDoubleTap.topAnchor.constraint(equalTo: doubleTapView.topAnchor, constant: 11), iconDoubleTap.centerXAnchor.constraint(equalTo: doubleTapView.centerXAnchor), iconDoubleTap.widthAnchor.constraint(equalTo: doubleTapView.widthAnchor, multiplier: 0.25), iconDoubleTap.heightAnchor.constraint(equalTo: doubleTapView.heightAnchor, multiplier: 0.40)].forEach{ $0.isActive = true }
-        
         
         doubleTapMessage.translatesAutoresizingMaskIntoConstraints = false
         [doubleTapMessage.topAnchor.constraint(equalTo: iconDoubleTap.bottomAnchor, constant: 5),  doubleTapMessage.centerXAnchor.constraint(equalTo: doubleTapView.centerXAnchor), doubleTapMessage.bottomAnchor.constraint(equalTo: okOndoubleTap.topAnchor, constant: -11)].forEach{ $0.isActive = true }
