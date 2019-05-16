@@ -28,6 +28,10 @@ class ViewController: UIViewController {
   struct Keys {
     static let noMoreMessage = "messageGoAway"
   }
+    
+    struct DoubleTapKey {
+        static let noMoreDoubleTap = "noMoreDoubleTap"
+    }
   
   private let databaseService = DatabaseService()
   // private let mainView = Main()
@@ -66,16 +70,17 @@ class ViewController: UIViewController {
     self.sceneView.delegate = self
     self.sceneView.showsStatistics = false
     checkForLoggedUser()
+    doubleTapPreference()
     messageView.buttonScape.addTarget(self, action:#selector(setView), for: .touchUpInside)
     messageView.okButton.addTarget(self, action: #selector(okPressed), for: .touchUpInside)
     hideDoubleTapMessage()
     checkForPreference()
     messageView.okOndoubleTap.addTarget(self, action: #selector(okDoubleTapPressed), for: .touchUpInside)
     messageView.doubleTapNotShow.addTarget(self, action: #selector(dtViewGoAway), for: .touchUpInside)
-    
-  
 
   }
+    
+    
   
     @objc func okPressed() {
         
@@ -86,7 +91,6 @@ class ViewController: UIViewController {
         messageView.menuImage.fadeOut()
         messageView.buttonScape.fadeOut()
         messageView.closeButton.fadeOut()
-     
     }
     
     @objc func okDoubleTapPressed() {
@@ -103,10 +107,11 @@ class ViewController: UIViewController {
   }
     
     @objc func dtViewGoAway() {
-        messageView.doubleTapView.fadeOut()
-        messageView.doubleTapMessage.fadeOut()
-        messageView.okOndoubleTap.fadeOut()
-        messageView.doubleTapNotShow.fadeOut()
+        defaultsBool = true
+        if defaultsBool {
+            messageView.fadeOut()
+            defaults.set(defaultsBool, forKey: DoubleTapKey.noMoreDoubleTap)
+        }
     }
     
     func showOneView() {
@@ -114,23 +119,22 @@ class ViewController: UIViewController {
         messageView.doubleTapMessage.isHidden = false
         messageView.okOndoubleTap.isHidden = false
         messageView.doubleTapNotShow.isHidden = false
+        messageView.iconDoubleTap.isHidden = false
         
         messageView.doubleTapView.fadeIn()
         messageView.doubleTapMessage.fadeIn()
         messageView.okOndoubleTap.fadeIn()
         messageView.doubleTapNotShow.fadeIn()
+        messageView.iconDoubleTap.fadeIn()
     }
     
     func hideOneView() {
-//        messageView.doubleTapView.isHidden = true
-//        messageView.doubleTapMessage.isHidden = true
-//        messageView.okOndoubleTap.isHidden = true
-//        messageView.doubleTapNotShow.isHidden = true
       
         messageView.doubleTapView.fadeOut()
         messageView.doubleTapMessage.fadeOut()
         messageView.okOndoubleTap.fadeOut()
         messageView.doubleTapNotShow.fadeOut()
+        messageView.iconDoubleTap.fadeOut()
     
         
     }
@@ -140,6 +144,7 @@ class ViewController: UIViewController {
         messageView.doubleTapMessage.isHidden = true
         messageView.okOndoubleTap.isHidden = true
         messageView.doubleTapNotShow.isHidden = true
+        messageView.iconDoubleTap.isHidden = true
     }
   
     func checkForPreference() {
@@ -153,9 +158,21 @@ class ViewController: UIViewController {
         messageView.okButton.isHidden = true
         messageView.buttonScape.isHidden = true
         messageView.closeButton.isHidden = true
+        messageView.menuImage.isHidden = true
       
     }
   }
+    
+    func doubleTapPreference() {
+        let doubleTapPref = defaults.bool(forKey: DoubleTapKey.noMoreDoubleTap)
+        
+        if doubleTapPref {
+              defaultsBool = true
+            hideDoubleTapMessage()
+        }
+    }
+    
+    
     
 
   
