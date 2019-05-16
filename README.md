@@ -52,6 +52,6 @@ Perception can be used in numerous ways across all printed media. Future iterati
 
 ## Special Thanks
 - Instructors: [Alex Paul](https://github.com/alexpaul) & [Alan Holguin](https://github.com/lynksdomain)
-- Technical Mentors: Gabe Heafitz & Dan Rosenstark
+- Technical Mentors: [Gabe Heafitz](mailto:gabe.heafitz@gmail.com) & Dan Rosenstark
 - PMs: Istishna Hussain & Jamie Byrne
 - TAs
