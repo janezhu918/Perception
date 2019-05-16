@@ -4,14 +4,22 @@ import AVKit
 import ProgressHUD
 
 class SavedVideosViewController: UIViewController {
-    private let favoriteVideos = SavedVideos()
+    private let savedVideoView = SavedVideos()
+    private let emptyStateView = EmptyStateView()
     private var savedVideoService: SavedVideoService = DatabaseService()
     private var authservice = AppDelegate.authservice
     private var perceptionUser: PerceptionUser?
     private var cellWidth: CGFloat {
-        return favoriteVideos.myCollectionView.frame.size.width
+        return savedVideoView.videoCollectionView.frame.size.width
     }
     private var isExpanded = [Bool]()
+    private var userSavedVideos = [SavedVideo]() {
+        didSet {
+            savedVideoView.videoCollectionView.reloadData()
+            checkForEmptyState()
+            setupExpandingCells()
+        }
+    }
     private var expandedHeight: CGFloat = Constants.savedVideoCollectionViewCellExpandedHeight
     private var nonExpandedHeight: CGFloat = Constants.savedVideoCollectionViewCellNonExpandedHeight
     
@@ -24,11 +32,8 @@ class SavedVideosViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+        super.viewWillAppear(animated)    
         AppUtility.lockOrientation(.portrait)
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,17 +43,19 @@ class SavedVideosViewController: UIViewController {
         AppUtility.lockOrientation(.all)
     }
     
-    
+    private func checkForEmptyState() {
+        savedVideoView.videoCollectionView.backgroundView = userSavedVideos.isEmpty ? emptyStateView : nil
+    }
     
     private func setupDelegates(){
-        favoriteVideos.myCollectionView.delegate = self
-        favoriteVideos.myCollectionView.dataSource = self
+        savedVideoView.videoCollectionView.delegate = self
+        savedVideoView.videoCollectionView.dataSource = self
         savedVideoService.savedVideoServiceDelegate = self
     }
     
     private func setupUI(){
         navigationController?.navigationBar.isHidden = false
-        view.addSubview(favoriteVideos)
+        view.addSubview(savedVideoView)
     }
     
     private func fetchVideos(){
@@ -63,26 +70,21 @@ class SavedVideosViewController: UIViewController {
             }
         }
     }
-    private var savedVideos = [SavedVideo]() {
-        didSet {
-            setupExpandingCells()
-        }
-    }
-    
+
     private func setupExpandingCells() {
-        isExpanded = Array(repeating: false, count: savedVideos.count)
+        isExpanded = Array(repeating: false, count: userSavedVideos.count)
     }
     
 }
 
 extension SavedVideosViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return savedVideos.count
+        return userSavedVideos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let video = savedVideos[indexPath.row]
-        guard let cell = favoriteVideos.myCollectionView
+        let video = userSavedVideos[indexPath.row]
+        guard let cell = savedVideoView.videoCollectionView
             .dequeueReusableCell(withReuseIdentifier: "FavoriteCell",
                                  for: indexPath) as? FavoriteCollectionCell,
             let url = URL(string: video.urlString) else { return UICollectionViewCell() }
@@ -131,8 +133,7 @@ extension SavedVideosViewController: SavedVideoServiceDelegate {
     }
     
     func savedVideoService(_ savedVideoService: SavedVideoService, didReceiveVideos videos: [SavedVideo]) {
-        self.savedVideos = videos
-        favoriteVideos.myCollectionView.reloadData()
+        self.userSavedVideos = videos
         ProgressHUD.dismiss()
     }
 }
@@ -141,7 +142,7 @@ extension SavedVideosViewController: FavoriteCollectionCellDelegate {
     func cellTapped(indexPath: IndexPath) {
         isExpanded[indexPath.row] = !isExpanded[indexPath.row]
         UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.9, options: [.curveEaseInOut], animations: {
-            self.favoriteVideos.myCollectionView.reloadItems(at: [indexPath])
+            self.savedVideoView.videoCollectionView.reloadItems(at: [indexPath])
         })
     }
 }

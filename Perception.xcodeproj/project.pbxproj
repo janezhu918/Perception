@@ -30,13 +30,12 @@
 		A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541DC47225F97BC00E30D6E /* UserSession.swift */; };
 		A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5565BE82281E6A0006E611C /* RotationSetup.swift */; };
 		A5B20AE3228C865F002BB8C4 /* spiderman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */; };
+		A5B20AE6228DCCE3002BB8C4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */; };
 		A5B411942257EC45006E14F7 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411932257EC45006E14F7 /* Main.swift */; };
 		A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411962257EC7E006E14F7 /* LoginView.swift */; };
 		A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411982257EC85006E14F7 /* SavedVideos.swift */; };
-		A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */; };
 		A5B411A02257ECDA006E14F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */; };
 		A5B411A22257ECEA006E14F7 /* SavedVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */; };
-		A5B411A42257ECF2006E14F7 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411A32257ECF2006E14F7 /* VideoDetailViewController.swift */; };
 		A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411A52257ED42006E14F7 /* PerceptionVideo.swift */; };
 		A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411A82257ED5B006E14F7 /* SavedVideo.swift */; };
 		A5B411AB2257ED67006E14F7 /* PerceptionUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411AA2257ED67006E14F7 /* PerceptionUser.swift */; };
@@ -50,7 +49,6 @@
 		B2E4EECC3D5BDA5239963CEE /* Pods_Perception.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */; };
 		D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D741FCE4228224BA003BD760 /* PlayerViewController.swift */; };
 		D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */; };
-		D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */; };
 		D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,13 +90,12 @@
 		A5565BE82281E6A0006E611C /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSetup.swift; sourceTree = "<group>"; };
 		A5565BEE2281E74E006E611C /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
 		A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spiderman.mp4; sourceTree = "<group>"; };
+		A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		A5B411932257EC45006E14F7 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		A5B411962257EC7E006E14F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A5B411982257EC85006E14F7 /* SavedVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideos.swift; sourceTree = "<group>"; };
-		A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
 		A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideosViewController.swift; sourceTree = "<group>"; };
-		A5B411A32257ECF2006E14F7 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		A5B411A52257ED42006E14F7 /* PerceptionVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionVideo.swift; sourceTree = "<group>"; };
 		A5B411A82257ED5B006E14F7 /* SavedVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideo.swift; sourceTree = "<group>"; };
 		A5B411AA2257ED67006E14F7 /* PerceptionUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionUser.swift; sourceTree = "<group>"; };
@@ -112,7 +109,6 @@
 		AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.release.xcconfig"; sourceTree = "<group>"; };
 		D741FCE4228224BA003BD760 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionMenuButton.swift; sourceTree = "<group>"; };
 		D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionTests.swift; sourceTree = "<group>"; };
 		D7A1C78C2264E52B00E33838 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -209,8 +205,7 @@
 				120698732283810400979CFC /* messageViews.swift */,
 				A5B411962257EC7E006E14F7 /* LoginView.swift */,
 				A5B411982257EC85006E14F7 /* SavedVideos.swift */,
-				A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */,
-				D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */,
+				A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */,
 				1211DAC9225D34F200D40F51 /* OnboardingView.swift */,
 				1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */,
 				1E8B8099225BAFF00071FA83 /* VideoView.swift */,
@@ -227,7 +222,6 @@
 				1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */,
 				A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */,
 				A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */,
-				A5B411A32257ECF2006E14F7 /* VideoDetailViewController.swift */,
 				127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */,
 			);
 			path = Controllers;
@@ -592,14 +586,13 @@
 				1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */,
 				A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */,
 				1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */,
-				A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */,
 				1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */,
 				127F854A2265191900DEC05D /* ProfileView.swift in Sources */,
-				A5B411A42257ECF2006E14F7 /* VideoDetailViewController.swift in Sources */,
 				A5B411B02257EDCA006E14F7 /* Date+Extensions.swift in Sources */,
 				A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */,
 				A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */,
 				A5B411A22257ECEA006E14F7 /* SavedVideosViewController.swift in Sources */,
+				A5B20AE6228DCCE3002BB8C4 /* EmptyStateView.swift in Sources */,
 				1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */,
 				A5B411A02257ECDA006E14F7 /* LoginViewController.swift in Sources */,
 				A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */,
@@ -607,7 +600,6 @@
 				A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */,
 				1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */,
 				A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */,
-				D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */,
 				D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
