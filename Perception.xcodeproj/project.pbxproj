@@ -52,7 +52,6 @@
 		D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D741FCE4228224BA003BD760 /* PlayerViewController.swift */; };
 		D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */; };
 		D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */; };
-		D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */; };
 		D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,7 +115,6 @@
 		D741FCE4228224BA003BD760 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionMenuButton.swift; sourceTree = "<group>"; };
-		D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionTests.swift; sourceTree = "<group>"; };
 		D7A1C78C2264E52B00E33838 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
 				121B5F652280CE820070CC4B /* maniac.mp4 */,
 				121B5F672280CE890070CC4B /* starwars.mp4 */,
-				D7A1C7832264E09A00E33838 /* File Manager Helpers */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
 				A5B411A72257ED4D006E14F7 /* Models */,
 				A5B411952257EC6C006E14F7 /* Views */,
@@ -306,14 +303,6 @@
 				A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D7A1C7832264E09A00E33838 /* File Manager Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */,
-			);
-			path = "File Manager Helpers";
 			sourceTree = "<group>";
 		};
 		D7A1C7892264E52B00E33838 /* PerceptionTests */ = {
@@ -596,7 +585,6 @@
 				A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */,
 				A5B411B42257EDDE006E14F7 /* Constants.swift in Sources */,
 				A5B411B72257EDF5006E14F7 /* ARService.swift in Sources */,
-				D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */,
 				A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */,
 				A5B411942257EC45006E14F7 /* Main.swift in Sources */,
 				1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */,
