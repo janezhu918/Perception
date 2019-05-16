@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "spiderman.png"
+      "filename" : "hawkeye.png"
     }
   ],
   "info" : {
@@ -10,7 +10,7 @@
     "author" : "xcode"
   },
   "properties" : {
-    "width" : 4.1838046272493568,
+    "width" : 4.2266081871345023,
     "unit" : "inches"
   }
 }
