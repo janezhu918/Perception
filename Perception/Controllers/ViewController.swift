@@ -6,18 +6,6 @@ import AVKit
 import Kingfisher
 import ProgressHUD
 
-class CustomSKVideoNode: SKVideoNode {
-    public var videoPlayer: AVPlayer?
-    override init(url: URL) {
-        super.init(url: url)
-        videoPlayer = AVPlayer(url: url)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-}
-
 class ViewController: UIViewController {
     
     @IBOutlet weak var sceneView: ARSCNView!
@@ -25,14 +13,6 @@ class ViewController: UIViewController {
     let messageView = AnimationMessage()
     let defaults = UserDefaults.standard
     var defaultsBool = Bool()
-    
-    struct Keys {
-        static let noMoreMessage = "messageGoAway"
-    }
-    
-    struct DoubleTapKey {
-        static let noMoreDoubleTap = "noMoreDoubleTap"
-    }
     
     private let databaseService = DatabaseService()
     private var ARImages = Set<ARReferenceImage>() {
@@ -104,7 +84,7 @@ class ViewController: UIViewController {
         defaultsBool = true
         if defaultsBool {
             messageView.fadeOut()
-            defaults.set(defaultsBool, forKey: Keys.noMoreMessage)
+            defaults.set(defaultsBool, forKey: Constants.userDefaultMessageNoReappear)
         }
     }
     
@@ -112,7 +92,7 @@ class ViewController: UIViewController {
         defaultsBool = true
         if defaultsBool {
             messageView.fadeOut()
-            defaults.set(defaultsBool, forKey: DoubleTapKey.noMoreDoubleTap)
+            defaults.set(defaultsBool, forKey: Constants.userDefaultDontShowAgain)
         }
     }
     
@@ -147,7 +127,7 @@ class ViewController: UIViewController {
     }
     
     func checkForPreference() {
-        let preference = defaults.bool(forKey: Keys.noMoreMessage)
+        let preference = defaults.bool(forKey: Constants.userDefaultMessageNoReappear)
         
         if preference {
             defaultsBool = true
@@ -162,7 +142,7 @@ class ViewController: UIViewController {
     }
     
     func doubleTapPreference() {
-        let doubleTapPref = defaults.bool(forKey: DoubleTapKey.noMoreDoubleTap)
+        let doubleTapPref = defaults.bool(forKey: Constants.userDefaultDontShowAgain)
         
         if doubleTapPref {
             defaultsBool = true
@@ -210,7 +190,7 @@ class ViewController: UIViewController {
     
     @objc private func doubleTap() {
         let playerVC = AVPlayerViewController()
-        guard let confirmedVideoTimeState = currentTime else {fatalError("confirmedVideoTimeState at objc doubleTap method is nil")}
+        guard let confirmedVideoTimeState = currentTime else { fatalError("confirmedVideoTimeState at objc doubleTap method is nil") }
         if let currentVideoPlayer = videoPlayer {
             playerVC.player = currentVideoPlayer
             present(playerVC, animated: true) {
@@ -243,7 +223,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func fetchVideos(){
+    private func fetchVideos() {
         let videoService: VideoService = databaseService
         videoService.fetchVideos { (result) in
             switch result {
@@ -518,8 +498,7 @@ extension ViewController: ARSCNViewDelegate {
             guard let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4") else  { return node }
             let player = AVPlayer(url: videoUrlForVideoPlayer)
             let videoNode = SKVideoNode(avPlayer: player)
-            
-            currentSKVideoNode = CustomSKVideoNode(url: videoUrlForVideoPlayer)
+            currentSKVideoNode = SKVideoNode(url: videoUrlForVideoPlayer)
             
             guard currentSKVideoNode != nil else { fatalError("error unwrapping currentSKVideoNode in first renderer") }
             
@@ -552,6 +531,9 @@ extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         if let currentSCNNode = currentSCNNode, let currentSKVideoNode = currentSKVideoNode {
             videoDictionary[currentSCNNode] = currentSKVideoNode
+            DispatchQueue.main.async {
+                self.showOneView()
+            }
         }
     }
     
@@ -561,6 +543,9 @@ extension ViewController: ARSCNViewDelegate {
             if !trackable.isTracked {
                 currentVideoPlaying.pause()
                 currentSKVideoNode = nil
+                DispatchQueue.main.async {
+                    self.hideOneView()
+                }
             }
         }
     }
