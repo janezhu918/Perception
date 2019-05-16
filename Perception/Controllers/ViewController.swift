@@ -346,11 +346,8 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // mainView.sceneView.session.pause()
         sceneView.session.pause()
         currentSKVideoNode?.pause()
-        
-        // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
     }
     
@@ -380,22 +377,20 @@ class ViewController: UIViewController {
                     savedVideoService.storeVideo(video: savedVideo, user: user) { result in
                         switch result {
                         case .success(_):
-                            self.showAlert(title: "Success", message: "Video Saved Successfully")
+                            ProgressHUD.showSuccess("Video Saved Successfully")
                         case .failure(error:):
-                            self.showAlert(title: "Error", message: "Unable to Save Duplicate Video")
+                            ProgressHUD.showError("Unable to Save Duplicate Video")
                         }
                     }
                 } else {
                     print("no image detected")
-                    self.showAlert(title: "No image detected", message: "Point the camera towards an image")
+                    self.showAlert(title: "No Image Detected", message: "Point the camera towards an image")
                 }
             })
         }
     }
     
     private func orientationSetup() {
-        
-        //TODO: not add the view everytime it rotates
         if UIDevice.current.orientation.isPortrait {
             addExpandingMenu()
         } else if UIDevice.current.orientation.isLandscape {
@@ -414,9 +409,8 @@ class ViewController: UIViewController {
             let videoURL = (self.images.first { $0.name == videoToShare })?.videoURLString {
             let activityViewController = UIActivityViewController(activityItems: [videoURL], applicationActivities: nil)
             self.present(activityViewController, animated: true)
-            print("trying to share video")
         } else {
-            self.showAlert(title: "No image detected to share", message: "Point to an image to share it")
+            self.showAlert(title: "No Image Detected", message: "Point the camera towards an image to share it.")
         }
     }
     

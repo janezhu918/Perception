@@ -42,7 +42,6 @@
 		A5B411AB2257ED67006E14F7 /* PerceptionUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411AA2257ED67006E14F7 /* PerceptionUser.swift */; };
 		A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411AC2257EDB4006E14F7 /* UIViewController+Alerts.swift */; };
 		A5B411B02257EDCA006E14F7 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411AF2257EDCA006E14F7 /* Date+Extensions.swift */; };
-		A5B411B22257EDD0006E14F7 /* String+DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B12257EDD0006E14F7 /* String+DateExtensions.swift */; };
 		A5B411B42257EDDE006E14F7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B32257EDDE006E14F7 /* Constants.swift */; };
 		A5B411B72257EDF5006E14F7 /* ARService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B62257EDF5006E14F7 /* ARService.swift */; };
 		A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B82257EE0A006E14F7 /* AuthService.swift */; };
@@ -105,7 +104,6 @@
 		A5B411AA2257ED67006E14F7 /* PerceptionUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionUser.swift; sourceTree = "<group>"; };
 		A5B411AC2257EDB4006E14F7 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		A5B411AF2257EDCA006E14F7 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		A5B411B12257EDD0006E14F7 /* String+DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateExtensions.swift"; sourceTree = "<group>"; };
 		A5B411B32257EDDE006E14F7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A5B411B62257EDF5006E14F7 /* ARService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARService.swift; sourceTree = "<group>"; };
 		A5B411B82257EE0A006E14F7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				A5B411AF2257EDCA006E14F7 /* Date+Extensions.swift */,
-				A5B411B12257EDD0006E14F7 /* String+DateExtensions.swift */,
 			);
 			path = "Date Extensions";
 			sourceTree = "<group>";
@@ -606,7 +603,6 @@
 				1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */,
 				A5B411A02257ECDA006E14F7 /* LoginViewController.swift in Sources */,
 				A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */,
-				A5B411B22257EDD0006E14F7 /* String+DateExtensions.swift in Sources */,
 				A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */,
 				A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */,
 				1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */,
