@@ -5,37 +5,22 @@
   },
   "resources" : [
     {
-      "filename" : "bigmouths.arreferenceimage"
-    },
-    {
-      "filename" : "cloackAndDagger.arreferenceimage"
-    },
-    {
-      "filename" : "facebook.arreferenceimage"
-    },
-    {
-      "filename" : "inTheDark.arreferenceimage"
-    },
-    {
-      "filename" : "jason.arreferenceimage"
-    },
-    {
-      "filename" : "loveDeathAndRobots.arreferenceimage"
+      "filename" : "hawkeye.arreferenceimage"
     },
     {
       "filename" : "maniac.arreferenceimage"
     },
     {
-      "filename" : "perception.arreferenceimage"
+      "filename" : "mta.arreferenceimage"
     },
     {
       "filename" : "pursuit.arreferenceimage"
     },
     {
-      "filename" : "starwars.arreferenceimage"
+      "filename" : "spiderman.arreferenceimage"
     },
     {
-      "filename" : "Twitter.arreferenceimage"
+      "filename" : "starwars.arreferenceimage"
     }
   ]
 }

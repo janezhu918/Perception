@@ -53,11 +53,11 @@ final class AuthService {
         ProgressHUD.show()
         Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
-              self.authserviceExistingAccountDelegate?
-                .didReceiveErrorSigningToExistingAccount(self, error: error)
+                self.authserviceExistingAccountDelegate?
+                    .didReceiveErrorSigningToExistingAccount(self, error: error)
             } else if let authDataResult = authDataResult {
                 self.authserviceExistingAccountDelegate?
-                  .didSignInToExistingAccount(self, user: authDataResult.user)
+                    .didSignInToExistingAccount(self, user: authDataResult.user)
             }
         }
     }

@@ -13,18 +13,14 @@
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
 		127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */; };
 		127F854A2265191900DEC05D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85492265191900DEC05D /* ProfileView.swift */; };
-		1E4AFD2E22808CB7006D341B /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD2D22808CB7006D341B /* starwars.mp4 */; };
-		1E4AFD3022808D4E006D341B /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD2F22808D4D006D341B /* maniac.mp4 */; };
-		1E4AFD3222808D5C006D341B /* bigmouths.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD3122808D5C006D341B /* bigmouths.mp4 */; };
-		1E4AFD3422808D70006D341B /* jason.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD3322808D70006D341B /* jason.mp4 */; };
-		1E4AFD3622808ED3006D341B /* pursuit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD3522808ED3006D341B /* pursuit.mp4 */; };
-		1E4AFD3822809005006D341B /* bigmouths2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E4AFD3722809005006D341B /* bigmouths2.mp4 */; };
+		1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BEE2281E74E006E611C /* pursuit.mp4 */; };
+		1E3A41BC2289DD6A00FC6B85 /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F652280CE820070CC4B /* maniac.mp4 */; };
+		1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F672280CE890070CC4B /* starwars.mp4 */; };
 		1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */; };
 		1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */; };
 		1E8B8098225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */; };
 		1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8099225BAFF00071FA83 /* VideoView.swift */; };
 		1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */; };
-		1ED491CB227A9587002230B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1ED491CA227A9587002230B2 /* GoogleService-Info.plist */; };
 		52A6DA2F8AF8D6217BD24C70 /* Pods_PerceptionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E56D28C1E6BA3B56FFC751 /* Pods_PerceptionTests.framework */; };
 		A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECD7225654EF009B94A9 /* AppDelegate.swift */; };
 		A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507ECDB225654EF009B94A9 /* ViewController.swift */; };
@@ -33,19 +29,20 @@
 		A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */; };
 		A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541DC47225F97BC00E30D6E /* UserSession.swift */; };
 		A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5565BE82281E6A0006E611C /* RotationSetup.swift */; };
+		A5B20AE3228C865F002BB8C4 /* spiderman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */; };
+		A5B20AE6228DCCE3002BB8C4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */; };
+		A5B20AE8228DE6D7002BB8C4 /* mta.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AE7228DE6D7002BB8C4 /* mta.mp4 */; };
+		A5B20AEA228DEEC1002BB8C4 /* hawkeye.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AE9228DEEC1002BB8C4 /* hawkeye.mp4 */; };
 		A5B411942257EC45006E14F7 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411932257EC45006E14F7 /* Main.swift */; };
 		A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411962257EC7E006E14F7 /* LoginView.swift */; };
 		A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411982257EC85006E14F7 /* SavedVideos.swift */; };
-		A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */; };
 		A5B411A02257ECDA006E14F7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */; };
 		A5B411A22257ECEA006E14F7 /* SavedVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */; };
-		A5B411A42257ECF2006E14F7 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411A32257ECF2006E14F7 /* VideoDetailViewController.swift */; };
 		A5B411A62257ED42006E14F7 /* PerceptionVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411A52257ED42006E14F7 /* PerceptionVideo.swift */; };
 		A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411A82257ED5B006E14F7 /* SavedVideo.swift */; };
 		A5B411AB2257ED67006E14F7 /* PerceptionUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411AA2257ED67006E14F7 /* PerceptionUser.swift */; };
 		A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411AC2257EDB4006E14F7 /* UIViewController+Alerts.swift */; };
 		A5B411B02257EDCA006E14F7 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411AF2257EDCA006E14F7 /* Date+Extensions.swift */; };
-		A5B411B22257EDD0006E14F7 /* String+DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B12257EDD0006E14F7 /* String+DateExtensions.swift */; };
 		A5B411B42257EDDE006E14F7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B32257EDDE006E14F7 /* Constants.swift */; };
 		A5B411B72257EDF5006E14F7 /* ARService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B62257EDF5006E14F7 /* ARService.swift */; };
 		A5B411B92257EE0A006E14F7 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411B82257EE0A006E14F7 /* AuthService.swift */; };
@@ -53,8 +50,7 @@
 		A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411BD2257EE24006E14F7 /* StorageService.swift */; };
 		B2E4EECC3D5BDA5239963CEE /* Pods_Perception.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB8F8BABB632169A41AABF5 /* Pods_Perception.framework */; };
 		D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D741FCE4228224BA003BD760 /* PlayerViewController.swift */; };
-		D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */; };
-		D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */; };
+		D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */; };
 		D7A1C78B2264E52B00E33838 /* PerceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,26 +69,16 @@
 		1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		1211DAC9225D34F200D40F51 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		121B5F5D2280CE570070CC4B /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
-		121B5F5F2280CE600070CC4B /* bigmouths.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths.mp4; sourceTree = "<group>"; };
-		121B5F612280CE6C0070CC4B /* bigmouths2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths2.mp4; sourceTree = "<group>"; };
 		121B5F652280CE820070CC4B /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
 		121B5F672280CE890070CC4B /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
-		1E4AFD2D22808CB7006D341B /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
-		1E4AFD2F22808D4D006D341B /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
-		1E4AFD3122808D5C006D341B /* bigmouths.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths.mp4; sourceTree = "<group>"; };
-		1E4AFD3322808D70006D341B /* jason.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jason.mp4; sourceTree = "<group>"; };
-		1E4AFD3522808ED3006D341B /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
-		1E4AFD3722809005006D341B /* bigmouths2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths2.mp4; sourceTree = "<group>"; };
 		1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionImage.swift; sourceTree = "<group>"; };
 		1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionCell.swift; sourceTree = "<group>"; };
 		1E8B8095225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionImageCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8097225BA4500071FA83 /* PerceptionVideoCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionVideoCollectionKeys.swift; sourceTree = "<group>"; };
 		1E8B8099225BAFF00071FA83 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
-		1ED491CA227A9587002230B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5932023AF64C1AD383C416D1 /* Pods-Perception.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.debug.xcconfig"; sourceTree = "<group>"; };
 		72061BAFBA39F37C10299E49 /* Pods-PerceptionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A507ECD4225654EF009B94A9 /* Perception.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Perception.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,24 +90,21 @@
 		A507ECE5225654F0009B94A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A541DC47225F97BC00E30D6E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		A5565BE82281E6A0006E611C /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSetup.swift; sourceTree = "<group>"; };
-		A5565BEC2281E74E006E611C /* jason.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = jason.mp4; sourceTree = "<group>"; };
-		A5565BED2281E74E006E611C /* bigmouths.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bigmouths.mp4; sourceTree = "<group>"; };
 		A5565BEE2281E74E006E611C /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
-		A5565BF02281E74E006E611C /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = maniac.mp4; sourceTree = "<group>"; };
-		A5565BF12281E74E006E611C /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
+		A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spiderman.mp4; sourceTree = "<group>"; };
+		A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		A5B20AE7228DE6D7002BB8C4 /* mta.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mta.mp4; sourceTree = "<group>"; };
+		A5B20AE9228DEEC1002BB8C4 /* hawkeye.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hawkeye.mp4; sourceTree = "<group>"; };
 		A5B411932257EC45006E14F7 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		A5B411962257EC7E006E14F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A5B411982257EC85006E14F7 /* SavedVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideos.swift; sourceTree = "<group>"; };
-		A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
 		A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideosViewController.swift; sourceTree = "<group>"; };
-		A5B411A32257ECF2006E14F7 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		A5B411A52257ED42006E14F7 /* PerceptionVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionVideo.swift; sourceTree = "<group>"; };
 		A5B411A82257ED5B006E14F7 /* SavedVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideo.swift; sourceTree = "<group>"; };
 		A5B411AA2257ED67006E14F7 /* PerceptionUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionUser.swift; sourceTree = "<group>"; };
 		A5B411AC2257EDB4006E14F7 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		A5B411AF2257EDCA006E14F7 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		A5B411B12257EDD0006E14F7 /* String+DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DateExtensions.swift"; sourceTree = "<group>"; };
 		A5B411B32257EDDE006E14F7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A5B411B62257EDF5006E14F7 /* ARService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARService.swift; sourceTree = "<group>"; };
 		A5B411B82257EE0A006E14F7 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -129,8 +112,7 @@
 		A5B411BD2257EE24006E14F7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		AA8F0510D8441719D04C2315 /* Pods-PerceptionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerceptionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PerceptionTests/Pods-PerceptionTests.release.xcconfig"; sourceTree = "<group>"; };
 		D741FCE4228224BA003BD760 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionMenuButton.swift; sourceTree = "<group>"; };
-		D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D7A1C7882264E52B00E33838 /* PerceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A1C78A2264E52B00E33838 /* PerceptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerceptionTests.swift; sourceTree = "<group>"; };
 		D7A1C78C2264E52B00E33838 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -201,23 +183,12 @@
 		A507ECD6225654EF009B94A9 /* Perception */ = {
 			isa = PBXGroup;
 			children = (
-				121B5F5D2280CE570070CC4B /* pursuit.mp4 */,
-				121B5F5F2280CE600070CC4B /* bigmouths.mp4 */,
-				121B5F612280CE6C0070CC4B /* bigmouths2.mp4 */,
-				A5565BED2281E74E006E611C /* bigmouths.mp4 */,
-				A5565BEC2281E74E006E611C /* jason.mp4 */,
-				A5565BF02281E74E006E611C /* maniac.mp4 */,
+				A5B20AE7228DE6D7002BB8C4 /* mta.mp4 */,
+				A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */,
 				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
-				A5565BF12281E74E006E611C /* starwars.mp4 */,
+				A5B20AE9228DEEC1002BB8C4 /* hawkeye.mp4 */,
 				121B5F652280CE820070CC4B /* maniac.mp4 */,
 				121B5F672280CE890070CC4B /* starwars.mp4 */,
-				1E4AFD2F22808D4D006D341B /* maniac.mp4 */,
-				1E4AFD3122808D5C006D341B /* bigmouths.mp4 */,
-				1E4AFD3522808ED3006D341B /* pursuit.mp4 */,
-				1E4AFD3322808D70006D341B /* jason.mp4 */,
-				1E4AFD3722809005006D341B /* bigmouths2.mp4 */,
-				1E4AFD2D22808CB7006D341B /* starwars.mp4 */,
-				D7A1C7832264E09A00E33838 /* File Manager Helpers */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
 				A5B411A72257ED4D006E14F7 /* Models */,
 				A5B411952257EC6C006E14F7 /* Views */,
@@ -227,8 +198,8 @@
 				A5B411C32257F00E006E14F7 /* Supporting Files */,
 				A507ECDD225654EF009B94A9 /* Main.storyboard */,
 				1211DAC7225D2B6700D40F51 /* Onboarding.storyboard */,
-				1ED491CA227A9587002230B2 /* GoogleService-Info.plist */,
 				A507ECE5225654F0009B94A9 /* Info.plist */,
+				D761A9CD228C7B2C001FFC74 /* GoogleService-Info.plist */,
 			);
 			path = Perception;
 			sourceTree = "<group>";
@@ -240,8 +211,7 @@
 				120698732283810400979CFC /* messageViews.swift */,
 				A5B411962257EC7E006E14F7 /* LoginView.swift */,
 				A5B411982257EC85006E14F7 /* SavedVideos.swift */,
-				A5B4119A2257EC8C006E14F7 /* VideoDetailView.swift */,
-				D790EEED2277BF36007C1DDF /* PerceptionMenuButton.swift */,
+				A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */,
 				1211DAC9225D34F200D40F51 /* OnboardingView.swift */,
 				1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */,
 				1E8B8099225BAFF00071FA83 /* VideoView.swift */,
@@ -258,7 +228,6 @@
 				1211DAC3225D26D600D40F51 /* OnBoardingViewController.swift */,
 				A5B4119F2257ECDA006E14F7 /* LoginViewController.swift */,
 				A5B411A12257ECEA006E14F7 /* SavedVideosViewController.swift */,
-				A5B411A32257ECF2006E14F7 /* VideoDetailViewController.swift */,
 				127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */,
 			);
 			path = Controllers;
@@ -310,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				A5B411AF2257EDCA006E14F7 /* Date+Extensions.swift */,
-				A5B411B12257EDD0006E14F7 /* String+DateExtensions.swift */,
 			);
 			path = "Date Extensions";
 			sourceTree = "<group>";
@@ -332,14 +300,6 @@
 				A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D7A1C7832264E09A00E33838 /* File Manager Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				D7A1C7812264E09100E33838 /* DataPersistenceManager.swift */,
-			);
-			path = "File Manager Helpers";
 			sourceTree = "<group>";
 		};
 		D7A1C7892264E52B00E33838 /* PerceptionTests */ = {
@@ -437,17 +397,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E4AFD3822809005006D341B /* bigmouths2.mp4 in Resources */,
-				1E4AFD2E22808CB7006D341B /* starwars.mp4 in Resources */,
-				1E4AFD3222808D5C006D341B /* bigmouths.mp4 in Resources */,
-				1E4AFD3422808D70006D341B /* jason.mp4 in Resources */,
-				1ED491CB227A9587002230B2 /* GoogleService-Info.plist in Resources */,
+				A5B20AE8228DE6D7002BB8C4 /* mta.mp4 in Resources */,
+				A5B20AEA228DEEC1002BB8C4 /* hawkeye.mp4 in Resources */,
+				1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */,
+				D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */,
+				1E3A41BC2289DD6A00FC6B85 /* maniac.mp4 in Resources */,
+				1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
-				1E4AFD3622808ED3006D341B /* pursuit.mp4 in Resources */,
-				1E4AFD3022808D4E006D341B /* maniac.mp4 in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
+				A5B20AE3228C865F002BB8C4 /* spiderman.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,7 +584,6 @@
 				A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */,
 				A5B411B42257EDDE006E14F7 /* Constants.swift in Sources */,
 				A5B411B72257EDF5006E14F7 /* ARService.swift in Sources */,
-				D7A1C7822264E09100E33838 /* DataPersistenceManager.swift in Sources */,
 				A5B411A92257ED5B006E14F7 /* SavedVideo.swift in Sources */,
 				A5B411942257EC45006E14F7 /* Main.swift in Sources */,
 				1E8B809B225BD4DF0071FA83 /* PerceptionImage.swift in Sources */,
@@ -635,23 +594,20 @@
 				1E8B8096225BA43D0071FA83 /* PerceptionImageCollectionKeys.swift in Sources */,
 				A5B411AD2257EDB4006E14F7 /* UIViewController+Alerts.swift in Sources */,
 				1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */,
-				A5B4119B2257EC8C006E14F7 /* VideoDetailView.swift in Sources */,
 				1E8B809A225BAFF00071FA83 /* VideoView.swift in Sources */,
 				127F854A2265191900DEC05D /* ProfileView.swift in Sources */,
-				A5B411A42257ECF2006E14F7 /* VideoDetailViewController.swift in Sources */,
 				A5B411B02257EDCA006E14F7 /* Date+Extensions.swift in Sources */,
 				A5B411BE2257EE24006E14F7 /* StorageService.swift in Sources */,
 				A507ECDC225654EF009B94A9 /* ViewController.swift in Sources */,
 				A5B411A22257ECEA006E14F7 /* SavedVideosViewController.swift in Sources */,
+				A5B20AE6228DCCE3002BB8C4 /* EmptyStateView.swift in Sources */,
 				1211DAC4225D26D600D40F51 /* OnBoardingViewController.swift in Sources */,
 				A5B411A02257ECDA006E14F7 /* LoginViewController.swift in Sources */,
 				A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */,
-				A5B411B22257EDD0006E14F7 /* String+DateExtensions.swift in Sources */,
 				A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */,
 				A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */,
 				1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */,
 				A507ECD8225654EF009B94A9 /* AppDelegate.swift in Sources */,
-				D790EEEE2277BF37007C1DDF /* PerceptionMenuButton.swift in Sources */,
 				D741FCE5228224BA003BD760 /* PlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -928,4 +884,3 @@
 	};
 	rootObject = A507ECCC225654EF009B94A9 /* Project object */;
 }
-
