@@ -29,10 +29,10 @@
 		A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */; };
 		A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541DC47225F97BC00E30D6E /* UserSession.swift */; };
 		A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5565BE82281E6A0006E611C /* RotationSetup.swift */; };
-		A5B20AE3228C865F002BB8C4 /* spiderman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */; };
 		A5B20AE6228DCCE3002BB8C4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */; };
 		A5B20AE8228DE6D7002BB8C4 /* mta.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AE7228DE6D7002BB8C4 /* mta.mp4 */; };
-		A5B20AEA228DEEC1002BB8C4 /* hawkeye.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AE9228DEEC1002BB8C4 /* hawkeye.mp4 */; };
+		A5B20AEC228EFB30002BB8C4 /* spiderman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AEB228EFB2F002BB8C4 /* spiderman.mp4 */; };
+		A5B20AEE228EFC69002BB8C4 /* hawkeye.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5B20AED228EFC69002BB8C4 /* hawkeye.mp4 */; };
 		A5B411942257EC45006E14F7 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411932257EC45006E14F7 /* Main.swift */; };
 		A5B411972257EC7E006E14F7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411962257EC7E006E14F7 /* LoginView.swift */; };
 		A5B411992257EC85006E14F7 /* SavedVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411982257EC85006E14F7 /* SavedVideos.swift */; };
@@ -91,10 +91,10 @@
 		A541DC47225F97BC00E30D6E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		A5565BE82281E6A0006E611C /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSetup.swift; sourceTree = "<group>"; };
 		A5565BEE2281E74E006E611C /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
-		A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spiderman.mp4; sourceTree = "<group>"; };
 		A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		A5B20AE7228DE6D7002BB8C4 /* mta.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mta.mp4; sourceTree = "<group>"; };
-		A5B20AE9228DEEC1002BB8C4 /* hawkeye.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hawkeye.mp4; sourceTree = "<group>"; };
+		A5B20AEB228EFB2F002BB8C4 /* spiderman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spiderman.mp4; sourceTree = "<group>"; };
+		A5B20AED228EFC69002BB8C4 /* hawkeye.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hawkeye.mp4; sourceTree = "<group>"; };
 		A5B411932257EC45006E14F7 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		A5B411962257EC7E006E14F7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A5B411982257EC85006E14F7 /* SavedVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVideos.swift; sourceTree = "<group>"; };
@@ -184,9 +184,9 @@
 			isa = PBXGroup;
 			children = (
 				A5B20AE7228DE6D7002BB8C4 /* mta.mp4 */,
-				A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */,
+				A5B20AED228EFC69002BB8C4 /* hawkeye.mp4 */,
+				A5B20AEB228EFB2F002BB8C4 /* spiderman.mp4 */,
 				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
-				A5B20AE9228DEEC1002BB8C4 /* hawkeye.mp4 */,
 				121B5F652280CE820070CC4B /* maniac.mp4 */,
 				121B5F672280CE890070CC4B /* starwars.mp4 */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
@@ -398,8 +398,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5B20AE8228DE6D7002BB8C4 /* mta.mp4 in Resources */,
-				A5B20AEA228DEEC1002BB8C4 /* hawkeye.mp4 in Resources */,
+				A5B20AEE228EFC69002BB8C4 /* hawkeye.mp4 in Resources */,
 				1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */,
+				A5B20AEC228EFB30002BB8C4 /* spiderman.mp4 in Resources */,
 				D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */,
 				1E3A41BC2289DD6A00FC6B85 /* maniac.mp4 in Resources */,
 				1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */,
@@ -407,7 +408,6 @@
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
-				A5B20AE3228C865F002BB8C4 /* spiderman.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
