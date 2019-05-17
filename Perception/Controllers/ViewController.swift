@@ -190,8 +190,10 @@ class ViewController: UIViewController {
     
     @objc private func doubleTap() {
         let playerVC = AVPlayerViewController()
-        guard let confirmedVideoTimeState = currentTime else { fatalError("confirmedVideoTimeState at objc doubleTap method is nil") }
         if let currentVideoPlayer = videoPlayer {
+            guard let confirmedVideoTimeState = currentTime else {
+                return
+            }
             playerVC.player = currentVideoPlayer
             present(playerVC, animated: true) {
                 playerVC.player?.seek(to: confirmedVideoTimeState)
@@ -492,8 +494,9 @@ extension ViewController: ARSCNViewDelegate {
             guard let videoUrlForVideoPlayer = Bundle.main.url(forResource: referenceImage, withExtension: ".mp4") else  { return node }
             let player = AVPlayer(url: videoUrlForVideoPlayer)
             let videoNode = SKVideoNode(avPlayer: player)
-            currentSKVideoNode = SKVideoNode(url: videoUrlForVideoPlayer)
-            
+            videoNode.name = referenceImage
+            currentSKVideoNode = videoNode
+//            currentSKVideoNode?.name = referenceImage
             guard currentSKVideoNode != nil else { fatalError("error unwrapping currentSKVideoNode in first renderer") }
             
             let videoScene = SKScene(size: CGSize(width: 480, height: 360))
@@ -504,7 +507,7 @@ extension ViewController: ARSCNViewDelegate {
             
             observer = player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: 0.05, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { (time) in
                 self.currentTime = time
-                print("This is the observer at first renderer printing time\(time)")
+//                print("This is the observer at first renderer printing time\(time)")
             })
             
             videoPlayer = player
