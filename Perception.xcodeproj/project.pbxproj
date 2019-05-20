@@ -13,6 +13,8 @@
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
 		127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */; };
 		127F854A2265191900DEC05D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85492265191900DEC05D /* ProfileView.swift */; };
+		12B230AE2293395A00A7BE62 /* mets.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 12B230AD2293395A00A7BE62 /* mets.mp4 */; };
+		12B230B6229348E100A7BE62 /* coockbook.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 12B230B5229348E100A7BE62 /* coockbook.mp4 */; };
 		1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BEE2281E74E006E611C /* pursuit.mp4 */; };
 		1E3A41BC2289DD6A00FC6B85 /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F652280CE820070CC4B /* maniac.mp4 */; };
 		1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F672280CE890070CC4B /* starwars.mp4 */; };
@@ -75,6 +77,8 @@
 		121B5F672280CE890070CC4B /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		12B230AD2293395A00A7BE62 /* mets.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mets.mp4; sourceTree = "<group>"; };
+		12B230B5229348E100A7BE62 /* coockbook.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = coockbook.mp4; path = ../../../Downloads/coockbook.mp4; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
 		1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionImage.swift; sourceTree = "<group>"; };
 		1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionCell.swift; sourceTree = "<group>"; };
@@ -188,7 +192,9 @@
 			isa = PBXGroup;
 			children = (
 				A5B20AE2228C865F002BB8C4 /* spiderman.mp4 */,
+				12B230AD2293395A00A7BE62 /* mets.mp4 */,
 				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
+				12B230B5229348E100A7BE62 /* coockbook.mp4 */,
 				121B5F652280CE820070CC4B /* maniac.mp4 */,
 				121B5F672280CE890070CC4B /* starwars.mp4 */,
 				D7A1C7832264E09A00E33838 /* File Manager Helpers */,
@@ -414,11 +420,13 @@
 				1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */,
 				D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */,
 				1E3A41BC2289DD6A00FC6B85 /* maniac.mp4 in Resources */,
+				12B230B6229348E100A7BE62 /* coockbook.mp4 in Resources */,
 				1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
+				12B230AE2293395A00A7BE62 /* mets.mp4 in Resources */,
 				A5B20AE3228C865F002BB8C4 /* spiderman.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -5,7 +5,13 @@
   },
   "resources" : [
     {
+      "filename" : "coockbook.arreferenceimage"
+    },
+    {
       "filename" : "maniac.arreferenceimage"
+    },
+    {
+      "filename" : "mets.arreferenceimage"
     },
     {
       "filename" : "pursuit.arreferenceimage"
