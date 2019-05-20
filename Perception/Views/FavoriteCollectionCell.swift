@@ -97,7 +97,7 @@ class FavoriteCollectionCell: UICollectionViewCell {
             videoDescriptionLabel.topAnchor.constraint(equalTo: videoView.bottomAnchor, constant: 15),
             videoDescriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11),
             videoDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11),
-//            videoDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11)
+            //            videoDescriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -11)
             ])
     }
     

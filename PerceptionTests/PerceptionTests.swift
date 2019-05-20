@@ -26,10 +26,10 @@ class PerceptionTests: XCTestCase {
     let imageId = imageService.generateImageId()
     let videoId = videoService.generateVideoId()
     // ADD WIDTH AND NAME
-    let name = "jason"
-    let title = "OMG The New Star Wars!!!!!"
-    let description = "Can't wait to see this movie!"    
-    let width = 10.0
+    let name = "hawkeye"
+    let title = "Hawkeye"
+    let description = "Marvel superhero Hawkeye's story."    
+    let width = 3.5
     let imageStorageService: ImageStorageService = storageService
     let videoStorageService: VideoStorageService = storageService
     guard let data = UIImage(named: name)?.jpegData(compressionQuality: 1.0),

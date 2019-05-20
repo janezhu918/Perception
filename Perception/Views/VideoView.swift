@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class VideoView: UIView {
-
+    
     public var player: AVPlayer? {
         get {
             return playerLayer.player
@@ -26,5 +26,5 @@ class VideoView: UIView {
     override class var layerClass: AnyClass {
         return AVPlayerLayer.self
     }
-
+    
 }

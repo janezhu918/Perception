@@ -10,15 +10,15 @@ class ProfileViewControlerViewController: UIViewController {
     let profileView = ProfileView()
     private var ussersession = AppDelegate.authservice
     private var datePicker: UIDatePicker?
-   
+    
     private var currentUser: PerceptionUser!
     
-
+    
     override func viewDidLoad() {
-      
+        
         
         super.viewDidLoad()
-         view.addSubview(profileView)
+        view.addSubview(profileView)
         profileView.nameTextField.delegate = self
         ussersession.authserviceSignOutDelegate = self
         setupUI()
@@ -27,7 +27,7 @@ class ProfileViewControlerViewController: UIViewController {
         datePicker?.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         profileView.agePicker.inputView = datePicker
         
-       guard let user = ussersession.getCurrentUser() else {
+        guard let user = ussersession.getCurrentUser() else {
             profileView.userEmailTextField.text = "no logged user"
             return
         }
@@ -43,9 +43,9 @@ class ProfileViewControlerViewController: UIViewController {
         }
         
         profileView.nameTextField.text = ""
-         keyboardDismiss()
+        keyboardDismiss()
         
-      
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,11 +66,11 @@ class ProfileViewControlerViewController: UIViewController {
     
     
     
-   @objc func dateChanged() {
+    @objc func dateChanged() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         profileView.agePicker.text = dateFormatter.string(from: datePicker!.date)
-      
+        
     }
     
     @objc func savePreferences() {
@@ -93,18 +93,18 @@ class ProfileViewControlerViewController: UIViewController {
                         let gobackVC = ViewController()
                         self.present(gobackVC, animated: true, completion: nil)
                     })
-                  
+                    
                 })
             } else if let error = error {
-            self.showAlert(title: "Error", message: error.localizedDescription)
+                self.showAlert(title: "Error", message: error.localizedDescription)
             }
         })
-
+        
     }
     
     private func setupUI() {
         navigationController?.navigationBar.isHidden = false
-   
+        
     }
     
 }

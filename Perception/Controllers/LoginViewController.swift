@@ -98,7 +98,7 @@ class LoginViewController: UIViewController {
         
         switch signInMethod {
         case .logIn:
-          authservice.signInExistingAccount(email: email, password: password)
+            authservice.signInExistingAccount(email: email, password: password)
         case .register:
             authservice.createNewAccount(email: email, password: password)
         }
@@ -126,25 +126,25 @@ extension LoginViewController: UITextFieldDelegate {
 }
 
 extension LoginViewController: AuthServiceExistingAccountDelegate {
-  func didReceiveErrorSigningToExistingAccount(_ authservice: AuthService, error: Error) {
-    ProgressHUD.dismiss()
-    showAlert(title: "Error", message: error.localizedDescription)
-  }
-  
-  func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
-    ProgressHUD.dismiss()
-    dismissButtonPressed()
-  }
+    func didReceiveErrorSigningToExistingAccount(_ authservice: AuthService, error: Error) {
+        ProgressHUD.dismiss()
+        showAlert(title: "Error", message: error.localizedDescription)
+    }
+    
+    func didSignInToExistingAccount(_ authservice: AuthService, user: User) {
+        ProgressHUD.dismiss()
+        dismissButtonPressed()
+    }
 }
 
 extension LoginViewController: AuthServiceCreateNewAccountDelegate {
-  func didReceiveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
-    ProgressHUD.dismiss()
-    showAlert(title: "Error", message: error.localizedDescription)
-  }
-  
-  func didCreateNewAccount(_ authservice: AuthService, perceptionUser: PerceptionUser) {
-    ProgressHUD.dismiss()
-    dismissButtonPressed()
-  }
+    func didReceiveErrorCreatingAccount(_ authservice: AuthService, error: Error) {
+        ProgressHUD.dismiss()
+        showAlert(title: "Error", message: error.localizedDescription)
+    }
+    
+    func didCreateNewAccount(_ authservice: AuthService, perceptionUser: PerceptionUser) {
+        ProgressHUD.dismiss()
+        dismissButtonPressed()
+    }
 }
