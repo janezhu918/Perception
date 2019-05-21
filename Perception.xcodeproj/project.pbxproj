@@ -13,9 +13,6 @@
 		1211DACA225D34F200D40F51 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1211DAC9225D34F200D40F51 /* OnboardingView.swift */; };
 		127F85482265184B00DEC05D /* ProfileViewControlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */; };
 		127F854A2265191900DEC05D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127F85492265191900DEC05D /* ProfileView.swift */; };
-		12B230B6229348E100A7BE62 /* coockbook.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 12B230B5229348E100A7BE62 /* coockbook.mp4 */; };
-		12B230BA2293585000A7BE62 /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 12B230B92293585000A7BE62 /* maniac.mp4 */; };
-		12B230BC2293586900A7BE62 /* mets.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 12B230BB2293586900A7BE62 /* mets.mp4 */; };
 		1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5565BEE2281E74E006E611C /* pursuit.mp4 */; };
 		1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 121B5F672280CE890070CC4B /* starwars.mp4 */; };
 		1E8B8094225BA4220071FA83 /* FavoriteCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */; };
@@ -30,6 +27,9 @@
 		A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE0225654F0009B94A9 /* Assets.xcassets */; };
 		A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A507ECE2225654F0009B94A9 /* LaunchScreen.storyboard */; };
 		A541DC48225F97BC00E30D6E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A541DC47225F97BC00E30D6E /* UserSession.swift */; };
+		A550582622943978009551DA /* coockbook.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A550582522943978009551DA /* coockbook.mp4 */; };
+		A55058282294399C009551DA /* mets.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A55058272294399C009551DA /* mets.mp4 */; };
+		A550582A229439B0009551DA /* maniac.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = A5505829229439B0009551DA /* maniac.mp4 */; };
 		A5565BE92281E6A1006E611C /* RotationSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5565BE82281E6A0006E611C /* RotationSetup.swift */; };
 		A5B20AE6228DCCE3002BB8C4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */; };
 		A5B411942257EC45006E14F7 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B411932257EC45006E14F7 /* Main.swift */; };
@@ -71,9 +71,6 @@
 		121B5F672280CE890070CC4B /* starwars.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = starwars.mp4; sourceTree = "<group>"; };
 		127F85472265184B00DEC05D /* ProfileViewControlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControlerViewController.swift; sourceTree = "<group>"; };
 		127F85492265191900DEC05D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		12B230B5229348E100A7BE62 /* coockbook.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = coockbook.mp4; path = ../../../Downloads/coockbook.mp4; sourceTree = "<group>"; };
-		12B230B92293585000A7BE62 /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = maniac.mp4; path = ../../../Downloads/maniac.mp4; sourceTree = "<group>"; };
-		12B230BB2293586900A7BE62 /* mets.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mets.mp4; path = ../../../Downloads/mets.mp4; sourceTree = "<group>"; };
 		1891DC6C4FC82E0C83564F8B /* Pods-Perception.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Perception.release.xcconfig"; path = "Pods/Target Support Files/Pods-Perception/Pods-Perception.release.xcconfig"; sourceTree = "<group>"; };
 		1E8B8091225B9BA00071FA83 /* PerceptionImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerceptionImage.swift; sourceTree = "<group>"; };
 		1E8B8093225BA4220071FA83 /* FavoriteCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionCell.swift; sourceTree = "<group>"; };
@@ -90,6 +87,9 @@
 		A507ECE3225654F0009B94A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A507ECE5225654F0009B94A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A541DC47225F97BC00E30D6E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		A550582522943978009551DA /* coockbook.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = coockbook.mp4; sourceTree = "<group>"; };
+		A55058272294399C009551DA /* mets.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mets.mp4; sourceTree = "<group>"; };
+		A5505829229439B0009551DA /* maniac.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = maniac.mp4; path = ../../../../Downloads/maniac.mp4; sourceTree = "<group>"; };
 		A5565BE82281E6A0006E611C /* RotationSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationSetup.swift; sourceTree = "<group>"; };
 		A5565BEE2281E74E006E611C /* pursuit.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pursuit.mp4; sourceTree = "<group>"; };
 		A5B20AE5228DCCE3002BB8C4 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
@@ -182,9 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				A5565BEE2281E74E006E611C /* pursuit.mp4 */,
-				12B230B92293585000A7BE62 /* maniac.mp4 */,
-				12B230B5229348E100A7BE62 /* coockbook.mp4 */,
-				12B230BB2293586900A7BE62 /* mets.mp4 */,
+				A55058272294399C009551DA /* mets.mp4 */,
+				A5505829229439B0009551DA /* maniac.mp4 */,
+				A550582522943978009551DA /* coockbook.mp4 */,
 				121B5F672280CE890070CC4B /* starwars.mp4 */,
 				A5B411BA2257EE0D006E14F7 /* Firebase Utilities */,
 				A5B411A72257ED4D006E14F7 /* Models */,
@@ -396,13 +396,13 @@
 			files = (
 				1E3A41BB2289DD6A00FC6B85 /* pursuit.mp4 in Resources */,
 				D761A9CE228C7B2C001FFC74 /* GoogleService-Info.plist in Resources */,
-				12B230B6229348E100A7BE62 /* coockbook.mp4 in Resources */,
+				A550582622943978009551DA /* coockbook.mp4 in Resources */,
 				1E3A41BD2289DD6A00FC6B85 /* starwars.mp4 in Resources */,
+				A550582A229439B0009551DA /* maniac.mp4 in Resources */,
 				A507ECE4225654F0009B94A9 /* LaunchScreen.storyboard in Resources */,
 				A507ECE1225654F0009B94A9 /* Assets.xcassets in Resources */,
-				12B230BA2293585000A7BE62 /* maniac.mp4 in Resources */,
+				A55058282294399C009551DA /* mets.mp4 in Resources */,
 				A507ECDF225654EF009B94A9 /* Main.storyboard in Resources */,
-				12B230BC2293586900A7BE62 /* mets.mp4 in Resources */,
 				1211DAC8225D2B6700D40F51 /* Onboarding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
