@@ -26,9 +26,9 @@ class PerceptionTests: XCTestCase {
     let imageId = imageService.generateImageId()
     let videoId = videoService.generateVideoId()
     // ADD WIDTH AND NAME
-    let name = "hawkeye"
-    let title = "Hawkeye"
-    let description = "Marvel superhero Hawkeye's story."    
+    let name = "mets"
+    let title = "Mets"
+    let description = "Met's unlucky streak continues"
     let width = 3.5
     let imageStorageService: ImageStorageService = storageService
     let videoStorageService: VideoStorageService = storageService
@@ -51,41 +51,21 @@ class PerceptionTests: XCTestCase {
               switch result {
               case .success: exp2.fulfill()
               case .failure(error: let _): XCTFail()
-        videoStorageService.storeVideo(url: videoURL, id: videoId, completion: { (result) in
-          switch result {
-          case .success(let storedVideoURL):
-            let date = Date.getISOTimestamp()
-            let pvideo = PerceptionVideo(name: name, id: videoId, createdAt: date, title: title, currentPlaybackTime: 0, description: "", urlString: storedVideoURL.absoluteString)
-            videoService.storeVideo(video: pvideo, completion: { (result) in
-              switch result {
-              case .success:
-                exp.fulfill()
-              case .failure(error: let _):
-                XCTFail()
-              }
-            })
-            let pImage = PerceptionImage(videoURLString: videoURL.absoluteString, name: name, id: imageId, urlString: imageURL.absoluteString, width: width, orientation: .up)
-            imageService.storeImage(image: pImage, completion: { (result) in
-              switch result {
-              case .success(let success):
-                exp3.fulfill()
-                XCTAssert(success, "All things are fine")
-              case .failure(error: let _): XCTFail()
               }
             })
           case .failure(error: let _): XCTFail()
           }
         })
-      case .failure(error: let _): XCTFail()
-      case .failure(error: let _): XCTFail()
-              }
-            })
-          case .failure(error: let _):
-            XCTFail()
+        let pImage = PerceptionImage(videoURLString: videoURL.absoluteString, name: name, id: imageId, urlString: imageURL.absoluteString, width: width, orientation: .up)
+        imageService.storeImage(image: pImage, completion: { (result) in
+          switch result {
+          case .success(let success):
+            exp3.fulfill()
+            XCTAssert(success, "All things are fine")
+          case .failure(error: let _): XCTFail()
           }
         })
-      case .failure(error: let _):
-        XCTFail()
+      case .failure(error: let _): XCTFail()
       }
     }
     wait(for: [exp,exp1,exp2,exp3], timeout: 15.0)
