@@ -58,6 +58,3 @@ Perception can be used in numerous ways across all printed media. Future iterati
 - Technical Mentors: [Gabe Heafitz](mailto:gabe.heafitz@gmail.com) & Dan Rosenstark
 - PMs: Istishna Hussain & Jamie Byrne
 - TAs
-
-## Test images
-![Pursuit Poster](pursuit.png)
