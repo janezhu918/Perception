@@ -40,9 +40,9 @@ Perception can be used in numerous ways across all printed media. Future iterati
 2. Using profiles and preferences to curate video content to users
 
 ## GIFs
-![](PerceptionGIF1.gif)
-![](PerceptionGIF2.gif)
-![](PerceptionGIF3.gif)
+![GIF1](Images/PerceptionGIF1.gif)<br>
+![GIF2](Images/PerceptionGIF2.gif)<br>
+![GIF3](Images/PerceptionGIF3.gif)<br>
 
 ## Links
 [Trello](https://trello.com/b/UXQ8Kl0p/53-capstone-group-3)
