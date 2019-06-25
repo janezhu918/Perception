@@ -6,6 +6,12 @@ In the world we live in today, traditional printed media, such as newspapers, po
 
 Perception is an app that is designed and built to enhance printed media by adding video experiences using Augmented Reality. Users can point their phone to a Perception-Enabled image and watch a video play right on top of it. Moreover, users can take videos to-go, save them to be watched later, and share them with others. Perception makes printed media multimedia. 
 
+## Perception-Enabled Images
+Test our app with these images that are Perception-Enabled. These are from our partner, [Pursuit](https://www.pursuit.org/). 
+
+![Pursuit Poster](https://i.ibb.co/0C8ssnR/poster.png)<br><br>
+![Pursuit Postcard](https://i.ibb.co/V2XDrX9/postcard.jpg)
+
 ## Technologies 
 - Swift 5
 - Xcode 10.2
@@ -40,9 +46,9 @@ Perception can be used in numerous ways across all printed media. Future iterati
 2. Using profiles and preferences to curate video content to users
 
 ## GIFs
-![GIF1](Images/PerceptionGIF1.gif)<br>
-![GIF2](Images/PerceptionGIF2.gif)<br>
-![GIF3](Images/PerceptionGIF3.gif)<br>
+![](PerceptionGIF1.gif)
+![](PerceptionGIF2.gif)
+![](PerceptionGIF3.gif)
 
 ## Links
 [Trello](https://trello.com/b/UXQ8Kl0p/53-capstone-group-3)
