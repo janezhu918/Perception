@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "maniac.png"
+      "filename" : "gong.png"
     }
   ],
   "info" : {
@@ -10,7 +10,6 @@
     "author" : "xcode"
   },
   "properties" : {
-    "width" : 3.8403614457831328,
-    "unit" : "inches"
+    "width" : 0.20000000000000001
   }
 }
