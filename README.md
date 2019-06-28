@@ -10,7 +10,8 @@ Perception is an app that is designed and built to enhance printed media by addi
 Test our app with these images that are Perception-Enabled. These are from our partner, [Pursuit](https://www.pursuit.org/). 
 
 ![Pursuit Poster](https://i.ibb.co/0C8ssnR/poster.png)<br><br>
-![Pursuit Postcard](https://i.ibb.co/V2XDrX9/postcard.jpg)
+![Pursuit Postcard](https://i.ibb.co/V2XDrX9/postcard.jpg)<br><br>
+![Pursuit Gong](https://i.ibb.co/tc6KmYt/gong.png)<br><br>
 
 ## Technologies 
 - Swift 5
