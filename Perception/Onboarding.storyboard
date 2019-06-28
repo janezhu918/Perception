@@ -38,13 +38,22 @@
                                     <action selector="doneButtonPressed:" destination="11q-RP-w7i" eventType="touchUpInside" id="icI-n6-j6K"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIb-OA-TSF">
+                                <rect key="frame" x="136" y="681" width="142" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Get Resources">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="s4O-B0-bat" firstAttribute="bottom" secondItem="cGy-eI-NaR" secondAttribute="bottom" constant="100" id="AhI-nn-pH0"/>
                             <constraint firstItem="s4O-B0-bat" firstAttribute="trailing" secondItem="oT5-pm-jcO" secondAttribute="trailing" id="E46-Ir-cTC"/>
                             <constraint firstItem="oT5-pm-jcO" firstAttribute="leading" secondItem="s4O-B0-bat" secondAttribute="leading" id="HCj-dv-up9"/>
+                            <constraint firstItem="cGy-eI-NaR" firstAttribute="top" secondItem="TIb-OA-TSF" secondAttribute="bottom" id="Ijl-ls-wdz"/>
                             <constraint firstItem="s4O-B0-bat" firstAttribute="bottom" secondItem="oT5-pm-jcO" secondAttribute="bottom" id="LD0-CD-Q2h"/>
+                            <constraint firstItem="TIb-OA-TSF" firstAttribute="centerX" secondItem="oT5-pm-jcO" secondAttribute="centerX" id="QEn-kq-td5"/>
                             <constraint firstItem="oT5-pm-jcO" firstAttribute="top" secondItem="s4O-B0-bat" secondAttribute="top" id="bTe-uy-81N"/>
                             <constraint firstItem="cGy-eI-NaR" firstAttribute="centerX" secondItem="7Ar-TX-NCg" secondAttribute="centerX" id="nkm-yT-iqT"/>
                         </constraints>
@@ -54,6 +63,7 @@
                     <connections>
                         <outlet property="contentView" destination="oT5-pm-jcO" id="w8M-vZ-hJr"/>
                         <outlet property="doneButton" destination="cGy-eI-NaR" id="tgo-RO-xRO"/>
+                        <outlet property="getResourcesButton" destination="TIb-OA-TSF" id="xmb-5l-797"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hdu-7S-DuJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

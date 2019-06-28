@@ -6,6 +6,9 @@ class Constants {
     static let loginViewMessageViewMyVideos = "⚠️ Please sign in to view your videos ⚠️"
     static let DemoCompletedUserDefaultsKey = "demoCompleted"
     static let emptyStateViewMessage = "You do not have any saved videos yet..."
+    static let emailFromAddress = "perceptionapp2018@gmail.com"
+    static let emailSubject = "Perception-Enabled Materials"
+    static let emailMessageBody = "Please open up the following link on another device to access Perception-enabled materials. https://janezhu1618.github.io/Perception/"
     
     public enum UltimateDestinationEnum {
         case myVideos
