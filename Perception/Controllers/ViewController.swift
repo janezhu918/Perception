@@ -5,6 +5,7 @@ import ExpandingMenu
 import AVKit
 import Kingfisher
 import ProgressHUD
+import MessageUI
 
 class ViewController: UIViewController {
     
@@ -456,6 +457,21 @@ class ViewController: UIViewController {
             }
         }
         
+        let resources = ExpandingMenuItem(size: menuButtonSize, title: "Resources", image: UIImage(named: "resources")!, highlightedImage: UIImage(named: "resources")!, backgroundImage: nil, backgroundHighlightedImage: nil) {
+            if MFMailComposeViewController.canSendMail() {
+                let mailComposeViewController = MFMailComposeViewController()
+                mailComposeViewController.mailComposeDelegate = self
+                mailComposeViewController.setPreferredSendingEmailAddress(Constants.emailFromAddress)
+                mailComposeViewController.setToRecipients(["enterYourEmail@email.com"])
+                mailComposeViewController.setSubject(Constants.emailSubject)
+                mailComposeViewController.setMessageBody(Constants.emailMessageBody, isHTML: false)
+                
+                self.present(mailComposeViewController, animated: true, completion: nil)
+            } else {
+                ProgressHUD.showError("Unable to send email. Check if Mail app is set up.")
+            }
+        }
+        
         let signOut = ExpandingMenuItem(size: menuButtonSize, title: "Sign Out", image: UIImage(named: "userBlue")!, highlightedImage: UIImage(named: "userBlue")!, backgroundImage: nil, backgroundHighlightedImage: nil) { () -> Void in
             if self.userIsLoggedIn {
                 self.authservice.signOutAccount()
@@ -464,7 +480,7 @@ class ViewController: UIViewController {
             }
         }
         
-        let menuItems = [signOut, share, save, myVideos, profile]
+        let menuItems = [signOut, share, save, myVideos, resources, profile]
         menuItems.forEach{ $0.layer.cornerRadius = 5 }
         menuItems.forEach{ $0.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1) }
         menuItems.forEach{ $0.titleColor = .init(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) }
@@ -565,5 +581,14 @@ extension ViewController: AuthServiceSignOutDelegate {
         func checkForLoggedUser(_ logged: Bool) {
             userIsLoggedIn = true
         }
+    }
+}
+
+
+extension ViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true, completion: nil)
+        
     }
 }

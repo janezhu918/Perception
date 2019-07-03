@@ -30,7 +30,7 @@ class OnBoardingViewController: UIViewController {
 
             present(mailComposeViewController, animated: true, completion: nil)
         } else {
-            ProgressHUD.showError("Check Internet Connection")
+            ProgressHUD.showError("Unable to send email. Check if Mail app is set up.")
         }
     }
     
